@@ -1,0 +1,49 @@
+<xs:schema xmlns:ns1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetAutoYears"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetAutoYears">
+	<xs:import schemaLocation="file://4.xsd"
+			namespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"/>
+	<xs:complexType name="GetYearAvto">
+		<xs:sequence>
+			<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+					minOccurs="0"
+					name="error"
+					nillable="true"
+					type="q1:Error"/>
+			<xs:element minOccurs="0"
+					name="yearAvto_list"
+					nillable="true"
+					type="tns:ArrayOfyearAvto"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetYearAvto"
+			nillable="true"
+			type="tns:GetYearAvto"/>
+	<xs:complexType name="ArrayOfyearAvto">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="yearAvto"
+					nillable="true"
+					type="tns:yearAvto"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfyearAvto"
+			nillable="true"
+			type="tns:ArrayOfyearAvto"/>
+	<xs:complexType name="yearAvto">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="year_begin"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="year_end"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="yearAvto"
+			nillable="true"
+			type="tns:yearAvto"/>
+</xs:schema>

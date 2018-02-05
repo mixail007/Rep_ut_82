@@ -1,0 +1,97 @@
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService">
+	<xs:complexType name="CurrencyRate">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="charCode"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="nominal"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="numCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="value"
+					type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CurrencyRate"
+			nillable="true"
+			type="tns:CurrencyRate"/>
+	<xs:complexType name="Error">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="code"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="comment"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Error"
+			nillable="true"
+			type="tns:Error"/>
+	<xs:complexType name="ArrayOfwh_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="wh_price_rest"
+					nillable="true"
+					type="tns:wh_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfwh_price_rest"
+			nillable="true"
+			type="tns:ArrayOfwh_price_rest"/>
+	<xs:complexType name="wh_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="price"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="price_rozn"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="rest"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="wrh"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="wh_price_rest"
+			nillable="true"
+			type="tns:wh_price_rest"/>
+	<xs:complexType name="ArrayOfWarehouseLogistic">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="WarehouseLogistic"
+					nillable="true"
+					type="tns:WarehouseLogistic"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfWarehouseLogistic"
+			nillable="true"
+			type="tns:ArrayOfWarehouseLogistic"/>
+	<xs:complexType name="WarehouseLogistic">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="logistDays"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="whId"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="WarehouseLogistic"
+			nillable="true"
+			type="tns:WarehouseLogistic"/>
+</xs:schema>

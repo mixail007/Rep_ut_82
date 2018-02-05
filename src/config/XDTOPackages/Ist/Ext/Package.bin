@@ -1,0 +1,16 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="www.yst.ru/ist">
+	<objectType name="Product">
+		<property name="Code" type="xs:string"/>
+		<property name="Quantity" type="xs:int" lowerBound="1" upperBound="1"/>
+		<property name="Price" type="xs:int" nillable="true"/>
+	</objectType>
+	<objectType name="ArrayOfProducts">
+		<property xmlns:d3p1="www.yst.ru/ist" name="Product" type="d3p1:Product" upperBound="250"/>
+	</objectType>
+	<objectType name="Result">
+		<property name="Success" type="xs:boolean"/>
+		<property name="OrderNumber" type="xs:string" nillable="true"/>
+		<property name="Order" type="xs:string" nillable="true"/>
+		<property name="Error" type="xs:string"/>
+	</objectType>
+</package>

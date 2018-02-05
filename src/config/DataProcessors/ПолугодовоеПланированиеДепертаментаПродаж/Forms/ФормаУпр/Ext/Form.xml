@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4">
+	<VerticalScroll>useIfNecessary</VerticalScroll>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<Table name="Планирование" id="5">
+			<Representation>List</Representation>
+			<HeaderHeight>2</HeaderHeight>
+			<UseAlternationRowColor>true</UseAlternationRowColor>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.Планирование</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ViewStatusLocation>None</ViewStatusLocation>
+			<SearchControlLocation>None</SearchControlLocation>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ПланированиеКонтекстноеМеню" id="6"/>
+			<AutoCommandBar name="ПланированиеКоманднаяПанель" id="7"/>
+			<ExtendedTooltip name="ПланированиеРасширеннаяПодсказка" id="43"/>
+			<SearchStringAddition name="ПланированиеСтрокаПоиска" id="44">
+				<AdditionSource>
+					<Item>Планирование</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПланированиеСтрокаПоискаКонтекстноеМеню" id="45"/>
+				<ExtendedTooltip name="ПланированиеСтрокаПоискаРасширеннаяПодсказка" id="46"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ПланированиеСостояниеПросмотра" id="47">
+				<AdditionSource>
+					<Item>Планирование</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ПланированиеСостояниеПросмотраКонтекстноеМеню" id="48"/>
+				<ExtendedTooltip name="ПланированиеСостояниеПросмотраРасширеннаяПодсказка" id="49"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ПланированиеУправлениеПоиском" id="50">
+				<AdditionSource>
+					<Item>Планирование</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ПланированиеУправлениеПоискомКонтекстноеМеню" id="51"/>
+				<ExtendedTooltip name="ПланированиеУправлениеПоискомРасширеннаяПодсказка" id="52"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ПланированиеНомерСтроки" id="8">
+					<DataPath>Объект.Планирование.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ПланированиеНомерСтрокиКонтекстноеМеню" id="9"/>
+					<ExtendedTooltip name="ПланированиеНомерСтрокиРасширеннаяПодсказка" id="53"/>
+				</LabelField>
+				<ColumnGroup name="ПредыдущийПериод" id="37">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Аналогичное полугодие предыдущего года</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Предыдущий период</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Height>2</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<Group>Horizontal</Group>
+					<ShowInHeader>true</ShowInHeader>
+					<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+					<ExtendedTooltip name="ПредыдущийПериодРасширеннаяПодсказка" id="54"/>
+					<ChildItems>
+						<ColumnGroup name="ОбъемПродаж" id="38">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Объем продаж</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Объем продаж</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Horizontal</Group>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+							<ExtendedTooltip name="ОбъемПродажРасширеннаяПодсказка" id="55"/>
+							<ChildItems>
+								<InputField name="ПланированиеСумма" id="12">
+									<DataPath>Объект.Планирование.Сумма</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеСуммаКонтекстноеМеню" id="13"/>
+									<ExtendedTooltip name="ПланированиеСуммаРасширеннаяПодсказка" id="56"/>
+								</InputField>
+								<InputField name="ПланированиеКоличество" id="10">
+									<DataPath>Объект.Планирование.Количество</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеКоличествоКонтекстноеМеню" id="11"/>
+									<ExtendedTooltip name="ПланированиеКоличествоРасширеннаяПодсказка" id="57"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+						<InputField name="ПланированиеСредняяЦена" id="14">
+							<DataPath>Объект.Планирование.СредняяЦена</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПланированиеСредняяЦенаКонтекстноеМеню" id="15"/>
+							<ExtendedTooltip name="ПланированиеСредняяЦенаРасширеннаяПодсказка" id="58"/>
+						</InputField>
+						<ColumnGroup name="Наценка" id="39">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Наценка</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Наценка</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Horizontal</Group>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+							<ExtendedTooltip name="НаценкаРасширеннаяПодсказка" id="59"/>
+							<ChildItems>
+								<InputField name="ПланированиеПроцентНаценки" id="16">
+									<DataPath>Объект.Планирование.ПроцентНаценки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеПроцентНаценкиКонтекстноеМеню" id="17"/>
+									<ExtendedTooltip name="ПланированиеПроцентНаценкиРасширеннаяПодсказка" id="60"/>
+								</InputField>
+								<InputField name="ПланированиеСуммаНаценки" id="18">
+									<DataPath>Объект.Планирование.СуммаНаценки</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеСуммаНаценкиКонтекстноеМеню" id="19"/>
+									<ExtendedTooltip name="ПланированиеСуммаНаценкиРасширеннаяПодсказка" id="61"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+					</ChildItems>
+				</ColumnGroup>
+				<InputField name="ПланированиеПриростПродаж" id="20">
+					<DataPath>Объект.Планирование.ПриростПродаж</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ожидаемый 
+прирост продаж </v8:content>
+						</v8:item>
+					</Title>
+					<EditMode>EnterOnInput</EditMode>
+					<Width>12</Width>
+					<VerticalStretch>false</VerticalStretch>
+					<ContextMenu name="ПланированиеПриростПродажКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ПланированиеПриростПродажРасширеннаяПодсказка" id="62"/>
+				</InputField>
+				<ColumnGroup name="ТекущийПериод" id="40">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>План на выбранное полугодие</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Текущий период</v8:content>
+						</v8:item>
+					</ToolTip>
+					<Group>Horizontal</Group>
+					<ShowInHeader>true</ShowInHeader>
+					<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+					<ExtendedTooltip name="ТекущийПериодРасширеннаяПодсказка" id="63"/>
+					<ChildItems>
+						<ColumnGroup name="ОбъемПродажПлан" id="41">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Объем продаж</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Объем продаж план</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Horizontal</Group>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+							<ExtendedTooltip name="ОбъемПродажПланРасширеннаяПодсказка" id="64"/>
+							<ChildItems>
+								<InputField name="ПланированиеКоличествоПлан" id="22">
+									<DataPath>Объект.Планирование.КоличествоПлан</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеКоличествоПланКонтекстноеМеню" id="23"/>
+									<ExtendedTooltip name="ПланированиеКоличествоПланРасширеннаяПодсказка" id="65"/>
+								</InputField>
+								<InputField name="ПланированиеСуммаПлан" id="24">
+									<DataPath>Объект.Планирование.СуммаПлан</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеСуммаПланКонтекстноеМеню" id="25"/>
+									<ExtendedTooltip name="ПланированиеСуммаПланРасширеннаяПодсказка" id="66"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+						<InputField name="ПланированиеПриростЦены" id="26">
+							<DataPath>Объект.Планирование.ПриростЦены</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Ожидаемый прирост средней цены</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<Width>7</Width>
+							<HorizontalStretch>false</HorizontalStretch>
+							<ContextMenu name="ПланированиеПриростЦеныКонтекстноеМеню" id="27"/>
+							<ExtendedTooltip name="ПланированиеПриростЦеныРасширеннаяПодсказка" id="67"/>
+						</InputField>
+						<InputField name="ПланированиеСредняяЦенаПлан" id="28">
+							<DataPath>Объект.Планирование.СредняяЦенаПлан</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Средняя цена</v8:content>
+								</v8:item>
+							</Title>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПланированиеСредняяЦенаПланКонтекстноеМеню" id="29"/>
+							<ExtendedTooltip name="ПланированиеСредняяЦенаПланРасширеннаяПодсказка" id="68"/>
+						</InputField>
+						<ColumnGroup name="НаценкаПлан" id="42">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Наценка. руб.</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Наценка план</v8:content>
+								</v8:item>
+							</ToolTip>
+							<Group>Horizontal</Group>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+							<ExtendedTooltip name="НаценкаПланРасширеннаяПодсказка" id="69"/>
+							<ChildItems>
+								<InputField name="ПланированиеПроцентНаценкиПлан" id="30">
+									<DataPath>Объект.Планирование.ПроцентНаценкиПлан</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>% наценки</v8:content>
+										</v8:item>
+									</Title>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеПроцентНаценкиПланКонтекстноеМеню" id="31"/>
+									<ExtendedTooltip name="ПланированиеПроцентНаценкиПланРасширеннаяПодсказка" id="70"/>
+								</InputField>
+								<InputField name="ПланированиеНаценкаПлан" id="32">
+									<DataPath>Объект.Планирование.НаценкаПлан</DataPath>
+									<EditMode>EnterOnInput</EditMode>
+									<ContextMenu name="ПланированиеНаценкаПланКонтекстноеМеню" id="33"/>
+									<ExtendedTooltip name="ПланированиеНаценкаПланРасширеннаяПодсказка" id="71"/>
+								</InputField>
+							</ChildItems>
+						</ColumnGroup>
+						<InputField name="ПланированиеПриростНаценки" id="34">
+							<DataPath>Объект.Планирование.ПриростНаценки</DataPath>
+							<EditMode>EnterOnInput</EditMode>
+							<ContextMenu name="ПланированиеПриростНаценкиКонтекстноеМеню" id="35"/>
+							<ExtendedTooltip name="ПланированиеПриростНаценкиРасширеннаяПодсказка" id="72"/>
+						</InputField>
+					</ChildItems>
+				</ColumnGroup>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="Группа1" id="36">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="73"/>
+			<ChildItems>
+				<InputField name="НачалоПериода" id="1">
+					<DataPath>Объект.НачалоПериода</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="НачалоПериодаКонтекстноеМеню" id="2"/>
+					<ExtendedTooltip name="НачалоПериодаРасширеннаяПодсказка" id="74"/>
+				</InputField>
+				<InputField name="КонецПериода" id="3">
+					<DataPath>Объект.КонецПериода</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="КонецПериодаКонтекстноеМеню" id="4"/>
+					<ExtendedTooltip name="КонецПериодаРасширеннаяПодсказка" id="75"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:DataProcessorObject.ПолугодовоеПланированиеДепертаментаПродаж</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+		</Attribute>
+	</Attributes>
+</Form>

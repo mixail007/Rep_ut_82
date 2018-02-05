@@ -1,0 +1,82 @@
+<xs:schema xmlns:ns1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SetProductsPrice"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SetProductsPrice">
+	<xs:import schemaLocation="file://4.xsd"
+			namespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"/>
+	<xs:complexType name="ArrayOfPriceList">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="PriceList"
+					nillable="true"
+					type="tns:PriceList"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfPriceList"
+			nillable="true"
+			type="tns:ArrayOfPriceList"/>
+	<xs:complexType name="PriceList">
+		<xs:sequence>
+			<xs:element name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element name="prID"
+					type="xs:int"/>
+			<xs:element name="price"
+					type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PriceList"
+			nillable="true"
+			type="tns:PriceList"/>
+	<xs:complexType name="setPriceResult">
+		<xs:sequence>
+			<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+					minOccurs="0"
+					name="error"
+					nillable="true"
+					type="q1:Error"/>
+			<xs:element minOccurs="0"
+					name="error_list"
+					nillable="true"
+					type="tns:ArrayOfPriceListError"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="setPriceResult"
+			nillable="true"
+			type="tns:setPriceResult"/>
+	<xs:complexType name="ArrayOfPriceListError">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="PriceListError"
+					nillable="true"
+					type="tns:PriceListError"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfPriceListError"
+			nillable="true"
+			type="tns:ArrayOfPriceListError"/>
+	<xs:complexType name="PriceListError">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="err"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="prID"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PriceListError"
+			nillable="true"
+			type="tns:PriceListError"/>
+</xs:schema>

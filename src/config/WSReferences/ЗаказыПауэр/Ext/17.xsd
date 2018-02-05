@@ -1,0 +1,23 @@
+<xs:schema xmlns:ns1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SetOrderStatus"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.SetOrderStatus">
+	<xs:import schemaLocation="file://4.xsd"
+			namespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"/>
+	<xs:complexType name="ClientSoapResultDM">
+		<xs:sequence>
+			<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+					minOccurs="0"
+					name="Error"
+					nillable="true"
+					type="q1:Error"/>
+			<xs:element minOccurs="0"
+					name="Success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ClientSoapResultDM"
+			nillable="true"
+			type="tns:ClientSoapResultDM"/>
+</xs:schema>
