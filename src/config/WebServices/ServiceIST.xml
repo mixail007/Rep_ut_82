@@ -209,6 +209,55 @@
 							<TransferDirection>In</TransferDirection>
 						</Properties>
 					</Parameter>
+					<Parameter uuid="2ea333bd-2b15-40de-b1ad-f7814ebd8fe8">
+						<Properties>
+							<Name>Comment</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Comment</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<XDTOValueType>xs:string</XDTOValueType>
+							<Nillable>false</Nillable>
+							<TransferDirection>In</TransferDirection>
+						</Properties>
+					</Parameter>
+				</ChildObjects>
+			</Operation>
+			<Operation uuid="cbbb1e70-acfb-4a74-aec1-1c326be875ce">
+				<Properties>
+					<Name>GetStatusApplicationsForTransport</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Get status applications for transport</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<XDTOReturningValueType xmlns:d6p1="www.yst.ru/ist">d6p1:ArrayOfApplicationForTransport</XDTOReturningValueType>
+					<Nillable>false</Nillable>
+					<Transactioned>false</Transactioned>
+					<ProcedureName>GetStatusApplicationsForTransport</ProcedureName>
+					<DataLockControlMode>Managed</DataLockControlMode>
+				</Properties>
+				<ChildObjects>
+					<Parameter uuid="30fc46b3-d88d-4420-8909-079b968eb61e">
+						<Properties>
+							<Name>ArrayOfApplicationForTransport</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Array of application for transport</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment/>
+							<XDTOValueType xmlns:d8p1="www.yst.ru/ist">d8p1:ArrayOfApplicationForTransport</XDTOValueType>
+							<Nillable>false</Nillable>
+							<TransferDirection>In</TransferDirection>
+						</Properties>
+					</Parameter>
 				</ChildObjects>
 			</Operation>
 		</ChildObjects>
