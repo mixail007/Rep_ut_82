@@ -13,4 +13,14 @@
 		<property name="Order" type="xs:string" nillable="true"/>
 		<property name="Error" type="xs:string"/>
 	</objectType>
+	<objectType name="ArrayOfApplicationForTransport">
+		<property xmlns:d3p1="www.yst.ru/ist" name="ApplicationForTransport" type="d3p1:ApplicationForTransport" lowerBound="0" upperBound="1000"/>
+	</objectType>
+	<objectType name="ApplicationForTransport">
+		<property name="Number" type="xs:string" lowerBound="1" nillable="false"/>
+		<property name="Status" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Driver" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Logist" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Comment" type="xs:string" lowerBound="0" nillable="true"/>
+	</objectType>
 </package>
