@@ -696,9 +696,9 @@
 					Заказ.ДатаОтгрузки = Дата(ShippingDay);
 				КонецЕсли;
 				
-				//Если IsSeasonAdjournment<> неопределено тогда
-				//Заказ.посе=IsSeasonAdjournment;
-				//конецЕсли;
+				Если IsSeasonAdjournment<> неопределено тогда
+				Заказ.СезоннаяПрограмма=IsSeasonAdjournment;
+				конецЕсли;
 
 				
 				
