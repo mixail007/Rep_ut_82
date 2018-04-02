@@ -1,16 +1,16 @@
 ﻿                                                      
 Функция CreateOrder(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany)
-	возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder",неопределено,неопределено,неопределено,неопределено,Неопределено,Неопределено,Неопределено,Неопределено);
+	возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder",неопределено,неопределено,неопределено,неопределено,Неопределено,Неопределено,Неопределено,Неопределено,Неопределено);
 КонецФункции
 
 Функция CreateOrder2(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,Prepay,IsStar,WayOfDelivery,AddressId,TkId)
-	    возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder2",Prepay,IsStar,WayOfDelivery,AddressId,TkId,Неопределено,Неопределено,Неопределено);
+	    возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder2",Prepay,IsStar,WayOfDelivery,AddressId,TkId,Неопределено,Неопределено,Неопределено,Неопределено);
 КонецФункции
-Функция CreateOrder3(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment);
-	    возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder3",Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment);
+Функция CreateOrder3(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment,DayOfWeekToDeliver);
+	    возврат СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,"CreateOrder3",Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment,DayOfWeekToDeliver);
 КонецФункции
 
-функция СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,NameOperation,Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment)
+функция СоздатьЗаказ(Partner, PointId, Goods, Comment, ShippingDay, isReserve, TransportCompany,NameOperation,Prepay,IsStar,WayOfDelivery,AddressId,TkId,DeliveryDate2,CaseForLogistik,IsSeasonAdjournment,DayOfWeekToDeliver)
 	
 	ДелитьПоПоставщикам = Константы.ИспользоватьДележкуЗаказовВМинус.Получить();    //Плотников, 31.10.2016, делить в минус
 	
