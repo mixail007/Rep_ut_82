@@ -4585,3 +4585,7 @@
 	КонецЦикла;	
 	
 КонецПроцедуры
+
+Функция ChengeOrders(DeliveryDate,WayOfDelivery,AddressId,TkId,DayOfWeekToDeliver,OrderGuids)
+	// Вставить содержимое обработчика.
+КонецФункции
