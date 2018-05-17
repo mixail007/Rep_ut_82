@@ -115,7 +115,12 @@
 				И ВЫБОР
 					КОГДА &amp;ПоВсем = ИСТИНА
 						ТОГДА ИСТИНА
-					ИНАЧЕ ДоговорКонтрагента.ОтветственноеЛицо В (&amp;Менеджер)
+					ИНАЧЕ 
+						ВЫБОР 
+							КОГДА &amp;ПоРегиону 
+								ТОГДА ДоговорКонтрагента.Владелец В (&amp;Контрагенты)
+							ИНАЧЕ	ДоговорКонтрагента.ОтветственноеЛицо В (&amp;Менеджер)
+						КОНЕЦ
 				КОНЕЦ
 				И ВЫБОР
 					КОГДА &amp;ТолькоЛитые = ИСТИНА
@@ -168,7 +173,12 @@
 				И ВЫБОР
 					КОГДА &amp;ПоВсем = ИСТИНА
 						ТОГДА ИСТИНА
-					ИНАЧЕ ДоговорКонтрагента.ОтветственноеЛицо В (&amp;Менеджер)
+					ИНАЧЕ 
+						ВЫБОР 
+							КОГДА &amp;ПоРегиону 
+								ТОГДА ДоговорКонтрагента.Владелец В (&amp;Контрагенты)
+							ИНАЧЕ ДоговорКонтрагента.ОтветственноеЛицо В (&amp;Менеджер)
+						КОНЕЦ
 				КОНЕЦ
 				И ВЫБОР
 					КОГДА &amp;ТолькоЛитые = ИСТИНА
@@ -397,6 +407,34 @@
 			</v8:StringQualifiers>
 		</valueType>
 		<value xsi:nil="true"/>
+		<useRestriction>true</useRestriction>
+	</parameter>
+	<parameter>
+		<name>Контрагенты</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Контрагенты</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type xmlns:d4p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d4p1:CatalogRef.Контрагенты</v8:Type>
+		</valueType>
+		<useRestriction>true</useRestriction>
+		<valueListAllowed>true</valueListAllowed>
+	</parameter>
+	<parameter>
+		<name>ПоРегиону</name>
+		<title xsi:type="v8:LocalStringType">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>По региону</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:boolean</v8:Type>
+		</valueType>
+		<value xsi:type="xs:boolean">false</value>
 		<useRestriction>true</useRestriction>
 	</parameter>
 	<settingsVariant>
