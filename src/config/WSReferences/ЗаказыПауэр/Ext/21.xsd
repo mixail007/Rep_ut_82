@@ -1,0 +1,31 @@
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetStatusList"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetStatusList">
+	<xs:complexType name="ArrayOfGetStatusListResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="GetStatusListResult"
+					nillable="true"
+					type="tns:GetStatusListResult"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfGetStatusListResult"
+			nillable="true"
+			type="tns:ArrayOfGetStatusListResult"/>
+	<xs:complexType name="GetStatusListResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="id"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="name"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetStatusListResult"
+			nillable="true"
+			type="tns:GetStatusListResult"/>
+</xs:schema>

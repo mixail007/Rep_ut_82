@@ -1,0 +1,85 @@
+<xs:schema xmlns:ns1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetOrderStatus"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetOrderStatus">
+	<xs:import schemaLocation="file://3.xsd"
+			namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+	<xs:complexType name="FindOrderFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="dEnd"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="dStart"
+					type="xs:dateTime"/>
+			<xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="orderNumbers"
+					nillable="true"
+					type="q1:ArrayOfstring"/>
+			<xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="statusList"
+					nillable="true"
+					type="q2:ArrayOfint"/>
+			<xs:element minOccurs="0"
+					name="viewArchive"
+					type="xs:boolean"/>
+			<xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="warehouses"
+					nillable="true"
+					type="q3:ArrayOfint"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindOrderFilter"
+			nillable="true"
+			type="tns:FindOrderFilter"/>
+	<xs:complexType name="ArrayOfGetOrderStatusResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="GetOrderStatusResult"
+					nillable="true"
+					type="tns:GetOrderStatusResult"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfGetOrderStatusResult"
+			nillable="true"
+			type="tns:ArrayOfGetOrderStatusResult"/>
+	<xs:complexType name="GetOrderStatusResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="hasItem"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="hasMerged"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="mergedTo"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="parent"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="statusID"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetOrderStatusResult"
+			nillable="true"
+			type="tns:GetOrderStatusResult"/>
+</xs:schema>
