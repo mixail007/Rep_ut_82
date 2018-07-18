@@ -5753,9 +5753,10 @@ i=0; N = Таб.Количество();  ЕстьТовары=ЛОЖЬ;
 							OrderStatus = ?(OrderStatus = 0, 1, OrderStatus); // 0 и 1 статусы - новый...
 						//+++ 17.07.2018  Задача № 50914 слияние статусов
 							OrderStatus = ?( (OrderStatus>=8 и OrderStatus<=14) или OrderStatus=21, 8, OrderStatus); 
-							//Если OrderStatus = 2 и зак.Резерв 
-							//	тогда OrderStatus = 22;
-							//КонецЕсли;	
+							Если OrderStatus = 2 и НЕ зак.Резерв тогда //18.07.2018
+								OrderStatus = 22;
+							КонецЕсли;	
+
 						Иначе
 							OrderStatus = 1;
 						КонецЕсли;
