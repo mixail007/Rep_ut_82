@@ -4821,3 +4821,7 @@
 	
 	возврат УдачныеЗаказы;
 КонецФункции
+
+Функция CreateReportOTH(PartnerId, PartnerPointId, BeginDate, EndDate, Goods)
+	// Вставить содержимое обработчика.
+КонецФункции
