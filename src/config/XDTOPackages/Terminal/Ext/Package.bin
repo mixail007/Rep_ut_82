@@ -220,4 +220,16 @@
 	<objectType name="ArrayOfOrdersGuid">
 		<property name="OrderGuid" type="xs:string" lowerBound="0" upperBound="-1"/>
 	</objectType>
+	<objectType name="ProductReportOTH">
+		<property name="Code" type="xs:string" lowerBound="1" upperBound="1"/>
+		<property name="Quantity" type="xs:int"/>
+	</objectType>
+	<objectType name="ArrayOfProductsReportOTH">
+		<property xmlns:d3p1="http://37.1.84.50:8080/Terminal" name="Products" type="d3p1:ProductReportOTH" lowerBound="0" upperBound="-1"/>
+	</objectType>
+	<objectType name="ResultOfReportOTH">
+		<property name="Success" type="xs:boolean"/>
+		<property name="Guid" type="xs:string"/>
+		<property xmlns:d3p1="http://37.1.84.50:8080/Terminal" name="Products" type="d3p1:ArrayOfProductsReportOTH"/>
+	</objectType>
 </package>
