@@ -340,6 +340,9 @@
 					<xs:sequence>
 						<xs:element name="OrderID"
 								type="xs:string"/>
+						<xs:element name="OrderGUID"
+								type="xs:string"
+								nillable="true"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -482,6 +485,35 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="ReturnFromResponsibleStorage">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Goods"
+								type="xsd2:ArrayOfProducts"/>
+						<xs:element name="SaleNom"
+								type="xs:string"/>
+						<xs:element name="SaleDate"
+								type="xs:dateTime"/>
+						<xs:element name="OrderID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OrderGUID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="GUIDFormula"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReturnFromResponsibleStorageResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
 		</xs:schema>
 	</types>
 	<message name="CreateClientRequestMessage">
@@ -564,6 +596,14 @@
 		<part name="parameters"
 				element="tns:GetStatusPromoCodeResponse"/>
 	</message>
+	<message name="ReturnFromResponsibleStorageRequestMessage">
+		<part name="parameters"
+				element="tns:ReturnFromResponsibleStorage"/>
+	</message>
+	<message name="ReturnFromResponsibleStorageResponseMessage">
+		<part name="parameters"
+				element="tns:ReturnFromResponsibleStorageResponse"/>
+	</message>
 	<portType name="ServiceFormulaPortType">
 		<operation name="CreateClient">
 			<input name="CreateClientRequest"
@@ -624,6 +664,12 @@
 					message="tns:GetStatusPromoCodeRequestMessage"/>
 			<output name="GetStatusPromoCodeResponse"
 					message="tns:GetStatusPromoCodeResponseMessage"/>
+		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<input name="ReturnFromResponsibleStorageRequest"
+					message="tns:ReturnFromResponsibleStorageRequestMessage"/>
+			<output name="ReturnFromResponsibleStorageResponse"
+					message="tns:ReturnFromResponsibleStorageResponseMessage"/>
 		</operation>
 	</portType>
 	<binding name="ServiceFormulaSoapBinding"
@@ -730,6 +776,16 @@
 				<soapbind:body use="literal"/>
 			</output>
 		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReturnFromResponsibleStorage"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
 	</binding>
 	<binding name="ServiceFormulaSoap12Binding"
 			type="tns:ServiceFormulaPortType">
@@ -828,6 +884,16 @@
 		<operation name="GetStatusPromoCode">
 			<soap12bind:operation style="document"
 					soapAction="http://ServiceFormula#ServiceFormula:GetStatusPromoCode"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReturnFromResponsibleStorage"/>
 			<input>
 				<soap12bind:body use="literal"/>
 			</input>
