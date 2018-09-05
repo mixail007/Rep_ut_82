@@ -233,4 +233,12 @@
 		<property name="Number" type="xs:string"/>
 		<property xmlns:d3p1="http://37.1.84.50:8080/Terminal" name="Products" type="d3p1:ArrayOfProductsPurchaseComission"/>
 	</objectType>
+	<objectType name="ArrayOfProductsOnComissionResult">
+		<property xmlns:d3p1="http://37.1.84.50:8080/Terminal" name="ProductsOnComissionResult" type="d3p1:ProductOnComissionResult" lowerBound="0" upperBound="-1"/>
+	</objectType>
+	<objectType name="ProductOnComissionResult">
+		<property name="ProductId" type="xs:string" upperBound="7"/>
+		<property name="ProductName" type="xs:string" lowerBound="1" upperBound="100"/>
+		<property name="Rest" type="xs:int" lowerBound="1" upperBound="1000"/>
+	</objectType>
 </package>
