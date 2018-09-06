@@ -9959,7 +9959,9 @@
 			
 			//Прокси = WSссылки.WSTerminal.СоздатьWSПрокси("http://37.1.84.50:8080/ServiceTerminal", "ServiceTerminal", "ServiceTerminalSoap12");
 			//Прокси = WSссылки.WSTerminal_Copy_4.СоздатьWSПрокси("http://37.1.84.50:8080/ServiceTerminal", "ServiceTerminal", "ServiceTerminalSoap12");
-			СсылкаWS = "http://37.1.84.50:8080/copy4/ws/ServiceTerminal?wsdl";  //пока динамически..., а может и навсегда оставим
+			//СсылкаWS = "http://37.1.84.50:8080/copy4/ws/ServiceTerminal?wsdl";  //пока динамически..., а может и навсегда оставим
+			СсылкаWS = "http://37.1.84.50:8080/YST/ws/serviceterminal?wsdl";  //пока динамически..., а может и навсегда оставим
+
 			Определения = Новый WSОпределения(СсылкаWS, Пользователь, Пароль);
 			WSСервис = Определения.Сервисы[0];
 			Прокси = Новый WSПрокси(Определения, WSСервис.URIПространстваИмен, WSСервис.Имя, WSСервис.ТочкиПодключения[0].Имя);
