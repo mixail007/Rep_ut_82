@@ -2,41 +2,41 @@
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4">
 	<InformationRegister uuid="1d1a8884-5eea-4e59-87d7-7ac1f136baf4">
 		<InternalInfo>
-			<xr:GeneratedType name="InformationRegisterRecord.РазрешениеПоРезерву" category="Record">
+			<xr:GeneratedType name="InformationRegisterRecord.РезервРазрешения" category="Record">
 				<xr:TypeId>80959cab-a5f2-46ca-91b9-17d6d1c3b56f</xr:TypeId>
 				<xr:ValueId>cbcbc409-2ac3-40c0-8ed8-b1c22ba63319</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterManager.РазрешениеПоРезерву" category="Manager">
+			<xr:GeneratedType name="InformationRegisterManager.РезервРазрешения" category="Manager">
 				<xr:TypeId>820d2445-b122-4b3c-9505-f62bb48ed45f</xr:TypeId>
 				<xr:ValueId>d591982c-84f4-4880-825c-960b1295760f</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterSelection.РазрешениеПоРезерву" category="Selection">
+			<xr:GeneratedType name="InformationRegisterSelection.РезервРазрешения" category="Selection">
 				<xr:TypeId>8594b864-03ca-428d-9fc8-7298bd82764e</xr:TypeId>
 				<xr:ValueId>77af8cf2-cb7d-487b-a060-af7a1342b67d</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterList.РазрешениеПоРезерву" category="List">
+			<xr:GeneratedType name="InformationRegisterList.РезервРазрешения" category="List">
 				<xr:TypeId>d5c83db3-76f9-4dfb-be18-9e92a8d7a219</xr:TypeId>
 				<xr:ValueId>4d70d5da-f0e3-43a7-9dce-3b5d231f0b39</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterRecordSet.РазрешениеПоРезерву" category="RecordSet">
+			<xr:GeneratedType name="InformationRegisterRecordSet.РезервРазрешения" category="RecordSet">
 				<xr:TypeId>8df466cc-6890-4af9-bf5e-e9af9cbdd10c</xr:TypeId>
 				<xr:ValueId>b87bec67-1de6-4afe-8259-6b58b214d799</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterRecordKey.РазрешениеПоРезерву" category="RecordKey">
+			<xr:GeneratedType name="InformationRegisterRecordKey.РезервРазрешения" category="RecordKey">
 				<xr:TypeId>ba1472d8-79af-4a11-80e4-85439d0ee411</xr:TypeId>
 				<xr:ValueId>9cae9c8b-67dd-41dd-9e35-20c722177493</xr:ValueId>
 			</xr:GeneratedType>
-			<xr:GeneratedType name="InformationRegisterRecordManager.РазрешениеПоРезерву" category="RecordManager">
+			<xr:GeneratedType name="InformationRegisterRecordManager.РезервРазрешения" category="RecordManager">
 				<xr:TypeId>22ed7a03-7995-4625-a960-73ff6932af13</xr:TypeId>
 				<xr:ValueId>7b0dd522-f14c-4472-baf1-c1b47ca81ccc</xr:ValueId>
 			</xr:GeneratedType>
 		</InternalInfo>
 		<Properties>
-			<Name>РазрешениеПоРезерву</Name>
+			<Name>РезервРазрешения</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Разрешение по резерву</v8:content>
+					<v8:content>Резерв разрешения</v8:content>
 				</v8:item>
 			</Synonym>
 			<Comment/>
@@ -230,7 +230,48 @@
 					</Synonym>
 					<Comment/>
 					<Type>
-						<v8:TypeSet>cfg:CatalogRef</v8:TypeSet>
+						<v8:Type>cfg:CatalogRef.Контрагенты</v8:Type>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format/>
+					<EditFormat/>
+					<ToolTip/>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask/>
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true"/>
+					<MaxValue xsi:nil="true"/>
+					<FillFromFillingValue>true</FillFromFillingValue>
+					<FillValue xsi:nil="true"/>
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks/>
+					<ChoiceParameters/>
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm/>
+					<LinkByType/>
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Master>false</Master>
+					<MainFilter>true</MainFilter>
+					<DenyIncompleteValues>true</DenyIncompleteValues>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+				</Properties>
+			</Dimension>
+			<Dimension uuid="0814bc24-b119-428d-b127-ee873ec2ac71">
+				<Properties>
+					<Name>Подразделение</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Подразделение</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment/>
+					<Type>
+						<v8:Type>cfg:CatalogRef.Подразделения</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
 					<Format/>
