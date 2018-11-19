@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонный</dataPath>
+				<field>ЗаказПоставщикуСезонный</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураКод</dataPath>
+				<field>НоменклатураКод</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазницаВЦенах</dataPath>
+				<field>РазницаВЦенах</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЦенаЗП</dataPath>
+				<field>ЦенаЗП</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЦенаЗПС</dataPath>
+				<field>ЦенаЗПС</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>      ВЫБРАТЬ
+	А.ЗаказПоставщику КАК ЗаказПоставщику,
+	А.Номенклатура.Код,
+	А.Номенклатура,
+	А.Цена КАК ЦенаЗП,
+	ЕСТЬNULL(ЗаказПоставщикуСезонныйТовары.Цена, 0) КАК ЦенаЗПС,
+	А.Цена - ЗаказПоставщикуСезонныйТовары.Цена КАК РазницаВЦенах,
+	ЗаказПоставщикуСезонныйТовары.Ссылка КАК ЗаказПоставщикуСезонный
+ИЗ
+	(ВЫБРАТЬ
+		ЗаказыПоставщикамСезонныеОбороты.Номенклатура КАК Номенклатура,
+		ЗаказПоставщикуТовары.Цена КАК Цена,
+		ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный КАК ЗаказПоставщикуСезонный,
+		ЗаказыПоставщикамСезонныеОбороты.Регистратор КАК ЗаказПоставщику
+	ИЗ
+		Документ.ЗаказПоставщику.Товары КАК ЗаказПоставщикуТовары
+			ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикамСезонные.Обороты(&amp;ДатаНач, &amp;ДатаКон, Регистратор, ) КАК ЗаказыПоставщикамСезонныеОбороты
+			ПО ЗаказПоставщикуТовары.Ссылка = ЗаказыПоставщикамСезонныеОбороты.Регистратор
+				И ЗаказПоставщикуТовары.Номенклатура = ЗаказыПоставщикамСезонныеОбороты.Номенклатура
+	ГДЕ
+		ЗаказыПоставщикамСезонныеОбороты.Регистратор.Контрагент = &amp;Контрагент
+		И ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход &gt; 0) КАК А
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказПоставщикуСезонный.Товары КАК ЗаказПоставщикуСезонныйТовары
+		ПО А.Номенклатура = ЗаказПоставщикуСезонныйТовары.Номенклатура
+			И А.ЗаказПоставщикуСезонный = ЗаказПоставщикуСезонныйТовары.Ссылка
+
+</query>
+		</dataSet>
+		<totalField>
+			<dataPath>РазницаВЦенах</dataPath>
+			<expression>Количество(Различные РазницаВЦенах)</expression>
+			<group>ЗаказПоставщику</group>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаКон</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата кон</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаНач</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата нач</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Контрагент</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Контрагент</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Контрагенты</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

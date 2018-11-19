@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Заказ</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>MaximumWidth</parameter>
+						<value xsi:type="xs:decimal">40</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Код</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоЗ</dataPath>
+				<field>КоличествоЗ</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество в заказе</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоМинус</dataPath>
+				<field>КоличествоМинус</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество "-"</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоП</dataPath>
+				<field>КоличествоП</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество в поступление</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПлюс</dataPath>
+				<field>КоличествоПлюс</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество "+"</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контейнер</dataPath>
+				<field>Контейнер</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Контейнер</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Номенклатура</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поступление</dataPath>
+				<field>Поступление</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Поступление</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>MaximumWidth</parameter>
+						<value xsi:type="xs:decimal">50</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаМинус</dataPath>
+				<field>СуммаМинус</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма "-"</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПлюс</dataPath>
+				<field>СуммаПлюс</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма "+"</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Цена</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>HorizontalAlign</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:HorizontalAlign">Right</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ЧЦ=15; ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ЗаказПоставщику.Ссылка
+ПОМЕСТИТЬ ВТ_Заказы
+ИЗ
+	Документ.ЗаказПоставщику КАК ЗаказПоставщику
+ГДЕ
+	ЗаказПоставщику.Дата МЕЖДУ &amp;НачДата И &amp;КонДата
+	И ЗаказПоставщику.Проведен
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ПоступлениеТоваровУслуг.Сделка
+ПОМЕСТИТЬ ВТ_Поступления
+ИЗ
+	Документ.ПоступлениеТоваровУслуг КАК ПоступлениеТоваровУслуг
+ГДЕ
+	ПоступлениеТоваровУслуг.Ссылка.Дата &gt; &amp;НачДата
+	И ПоступлениеТоваровУслуг.Ссылка.Проведен
+	И ПоступлениеТоваровУслуг.Сделка В
+			(ВЫБРАТЬ
+				ВТ_Заказы.Ссылка
+			ИЗ
+				ВТ_Заказы)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Комментарий, ПоступлениеТоваровУслугТовары.Ссылка.Комментарий) КАК Контейнер,
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Номенклатура.Код, ПоступлениеТоваровУслугТовары.Номенклатура.Код) КАК Код,
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Номенклатура, ПоступлениеТоваровУслугТовары.Номенклатура) КАК Номенклатура,
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) КАК КоличествоЗ,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) - ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) &lt; 0
+			ТОГДА ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) - ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0)
+		ИНАЧЕ 0
+	КОНЕЦ КАК КоличествоПлюс,
+	ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) КАК КоличествоП,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) - ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) &gt; 0
+			ТОГДА ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) - ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0)
+		ИНАЧЕ 0
+	КОНЕЦ КАК КоличествоМинус,
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Ссылка, ПоступлениеТоваровУслугТовары.Сделка) КАК ЗаказПоставщику,
+	ПоступлениеТоваровУслугТовары.Ссылка КАК Поступление,
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Цена, ПоступлениеТоваровУслугТовары.Цена) КАК Цена,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) - ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) &lt; 0
+			ТОГДА (ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) - ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0)) * ЕСТЬNULL(ЗаказПоставщикуТовары.Цена, ПоступлениеТоваровУслугТовары.Цена)
+		ИНАЧЕ 0
+	КОНЕЦ КАК СуммаПлюс,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) - ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) &gt; 0
+			ТОГДА (ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0) - ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0)) * ЕСТЬNULL(ЗаказПоставщикуТовары.Цена, ПоступлениеТоваровУслугТовары.Цена)
+		ИНАЧЕ 0
+	КОНЕЦ КАК СуммаМинус
+ПОМЕСТИТЬ ВТ_Расхождения
+ИЗ
+	(ВЫБРАТЬ
+		ЗаказПоставщикуТовары.Ссылка КАК Ссылка,
+		ЗаказПоставщикуТовары.Номенклатура КАК Номенклатура,
+		СУММА(ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0)) КАК Количество,
+		ЕСТЬNULL(ЗаказПоставщикуТовары.Цена, 0) КАК Цена,
+		ЗаказПоставщикуТовары.Ссылка.Комментарий КАК Комментарий
+	ИЗ
+		Документ.ЗаказПоставщику.Товары КАК ЗаказПоставщикуТовары
+	ГДЕ
+		ЗаказПоставщикуТовары.Ссылка.Дата МЕЖДУ &amp;НачДата И &amp;КонДата
+		И ЗаказПоставщикуТовары.Ссылка.Проведен
+		И ЗаказПоставщикуТовары.Ссылка В
+				(ВЫБРАТЬ
+					ВТ_Поступления.Сделка
+				ИЗ
+					ВТ_Поступления)
+	
+	СГРУППИРОВАТЬ ПО
+		ЗаказПоставщикуТовары.Номенклатура,
+		ЗаказПоставщикуТовары.Ссылка,
+		ЕСТЬNULL(ЗаказПоставщикуТовары.Цена, 0),
+		ЗаказПоставщикуТовары.Ссылка.Комментарий) КАК ЗаказПоставщикуТовары
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ПоступлениеТоваровУслугТовары.Ссылка.Сделка КАК Сделка,
+			ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Номенклатура, ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка)) КАК Номенклатура,
+			СУММА(ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0)) КАК Количество,
+			ПоступлениеТоваровУслугТовары.Ссылка КАК Ссылка,
+			ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Цена, 0) КАК Цена
+		ИЗ
+			Документ.ПоступлениеТоваровУслуг.Товары КАК ПоступлениеТоваровУслугТовары
+		ГДЕ
+			ПоступлениеТоваровУслугТовары.Ссылка.Дата &gt; &amp;НачДата
+			И ПоступлениеТоваровУслугТовары.Ссылка.Проведен
+			И ПоступлениеТоваровУслугТовары.Ссылка.Сделка В
+					(ВЫБРАТЬ
+						ВТ_Поступления.Сделка
+					ИЗ
+						ВТ_Поступления)
+		
+		СГРУППИРОВАТЬ ПО
+			ПоступлениеТоваровУслугТовары.Ссылка,
+			ПоступлениеТоваровУслугТовары.Ссылка.Сделка,
+			ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Цена, 0),
+			ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Номенклатура, ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка))) КАК ПоступлениеТоваровУслугТовары
+		ПО ЗаказПоставщикуТовары.Ссылка = ПоступлениеТоваровУслугТовары.Сделка
+			И (ЗаказПоставщикуТовары.Номенклатура = ПоступлениеТоваровУслугТовары.Номенклатура
+				ИЛИ ЗаказПоставщикуТовары.Номенклатура = ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка))
+ГДЕ
+	ЕСТЬNULL(ЗаказПоставщикуТовары.Количество, 0) &lt;&gt; ЕСТЬNULL(ПоступлениеТоваровУслугТовары.Количество, 0)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВТ_Расхождения.Контейнер,
+	ВТ_Расхождения.Код,
+	ВТ_Расхождения.Номенклатура,
+	ВТ_Расхождения.КоличествоЗ,
+	ВТ_Расхождения.КоличествоПлюс,
+	ВТ_Расхождения.КоличествоП,
+	ВТ_Расхождения.КоличествоМинус,
+	ВТ_Расхождения.ЗаказПоставщику,
+	ВТ_Расхождения.Поступление,
+	ВТ_Расхождения.Цена,
+	ВТ_Расхождения.СуммаПлюс,
+	ВТ_Расхождения.СуммаМинус
+ИЗ
+	ВТ_Расхождения КАК ВТ_Расхождения</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоЗ</dataPath>
+			<expression>Сумма(КоличествоЗ)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоМинус</dataPath>
+			<expression>Сумма(КоличествоМинус)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоП</dataPath>
+			<expression>Сумма(КоличествоП)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПлюс</dataPath>
+			<expression>Сумма(КоличествоПлюс)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаМинус</dataPath>
+			<expression>Сумма(СуммаМинус)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПлюс</dataPath>
+			<expression>Сумма(СуммаПлюс)</expression>
+		</totalField>
+		<parameter>
+			<name>НачДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начальная дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конечная дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоЗ</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоМинус</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоП</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПлюс</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаМинус</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПлюс</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">ЗаказПоставщику.Контрагент</left>
+			<comparisonType>InList</comparisonType>
+			<right xsi:type="dcscor:DesignTimeValue">Справочник.Контрагенты.ПустаяСсылка</right>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item>
+			<dcscor:parameter>НачДата</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+		<dcscor:item>
+			<dcscor:parameter>КонДата</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контейнер</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>ЗаказПоставщику</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Поступление</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Код</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>Номенклатура</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>Цена</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

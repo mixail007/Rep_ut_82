@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ЗапросПоКлиентам</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вопрос</dataPath>
+				<field>Вопрос</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МаксимальныйВесВопроса</dataPath>
+				<field>МаксимальныйВесВопроса</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОтветНаВопрос</dataPath>
+				<field>ОтветНаВопрос</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Клиент</dataPath>
+				<field>Клиент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ФактическийВесВопроса</dataPath>
+				<field>ФактическийВесВопроса</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроизвольнаяФормаОтвета</dataPath>
+				<field>ПроизвольнаяФормаОтвета</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КритерийКлиента</dataPath>
+				<field>КритерийКлиента</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ОтветыНаВопросыКлиента.Менеджер,
+	ОтветыНаВопросыКлиента.Вопрос,
+	ОтветыНаВопросыКлиента.ОтветНаВопрос,
+	ВЫБОР
+		КОГДА ОтветыНаВопросыКлиента.Вопрос.ПроизвольнаяФормаОтвета
+			ТОГДА ОтветыНаВопросыКлиента.ОтветНаВопрос
+		ИНАЧЕ ЕСТЬNULL(ОтветыНаВопросыКлиента.МаксимальныйВес, 0) * ЕСТЬNULL(ОтветыНаВопросыКлиента.Коэффициент, 0)
+	КОНЕЦ КАК ФактическийВесВопроса,
+	ОтветыНаВопросыКлиента.МаксимальныйВес КАК МаксимальныйВесВопроса,
+	ОтветыНаВопросыКлиента.Клиент,
+	ОтветыНаВопросыКлиента.Вопрос.ПроизвольнаяФормаОтвета КАК ПроизвольнаяФормаОтвета,
+	ОтветыНаВопросыКлиента.Период,
+	ОтветыНаВопросыКлиента.ВидКлиента КАК КритерийКлиента
+ИЗ
+	РегистрСведений.ОтветыНаВопросыКлиента КАК ОтветыНаВопросыКлиента
+ГДЕ
+	ВЫБОР
+			КОГДА &amp;ПериодОтчета = ДАТАВРЕМЯ(1, 1, 1)
+				ТОГДА ИСТИНА
+			ИНАЧЕ ОтветыНаВопросыКлиента.Период = &amp;ПериодОтчета
+		КОНЕЦ</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Статус</dataPath>
+				<field>Статус</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоКлиентов</dataPath>
+				<field>КоличествоКлиентов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодОпроса</dataPath>
+				<field>ПериодОпроса</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидКлиента</dataPath>
+				<field>ВидКлиента</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	СтатусыОпросаКлиентаСрезПоследних.ПериодОпроса КАК ПериодОпроса,
+	СтатусыОпросаКлиентаСрезПоследних.Статус КАК Статус,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СтатусыОпросаКлиентаСрезПоследних.Контрагент) КАК КоличествоКлиентов,
+	СтатусыОпросаКлиентаСрезПоследних.ВидКлиента
+ИЗ
+	РегистрСведений.СтатусыОпросаКлиента.СрезПоследних(
+			,
+			ВЫБОР
+				КОГДА &amp;ПериодОтчета &lt;&gt; ДАТАВРЕМЯ(1, 1, 1)
+						И &amp;ПериодОтчета &lt;&gt; НЕОПРЕДЕЛЕНО
+					ТОГДА ПериодОпроса = &amp;ПериодОтчета
+				ИНАЧЕ ИСТИНА
+			КОНЕЦ) КАК СтатусыОпросаКлиентаСрезПоследних
+
+СГРУППИРОВАТЬ ПО
+	СтатусыОпросаКлиентаСрезПоследних.ПериодОпроса,
+	СтатусыОпросаКлиентаСрезПоследних.Статус,
+	СтатусыОпросаКлиентаСрезПоследних.ВидКлиента
+
+УПОРЯДОЧИТЬ ПО
+	Статус</query>
+		</dataSet>
+		<totalField>
+			<dataPath>МаксимальныйВесВопроса</dataPath>
+			<expression>Сумма(МаксимальныйВесВопроса)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ФактическийВесВопроса</dataPath>
+			<expression>ВЫБОР
+	КОГДА ПроизвольнаяФормаОтвета
+		ТОГДА Максимум(ФактическийВесВопроса)
+	ИНАЧЕ Сумма(ФактическийВесВопроса)
+КОНЕЦ</expression>
+			<group>Клиент</group>
+		</totalField>
+		<totalField>
+			<dataPath>ФактическийВесВопроса</dataPath>
+			<expression>ВЫБОР
+	КОГДА ПроизвольнаяФормаОтвета
+		ТОГДА 0
+	ИНАЧЕ Сумма(ФактическийВесВопроса)
+КОНЕЦ</expression>
+			<group>Менеджер</group>
+			<group>Период</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоКлиентов</dataPath>
+			<expression>Сумма(КоличествоКлиентов)</expression>
+			<group>ВидКлиента</group>
+			<group>ПериодОпроса</group>
+			<group>Статус</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<inputParameters>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core">
+					<use>false</use>
+					<parameter>ФорматРедактирования</parameter>
+					<value xsi:type="xs:string">ДФ='ММММ гггг'</value>
+				</item>
+			</inputParameters>
+		</parameter>
+		<parameter>
+			<name>ПериодОтчета</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период отчета</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вес вопроса</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ФактическийВесВопроса</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>МаксимальныйВесВопроса</field>
+			</item>
+			<placement>Horizontally</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Статус</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>КоличествоКлиентов</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Менеджер</left>
+			<comparisonType>Equal</comparisonType>
+			<userSettingID>0c5af2cb-6dfa-4b9b-bc50-c2be595953fc</userSettingID>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Вопрос</left>
+			<comparisonType>Equal</comparisonType>
+			<userSettingID>b8ef6d65-38a2-412f-ba63-65098aa7c0bf</userSettingID>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>Период</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+			<userSettingID>a6d2a9d9-54df-4c07-bece-b1dd8ba8aed0</userSettingID>
+		</dcscor:item>
+	</dataParameters>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>МаксимальныйВесВопроса</field>
+				</item>
+				<item>
+					<field>ФактическийВесВопроса</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">15</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>Период</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ДФ='ММММ гггг'</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>МакетОформления</dcscor:parameter>
+			<dcscor:value xsi:type="xs:string">Античный</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemTable">
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Вопрос</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Период</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Менеджер</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item>
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>Клиент</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+						<item xsi:type="GroupItemField">
+							<field>КритерийКлиента</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</row>
+		<conditionalAppearance>
+			<item>
+				<use>false</use>
+				<selection/>
+				<filter/>
+				<appearance/>
+			</item>
+		</conditionalAppearance>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Анализ ответов на вопросы</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+	<item xsi:type="StructureItemTable">
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Статус</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto">
+					<use>false</use>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Статус</field>
+				</item>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ПериодОпроса</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto">
+					<use>false</use>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ПериодОпроса</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>Статус</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>КоличествоКлиентов</field>
+				</item>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ВидКлиента</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto">
+						<use>false</use>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ВидКлиента</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>КоличествоКлиентов</field>
+					</item>
+				</selection>
+			</item>
+		</row>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Расшифровка по статусам обзвона по всем менеджерам</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

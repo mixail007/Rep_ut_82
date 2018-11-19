@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Категория</dataPath>
+				<field>Категория</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Адрес</dataPath>
+				<field>Адрес</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Адрес</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоШтукОтгружено</dataPath>
+				<field>КоличествоШтукОтгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоШтук</dataPath>
+				<field>КоличествоШтук</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПозицийОтгружено</dataPath>
+				<field>КоличествоПозицийОтгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Объём</dataPath>
+				<field>Объём</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПозиций</dataPath>
+				<field>КоличествоПозиций</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Задание</dataPath>
+				<field>Задание</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.Реализация КАК Реализация,
+	ВЫРАЗИТЬ(ИнформацияПоПроезду.Адрес КАК СТРОКА(200)) КАК Адрес,
+	СУММА(ИнформацияПоПроезду.Объём) КАК Объём,
+	КатегорииОбъектов.Категория
+ПОМЕСТИТЬ ВТЗаданияРеализации
+ИЗ
+	РегистрСведений.ИнформацияПоПроезду КАК ИнформацияПоПроезду
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.КатегорииОбъектов КАК КатегорииОбъектов
+		ПО ИнформацияПоПроезду.Заказ = КатегорииОбъектов.Объект
+ГДЕ
+	ИнформацияПоПроезду.Реализация.Дата МЕЖДУ &amp;Дата1 И &amp;Дата2
+
+СГРУППИРОВАТЬ ПО
+	ВЫРАЗИТЬ(ИнформацияПоПроезду.Адрес КАК СТРОКА(200)),
+	КатегорииОбъектов.Категория,
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.Реализация
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВТЗаданияРеализации.Категория,
+	ВТЗаданияРеализации.Задание,
+	ВТЗаданияРеализации.Реализация,
+	ЗаданиеНаОтгрузкуЗаказыПокупателей.КоличествоПозицийОтгружено,
+	ЗаданиеНаОтгрузкуЗаказыПокупателей.КоличествоШтукОтгружено,
+	ЗаданиеНаОтгрузкуЗаказыПокупателей.КоличествоПозиций,
+	ЗаданиеНаОтгрузкуЗаказыПокупателей.КоличествоШтук,
+	ВТЗаданияРеализации.Объём,
+	ВТЗаданияРеализации.Адрес
+ИЗ
+	ВТЗаданияРеализации КАК ВТЗаданияРеализации
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаданиеНаОтгрузку.ЗаказыПокупателей КАК ЗаданиеНаОтгрузкуЗаказыПокупателей
+		ПО ВТЗаданияРеализации.Задание = ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка
+			И ВТЗаданияРеализации.Реализация = ЗаданиеНаОтгрузкуЗаказыПокупателей.Реализация</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоПозиций</dataPath>
+			<expression>Сумма(КоличествоПозиций)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПозицийОтгружено</dataPath>
+			<expression>Сумма(КоличествоПозицийОтгружено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоШтук</dataPath>
+			<expression>Сумма(КоличествоШтук)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоШтукОтгружено</dataPath>
+			<expression>Сумма(КоличествоШтукОтгружено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Объём</dataPath>
+			<expression>Сумма(Объём)</expression>
+		</totalField>
+		<parameter>
+			<name>Дата1</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>ДатаНачало</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Дата2</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>ДатаОкончания</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отгрузка по интеренет магазинам</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПозиций</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПозицийОтгружено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоШтук</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоШтукОтгружено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Объём</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<left xsi:type="dcscor:Field">Адрес</left>
+			<comparisonType>NotContains</comparisonType>
+			<right xsi:type="xs:string">г.Архангельск,ул.ТАЛАЖСКОЕ ШОССЕ  в районе магазина "СТРОЙКА"  8-911-562-75-98 Андрей позвонить за 1 час</right>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Дата1</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">2016-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Дата2</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">2016-01-15T23:59:59</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Категория</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Задание</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Реализация</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Адрес</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Возврат</dataPath>
+				<field>Возврат</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВозвратПеремещение</dataPath>
+				<field>ВозвратПеремещение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаявкаНаБрак</dataPath>
+				<field>ЗаявкаНаБрак</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоВозврат</dataPath>
+				<field>КоличествоВозврат</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоВозвратПеремещение</dataPath>
+				<field>КоличествоВозвратПеремещение</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоЗаявка</dataPath>
+				<field>КоличествоЗаявка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПеремещение</dataPath>
+				<field>КоличествоПеремещение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Перемещение</dataPath>
+				<field>Перемещение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьШтуки</dataPath>
+				<field>СтоимостьШтуки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьПоПартиям</dataPath>
+				<field>СтоимостьПоПартиям</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВиновникВозникновенияДефекта</dataPath>
+				<field>ВиновникВозникновенияДефекта</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ЗаявкаНаБракРасшифровка.Ссылка КАК ЗаявкаНаБрак,
+	ЗаявкаНаБракРасшифровка.Подразделение,
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	ЗаявкаНаБракРасшифровка.Реализация,
+	СУММА(ЗаявкаНаБракРасшифровка.Количество) КАК Количество,
+	ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта
+ПОМЕСТИТЬ втЗаявкиНаБрак
+ИЗ
+	Документ.ЗаявкаНаБрак.Расшифровка КАК ЗаявкаНаБракРасшифровка
+ГДЕ
+	(ЗаявкаНаБракРасшифровка.Ссылка.БракОбнаруженНаСкладе
+			ИЛИ ЗаявкаНаБракРасшифровка.Заключение &lt;&gt; "")
+
+СГРУППИРОВАТЬ ПО
+	ЗаявкаНаБракРасшифровка.Подразделение,
+	ЗаявкаНаБракРасшифровка.Реализация,
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	ЗаявкаНаБракРасшифровка.Ссылка,
+	ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ЗаявкаНаВозвратТоваров.Ссылка КАК ЗаявкаНаВозвратТоваров,
+	ЗаявкаНаВозвратТоваров.ДокументОснование КАК ЗаявкаНаБрак
+ПОМЕСТИТЬ втЗявкиНаБракЗаявкиНаВозврат
+ИЗ
+	Документ.ЗаявкаНаВозвратТоваров КАК ЗаявкаНаВозвратТоваров
+ГДЕ
+	ЗаявкаНаВозвратТоваров.ДокументОснование В
+			(ВЫБРАТЬ
+				втЗаявкиНаБрак.ЗаявкаНаБрак
+			ИЗ
+				втЗаявкиНаБрак)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВозвратТоваровОтПокупателяТовары.Ссылка,
+	ВозвратТоваровОтПокупателяТовары.Номенклатура,
+	СУММА(ВозвратТоваровОтПокупателяТовары.Сумма) КАК Сумма,
+	ВозвратТоваровОтПокупателяТовары.ДокументПартии,
+	втЗявкиНаБракЗаявкиНаВозврат.ЗаявкаНаБрак,
+	СУММА(ВозвратТоваровОтПокупателяТовары.Количество) КАК Количество
+ПОМЕСТИТЬ втВозвраты
+ИЗ
+	втЗявкиНаБракЗаявкиНаВозврат КАК втЗявкиНаБракЗаявкиНаВозврат
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Документ.ВозвратТоваровОтПокупателя.Товары КАК ВозвратТоваровОтПокупателяТовары
+		ПО втЗявкиНаБракЗаявкиНаВозврат.ЗаявкаНаВозвратТоваров = ВозвратТоваровОтПокупателяТовары.Ссылка.ЗаявкаОснование
+
+СГРУППИРОВАТЬ ПО
+	ВозвратТоваровОтПокупателяТовары.Номенклатура,
+	ВозвратТоваровОтПокупателяТовары.Ссылка,
+	ВозвратТоваровОтПокупателяТовары.ДокументПартии,
+	втЗявкиНаБракЗаявкиНаВозврат.ЗаявкаНаБрак
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПеремещениеТоваровТовары.Ссылка,
+	ПеремещениеТоваровТовары.Номенклатура,
+	СУММА(ПеремещениеТоваровТовары.Количество) КАК Количество,
+	ПеремещениеТоваровТовары.Ссылка.ЗаявкаНаБрак
+ПОМЕСТИТЬ втПеремещения
+ИЗ
+	Документ.ПеремещениеТоваров.Товары КАК ПеремещениеТоваровТовары
+ГДЕ
+	ПеремещениеТоваровТовары.Ссылка.ЗаявкаНаБрак В
+			(ВЫБРАТЬ
+				втЗаявкиНаБрак.ЗаявкаНаБрак
+			ИЗ
+				втЗаявкиНаБрак)
+
+СГРУППИРОВАТЬ ПО
+	ПеремещениеТоваровТовары.Ссылка,
+	ПеремещениеТоваровТовары.Номенклатура,
+	ПеремещениеТоваровТовары.Ссылка.ЗаявкаНаБрак
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втЗаявкиНаБрак.ЗаявкаНаБрак КАК ЗаявкаНаБрак,
+	втЗаявкиНаБрак.Подразделение,
+	втЗаявкиНаБрак.Номенклатура,
+	втЗаявкиНаБрак.Реализация,
+	втВозвраты.Сумма,
+	втВозвраты.Ссылка КАК Возврат,
+	втПеремещения.Ссылка КАК Перемещение,
+	втЗаявкиНаБрак.Количество КАК КоличествоЗаявка,
+	втВозвраты.Количество КАК КоличествоВозврат,
+	втПеремещения.Количество КАК КоличествоПеремещение,
+	втЗаявкиНаБрак.ВиновникВозникновенияДефекта
+ПОМЕСТИТЬ вт
+ИЗ
+	втЗаявкиНаБрак КАК втЗаявкиНаБрак
+		ЛЕВОЕ СОЕДИНЕНИЕ втВозвраты КАК втВозвраты
+		ПО втЗаявкиНаБрак.ЗаявкаНаБрак = втВозвраты.ЗаявкаНаБрак
+			И втЗаявкиНаБрак.Реализация = втВозвраты.ДокументПартии
+			И втЗаявкиНаБрак.Номенклатура = втВозвраты.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ втПеремещения КАК втПеремещения
+		ПО втЗаявкиНаБрак.ЗаявкаНаБрак = втПеремещения.ЗаявкаНаБрак
+			И втЗаявкиНаБрак.Номенклатура = втПеремещения.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.ЗаявкаНаБрак,
+	вт.Подразделение,
+	вт.Номенклатура,
+	вт.Реализация,
+	вт.Возврат КАК Возврат,
+	вт.Перемещение КАК Перемещение,
+	вт.КоличествоЗаявка,
+	вт.КоличествоВозврат,
+	вт.КоличествоПеремещение,
+	ВЫРАЗИТЬ(ВЫБОР
+			КОГДА ЕСТЬNULL(взПартии.Количество, 0) &lt;&gt; 0
+				ТОГДА ЕСТЬNULL(взПартии.Стоимость, 0) / ЕСТЬNULL(взПартии.Количество, 0)
+			ИНАЧЕ 0
+		КОНЕЦ КАК ЧИСЛО(15, 0)) КАК СтоимостьШтуки,
+	ВЫБОР
+		КОГДА вт.Возврат ЕСТЬ NULL 
+			ТОГДА вт.Перемещение
+		ИНАЧЕ вт.Возврат
+	КОНЕЦ КАК ВозвратПеремещение,
+	ВЫБОР
+		КОГДА вт.КоличествоЗаявка &lt; ВЫБОР
+				КОГДА вт.Возврат ЕСТЬ NULL 
+					ТОГДА вт.КоличествоПеремещение
+				ИНАЧЕ вт.КоличествоВозврат
+			КОНЕЦ
+			ТОГДА вт.КоличествоЗаявка
+		ИНАЧЕ ВЫБОР
+				КОГДА вт.Возврат ЕСТЬ NULL 
+					ТОГДА вт.КоличествоПеремещение
+				ИНАЧЕ вт.КоличествоВозврат
+			КОНЕЦ
+	КОНЕЦ КАК КоличествоВозвратПеремещение,
+	ВЫБОР
+		КОГДА вт.КоличествоЗаявка &lt; ВЫБОР
+				КОГДА вт.Возврат ЕСТЬ NULL 
+					ТОГДА вт.КоличествоПеремещение
+				ИНАЧЕ вт.КоличествоВозврат
+			КОНЕЦ
+			ТОГДА вт.КоличествоЗаявка
+		ИНАЧЕ ВЫБОР
+				КОГДА вт.Возврат ЕСТЬ NULL 
+					ТОГДА вт.КоличествоПеремещение
+				ИНАЧЕ вт.КоличествоВозврат
+			КОНЕЦ
+	КОНЕЦ * (ВЫРАЗИТЬ(ВЫБОР
+			КОГДА ЕСТЬNULL(взПартии.Количество, 0) &lt;&gt; 0
+				ТОГДА ЕСТЬNULL(взПартии.Стоимость, 0) / ЕСТЬNULL(взПартии.Количество, 0)
+			ИНАЧЕ 0
+		КОНЕЦ КАК ЧИСЛО(15, 0))) КАК СтоимостьПоПартиям,
+	вт.ВиновникВозникновенияДефекта
+ПОМЕСТИТЬ вт2
+ИЗ
+	вт КАК вт
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ПартииТоваровНаСкладах.Регистратор КАК Регистратор,
+			ПартииТоваровНаСкладах.Номенклатура КАК Номенклатура,
+			СУММА(ПартииТоваровНаСкладах.Количество) КАК Количество,
+			СУММА(ПартииТоваровНаСкладах.Стоимость) КАК Стоимость
+		ИЗ
+			РегистрНакопления.ПартииТоваровНаСкладах КАК ПартииТоваровНаСкладах
+		ГДЕ
+			((ПартииТоваровНаСкладах.Регистратор, ПартииТоваровНаСкладах.Номенклатура) В
+						(ВЫБРАТЬ
+							втЗаявкиНаБрак.Реализация,
+							втЗаявкиНаБрак.Номенклатура
+						ИЗ
+							втЗаявкиНаБрак)
+					ИЛИ (ПартииТоваровНаСкладах.Регистратор, ПартииТоваровНаСкладах.Номенклатура) В
+						(ВЫБРАТЬ
+							втПеремещения.Ссылка,
+							втПеремещения.Номенклатура
+						ИЗ
+							втПеремещения))
+			И ПартииТоваровНаСкладах.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+		
+		СГРУППИРОВАТЬ ПО
+			ПартииТоваровНаСкладах.Номенклатура,
+			ПартииТоваровНаСкладах.Регистратор) КАК взПартии
+		ПО вт.Номенклатура = взПартии.Номенклатура
+			И (ВЫБОР
+				КОГДА вт.Реализация = НЕОПРЕДЕЛЕНО
+						ИЛИ вт.Реализация = ""
+					ТОГДА вт.Перемещение = взПартии.Регистратор
+				ИНАЧЕ вт.Реализация = взПартии.Регистратор
+			КОНЕЦ)
+ГДЕ
+	(вт.Возврат ССЫЛКА Документ.ВозвратТоваровОтПокупателя
+			ИЛИ вт.Перемещение ССЫЛКА Документ.ПеремещениеТоваров)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт2.ЗаявкаНаБрак,
+	вт2.Подразделение,
+	вт2.Номенклатура,
+	вт2.Реализация,
+	вт2.Возврат,
+	вт2.Перемещение,
+	вт2.КоличествоЗаявка,
+	вт2.КоличествоВозврат,
+	вт2.КоличествоПеремещение,
+	вт2.СтоимостьШтуки,
+	вт2.ВозвратПеремещение,
+	вт2.КоличествоВозвратПеремещение,
+	вт2.СтоимостьПоПартиям,
+	вт2.ВиновникВозникновенияДефекта
+ИЗ
+	вт2 КАК вт2
+ГДЕ
+	вт2.ВозвратПеремещение.Дата МЕЖДУ &amp;ДатаН И &amp;ДатаК</query>
+		</dataSet>
+		<totalField>
+			<dataPath>СтоимостьПоПартиям</dataPath>
+			<expression>Сумма(СтоимостьПоПартиям)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СтоимостьШтуки</dataPath>
+			<expression>Сумма(СтоимостьШтуки)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПеремещение</dataPath>
+			<expression>Сумма(КоличествоПеремещение)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоЗаявка</dataPath>
+			<expression>Сумма(КоличествоЗаявка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоВозвратПеремещение</dataPath>
+			<expression>Сумма(КоличествоВозвратПеремещение)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоВозврат</dataPath>
+			<expression>Сумма(КоличествоВозврат)</expression>
+		</totalField>
+		<parameter>
+			<name>ДатаК</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата К</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>ДатаН</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата Н</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаНачала</expression>
+		</parameter>
+		<parameter>
+			<name>СтандартныйПериод</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период заявки</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Подразделение</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаявкаНаБрак</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВозвратПеремещение</field>
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Возврат/перемещение</v8:content>
+				</v8:item>
+			</lwsTitle>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоВозвратПеремещение</field>
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество возврат/перемещение</v8:content>
+				</v8:item>
+			</lwsTitle>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьПоПартиям</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>СтандартныйПериод</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardPeriod">
+				<v8:variant xsi:type="v8:StandardPeriodVariant">ThisMonth</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>ЗаявкаНаБрак</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Номенклатура</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>ВозвратПеремещение</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Возвраты по заявкам</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ВиновникВозникновенияДефекта</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Номенклатура.ВидТовара</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

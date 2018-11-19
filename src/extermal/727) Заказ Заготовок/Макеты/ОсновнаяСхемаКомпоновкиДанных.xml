@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диск</dataPath>
+				<field>Диск</field>
+				<role>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заготовка</dataPath>
+				<field>Заготовка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+				<role>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказано</dataPath>
+				<field>Заказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Остаток</dataPath>
+				<field>Остаток</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Требуется</dataPath>
+				<field>Требуется</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПути</dataPath>
+				<field>ВПути</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВЭД</dataPath>
+				<field>ВЭД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Задание</dataPath>
+				<field>Задание</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Использовалось</dataPath>
+				<field>Использовалось</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Завод</dataPath>
+				<field>Завод</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ОтчетПроизводстваЗаСмену.Задание
+ПОМЕСТИТЬ Задания
+ИЗ
+	Документ.ОтчетПроизводстваЗаСмену КАК ОтчетПроизводстваЗаСмену
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	РезервЗаготовокПодЗаказы.Задание,
+	РезервЗаготовокПодЗаказы.Диск,
+	РезервЗаготовокПодЗаказы.Заготовка,
+	РезервЗаготовокПодЗаказы.Количество
+ПОМЕСТИТЬ Резервы
+ИЗ
+	РегистрСведений.РезервЗаготовокПодЗаказы КАК РезервЗаготовокПодЗаказы
+		ЛЕВОЕ СОЕДИНЕНИЕ Задания КАК Задания
+		ПО РезервЗаготовокПодЗаказы.Задание = Задания.Задание
+ГДЕ
+	РезервЗаготовокПодЗаказы.Задание.Выполнено = ЛОЖЬ
+	И РезервЗаготовокПодЗаказы.Задание.Проведен = ИСТИНА
+	И Задания.Задание ЕСТЬ NULL 
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ТоварыНаСкладахОбороты.Номенклатура,
+	ТоварыНаСкладахОбороты.КоличествоРасход КАК Использовалось
+ПОМЕСТИТЬ Использовались
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Обороты({(&amp;Нач)}, {(&amp;Кон)}, Регистратор, Номенклатура.наименование ПОДОБНО "%Заготовка%") КАК ТоварыНаСкладахОбороты
+ГДЕ
+	ТоварыНаСкладахОбороты.Регистратор ССЫЛКА Документ.ТребованиеНакладная
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СезонныйАссортимент.Номенклатура
+ПОМЕСТИТЬ Ассортимент
+ИЗ
+	РегистрСведений.СезонныйАссортимент КАК СезонныйАссортимент
+ГДЕ
+	СезонныйАссортимент.Номенклатура.Наименование ПОДОБНО "%Заготовка%"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Значение КАК Завод,
+	ЗначенияСвойствОбъектов.Объект
+ПОМЕСТИТЬ Заводы
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;Свойство
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Резервы.Диск КАК Диск,
+	Ассортимент.Номенклатура КАК Заготовка,
+	ЕСТЬNULL(ТоварыНаСкладахОстатки.КоличествоОстаток, 0) КАК Остаток,
+	0 КАК Требуется,
+	ЕСТЬNULL(ЗаказыПоставщикамОстатки.КоличествоОстаток, 0) КАК ВПути,
+	Резервы.Задание,
+	Резервы.Количество КАК Заказано,
+	Резервы.Задание.Контрагент КАК Контрагент,
+	Использовались.Использовалось,
+	Заводы.Завод
+ИЗ
+	Ассортимент КАК Ассортимент
+		ЛЕВОЕ СОЕДИНЕНИЕ Использовались КАК Использовались
+		ПО Ассортимент.Номенклатура = Использовались.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ Резервы КАК Резервы
+		ПО Ассортимент.Номенклатура = Резервы.Заготовка
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ТоварыНаСкладах.Остатки(, Номенклатура.НоменклатурнаяГруппа = &amp;Кованные) КАК ТоварыНаСкладахОстатки
+		ПО Ассортимент.Номенклатура = ТоварыНаСкладахОстатки.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикам.Остатки(, Номенклатура.НоменклатурнаяГруппа = &amp;Кованные) КАК ЗаказыПоставщикамОстатки
+		ПО Ассортимент.Номенклатура = ЗаказыПоставщикамОстатки.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ Заводы КАК Заводы
+		ПО Ассортимент.Номенклатура = Заводы.Объект</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>Максимум(Остаток)</expression>
+			<group>Заготовка</group>
+		</totalField>
+		<totalField>
+			<dataPath>Требуется</dataPath>
+			<expression>выбор когда Среднее(Заказано)&gt;Максимум(Остаток) тогда  Среднее(Заказано)-Максимум(Остаток) иначе 0 конец</expression>
+			<group>Заготовка</group>
+		</totalField>
+		<totalField>
+			<dataPath>Заказано</dataPath>
+			<expression>Среднее(Заказано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>0</expression>
+			<group>Диск</group>
+			<group>Диск Иерархия</group>
+			<group>Контрагент</group>
+		</totalField>
+		<totalField>
+			<dataPath>Требуется</dataPath>
+			<expression>0</expression>
+			<group>Диск</group>
+			<group>Диск Иерархия</group>
+			<group>Контрагент</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВПути</dataPath>
+			<expression>Максимум(ВПути)</expression>
+			<group>Заготовка</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВПути</dataPath>
+			<expression>0</expression>
+			<group>Диск</group>
+			<group>Диск Иерархия</group>
+			<group>Контрагент</group>
+		</totalField>
+		<totalField>
+			<dataPath>Использовалось</dataPath>
+			<expression>Максимум(Использовалось)</expression>
+			<group>Заготовка</group>
+		</totalField>
+		<totalField>
+			<dataPath>Использовалось</dataPath>
+			<expression>0</expression>
+			<group>Диск</group>
+			<group>Диск Иерархия</group>
+			<group>Контрагент</group>
+		</totalField>
+		<totalField>
+			<dataPath>Заказано</dataPath>
+			<expression>Сумма(ВычислитьВыражениесГруппировкойМассив("Среднее(Заказано)","Диск"))</expression>
+			<group>Заготовка</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<expression>текущаяДата()</expression>
+		</parameter>
+		<parameter>
+			<name>Кованные</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кованные</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НоменклатурныеГруппы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.НоменклатурныеГруппы.НайтиПоКоду("00022")</expression>
+		</parameter>
+		<parameter>
+			<name>Кон</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<expression>&amp;Период</expression>
+		</parameter>
+		<parameter>
+			<name>Нач</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<expression>ДобавитьПериод(&amp;Период,"месяц",-6)</expression>
+		</parameter>
+		<parameter>
+			<name>Свойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>ПланывидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90185")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Заготовка</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Завод</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemField">
+				<field>Заготовка.Наименование</field>
+				<orderType>Asc</orderType>
+			</item>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Заготовка.Код</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Заготовка</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Заказано</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Остаток</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Требуется</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ВПути</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Использовалось</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Завод</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+				<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Контрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Диск</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemField">
+						<field>Диск.Код</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Диск</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Заказано</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Остаток</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Требуется</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ВПути</field>
+					</item>
+				</selection>
+				<outputParameters>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+						<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+					</dcscor:item>
+				</outputParameters>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>Задание</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,176 @@
+﻿Параметры построения отчетов по регистру "Продажи компании"										
+В этом макете задаются параметры, используемые при настройке и построении отчетов.										
+										
+Показатели										
+Имя показателя	Представление в отчетах	Описание поля запроса	Рассчитывается по реквизиту регистра	Присутствует в списке показателей в стандартной настройке	Форматная строка вывода показателя		"Стандартная валюта:
+Упр - валюта упр. учета,
+Регл - валюта регл. учета"			
+Количество	Количество (в единицах хранения)	Количество#	ложь	ложь	ЧЦ = 15 ; ЧДЦ = 3 ; ЧРГ = " "; ЧРД = ,	Номенклатура				
+КоличествоЕдиницОтчетов	Количество (в ед. отчетов)	Количество#*Номенклатура.ЕдиницаХраненияОстатков.Коэффициент/Номенклатура.ЕдиницаДляОтчетов.Коэффициент	ложь	ложь	ЧЦ = 15 ; ЧДЦ = 3 ; ЧРГ = " "; ЧРД = ,					
+КоличествоБазовыхЕд	Количество (в базовых единицах)	Количество#*Номенклатура.ЕдиницаХраненияОстатков.Коэффициент	ложь	истина	ЧЦ = 15 ; ЧДЦ = 3 ; ЧРГ = " "; ЧРД = ,	Номенклатура, НоменклатураБазоваяЕдиницаИзмерения				
+Стоимость	Сумма продажи	Стоимость#	ложь	истина	ЧЦ = 15 ; ЧДЦ = 2 ; ЧРГ = " "; ЧРД = ,		Упр			
+										
+Поля группировки, отбора										
+Имя поля	Представление в отчетах	Описание поля запроса. Если не задано, используется имя поля	Используется только для вывода рассчитываемых по реквизиту регистра показателей	Присутствует в списке выбранных полей в стандартной настройке	Форматная строка (для полей примитивных типов)	Присутствует в списке группировок строк в стандартной настройке	Выводить итог по иерархии в стандартной настройке	Присутствует в списке группировок колонок в стандартной настройке	Назначение свойств/категорий, соответствующее типу поля	Отбор в поле ввода
+ДоговорКонтрагентаВладелец	Покупатель	ДоговорКонтрагента.Владелец	ложь	истина		истина	истина	ложь	Справочник_Контрагенты	истина
+ДоговорКонтрагента	Договор контрагента		ложь	ложь		ложь	ложь	ложь		ложь
+ЗаказПокупателя	Заказ покупателя		ложь	ложь		истина	ложь	ложь	Документы	ложь
+Номенклатура	Номенклатура		ложь	истина		истина	истина	ложь	Справочник_Номенклатура	истина
+НоменклатураБазоваяЕдиницаИзмерения	Номенклатура.Базовая единица измерения	Номенклатура.БазоваяЕдиницаИзмерения	ложь	истина		ложь	истина	ложь	Справочник_Номенклатура	ложь
+ХарактеристикаНоменклатуры	Характеристика номенклатуры		ложь	ложь		ложь	ложь	ложь	Справочник_ХарактеристикиНоменклатуры	ложь
+ДокументПродажи	Документ продажи		ложь	ложь		истина	ложь	ложь	Документы	ложь
+Подразделение	Подразделение		ложь	ложь		истина	ложь	ложь		истина
+
+
+
+174 - 24 = 150	1 строка = 1 письмо									
+Яршинторг : Бурова Наталья, Малышев Егор, Суворов Александр, Никитин М.	 malyshev@yst.ru; nikitin_m@yst.ru;bondarenko@yst.ru									
+Виктория Сочи Серебряков Виталий	354354@mail.ru									
+ООО "Колесо 33"	373730@mail.ru									
+ИП Аверьянов Юрий  Геннадьевич	4148111@mail.ru;  zakaz@f-shina.ru									
+ООО "Республика Шин"	a.eregin@yandex.ru									
+Авто Сфера (Александр Никулинских)	a.nikulinskih@r-podkova.ru									
+Авторемстрой (Андрей Зубарев)	a.Zubarev@motor92.ru									
+САМ-МБ Антонов Андрей aaa@svrauto.ru	aaa@svrauto.ru									
+Шинснаб Замилов Асхат	agz-shina@rambler.ru									
+МИР ШИН (airat@msh16.ru)	airat@msh16.ru									
+ЗАО "Автошина"	aksenov@autoshina.tula.net; sergeyc@autoshina.tula.net									
+Н.Новгород, Линарис	alenin.linaris@gmail.com									
+Колесо-Т Томск Александр Клясюк alex@koleso.su	alex@koleso.su									
+Кроун авто Александр Солдатенков	alex@kroun.ru									
+Сабун Виталий розн	alexeev955@rambler.ru									
+МИР ШИН (almaz@msh16.ru)	almaz@msh16.ru									
+УШК Анисимов Александр anisimov@udmshina. ru	anisimov@udmshina.ru									
+Автоэксперт Савушкин Антон	anton.savushkin@autoexpert.ru									
+ИП Субботин Аркадий Александрович	arkada101@yandex.ru									
+Техносервис (Андрей Смирнов)	asmirnov@proma-wheels.ru									
+Семисотнов Волгоград (au@700shin.ru)	au@700shin.ru									
+Волгоград, Семисотнов	au@700shin.ru; sgy@700shin.ru									
+Бринекс ЭДУАРД ГИЛЯЗЕЕВ (autoshiny771@inbox.ru)	autoshiny771@inbox.ru									
+Автошина Воронеж Дубов Андрей autovrn@inbox.ru	autovrn@inbox.ru									
+Аврора Авто (Фомина Надежда)	avroraavto56@mail.ru									
+ЮНИПОЛ Белостоцкий Дмитрий (bel@unipol.ru)	bel@unipol.ru									
+Шинтрейд Иваново (buh-037@yandex.ru)	buh-037@yandex.ru									
+Н.Челны, ЦЕНТР ШИН	centershina@mail.ru									
+ТШК (Денис Кузьминов)	d.kuzminov@tshk.ru									
+ПИН-АВТО Краснодар (diski@pin-avto.ru)	diski@pin-avto.ru									
+Инвест-шина e. kuncz@a-disk. ru (e.kuncz@a-disk.ru)	e.kuncz@a-disk.ru									
+ООО "ФОРВАРД"	e.shalyavin@agatgroup.com									
+Евгений Ивлев eivlev@mail.ru	eivlev@mail.ru									
+Арянов О.А. (Олег Арянов)	euroshina@inbox.ru									
+ООО "Компания ЕвроШина"	euroshina37@mail.ru									
+Юлтэк Таерс (Павел Ерохов)	euro-tyres@mail.ru									
+СПб, i-Shin	evgeniy@i-shin.ru									
+Колобокс Андрей Фитасов (expert1@vstnn.ru)	expert1@vstnn.ru									
+Уфашинснаб Галямов Рустем galyamov@taganka.biz	galyamov@taganka.biz									
+Игрес Глотов Андрей	glotov@igres.ru									
+Радуга Виктория (gorbenko@koleso-russia.ru)	gorbenko@koleso-russia.ru									
+Сабун Ильнур his63@mail. ru (his63@mail.ru)	his63@mail.ru									
+Шинтрейд Игорь	i.e.gusev@mail.ru									
+Сантайр (Владимир Васильев)	igor@santyre-auto.ru									
+Шинаонлайн (Игорь Тихонов)	igor@shinashop.ru									
+Юмакс Ильин Анатолий ilyin@umax-ural.ru	ilyin@umax-ural.ru									
+МИР ШИН info@msh16.ru	info@msh16.ru									
+Шинаонлайн (Сергей)	info@shinashop.ru									
+ООО "Интершина"	intershina_mag1@bk.ru; intershina_off@bk.ru									
+Интершина Курск (intershina_off@bk.ru)	intershina_off@bk.ru									
+ЗАПАСКА Исаков Александр (isakov@sibzapaska.ru)	isakov@sibzapaska.ru									
+АРМАДА (Ривгать Исламов)	islamovchelny@rambler.ru									
+Сабун Юферев Юра (juferev-jura@rambler.ru)	juferev-jura@rambler.ru									
+Н.Челны, ИНТЕР ШИНА	julic_08@inbox.ru									
+Кемерово, ТрансХимРесурс	k.y.radev@vk42.ru									
+ИП Кадисон В.В.	kadison70@mail.ru									
+ДЦ КАМТЕХ (Алексей Фролов)	Kamtex-frolov2@mail.ru									
+Шинтрейд СПб Киселева Елена	kiseleva@shint.spb.ru									
+АВТОБАМ koleso@autobam. ru	koleso@autobam.ru									
+Мамниашвили Л.З. (Дмитрий Шеломиенко)	kolesoreg76@yandex.ru									
+Королёв А.В.(Саша Королёв)	korolev.av@mail.ru									
+ООО "МТМ"	kov@mtm.nnov.ru									
+СТАРК Козлова Юля (Kozlova@stark.yar.ru)	Kozlova@stark.yar.ru									
+Шининвест Кравцов Владимир	kravtsovv@shininvest.ru									
+Кросс Авто (Саша Круглов)	kruglov15@mail.ru									
+Сальве (ksv-1976@mail.ru)	ksv-1976@mail.ru									
+Шинторг (Данила Кучукбаев)	Kuchukbayev@mail.ru									
+ТДД Куцевалов Михаил kumi@autoshinsnab. com	kumi@autoshinsnab.com									
+Группа Бринэкс Надежда	kyhtenkon@brinex.ru									
+Эксклюзив Лариса Архипова	larisa@tyres.spb.ru									
+Мастер-шина (Леонид Монахов)	leon1301@yandex.ru									
+Сабун Виталий levkin8@yandex.ru	levkin8@yandex.ru									
+ООО "КомТехСнаб"	lopuhovmf@rambler.ru									
+Региональная шинная компания (Максим Семьянинов)	makc314@inbox.ru									
+Регион-шина (Костя Мальцев)	malcev@regionshina.ru									
+Николаев Д.И., Иванычев Н.А. (Саша Волков)	man.rally21@gmail.com									
+Иркутск, Миков	miksernudsk@mail.ru									
+Шинсервис трейд Михаил Казарян (mkazar@sst.su)	mkazar@sst.su									
+Гранд (Олег Михайлов)	mr.wheels@yandex.ru									
+Алтай-шина (Наталья Кушкова)	n.kushkova@a-disk.ru									
+Мотор СПб Олег	o.nedviga@autoexpertspb.com									
+Линарис (olifer.linaris@gmail.com)	olifer.linaris@gmail.com									
+Колесо (pdbfl@yandex.ru)	pdbfl@yandex.ru									
+Петров Виктор petrovv35@gmail.com	petrovv35@gmail.com									
+Хоботов П.И. (Павел Хоботов)	phobotov@mail.ru									
+ШинТрейд СПб Политыко Владимир	PolitV@shint.spb.ru									
+ООО "РЕАЛ АВТО"	postal33@List.ru									
+Петров Виктор	premio_35@mail.ru									
+Южный шинный центр Виталий	prokopenko@ushc-rostov.ru									
+Радар авто Иваново ИРИНА (ИП Романенко Ю.С.)	radar-avtodop@mail.ru									
+Николаев Д.И., Иванычев Н.А. (Саша Волков)	rally@hotmail.ru									
+АЙС-АВТО Рассветов Сергей rassvetov@ice-avto.spb.ru	rassvetov@ice-avto.spb.ru									
+СильверАвто, Добрынин Д.В. (Дмитрий Добрынин)	rekord56@bk.ru									
+Сабун Новицкий Дмитрий (sabun163@yandex.ru)	sabun163@yandex.ru									
+Бринэкс Ренат (safin515656@mail.ru)	safin515656@mail.ru									
+Уфашинснаб salakhova (salakhova@taganka.biz)	salakhova@taganka.biz									
+Сальве (salve_glg@mail.ru)	salve_glg@mail.ru									
+Шинсервис(Москва) Александр	sav@sst.su									
+Юмакс Serdukov Кирилл serdukov@umax-ural.ru	serdukov@umax-ural.ru									
+Автоэксперт-СПб Сергей	sergeinokian@yandex.ru									
+Шинснаб (shafkatz@rambler.ru)	shafkatz@rambler.ru									
+Кемерово, Олга	shina@olga-co.ru									
+В.Новгород, Абсолют	Shina_AKB@absolut.novgorod.com									
+Зеликсон И.В. (Игорь Зеликсон)	shinaland@mail.ru									
+Шинаонлайн (Анастасия Храпова)	shinaonline@mail.ru									
+Шинсервис (Игорь Таран)	shina-volga@yandex.ru									
+Шинторг (Данила Кучукбаев)	shintorg-2712828@mail.ru									
+Шинторг (Илья Трошев)	shintorg-perm@mail.ru									
+УШК Андрей (shklyaev@udmshina.ru)	shklyaev@udmshina.ru									
+СПб, Шина РУ	shop@shina.ru									
+Параллель	shura2380@mail.ru									
+Шинтрейд Иваново (siniy74@list.ru)	siniy74@list.ru									
+КРОУН АВТО	sk@kroun.ru									
+Игрес	stepanov@igres.ru									
+Самара, Игрес	stepanov@igres.ru									
+СВЕТЛАНА (svetka0504@gmail.com)	svetka0504@gmail.com									
+Таганка (tag_zuk@taganka.biz)	tag_zuk@taganka.biz									
+Тамбовагропромкомплект (Андрей Безгин)	tapk-shina@mail.ru									
+Тамбовагропромкомплект (Андрей Безгин)	tapk-shmelev@mail.ru									
+ИП Тарабин Валерий Геннадьевич	tarabin.p@mail.ru									
+Шинсервис (Игорь Таран)	taran_34rus@mail.ru									
+Батуллин Р.Х. (Радик Батуллин)	tatbrat@mail.ru									
+ОМ-Альянс (Андрей Тимохин)	timtyres@yandex.ru									
+ООО Техцентр "Гранд"	tires@431263.ru									
+Шинный Сервис (Иван Емельянов)	tireyola@mail.ru									
+Вершина (Краснодар (Алексей Мартынов)	topshina2009@yandex.ru									
+Алексей (Тула)	tula888@list.ru									
+Алтухов Д.П. (Алексей Мелехов)	tulawheel@gmail.com									
+Новосиб.Запаска (Туров, Исаков)	turov@sibzapaska.ru; isakov@sibzapaska.ru									
+ООО "Управление сбыта автошин"	tyre@shinnik.kirov.ru									
+Юмакс-Тюмень Решетников Сергей	umax-tyumen.shin@mail.ru									
+Налтакян менеджер unx@mail.ru	unx@mail.ru									
+Налтакян Александр Юрикович (v7i7k7t7o7r7@mail.ru)	v7i7k7t7o7r7@mail.ru									
+Вершина (Волжский Алексей Лазарев)	vershina87@mail.ru									
+Такабаев И.Х. vershinacentr@mail.ru	vershinacentr@mail.ru									
+Калиновский Viktor@kik-kr.ru	Viktor@kik-kr.ru									
+Краснодар, Калиновский	viktor_kandk@mail.ru									
+Хорошие колеса Влад, СПб	vladdiski@yandex.ru									
+Линарис Аленин Владимир (vladimir.alenin@mail.ru)	vladimir.alenin@mail.ru									
+ИП Нагорнов Юрий Павлинович	vlam33@yandex.ru; vlam124@yandex.ru; shcenter-liga@yandex.ru									
+АЙКОС vostokavto@bk. ru (vostokavto@bk.ru)	vostokavto@bk.ru									
+Колобокс  vst@vstnn.ru	vst@vstnn.ru									
+АЙКОС Станислав web@aikos.kz	web@aikos.kz									
+ИП Муханов П.А.	yarkoleso@gmail.com									
+Завьялов yokohama. yar@yandex. ru	yokohama.yar@yandex.ru									
+ООО"АвтоСнаб"	zakup@snab-auto.ru									
+Автобам (Zakupka@autobam.ru)	Zakupka@autobam.ru									
+ИП Зарипов М.Ф.	zaripovmarat@mail.ru									
+15'' Кемерово (zra@vk42.ru)	zra@vk42.ru									
+Юмакс Вячеслав (zvo@umax-ural.ru)	zvo@umax-ural.ru									

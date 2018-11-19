@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вид</dataPath>
+				<field>Вид</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджерКонтрагента</dataPath>
+				<field>ОсновнойМенеджерКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поле2</dataPath>
+				<field>Поле2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поле4</dataPath>
+				<field>Поле4</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поле6</dataPath>
+				<field>Поле6</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поле7</dataPath>
+				<field>Поле7</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Представление</dataPath>
+				<field>Представление</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+		КонтактнаяИнформация.Объект.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджерКонтрагента,
+		КонтактнаяИнформация.Объект КАК Контрагент,
+		КонтактнаяИнформация.Вид КАК Вид,
+		КонтактнаяИнформация.Представление,
+		КонтактнаяИнформация.Поле2,
+		КонтактнаяИнформация.Поле4,
+		КонтактнаяИнформация.Поле6,
+		КонтактнаяИнформация.Поле7
+	ИЗ
+		РегистрСведений.КонтактнаяИнформация КАК КонтактнаяИнформация
+	ГДЕ
+		КонтактнаяИнформация.Тип = ЗНАЧЕНИЕ(перечисление.ТипыКонтактнойИнформации.Адрес)
+	   И (КонтактнаяИнформация.Вид &lt;&gt; &amp;ПочтовыйАдресКонтрагента )
+	   И  ((КонтактнаяИнформация.Вид &lt;&gt; &amp;ЮридическийАдресКонтрагента ИЛИ   КонтактнаяИнформация.Объект НЕ В (ВЫБРАТЬ	Объект  ИЗ	РегистрСведений.КонтактнаяИнформация ГДЕ	Вид = &amp;ФактическийАдресКонтрагента )))
+		И (КонтактнаяИнформация.Поле1 = ""
+				ИЛИ КонтактнаяИнформация.Поле4 = ""
+				ИЛИ КонтактнаяИнформация.Поле6 = ""
+				ИЛИ КонтактнаяИнформация.Поле7 = "")
+		И КонтактнаяИнформация.Поле10 = ""
+		И КонтактнаяИнформация.Объект.Страна = ЗНАЧЕНИЕ(Справочник.КлассификаторСтранМира.ПустаяСсылка)
+		И КонтактнаяИнформация.Объект.Покупатель
+		И НЕ КонтактнаяИнформация.Объект.ПометкаУдаления
+		И НЕ КонтактнаяИнформация.Объект.ОсновнойМенеджерКонтрагента.ПометкаУдаления
+</query>
+		</dataSet>
+		<parameter>
+			<name>ПочтовыйАдресКонтрагента</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Почтовый адрес контрагента</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ВидыКонтактнойИнформации</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+			<use>Always</use>
+		</parameter>
+		<parameter>
+			<name>ФактическийАдресКонтрагента</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Фактический адрес контрагента</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ВидыКонтактнойИнформации</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ВидыКонтактнойИнформации.ФактАдресКонтрагента</value>
+			<useRestriction>false</useRestriction>
+			<use>Always</use>
+		</parameter>
+		<parameter>
+			<name>ЮридическийАдресКонтрагента</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Юридический адрес контрагента</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ВидыКонтактнойИнформации</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ВидыКонтактнойИнформации.ЮрАдресКонтрагента</value>
+			<useRestriction>false</useRestriction>
+			<use>Always</use>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Вид</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОсновнойМенеджерКонтрагента</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поле2</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поле4</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поле6</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поле7</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Представление</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ПочтовыйАдресКонтрагента</dcscor:parameter>
+			<dcscor:value xsi:type="dcscor:Field">DataParameters.ПочтовыйАдресКонтрагента</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент.Description</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>DataParametersOutput</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">Output</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

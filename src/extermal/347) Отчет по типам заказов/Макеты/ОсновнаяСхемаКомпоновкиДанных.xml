@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>Заказы</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ссылка</dataPath>
+				<field>Ссылка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Заказов</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипЗаказа</dataPath>
+				<field>ТипЗаказа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагентов</dataPath>
+				<field>Контрагентов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказПокупателя.Контрагент КАК Контрагентов,
+	ВЫБОР
+		КОГДА ЗаказПокупателя.ТипЗаказа = 0
+			ТОГДА "Вручную"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 2
+			ТОГДА "Коннект24"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 3
+			ТОГДА "Store"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 4
+			ТОГДА "FTP (роботы)"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 5
+			ТОГДА "Автоэксперт"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 8
+			ТОГДА "Терминалы"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 9
+			ТОГДА "С сайта Формулы"
+		ИНАЧЕ "Другое"
+	КОНЕЦ КАК ТипЗаказа,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ЗаказПокупателя.Ссылка) КАК Ссылка,
+	ЗаказПокупателя.ДоговорКонтрагента.ОтветственноеЛицо КАК Менеджер,
+	ЗаказПок.Контрагент
+ИЗ
+	Документ.ЗаказПокупателя КАК ЗаказПокупателя
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказПокупателя КАК ЗаказПок
+		ПО ЗаказПокупателя.Ссылка = ЗаказПок.Ссылка
+ГДЕ
+	ЗаказПокупателя.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+	И ЗаказПокупателя.Проверен
+
+СГРУППИРОВАТЬ ПО
+	ЗаказПокупателя.ДоговорКонтрагента.ОтветственноеЛицо,
+	ЗаказПок.Контрагент,
+	ВЫБОР
+		КОГДА ЗаказПокупателя.ТипЗаказа = 0
+			ТОГДА "Вручную"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 2
+			ТОГДА "Коннект24"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 3
+			ТОГДА "Store"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 4
+			ТОГДА "FTP (роботы)"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 5
+			ТОГДА "Автоэксперт"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 8
+			ТОГДА "Терминалы"
+		КОГДА ЗаказПокупателя.ТипЗаказа = 9
+			ТОГДА "С сайта Формулы"
+		ИНАЧЕ "Другое"
+	КОНЕЦ,
+	ЗаказПокупателя.Контрагент</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Ссылка</dataPath>
+			<expression>Сумма(Ссылка)</expression>
+			<group>Менеджер</group>
+			<group>ТипЗаказа</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Контрагентов</dataPath>
+			<expression>Количество(Различные Контрагентов)</expression>
+			<group>Менеджер</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ТипЗаказа</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Менеджер</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ссылка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ссылка.GroupPercent</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагентов</field>
+		</item>
+	</selection>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Ссылка</field>
+			<orderType>Desc</orderType>
+		</item>
+	</order>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ChartType</dcscor:parameter>
+			<dcscor:value xsi:type="v8ui:ChartType">Pie</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Менеджер</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ТипЗаказа</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+	<item xsi:type="StructureItemChart">
+		<series>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ТипЗаказа</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</series>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

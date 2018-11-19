@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодДень</dataPath>
+				<field>ПериодДень</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Стоимость</dataPath>
+				<field>Стоимость</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодГод</dataPath>
+				<field>ПериодГод</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодКвартал</dataPath>
+				<field>ПериодКвартал</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ='к "квартал" yyyy'</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодМесяц</dataPath>
+				<field>ПериодМесяц</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ='MMMM yyyy'</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодНеделя</dataPath>
+				<field>ПериодНеделя</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодПолугодие</dataPath>
+				<field>ПериодПолугодие</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ВЫБОР
+		КОГДА ПродажиОбороты.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОбороты.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА ВЫБОР
+					КОГДА ПродажиОбороты.ДоговорКонтрагента.Владелец В (&amp;СписокВыводимых)
+							И ПродажиОбороты.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж &lt;&gt; &amp;НаправлениеПродажКолесаТУТ
+						ТОГДА ПродажиОбороты.ДоговорКонтрагента.Владелец
+					КОГДА ПродажиОбороты.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+						ТОГДА "KOLESATYT"
+					ИНАЧЕ "Остальные"
+				КОНЕЦ
+		ИНАЧЕ "Продажи ЯШТ/20"
+	КОНЕЦ КАК Контрагент,
+	ЕСТЬNULL(ПродажиОбороты.СтоимостьОборот, 0) / ВЫБОР
+		КОГДА ПродажиОбороты.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОбороты.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА 1
+		ИНАЧЕ 20
+	КОНЕЦ КАК Стоимость,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, ДЕНЬ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, ДЕНЬ)
+	КОНЕЦ КАК ПериодДень,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, НЕДЕЛЯ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, НЕДЕЛЯ)
+	КОНЕЦ КАК ПериодНеделя,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, МЕСЯЦ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, МЕСЯЦ)
+	КОНЕЦ КАК ПериодМесяц,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, КВАРТАЛ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, КВАРТАЛ)
+	КОНЕЦ КАК ПериодКвартал,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, ПОЛУГОДИЕ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, ПОЛУГОДИЕ)
+	КОНЕЦ КАК ПериодПолугодие,
+	ВЫБОР
+		КОГДА ПродажиОбороты.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(&amp;НачПериода, ГОД)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ПродажиОбороты.Период, ГОД)
+	КОНЕЦ КАК ПериодГод,
+	ЕСТЬNULL(ПродажиОбороты.КоличествоОборот, 0) / ВЫБОР
+		КОГДА ПродажиОбороты.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОбороты.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА 1
+		ИНАЧЕ 20
+	КОНЕЦ КАК Количество
+ИЗ
+	РегистрНакопления.Продажи.Обороты(&amp;НачПериода, &amp;КонПериода, Регистратор, ) КАК ПродажиОбороты
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА ВЫБОР
+					КОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.Владелец В (&amp;СписокВыводимых)
+							И ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж &lt;&gt; &amp;НаправлениеПродажКолесаТУТ
+						ТОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.Владелец.Наименование + " прошлый год"
+					КОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+						ТОГДА "KOLESATYT прошлый год"
+					ИНАЧЕ "Остальные прошлый год"
+				КОНЕЦ
+		ИНАЧЕ "Продажи ЯШТ/20 прошлый год"
+	КОНЕЦ,
+	ЕСТЬNULL(ПродажиОборотыПрошлыйГод.СтоимостьОборот, 0) / ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА 1
+		ИНАЧЕ 20
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), ДЕНЬ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), ДЕНЬ)
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), НЕДЕЛЯ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), НЕДЕЛЯ)
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), МЕСЯЦ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), МЕСЯЦ)
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), КВАРТАЛ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), КВАРТАЛ)
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), ПОЛУГОДИЕ)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), ПОЛУГОДИЕ)
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.Период ЕСТЬ NULL 
+			ТОГДА КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), ГОД)
+		ИНАЧЕ КОНЕЦПЕРИОДА(ДОБАВИТЬКДАТЕ(ПродажиОборотыПрошлыйГод.Период, ГОД, 1), ГОД)
+	КОНЕЦ,
+	ЕСТЬNULL(ПродажиОборотыПрошлыйГод.КоличествоОборот, 0) / ВЫБОР
+		КОГДА ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.Владелец.КатегорияПокупателя = ЗНАЧЕНИЕ(Справочник.КатегорииПокупателей.ИнтернетМагазин)
+				ИЛИ ПродажиОборотыПрошлыйГод.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеПродажКолесаТУТ
+			ТОГДА 1
+		ИНАЧЕ 20
+	КОНЕЦ
+ИЗ
+	РегистрНакопления.Продажи.Обороты(ДОБАВИТЬКДАТЕ(&amp;НачПериода, ГОД, -1), ДОБАВИТЬКДАТЕ(&amp;КонПериода, ГОД, -1), Регистратор, ) КАК ПродажиОборотыПрошлыйГод</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Количество</dataPath>
+			<expression>Сумма(Количество)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Стоимость</dataPath>
+			<expression>Сумма(Стоимость)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СписокВыводимых</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список выводимых</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Контрагенты</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НаправлениеПродажКолесаТУТ</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Направление продаж колеса ТУТ</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НаправленияПродаж</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>НачПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаНачала</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Стоимость</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодДень</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодНеделя</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодМесяц</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодКвартал</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодПолугодие</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПериодГод</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Регистратор</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>СписокВыводимых</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ТипДиаграммы</dcscor:parameter>
+			<dcscor:value xsi:type="v8ui:ChartType">Line</dcscor:value>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ТипДиаграммы.АвтоРаздвижениеСерий</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:AutoSeriesSeparation">All</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ТипДиаграммы.ОтображатьТаблицуДанных</dcscor:parameter>
+				<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+			</dcscor:item>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemChart">
+		<point>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ПериодДень</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</point>
+		<series>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Контрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</series>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:use>false</dcscor:use>
+				<dcscor:parameter>ТипДиаграммы</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:ChartType">Column3D</dcscor:value>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ТипДиаграммы.АвтоРаздвижениеСерий</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:AutoSeriesSeparation">All</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ТипДиаграммы.ОтображатьТаблицуДанных</dcscor:parameter>
+					<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+				</dcscor:item>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

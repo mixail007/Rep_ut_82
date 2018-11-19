@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаданиеНаЗаказПоставщику</dataPath>
+				<field>ЗаданиеНаЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоВЗадании</dataPath>
+				<field>КоличествоВЗадании</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоЗаказано</dataPath>
+				<field>КоличествоЗаказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ШтрафЗаКоличество</dataPath>
+				<field>ШтрафЗаКоличество</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ШтрафЗаПросрочку</dataPath>
+				<field>ШтрафЗаПросрочку</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджерПоставщика</dataPath>
+				<field>ОсновнойМенеджерПоставщика</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поставщик</dataPath>
+				<field>Поставщик</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЦенаЗаЕдиницу</dataPath>
+				<field>ЦенаЗаЕдиницу</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейПросрочки</dataPath>
+				<field>ДнейПросрочки</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаданиеНаЗаказПоставщикуТовары.Номенклатура,
+	СУММА(ЗаданиеНаЗаказПоставщикуТовары.Количество) КАК Количество,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка КАК ЗаданиеНаЗаказПоставщику,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Согласован,
+	ВЫБОР
+		КОГДА ЗаданиеНаЗаказПоставщикуТовары.Ссылка.ДатаСогласования = ДАТАВРЕМЯ(1, 1, 1)
+			ТОГДА ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Дата
+		ИНАЧЕ ЗаданиеНаЗаказПоставщикуТовары.Ссылка.ДатаСогласования
+	КОНЕЦ КАК ДатаСогласования,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Поставщик,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Поставщик.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджерПоставщика
+ПОМЕСТИТЬ втЗаданияНаЗаказПоставщику
+ИЗ
+	Документ.ЗаданиеНаЗаказПоставщику.Товары КАК ЗаданиеНаЗаказПоставщикуТовары
+ГДЕ
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Проведен
+	И ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Дата МЕЖДУ &amp;ДатаНач И &amp;ДатаКон
+
+СГРУППИРОВАТЬ ПО
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка,
+	ЗаданиеНаЗаказПоставщикуТовары.Номенклатура,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Согласован,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Поставщик,
+	ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Поставщик.ОсновнойМенеджерКонтрагента,
+	ВЫБОР
+		КОГДА ЗаданиеНаЗаказПоставщикуТовары.Ссылка.ДатаСогласования = ДАТАВРЕМЯ(1, 1, 1)
+			ТОГДА ЗаданиеНаЗаказПоставщикуТовары.Ссылка.Дата
+		ИНАЧЕ ЗаданиеНаЗаказПоставщикуТовары.Ссылка.ДатаСогласования
+	КОНЕЦ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказПоставщикуСезонныйТовары.Номенклатура,
+	СУММА(ЗаказПоставщикуСезонныйТовары.Количество) КАК Количество,
+	СУММА(ЗаказПоставщикуСезонныйТовары.Сумма) КАК Сумма,
+	ЗаказПоставщикуСезонныйТовары.Ссылка.ЗаданиеНаЗаказ,
+	ВЫБОР
+		КОГДА ЗаказПоставщикуСезонныйТовары.Ссылка.ВремяСоздания = ДАТАВРЕМЯ(1, 1, 1)
+			ТОГДА ЗаказПоставщикуСезонныйТовары.Ссылка.Дата
+		ИНАЧЕ ЗаказПоставщикуСезонныйТовары.Ссылка.ВремяСоздания
+	КОНЕЦ КАК ВремяСоздания
+ПОМЕСТИТЬ втЗаказыПоставщикуСезонные
+ИЗ
+	Документ.ЗаказПоставщикуСезонный.Товары КАК ЗаказПоставщикуСезонныйТовары
+ГДЕ
+	ЗаказПоставщикуСезонныйТовары.Ссылка.ЗаданиеНаЗаказ В
+			(ВЫБРАТЬ
+				втЗаданияНаЗаказПоставщику.ЗаданиеНаЗаказПоставщику
+			ИЗ
+				втЗаданияНаЗаказПоставщику)
+	И ЗаказПоставщикуСезонныйТовары.Ссылка.Проведен
+
+СГРУППИРОВАТЬ ПО
+	ЗаказПоставщикуСезонныйТовары.Номенклатура,
+	ЗаказПоставщикуСезонныйТовары.Ссылка.ЗаданиеНаЗаказ,
+	ВЫБОР
+		КОГДА ЗаказПоставщикуСезонныйТовары.Ссылка.ВремяСоздания = ДАТАВРЕМЯ(1, 1, 1)
+			ТОГДА ЗаказПоставщикуСезонныйТовары.Ссылка.Дата
+		ИНАЧЕ ЗаказПоставщикуСезонныйТовары.Ссылка.ВремяСоздания
+	КОНЕЦ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втЗаданияНаЗаказПоставщику.ЗаданиеНаЗаказПоставщику,
+	втЗаданияНаЗаказПоставщику.Номенклатура,
+	втЗаданияНаЗаказПоставщику.Количество КАК КоличествоВЗадании,
+	ЕСТЬNULL(втЗаказыПоставщикуСезонные.Количество, 0) КАК КоличествоЗаказано,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(втЗаказыПоставщикуСезонные.Количество, 0) &lt;&gt; 0
+			ТОГДА ЕСТЬNULL(втЗаказыПоставщикуСезонные.Сумма, 0) / ЕСТЬNULL(втЗаказыПоставщикуСезонные.Количество, 0)
+		ИНАЧЕ 0
+	КОНЕЦ КАК ЦенаЗаЕдиницу,
+	втЗаданияНаЗаказПоставщику.Согласован,
+	втЗаданияНаЗаказПоставщику.ДатаСогласования,
+	втЗаказыПоставщикуСезонные.ВремяСоздания,
+	втЗаданияНаЗаказПоставщику.Поставщик,
+	втЗаданияНаЗаказПоставщику.ОсновнойМенеджерПоставщика
+ПОМЕСТИТЬ вт
+ИЗ
+	втЗаданияНаЗаказПоставщику КАК втЗаданияНаЗаказПоставщику
+		ЛЕВОЕ СОЕДИНЕНИЕ втЗаказыПоставщикуСезонные КАК втЗаказыПоставщикуСезонные
+		ПО втЗаданияНаЗаказПоставщику.ЗаданиеНаЗаказПоставщику = втЗаказыПоставщикуСезонные.ЗаданиеНаЗаказ
+			И втЗаданияНаЗаказПоставщику.Номенклатура = втЗаказыПоставщикуСезонные.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.ЗаданиеНаЗаказПоставщику,
+	вт.Номенклатура,
+	вт.КоличествоВЗадании,
+	вт.КоличествоЗаказано,
+	ВЫБОР
+		КОГДА вт.ЦенаЗаЕдиницу = 0
+			ТОГДА ЕСТЬNULL(ЦеныФОПСрезПоследних.Цена, 0)
+		ИНАЧЕ вт.ЦенаЗаЕдиницу
+	КОНЕЦ КАК ЦенаЗаЕдиницу,
+	ВЫБОР
+		КОГДА вт.КоличествоВЗадании &lt;&gt; 0
+			ТОГДА вт.КоличествоЗаказано * 100 / вт.КоличествоВЗадании
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцВыполнения,
+	ВЫБОР
+		КОГДА ВЫБОР
+				КОГДА вт.КоличествоВЗадании &lt;&gt; 0
+					ТОГДА вт.КоличествоЗаказано * 100 / вт.КоличествоВЗадании
+				ИНАЧЕ 0
+			КОНЕЦ &lt; 90
+			ТОГДА (вт.КоличествоВЗадании - вт.КоличествоЗаказано) * ВЫБОР
+					КОГДА вт.ЦенаЗаЕдиницу = 0
+						ТОГДА ЕСТЬNULL(ЦеныФОПСрезПоследних.Цена, 0)
+					ИНАЧЕ вт.ЦенаЗаЕдиницу
+				КОНЕЦ
+		ИНАЧЕ 0
+	КОНЕЦ КАК БазаДляШтрафаПоКоличеству,
+	ВЫБОР
+		КОГДА вт.ДатаСогласования &gt; &amp;ТекДата
+			ТОГДА 0
+		ИНАЧЕ ВЫБОР
+				КОГДА ВЫБОР
+						КОГДА вт.КоличествоВЗадании &lt;&gt; 0
+							ТОГДА вт.КоличествоЗаказано * 100 / вт.КоличествоВЗадании
+						ИНАЧЕ 0
+					КОНЕЦ &lt; 90
+					ТОГДА (вт.КоличествоВЗадании - вт.КоличествоЗаказано) * ВЫБОР
+							КОГДА вт.ЦенаЗаЕдиницу = 0
+								ТОГДА ЕСТЬNULL(ЦеныФОПСрезПоследних.Цена, 0)
+							ИНАЧЕ вт.ЦенаЗаЕдиницу
+						КОНЕЦ
+				ИНАЧЕ 0
+			КОНЕЦ
+	КОНЕЦ * 0.015 КАК ШтрафЗаКоличество,
+	ВЫБОР
+		КОГДА вт.ЦенаЗаЕдиницу = 0
+			ТОГДА ЕСТЬNULL(ЦеныФОПСрезПоследних.Цена, 0)
+		ИНАЧЕ вт.ЦенаЗаЕдиницу
+	КОНЕЦ * ВЫБОР
+		КОГДА вт.ДатаСогласования &gt; &amp;ТекДата
+			ТОГДА 0
+		КОГДА вт.ВремяСоздания &lt; вт.ДатаСогласования
+			ТОГДА 0
+		КОГДА вт.Согласован
+			ТОГДА 0
+		ИНАЧЕ 1
+	КОНЕЦ * РАЗНОСТЬДАТ(вт.ДатаСогласования, &amp;ТекДата, ДЕНЬ) * 0.05 / 365 КАК ШтрафЗаПросрочку,
+	ВЫБОР
+		КОГДА вт.ДатаСогласования &gt; &amp;ТекДата
+			ТОГДА 0
+		КОГДА вт.ВремяСоздания &lt; вт.ДатаСогласования
+			ТОГДА 0
+		КОГДА вт.Согласован
+			ТОГДА 0
+		ИНАЧЕ 1
+	КОНЕЦ * РАЗНОСТЬДАТ(вт.ДатаСогласования, &amp;ТекДата, ДЕНЬ) КАК ДнейПросрочки,
+	вт.ВремяСоздания,
+	вт.ДатаСогласования,
+	вт.Поставщик,
+	вт.ОсновнойМенеджерПоставщика
+ПОМЕСТИТЬ втОснова
+ИЗ
+	вт КАК вт
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЦеныФОП.СрезПоследних(&amp;ДатаКон, ) КАК ЦеныФОПСрезПоследних
+		ПО вт.Номенклатура = ЦеныФОПСрезПоследних.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втОснова.ОсновнойМенеджерПоставщика,
+	втОснова.Поставщик,
+	втОснова.ЗаданиеНаЗаказПоставщику,
+	втОснова.Номенклатура,
+	втОснова.КоличествоВЗадании,
+	втОснова.КоличествоЗаказано,
+	втОснова.ШтрафЗаКоличество,
+	втОснова.ШтрафЗаПросрочку,
+	втОснова.ЦенаЗаЕдиницу,
+	втОснова.ДнейПросрочки
+ИЗ
+	втОснова КАК втОснова</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоВЗадании</dataPath>
+			<expression>Сумма(КоличествоВЗадании)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоЗаказано</dataPath>
+			<expression>Сумма(КоличествоЗаказано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ШтрафЗаКоличество</dataPath>
+			<expression>Сумма(ШтрафЗаКоличество)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ШтрафЗаПросрочку</dataPath>
+			<expression>Сумма(ШтрафЗаПросрочку)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЦенаЗаЕдиницу</dataPath>
+			<expression>Среднее(ЦенаЗаЕдиницу)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейПросрочки</dataPath>
+			<expression>Среднее(ДнейПросрочки)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаКон</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата кон</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>ДатаНач</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата нач</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаНачала</expression>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тек дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>ТекущаяДата()</expression>
+		</parameter>
+		<parameter>
+			<name>СтандартныйПериод</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Стандартный период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ОсновнойМенеджерПоставщика</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поставщик</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаданиеНаЗаказПоставщику</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦенаЗаЕдиницу</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоВЗадании</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоЗаказано</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДнейПросрочки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ШтрафЗаКоличество</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ШтрафЗаПросрочку</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>СтандартныйПериод</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardPeriod">
+				<v8:variant xsi:type="v8:StandardPeriodVariant">LastMonth</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>ОсновнойМенеджерПоставщика</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Поставщик</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>ЗаданиеНаЗаказПоставщику</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Номенклатура</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ОсновнойМенеджерПоставщика</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Поставщик</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ЗаданиеНаЗаказПоставщику</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ЗаданиеНаЗаказПоставщику.ДатаСогласования</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<outputParameters>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+						<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+					</dcscor:item>
+				</outputParameters>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>Номенклатура</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

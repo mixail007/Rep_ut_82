@@ -1,0 +1,823 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Changes to be committed:
+#	new file:   src/extermal/001) Наряд по грузчикам (Форма N414-АПК).epf
+#	new file:   src/extermal/006) Корректировка себестоимости.epf
+#	new file:   src/extermal/007) Создание оприходования по складу.epf
+#	new file:   src/extermal/010) Задолженность по контрагентам.epf
+#	new file:   src/extermal/016) Отчет по отгрузкам за день.epf
+#	new file:   src/extermal/017) Отчет по поступлениям за день.epf
+#	new file:   src/extermal/018) Отчет по складским перемещениям за день.epf
+#	new file:   src/extermal/019) Отчет по возвратам от покупателей за день.epf
+#	new file:   src/extermal/020) Отчет по возвратам поставщикам за день.epf
+#	new file:   src/extermal/021) Накладные без цен.epf
+#	new file:   src/extermal/024) Анализ доступности товаров на складах.epf
+#	new file:   src/extermal/028) Поступление и продажа услуг.epf
+#	new file:   src/extermal/029) Создание счета на предоплату для док-та реализация.epf
+#	new file:   src/extermal/032) Отчет для выявления разницы учета тоннажа по грузч.epf
+#	new file:   src/extermal/034) Валовая прибыль - для отладки.epf
+#	new file:   src/extermal/037) ЗП (Контрагент _ Договор).epf
+#	new file:   src/extermal/038) ЗП по всем позициям.epf
+#	new file:   src/extermal/041) Поиск кривых платежек.epf
+#	new file:   src/extermal/044) Акт сверки.epf
+#	new file:   src/extermal/045) Список документов с ценами ниже определенных.epf
+#	new file:   src/extermal/049) Нераспределенные по заказам платежи от покупателей.epf
+#	new file:   src/extermal/050) Зависшие оплаты.epf
+#	new file:   src/extermal/052) Установка границы последовательности парт. учета.epf
+#	new file:   src/extermal/054) Пени-антипени.epf
+#	new file:   src/extermal/056) Загрузка заказов Edisoft.epf
+#	new file:   src/extermal/057) Отчет Пространство и просторы.epf
+#	new file:   src/extermal/060) Сезонные Заказы поставщику.erf
+#	new file:   src/extermal/062) Установка доступов.epf
+#	new file:   src/extermal/063) Продажи по региону (факт.адресу).erf
+#	new file:   src/extermal/064) Тестирование (UnitTest).epf
+#	new file:   src/extermal/066) Анализ цикломатической сложности кода 1С.epf
+#	new file:   src/extermal/068) ВАловая прибыль с оплаченных тгрузок (ст).erf
+#	new file:   src/extermal/069) Расчет премии для региональных менеджеров (ст).erf
+#	new file:   src/extermal/081) Списанные затраты.epf
+#	new file:   src/extermal/082) Стоимостная оценка склада в ценах номенклатуры.epf
+#	new file:   src/extermal/083) Управленческий баланс - Для отладки.epf
+#	new file:   src/extermal/084) Отчет по кассам.epf
+#	new file:   src/extermal/085) Управленческий баланс (расшифровка затрат).epf
+#	new file:   src/extermal/086) Вывест доп расходы.epf
+#	new file:   src/extermal/088) Автовосстановление допрасходов.epf
+#	new file:   src/extermal/090) Валовая прибыль по поставщикам.erf
+#	new file:   src/extermal/092) Клиент-Банк.epf
+#	new file:   src/extermal/093) Отчет по договорам контрагентов без движений.epf
+#	new file:   src/extermal/095) Поиск и замена значений.epf
+#	new file:   src/extermal/096) Зависшая себестоимость.epf
+#	new file:   src/extermal/097) Проверка контрагентов В ФНС.epf
+#	new file:   src/extermal/098) Сравнение остатков взаиморасчетов с бухгалтерией.epf
+#	new file:   src/extermal/100) Не правильно распределенные доп. затраты.epf
+#	new file:   src/extermal/101) Валовая прибыль (Отбор по показателям)..epf
+#	new file:   src/extermal/102) Просроченная ДЗ-КЗ (с расшифровкой).epf
+#	new file:   src/extermal/103) Установленные пароли.epf
+#	new file:   src/extermal/104) Консоль запросов 8.2 (ВТ).epf
+#	new file:   src/extermal/105) Консоль анализа журнала регистрации.epf
+#	new file:   src/extermal/107) Поступление затрат от контрагентов.epf
+#	new file:   src/extermal/108) Установка-замена свойств номенклатуры.epf
+#	new file:   src/extermal/109) Перезаписывание номенклатуры.epf
+#	new file:   src/extermal/111) Отчет по возвратам поставщикам.epf
+#	new file:   src/extermal/112) Сравнение остатков номенклатуры с БП82 (по остаткам).epf
+#	new file:   src/extermal/113) Универсальный журнал с регистрацией объектов.epf
+#	new file:   src/extermal/115) Пени-антипени (Все).epf
+#	new file:   src/extermal/116) Планфактный анализ продаж (старый до 01.08.2010).epf
+#	new file:   src/extermal/117) Отчет по ключевым показателям транспортной логистики (СКД).erf
+#	new file:   src/extermal/118) Информация по ответственным за договоры.epf
+#	new file:   src/extermal/119) Брутто - нетто.epf
+#	new file:   src/extermal/120) Платежный календарь по поставщикам.epf
+#	new file:   src/extermal/122) Отчет по оплатам от покупателей по отв. лицам.epf
+#	new file:   src/extermal/123) Несоответствие доп. расходов поступлениям.epf
+#	new file:   src/extermal/125) Сличительная ведомость по документам УТ-БП.epf
+#	new file:   src/extermal/126) Обработка Дележка по складам ЯШТ.epf
+#	new file:   src/extermal/127) Разрешения на использование обработок.epf
+#	new file:   src/extermal/128) Бегунок.epf
+#	new file:   src/extermal/129) Пометка на удаление неиспользуемых договоров.epf
+#	new file:   src/extermal/130) Анализ возврата подотчетных сумм.erf
+#	new file:   src/extermal/131) Копирование настроек пользователя.epf
+#	new file:   src/extermal/132) Бегунок для комм. отдела.epf
+#	new file:   src/extermal/133) Зависшие оплаты по поставщикам.epf
+#	new file:   src/extermal/134) Отчет Анализ оборачиваемости.erf
+#	new file:   src/extermal/135) Карточка контрагента.epf
+#	new file:   src/extermal/137) Реестр платежей от покупателей.epf
+#	new file:   src/extermal/138) Загрузка заказа из Excel..epf
+#	new file:   src/extermal/140) Подбор номенклатуры  для прайс-листа (ТОЛЬКО шины).epf
+#	new file:   src/extermal/141) Отчет по товародвижению (товар, тов.группа, филиал).epf
+#	new file:   src/extermal/142) Основные менеджеры контрагентов.epf
+#	new file:   src/extermal/144) Отчет по поступлениям товара по складам.epf
+#	new file:   src/extermal/146) Контроль разнесения Д-С.epf
+#	new file:   src/extermal/147) Деньги в товарных группах.erf
+#	new file:   src/extermal/148) Продажи по поставщику.epf
+#	new file:   src/extermal/149) Складские остатки по максимальным входным ценам.epf
+#	new file:   src/extermal/151) Отчет по взаимным обязательствам.epf
+#	new file:   src/extermal/152) Создание Адресов хранения (ЦЦЛ, Ангары).epf
+#	new file:   src/extermal/153) Некорректные управленческие зачеты.epf
+#	new file:   src/extermal/154) Исполнение бюджета расходов Д-С.epf
+#	new file:   src/extermal/155) Отгрузки на Формулу (для розницы).epf
+#	new file:   src/extermal/156) Отчет по не работающим отв. за договоры.epf
+#	new file:   src/extermal/157) Загрузка прайса из Excel (код или артикул).epf
+#	new file:   src/extermal/158) Закупки и продажи нарастающим итогом (график).erf
+#	new file:   src/extermal/159) Расчет премий для региональных менеджеров.erf
+#	new file:   src/extermal/160) Расчет премий для регион. менеджеров НАКОПИТЕЛЬНО.erf
+#	new file:   src/extermal/161) Показать справочники и документы к выгрузке в БП.epf
+#	new file:   src/extermal/162) Отчет по товарным группам.erf
+#	new file:   src/extermal/163) Установка свойства номенклатуры Модель.epf
+#	new file:   src/extermal/164) Отчет по моделям Шин и Дисков.erf
+#	new file:   src/extermal/165) Обмен с сайтом koleso76.ru.epf
+#	new file:   src/extermal/166) Списание ГСМ по путевым листам.epf
+#	new file:   src/extermal/167) Отчет по контролю актов сверок.erf
+#	new file:   src/extermal/169) Расчет стоимости погрузки-разгрузки Автошина.erf
+#	new file:   src/extermal/170) Планфактный анализ продаж (НОВЫЙ).epf
+#	new file:   src/extermal/171) ПрайсЛист с остатками по складам ЯШТ.epf
+#	new file:   src/extermal/172) Контроль отрицательных остатков.erf
+#	new file:   src/extermal/173) ФОТ по грузчикам..erf
+#	new file:   src/extermal/174) Отчет по договорам по кот. были взаиморасчеты.erf
+#	new file:   src/extermal/175) Отчет по контрагентам без движений.erf
+#	new file:   src/extermal/176) Отчет по договорам (по адресам).erf
+#	new file:   src/extermal/177) Отчет по контролю оформления отгрузок.erf
+#	new file:   src/extermal/178) Загрузка заказа от Автошины.epf
+#	new file:   src/extermal/179) Загрузка номенклатуры из сезонных прайсов на диски.epf
+#	new file:   src/extermal/180) Отчет по комплектующим YST.erf
+#	new file:   src/extermal/181) Планфактный анализ закупок.erf
+#	new file:   src/extermal/182) Управленческий баланс Форма 2 (новый).epf
+#	new file:   src/extermal/183) Ведомость остатков товаров по складу.erf
+#	new file:   src/extermal/184) Отчет по аренде.erf
+#	new file:   src/extermal/185) Выгрузка-Загрузка цен.epf
+#	new file:   src/extermal/186) Обмен с сайтом formula76.ru.epf
+#	new file:   src/extermal/187) Отчет по событиям CRM.erf
+#	new file:   src/extermal/188) Вес по грузчикам.epf
+#	new file:   src/extermal/189) Деньги в обороте.erf
+#	new file:   src/extermal/190) ОХР.erf
+#	new file:   src/extermal/191) Оплаты поставщикам для разнесения Д-С.epf
+#	new file:   src/extermal/192) Расчет поездки в Подмосковье (СТАРАЯ!).epf
+#	new file:   src/extermal/193) Ввод размеров R13 для расчета кубатуры авто.epf
+#	new file:   src/extermal/194) Сравнение плана продаж для департамента продаж.erf
+#	new file:   src/extermal/195) Рапорт руководителю по товарным группам.erf
+#	new file:   src/extermal/196) Выгрузка остатков Автошина.epf
+#	new file:   src/extermal/197) Отчет по новым клиентам.erf
+#	new file:   src/extermal/198) Заполнение ДТГ.epf
+#	new file:   src/extermal/199) Отчет по транспортным затратам.erf
+#	new file:   src/extermal/200) Ведомость по взаиморасчетам.erf
+#	new file:   src/extermal/201) Отчет по отгрузкам.erf
+#	new file:   src/extermal/202) Продажи по номенкл.группе ЦМК КАМА.erf
+#	new file:   src/extermal/204) Отчет по лимитам дебиторской задолженности.erf
+#	new file:   src/extermal/205) Прямые затраты по товарным группам.erf
+#	new file:   src/extermal/206) Загрузка данных из Excel в таб.часть документа.epf
+#	new file:   src/extermal/207) Отчет по поступлениям в порт @ (по датам).erf
+#	new file:   src/extermal/208) Контроль привязки крышек по LegeArtis.erf
+#	new file:   src/extermal/209) Отчет по комплектующим LegeArtis.erf
+#	new file:   src/extermal/210) Прайс-Лист (Филиал).epf
+#	new file:   src/extermal/211) Обработка Дележка (Филиал).epf
+#	new file:   src/extermal/212) Продажи.erf
+#	new file:   src/extermal/213) Затраты в сравнении с предыдущим годом.erf
+#	new file:   src/extermal/214) Прайс лист с остатками (скидки по производителям).epf
+#	new file:   src/extermal/215) Продажи в сравнении с предыдущим годом (р.-шт.).erf
+#	new file:   src/extermal/216) Поступление доп.расходов по контейнерам.erf
+#	new file:   src/extermal/217) Заявка (поручение) на приход контейнеров.epf
+#	new file:   src/extermal/218) Данные по документам отгрузки.epf
+#	new file:   src/extermal/219) Печать ШК Адресов Хранения.epf
+#	new file:   src/extermal/220) Контроль списания крышек.erf
+#	new file:   src/extermal/221) Отчет по зависшим товарам в пути.erf
+#	new file:   src/extermal/222) НЕпросроченная ДЗ-КЗ..epf
+#	new file:   src/extermal/223) Отчет для КАМА.erf
+#	new file:   src/extermal/224) Отчет по поступлению услуг и маршрутам.erf
+#	new file:   src/extermal/225) Загрузка остатков и цен Поставщиков.epf
+#	new file:   src/extermal/226) Отчет по начисленным пени.erf
+#	new file:   src/extermal/227) Анализ заказа на перемещение.erf
+#	new file:   src/extermal/228) Анализ точки заказа (Филиал).erf
+#	new file:   src/extermal/229) Анализ оборачиваемости ОТХ.erf
+#	new file:   src/extermal/230) Комплектующие по реализациям.erf
+#	new file:   src/extermal/231) Отчет по остаткам в подразделении.erf
+#	new file:   src/extermal/232) Остатки koleso76.ru (Новый).erf
+#	new file:   src/extermal/233) Печать конвертов.epf
+#	new file:   src/extermal/234) Правила в политику.epf
+#	new file:   src/extermal/235) Установка цен Ростов.epf
+#	new file:   src/extermal/236) Продажи по номенкл.группе ЦМК КАМА (НОВЫЙ).erf
+#	new file:   src/extermal/237) Анализ расхождения Товары - Адреса.erf
+#	new file:   src/extermal/238) ПрайсЛист с остатками по складам ЯШТ(цена Клиента).epf
+#	new file:   src/extermal/239) Доп расходы позднее реализации.erf
+#	new file:   src/extermal/240) Себестоимость и доп расходы.erf
+#	new file:   src/extermal/241) Остатки товаров на складах по Базовой цене.erf
+#	new file:   src/extermal/242) Печать спецификации по заказам поставщику.epf
+#	new file:   src/extermal/243) ПрайсЛист шин и дисков в XML (на сайт yst.ru)..epf
+#	new file:   src/extermal/244) ПодборПодразделений.epf
+#	new file:   src/extermal/245) Перевозчики LOGISTIC.yst.ru.erf
+#	new file:   src/extermal/246) Объединение заказов по 1 клиенту.epf
+#	new file:   src/extermal/247) Отчет по комплектующим. Аналоги..erf
+#	new file:   src/extermal/248) Печать штрих-кода по номенклатуре (ШК).epf
+#	new file:   src/extermal/249) Расхождения по заказам и поступлениям.erf
+#	new file:   src/extermal/250) Список почтовых адресов контрагентов.erf
+#	new file:   src/extermal/251) Анализ потребности в товаре (Филиал).epf
+#	new file:   src/extermal/252) Отчет по товародвижению (товар, тов.группа, филиал) в сравнении прошлым периодом.erf
+#	new file:   src/extermal/253) Ведомость по взаиморасчетам с подотчетниками (Ф-л).erf
+#	new file:   src/extermal/254) Продажи и возвраты по клиентам.erf
+#	new file:   src/extermal/256) Евротранс выгрузка остатков.epf
+#	new file:   src/extermal/257) Отрицательные остатки по заказам покупателей.erf
+#	new file:   src/extermal/258) Анализ товародвижения по поставщикам, ДОЗАКАЗ.epf
+#	new file:   src/extermal/259) Перенос ответственных по договорам.epf
+#	new file:   src/extermal/260) Заказы по AquateX.epf
+#	new file:   src/extermal/261) Анализ размещения дисков в нескольких контейнерах.erf
+#	new file:   src/extermal/262) Продажи по клиентам для занесения.epf
+#	new file:   src/extermal/263) Отчет по дублям в дисках.erf
+#	new file:   src/extermal/264) Новые правила клиентов по Менеджеру (2017).epf
+#	new file:   src/extermal/265) Расчет пени (по выбранным договорам с учетом пост).erf
+#	new file:   src/extermal/266) Поступления услуг без привязки к реализациям.erf
+#	new file:   src/extermal/267) Остатки товаров со старыми ценами.erf
+#	new file:   src/extermal/268) (НЕ ИСПОЛЬЗОВАТЬ) Валовая прибыль - транспортные расходы.erf
+#	new file:   src/extermal/269) Аналитика продаж по брендам.erf
+#	new file:   src/extermal/270) Маршрут.erf
+#	new file:   src/extermal/271) Просроченная ДЗ для бухгалтерии (сравнение УТ-БП).epf
+#	new file:   src/extermal/272) Анализ заказа по крышкам.erf
+#	new file:   src/extermal/273) Проверить картинки.erf
+#	new file:   src/extermal/274) Прайс-лист Клиента (по правилам ценообразования).erf
+#	new file:   src/extermal/275) Анализ сезонных заказов поставщиков.erf
+#	new file:   src/extermal/276) Сформировать сезонный заказ.epf
+#	new file:   src/extermal/277) Ведомость по крышкам.erf
+#	new file:   src/extermal/278) Сформировать дозаказ(сезонный).epf
+#	new file:   src/extermal/279) Отчет по производству кованных дисков.erf
+#	new file:   src/extermal/280) Отчет по корпоративным подаркам.erf
+#	new file:   src/extermal/281) Отчет звонки.erf
+#	new file:   src/extermal/282) Отчет по товарам без цены.epf
+#	new file:   src/extermal/283) Выгрузка цен 1 Клиента (турецкий клиенты).epf
+#	new file:   src/extermal/284) План-фактный анализ продаж дисков.erf
+#	new file:   src/extermal/285) Генерация номенклатуры из буфера _ установка цен.epf
+#	new file:   src/extermal/286) Звонки(для операторов).erf
+#	new file:   src/extermal/287) Поступления без доп расходов.erf
+#	new file:   src/extermal/288) АВ.erf
+#	new file:   src/extermal/289) Деньги в товарах.erf
+#	new file:   src/extermal/290) Печать штрих кодов списка номенклатуры.epf
+#	new file:   src/extermal/291) Прайс-лист Клиента для отв. за товарные группы.erf
+#	new file:   src/extermal/292) Обработать заказы по пресс-формам.epf
+#	new file:   src/extermal/293) Объединение заказов по Подразделению склада.epf
+#	new file:   src/extermal/294) Отчет по ценам на Я.Маркете.erf
+#	new file:   src/extermal/295) Объединение заказов ЯШТ для перемещения на филиал.epf
+#	new file:   src/extermal/296) Оплата реализованных товаров.erf
+#	new file:   src/extermal/297) Связанные реализации.erf
+#	new file:   src/extermal/298) Загрузка поступлений от Землянского и Воробьева.epf
+#	new file:   src/extermal/299) Реализации со склада Инфинити отв.хранение.erf
+#	new file:   src/extermal/300) Оповестить о приходе контейнера.epf
+#	new file:   src/extermal/301) Оповестить о приходе контейнеров в след месяце.epf
+#	new file:   src/extermal/303) Оповестить о приходе контейнера по заданию на отгр.epf
+#	new file:   src/extermal/304) Печать заявлений на страхование ЖАСО.epf
+#	new file:   src/extermal/305) Обновить даты поступления в порт из файла.epf
+#	new file:   src/extermal/306) Сформировать доп расходы из таблицы 11.epf
+#	new file:   src/extermal/307) Сравнение сумм доп расходов в 1с и в Таблица11.erf
+#	new file:   src/extermal/308) Записать звонки в SQL.epf
+#	new file:   src/extermal/309) Полугодовое планирование. Другая иерархия..epf
+#	new file:   src/extermal/310) Расчет премии по аксессуарам.epf
+#	new file:   src/extermal/311) Заполнение прайса Excel (по дискам).epf
+#	new file:   src/extermal/312) Отчет по грузчикам.erf
+#	new file:   src/extermal/313) Сформировать корректировку записей регистров по ку.epf
+#	new file:   src/extermal/314) Валовая прибыль (себестоимость - тип цен).erf
+#	new file:   src/extermal/315) Сравнить заявку П-Ф с файлом.epf
+#	new file:   src/extermal/316) Расчет поездки Филиал.epf
+#	new file:   src/extermal/317) Анализ взаиморасчетов по договорам (звезда).erf
+#	new file:   src/extermal/318) Прайс Excel для Шинсервиса(Москва).epf
+#	new file:   src/extermal/319) Бюджет доходов-расходов.erf
+#	new file:   src/extermal/320) Продажи дебиторка для Горохова.erf
+#	new file:   src/extermal/321) Сформировать доп расходы по крышкам.epf
+#	new file:   src/extermal/322) Объединение заказов 1 поставщика.epf
+#	new file:   src/extermal/323) Создание заданий на отгрузку из таблица11.epf
+#	new file:   src/extermal/324) Остатки дисков без фотографий (не актуальный).erf
+#	new file:   src/extermal/325) План-фактный анализ эффективности по направлениям по 09.2015 включ.erf
+#	new file:   src/extermal/326) Грузовые и Сельхоз шины.erf
+#	new file:   src/extermal/327) Анализ остатков крышек для заказа поставщику.erf
+#	new file:   src/extermal/328) Создать сезонный заказ поставщику.erf
+#	new file:   src/extermal/329) Установка настройки для всех пользователей.epf
+#	new file:   src/extermal/330) Занесение сведений по судам для ДЗ-КЗ.epf
+#	new file:   src/extermal/331) Копирование Правил Ценообразования Клиентов.epf
+#	new file:   src/extermal/332) Напоминание о заканчивающихся сезонных заказах пос.epf
+#	new file:   src/extermal/333) Напоминание о сезонных заказах поставщикам.epf
+#	new file:   src/extermal/334) Предложения по транзитам.erf
+#	new file:   src/extermal/335) Остатки дисков без фотографий (не актуальный).erf
+#	new file:   src/extermal/336) Увеличение себестоимости товара на курсовые разниц.epf
+#	new file:   src/extermal/337) Документы отгрузки по одному товару.erf
+#	new file:   src/extermal/338) Формирование заявок на оплату по доп.расходам.epf
+#	new file:   src/extermal/339) ПДЗ и пени.erf
+#	new file:   src/extermal/340) Анализ курсов списания валюты.erf
+#	new file:   src/extermal/341) Сроки оплат по реализациям.erf
+#	new file:   src/extermal/342) Проставить оплату в таблицу 11.epf
+#	new file:   src/extermal/343) Анализ заказов покупателей по типам.erf
+#	new file:   src/extermal/344) Анализ допустимых сроков хранения по браку.erf
+#	new file:   src/extermal/345) Экспорт - мастер создания нового контрагента.epf
+#	new file:   src/extermal/346) Печать прайс-листа.epf
+#	new file:   src/extermal/347) Отчет по типам заказов.erf
+#	new file:   src/extermal/348) Ведомость по заправкам (по топливу).erf
+#	new file:   src/extermal/349) Валовая прибыль с затратами.erf
+#	new file:   src/extermal/350) Анализ продаж покупателей (по видам товара).erf
+#	new file:   src/extermal/351) Заказы без договора поручительства.erf
+#	new file:   src/extermal/352) Объединения заказов по точкам 1 клиента.epf
+#	new file:   src/extermal/353) Отчет по поездкам за день.erf
+#	new file:   src/extermal/354) Транспортные расходы.erf
+#	new file:   src/extermal/355) Экспорт - распределение оплаты поставщикам.epf
+#	new file:   src/extermal/356) Прибыль и Затраты (в сравнении с предыдущим годом).erf
+#	new file:   src/extermal/357) Установка курса USD.epf
+#	new file:   src/extermal/358) Напоминание об оплате Шинтрейд.epf
+#	new file:   src/extermal/359) Анализ сезонного заказ (то, что не приедет).erf
+#	new file:   src/extermal/360) Формирование всех прайсов Excel (и точек).epf
+#	new file:   src/extermal/361) Отчет по переданным ОС.erf
+#	new file:   src/extermal/362) Остатки ОС.erf
+#	new file:   src/extermal/364) Отчет по продажам и поступлению денежных средств.erf
+#	new file:   src/extermal/365) Оплаты по сделкам для премии филиалам.erf
+#	new file:   src/extermal/366) Загрузить данные по судебным делам.epf
+#	new file:   src/extermal/367) Анализ цен в Заказах поставщикам и Сезонных заказах поставщикам.erf
+#	new file:   src/extermal/368) Прайс по товарам в производстве.erf
+#	new file:   src/extermal/369) Затраты.erf
+#	new file:   src/extermal/370) Перераспределение Поступления тр.услуг (по Подразделениям).epf
+#	new file:   src/extermal/371) Запрет Отгрузок-ВводаЗаказов для ответчиков по судам.epf
+#	new file:   src/extermal/372) Сличительная ведомость полная УТ-БУ.epf
+#	new file:   src/extermal/373) Изменение осн. менеджера (по табл. Excel).epf
+#	new file:   src/extermal/374) Заполнение бюджета доходов.epf
+#	new file:   src/extermal/375) ВаловаяПрибыль_Ист.erf
+#	new file:   src/extermal/376) ОСНОВНОЙ БЮДЖЕТ.erf
+#	new file:   src/extermal/377) Сравнение номенклатуры в сезонных прайсах со справочником в 1С.epf
+#	new file:   src/extermal/378) Движение дебиторки по ответчикам по судам..erf
+#	new file:   src/extermal/379) Отчет по продаже распродажных дисков.erf
+#	new file:   src/extermal/380) Отчет по клиентам по Тендерам (27.09.2018).erf
+#	new file:   src/extermal/381) Выгрузка AddressesOfPartners.xml.epf
+#	new file:   src/extermal/382) Анализ запасов по крышкам.erf
+#	new file:   src/extermal/383) ИП Жилин.erf
+#	new file:   src/extermal/384) Отчет по бюджету затрат.erf
+#	new file:   src/extermal/385) Загрузка Аксессуаров.epf
+#	new file:   src/extermal/386) Затраты (на СКД).erf
+#	new file:   src/extermal/387) ABC-XYZ-анализ клиентов.erf
+#	new file:   src/extermal/388) Групповая обработка задач на согласование.epf
+#	new file:   src/extermal/389) Перенос оплат ФА, ФА_ и Шинтрейд.epf
+#	new file:   src/extermal/390) Установка признака БУ.epf
+#	new file:   src/extermal/391) Долги по печатным формам.erf
+#	new file:   src/extermal/392) Продажи ИМ (График).erf
+#	new file:   src/extermal/393) Выключенные правила.erf
+#	new file:   src/extermal/394) Отчет по бюджету затрат месяц.erf
+#	new file:   src/extermal/396) Отчет по будущей комплектации сезонных заказов покупателей.epf
+#	new file:   src/extermal/397) Отчет по всем договорам (по продажам за 2 года).erf
+#	new file:   src/extermal/398) Контроль цен ФОП.erf
+#	new file:   src/extermal/399) Сводный отчет по рентабельности.epf
+#	new file:   src/extermal/400) Печать ШК Адресов Хранения (ЦЦЛ).epf
+#	new file:   src/extermal/401) Оборот пени.erf
+#	new file:   src/extermal/402) Отчет по возвратам брака.erf
+#	new file:   src/extermal/403) Отчет по бюджету затрат План-Факт.erf
+#	new file:   src/extermal/404) Отчет по бюджету затрат месяц факт.erf
+#	new file:   src/extermal/405) Отчет по договорам (по должникам).erf
+#	new file:   src/extermal/406) Оплаты по товарным группам от покупателей.erf
+#	new file:   src/extermal/407) Групповая обработка справочников и документов(Печать).epf
+#	new file:   src/extermal/408) Поступление денег на Шинтрейд.erf
+#	new file:   src/extermal/409) Закрытие расчетов по ШТЯ (для валютных договоров).epf
+#	new file:   src/extermal/410) Выгрузка остатков Kolesatyt.epf
+#	new file:   src/extermal/411) Установка цен распродажи (Клиенты).epf
+#	new file:   src/extermal/412) Отчет по некомплектным товарам в подразделении.erf
+#	new file:   src/extermal/413) Сравнение цен МРИЦ меньше цен B2B или Кр.Опт.erf
+#	new file:   src/extermal/414) Цены Фоб.erf
+#	new file:   src/extermal/415) Сличительная ведомость Store.erf
+#	new file:   src/extermal/416) Перенос реализаций в бух базы без потери ГТД.epf
+#	new file:   src/extermal/417) Заполнение аналогов по дискам.epf
+#	new file:   src/extermal/419) Отчет по незакрытым просроченным Сезонным заказам поставщикам.erf
+#	new file:   src/extermal/420) Проверка резервов для ИМ.erf
+#	new file:   src/extermal/421) Заявка на перемещение.epf
+#	new file:   src/extermal/422) Цена последней закупки в валюте.erf
+#	new file:   src/extermal/423) Выгрузка прайсов клиентов в Store и Terminal.epf
+#	new file:   src/extermal/424) Выполнение заданий на отгрузку.epf
+#	new file:   src/extermal/425) Сравнение цен для АЭ.erf
+#	new file:   src/extermal/426) Анализ доставки возвратов.epf
+#	new file:   src/extermal/427) Разбор реестра платежей (ИМ) - частичн.оплата - вручную.epf
+#	new file:   src/extermal/428) ФормированиеЗаказовПоставщикам.epf
+#	new file:   src/extermal/429) КлиентБанкСРеестром.epf
+#	new file:   src/extermal/430) Заполнение Грузчиков по Группам складов.epf
+#	new file:   src/extermal/431) Загрузка Аксессуаров-АКБ из Excel.epf
+#	new file:   src/extermal/432) Контроль отрицательных остатков по регистрам.epf
+#	new file:   src/extermal/433) Инкассация водителей.erf
+#	new file:   src/extermal/434) Оповещения о судебных делах.epf
+#	new file:   src/extermal/435) Правила ценообразования для менеджеров.epf
+#	new file:   src/extermal/436) Остатки менее 4х.erf
+#	new file:   src/extermal/437) ДоговорыФакторинга.epf
+#	new file:   src/extermal/438) Проценты по кредитам.erf
+#	new file:   src/extermal/439) График возвратов по кредитам.erf
+#	new file:   src/extermal/440) Анализ работы по системе терминал.erf
+#	new file:   src/extermal/441) Служебка на списание брака дисков.erf
+#	new file:   src/extermal/442) отчет по восстановлению дисков.erf
+#	new file:   src/extermal/443) Проверка Лимитов и ПДЗ по заказам в маршрутах.erf
+#	new file:   src/extermal/444) Анализ работы по системе ИМ.erf
+#	new file:   src/extermal/445) Сличительная ведомость Terminal.erf
+#	new file:   src/extermal/446) Проверка крепежа.erf
+#	new file:   src/extermal/447) отчет по инкассации старый.erf
+#	new file:   src/extermal/448) Ассортимент сезонных заказов покупателей.erf
+#	new file:   src/extermal/449) Проверка наличия фото на диски.epf
+#	new file:   src/extermal/450) Деятельность склада.erf
+#	new file:   src/extermal/451) Установка ответчиков по судам.epf
+#	new file:   src/extermal/452) СверкаВзаиморасчетов.epf
+#	new file:   src/extermal/453) EBITDA ИМ.erf
+#	new file:   src/extermal/454) Сравнение цен ИМ и Кр.Опт.erf
+#	new file:   src/extermal/455) Сверка взаиморасчетов по документам.epf
+#	new file:   src/extermal/456) Анализ продаж по типоразмерам (ABC) Матрица.epf
+#	new file:   src/extermal/457) Рассылка накладных клиентам (NEW).epf
+#	new file:   src/extermal/458) Лимиты задолженности клиентов.erf
+#	new file:   src/extermal/459) Формирование цен для распродажи дисков.epf
+#	new file:   src/extermal/460) Отчет по неправильным Адресам.erf
+#	new file:   src/extermal/461) Сформировать заявки на возврат по реестру ДПД.epf
+#	new file:   src/extermal/462) Не заполнена макс. нагрузка дисков.erf
+#	new file:   src/extermal/463) План-фактный Анализ сезонных заказов.erf
+#	new file:   src/extermal/464) Анализ оборачиваемости с адресами.erf
+#	new file:   src/extermal/465) Учет наемного транспорта.erf
+#	new file:   src/extermal/466) Диаграмма объема отгрузок по складу Ангар-И.erf
+#	new file:   src/extermal/467) Продажи по Резерву ИМ.erf
+#	new file:   src/extermal/468) Списание и Оприходование товаров.erf
+#	new file:   src/extermal/469) Сумма доставки.erf
+#	new file:   src/extermal/470) Распределение ДС.epf
+#	new file:   src/extermal/471) Управленческий учет по транспортному направлению.erf
+#	new file:   src/extermal/472) Загрузка мобильных звонков.epf
+#	new file:   src/extermal/473) Закупки.erf
+#	new file:   src/extermal/474) ДЗ-КЗ Поставщики (валютные договора).erf
+#	new file:   src/extermal/477) Перенос оплат.epf
+#	new file:   src/extermal/478) Объединение поступлений по 1 клиенту.epf
+#	new file:   src/extermal/479) Печать штрих кодов списка номенклатуры маленькие.epf
+#	new file:   src/extermal/480) РассылкаКрышек.epf
+#	new file:   src/extermal/481) Отчет по бюджету затрат факт.erf
+#	new file:   src/extermal/482) Рассылка предложений клиентам.epf
+#	new file:   src/extermal/483) Экономика по филиалам.erf
+#	new file:   src/extermal/484) Сравнительный анализ продаж-прибыли.erf
+#	new file:   src/extermal/485) Товары в Пути И Производстве(_ выгрузка в терминал).erf
+#	new file:   src/extermal/486) План фактный анализ затрат по отделу Интернет-продаж.erf
+#	new file:   src/extermal/487) Рассылка маршрутный крышки.epf
+#	new file:   src/extermal/488) Отчет по грузчикам (филиалов).erf
+#	new file:   src/extermal/489) Установка максимальной нагрузки.epf
+#	new file:   src/extermal/490) Дерево общих правил (для Мен.Тов.Групп).epf
+#	new file:   src/extermal/491) ОбщаяЭкономика.erf
+#	new file:   src/extermal/492) Валовая прибыль - НДС- транспортные затраты _ бонусы.epf
+#	new file:   src/extermal/493) Сравнительный анализ продаж и прибыли (Группировка по регионам).erf
+#	new file:   src/extermal/494) Реестр заявок на транспорт.erf
+#	new file:   src/extermal/495) Претензии в ТК.erf
+#	new file:   src/extermal/496) Переведено товаров в уценку.erf
+#	new file:   src/extermal/498) Отчет по браку (Новый).erf
+#	new file:   src/extermal/499) Анализ опроса клиентов.erf
+#	new file:   src/extermal/500) Персональные правила Клиента (по категориям).epf
+#	new file:   src/extermal/501) Обработка для застойных товаров.epf
+#	new file:   src/extermal/502) Расшифровка статей затрат.erf
+#	new file:   src/extermal/503) Фин. результат Интернет-Магазина.erf
+#	new file:   src/extermal/504) Список договоров подразделений.erf
+#	new file:   src/extermal/506) Сравнение цен Клиента в Терминале с 1С.erf
+#	new file:   src/extermal/507) Сверка счетов ДПД.epf
+#	new file:   src/extermal/508) Эффективность использования матрицы штампа.erf
+#	new file:   src/extermal/509) Отчет по отклоненному браку.erf
+#	new file:   src/extermal/510) Скидки по Брендам.erf
+#	new file:   src/extermal/511) Отчет по бонусам и ОТК.erf
+#	new file:   src/extermal/512) РеестрЗаданийНаОтгрузку.erf
+#	new file:   src/extermal/513) Сравнение цен для ИМ.epf
+#	new file:   src/extermal/514) Поиск проблем в проведении по партиям.erf
+#	new file:   src/extermal/515) Обновить статусы заказов ДПД.epf
+#	new file:   src/extermal/516) Выгрузить реализации на КОЛЕСАТУТ.epf
+#	new file:   src/extermal/517) Анализ брака на 5000(Брак).erf
+#	new file:   src/extermal/518) Анализ возвратов по складам.erf
+#	new file:   src/extermal/519) Диски с отсрочкой.epf
+#	new file:   src/extermal/521) проверка статусов ДПД.epf
+#	new file:   src/extermal/522) Отчет по ценам Я.М..erf
+#	new file:   src/extermal/523) Отчет по не сданным документам.erf
+#	new file:   src/extermal/524) Контроль минимального остатка в филиалах.epf
+#	new file:   src/extermal/525) Установка цен и счет фактуры в поступлениях.epf
+#	new file:   src/extermal/526) Реестр заказов для передачи в ДПД.epf
+#	new file:   src/extermal/527) РасчетЦенФОБ.epf
+#	new file:   src/extermal/528) Расшифровка статей затрат с данными заданий на отгрузку.erf
+#	new file:   src/extermal/529) Загрузка шин  из Excel.epf
+#	new file:   src/extermal/530) План-фактный анализ сезонного заказа поставщику (детальный).erf
+#	new file:   src/extermal/531) Установка запрещенного типоразмера.epf
+#	new file:   src/extermal/532) Выгрузить цены KOLESATYT.RU.epf
+#	new file:   src/extermal/533) Пени и штрафы поставщикам дисков.erf
+#	new file:   src/extermal/534) ОтчетПоМаршрутуВодителей.erf
+#	new file:   src/extermal/535) Календарь оплат поставщику.erf
+#	new file:   src/extermal/536) Файлы SO и SD для Michelin.epf
+#	new file:   src/extermal/537) Отправить заказы ИМ в ТК.epf
+#	new file:   src/extermal/538) Отчет по возвратам с маршрутов.erf
+#	new file:   src/extermal/539) Реестр дисков.erf
+#	new file:   src/extermal/540) Отгрузка по интеренет магазинам.erf
+#	new file:   src/extermal/542) Установка коэф. по грузчикам для документов.epf
+#	new file:   src/extermal/543) Возвраты по заявкам на брак.erf
+#	new file:   src/extermal/544) Валовая прибыль с оплаченных отгрузок.erf
+#	new file:   src/extermal/545) Выгрузка номенклатуры на КОЛЕСАТУТ.epf
+#	new file:   src/extermal/546) План-факт задания поставщикам.erf
+#	new file:   src/extermal/547) Нарушение цен по Я.Маркету.erf
+#	new file:   src/extermal/548) Изменения ДЗ.erf
+#	new file:   src/extermal/549) Анализ доп. расходов поступлений.erf
+#	new file:   src/extermal/551) Валовая прибыль - транспорт - ФОТ.erf
+#	new file:   src/extermal/552) Сформировать заявки на возврат по реестру Подорожник.epf
+#	new file:   src/extermal/553) Обновить плановые даты платежей доп расходов по поступлениям.epf
+#	new file:   src/extermal/554) Получить плановые доп расходы из таблицы 11.epf
+#	new file:   src/extermal/555) Отчет по виновникам дефекта.erf
+#	new file:   src/extermal/556) Отчет по заказам в ДПД.erf
+#	new file:   src/extermal/557) Плановое начисление пеней поставщикам.erf
+#	new file:   src/extermal/558) Отчет по отгрузкам и доставке до клиента (SMS).erf
+#	new file:   src/extermal/559) Работа со сторонними поставщиками.epf
+#	new file:   src/extermal/560) Загрузка анкет контрагентов.epf
+#	new file:   src/extermal/561) Учет расхода коробок.epf
+#	new file:   src/extermal/562) Отчет по Доставке заказов до клиента (SMS).erf
+#	new file:   src/extermal/563) Отчет по Крышкам, отданным водителям(SMS).erf
+#	new file:   src/extermal/564) Отчет по коробкам и этикеткам.erf
+#	new file:   src/extermal/565) Анализ прозрачности контрагента.erf
+#	new file:   src/extermal/566) Индикативы (Динамика по просроченной, судебной и дефолтной дебиторке).erf
+#	new file:   src/extermal/567) График оплаты кредитов по банкам.erf
+#	new file:   src/extermal/568) Оплаты по товарным группам поставщикам.erf
+#	new file:   src/extermal/569) Продажи по типам заказов.erf
+#	new file:   src/extermal/570) Воронка продаж по менеджерам.erf
+#	new file:   src/extermal/571) Анализ товаров сторонних поставщиков.erf
+#	new file:   src/extermal/572) Остатки легковых шин по диапазонам количества.erf
+#	new file:   src/extermal/573) Маршруты и транспорт.epf
+#	new file:   src/extermal/574) Ближайшие поступления дисков от поставщиков.erf
+#	new file:   src/extermal/575) врем.erf
+#	new file:   src/extermal/576) Формирование заявок на оплату по доп.расходам НОВ.epf
+#	new file:   src/extermal/577) Клиенты ИМ.epf
+#	new file:   src/extermal/579) Создать чеки ККМ из реализаций (звезда).epf
+#	new file:   src/extermal/580) Расхождение товаров и партий.erf
+#	new file:   src/extermal/581) Продажи по типам заказов(Направления продаж и регионы).erf
+#	new file:   src/extermal/582) Установка Свойств Контрагентам и номенклатуре.epf
+#	new file:   src/extermal/583) Контроль цен МРИЦ (по себестоимости).erf
+#	new file:   src/extermal/584) Загрузка товаров в заказ.erf
+#	new file:   src/extermal/585) заказ в китай по продажам с текучки.erf
+#	new file:   src/extermal/586) Долги по перевозчикам.epf
+#	new file:   src/extermal/587) Консоль заданий.epf
+#	new file:   src/extermal/588) Отправить через sbis.epf
+#	new file:   src/extermal/589) Клиенты неработающих менеджеров.erf
+#	new file:   src/extermal/590) Статус-комментарий поступления Групповое назначение.epf
+#	new file:   src/extermal/591) Проставить рекомендованные отсрочки по НГ.epf
+#	new file:   src/extermal/592) Отчет по распродажам дисков.erf
+#	new file:   src/extermal/593) Процент возвратов-обратных продаж.erf
+#	new file:   src/extermal/594) Отчет по продаже рекламной продукции.erf
+#	new file:   src/extermal/595) Недогрузы и перегрузы по экспортным заказам.erf
+#	new file:   src/extermal/596) Отчет по сверхприбыли (отриц.правила).erf
+#	new file:   src/extermal/597) Контроль скидок.epf
+#	new file:   src/extermal/598) Отчет по списанным и оприходованным товарам.erf
+#	new file:   src/extermal/599) Продажи с завышенной себестоимостью (КолесаТУТ).erf
+#	new file:   src/extermal/600) Зависшая себестоимость.erf
+#	new file:   src/extermal/601) Определение Адреса по Карте Google.epf
+#	new file:   src/extermal/602) Оповестить клиентов о приходе заказа.epf
+#	new file:   src/extermal/604) Оплаты по товарным группам от покупателей прогноз на основании дебиторки (на КонДата).erf
+#	new file:   src/extermal/605) График платежей.epf
+#	new file:   src/extermal/606) Средний чек и валовая прибыль по видам товаров.erf
+#	new file:   src/extermal/608) Загрузка цен B2B.epf
+#	new file:   src/extermal/609) Отрицательные остатки на складах.erf
+#	new file:   src/extermal/610) Работа с фикс ценами KOLESATYT.epf
+#	new file:   src/extermal/611) Воронка продаж по товарным группам.erf
+#	new file:   src/extermal/612) Печать ШК Складов (без адресов).epf
+#	new file:   src/extermal/613) Остатки дисков не прошедших нагрузку.erf
+#	new file:   src/extermal/614) Продажи - ИнтернетМагазин.erf
+#	new file:   src/extermal/615) Предварительная запись Сто Формула.erf
+#	new file:   src/extermal/616) Премия менеджерам старый 2017.erf
+#	new file:   src/extermal/617) KPI ВЭД.erf
+#	new file:   src/extermal/618) Расчет поездки новый (Яршинторг).epf
+#	new file:   src/extermal/619) Сравнение продаж по дням.erf
+#	new file:   src/extermal/620) Отчет по кол позиций товаров.erf
+#	new file:   src/extermal/621) Для Галины Ивановны.erf
+#	new file:   src/extermal/622) Установка ответственных за товарные группы.epf
+#	new file:   src/extermal/623) Загрузить доставку суда и порты перегрузки из Таблица11.epf
+#	new file:   src/extermal/624) Отчет по сверх-прибыли.erf
+#	new file:   src/extermal/625) Контайнерная площадка расположение шин.erf
+#	new file:   src/extermal/626) Отчет по эффективности товарных групп.erf
+#	new file:   src/extermal/627) Остатки запрещенных дисков.erf
+#	new file:   src/extermal/628) Планирование движений ДС.erf
+#	new file:   src/extermal/629) Для рассчета премии АКБ.erf
+#	new file:   src/extermal/630) Выгрузка наполеон.epf
+#	new file:   src/extermal/631) Распределение корпоративных подарков.epf
+#	new file:   src/extermal/632) Ведомость по товарам на складах с отбором по количеству.erf
+#	new file:   src/extermal/633) Загрузка з-п в УТ.epf
+#	new file:   src/extermal/634) План доставки заказов по заданиям на отгрузку.erf
+#	new file:   src/extermal/635) Отчет по возвратам KOLESATYT.RU.erf
+#	new file:   src/extermal/636) Валовая прибыль с учетом бонусов поставщиков (Отбор по показателям).erf
+#	new file:   src/extermal/637) План-фактный анализ по направлениям продаж.erf
+#	new file:   src/extermal/638) Отчет по дискам без проверки нагрузки.erf
+#	new file:   src/extermal/639) РезервыОдинаковыхДисков.erf
+#	new file:   src/extermal/640) Остатки проверенных дисков.erf
+#	new file:   src/extermal/641) Финансовый результат из БП Землянский.erf
+#	new file:   src/extermal/642) Расшифровка статей затрат с данными заданий на отгрузку с отбором по сумме.erf
+#	new file:   src/extermal/643) Сравнение цен А и FOB экспорт (диски).erf
+#	new file:   src/extermal/644) Поступления-продажи-остатки по подразделениям.erf
+#	new file:   src/extermal/645) Отчет по недогруженным перемещениям из Ярославля.erf
+#	new file:   src/extermal/646) Карта заказов КолесаТУТ.erf
+#	new file:   src/extermal/647) Данные для DPD.erf
+#	new file:   src/extermal/648) Акт на списание дисков после проведения испытаний.erf
+#	new file:   src/extermal/649) Отчет по работе с дисками (проверка нагрузки-перемаркировка).erf
+#	new file:   src/extermal/650) Переименовать договоры предоплаты.epf
+#	new file:   src/extermal/651) Затраты с отбором.erf
+#	new file:   src/extermal/652) Отчет по товарам без ШК или Веса.erf
+#	new file:   src/extermal/653) Отчет по адресам и точкам.erf
+#	new file:   src/extermal/654) План по движению складов СПб в м3.erf
+#	new file:   src/extermal/655) Диски без базовой цены.erf
+#	new file:   src/extermal/656) Анализ комплектующих дисков.erf
+#	new file:   src/extermal/657) Загрузка из excel в заявку на брак.epf
+#	new file:   src/extermal/658) Ежемесячное планирование департамента продаж.epf
+#	new file:   src/extermal/659) Планирование продаж дисков.epf
+#	new file:   src/extermal/660) Проставить фактически параметры работы клиентов.epf
+#	new file:   src/extermal/661) Утверждение поступлений ДС.epf
+#	new file:   src/extermal/662) Отчет по пересорту крышек.erf
+#	new file:   src/extermal/663) Отчет по анализу контрагентов ABC.erf
+#	new file:   src/extermal/664) Анализ клиентской базы.erf
+#	new file:   src/extermal/665) Расчет поездки ФИЛИАЛ новый (ТЕСТ).epf
+#	new file:   src/extermal/666) Убрать номенклатуру из стоп листа.epf
+#	new file:   src/extermal/667) Анализ запасов по крышкам (только наши бренды).erf
+#	new file:   src/extermal/668) Установка в маршрут Заказов ФИЛИАЛА (которые ещё едут из Ярославля).epf
+#	new file:   src/extermal/669) Диски номенклатура без движений.erf
+#	new file:   src/extermal/670) Обороты по договорам ШТЯ (экспорт).erf
+#	new file:   src/extermal/671) Затраты план-факт за 2017 год.erf
+#	new file:   src/extermal/672) Планирование для отдела аксессуаров.epf
+#	new file:   src/extermal/673) Отчет план факт по отделу аксессуаров.epf
+#	new file:   src/extermal/674) Печать штрих кодов списка номенклатуры ДЛЯ ИСТ.epf
+#	new file:   src/extermal/675) Анализ затрат по отношению к прибыли.erf
+#	new file:   src/extermal/676) Пересорты.erf
+#	new file:   src/extermal/677) Распределение планирующих по статьям.epf
+#	new file:   src/extermal/678) Diadoc.epf
+#	new file:   src/extermal/679) ЭДО Diadoc типовая.epf
+#	new file:   src/extermal/680) Загрузка мобильных звонков МТС.epf
+#	new file:   src/extermal/681) Групповое списание крышек.epf
+#	new file:   src/extermal/682) Затраты. Сравнение плана из бюджета  с фактом прошлого года за аналогичный период..erf
+#	new file:   src/extermal/683) Ведомость по шинам и дискам на головном складе.erf
+#	new file:   src/extermal/684) Продажи. Сравнение плана из бюджета  с фактом прошлого года за аналогичный период..erf
+#	new file:   src/extermal/685) Заказы Kolesatyt по регионам.erf
+#	new file:   src/extermal/686) Отчет по заявкам ДС для Kolesatyt.erf
+#	new file:   src/extermal/687) Оплата труда.erf
+#	new file:   src/extermal/688) Сравнительный отчет по Ангару3 и складам.erf
+#	new file:   src/extermal/689) продажи по годам.erf
+#	new file:   src/extermal/690) Пакетный обмен-печать реализаций УТ БП.epf
+#	new file:   src/extermal/691) Настройка распределения затрат по подразделениям.epf
+#	new file:   src/extermal/692) Распределение затрат по подразделениям.erf
+#	new file:   src/extermal/693) Оплата труда департамент продаж.erf
+#	new file:   src/extermal/694) План-Факт затрат по бюджету.erf
+#	new file:   src/extermal/695) Полугодовое планирование.epf
+#	new file:   src/extermal/696) Загрузка мобильных звонков.epf
+#	new file:   src/extermal/697) Сравнение плана продаж.erf
+#	new file:   src/extermal/698) Отчет по срокам поступлений.erf
+#	new file:   src/extermal/699) Создать поступления в базе франчайзи.epf
+#	new file:   src/extermal/700) План продаж подразделений (бюджет).erf
+#	new file:   src/extermal/701) Расчет средних показателей продажи товара.erf
+#	new file:   src/extermal/702) Отчет по обратным продажам.erf
+#	new file:   src/extermal/703) Загрузка прайсов из Excel по коду-артикулу и производителю.epf
+#	new file:   src/extermal/704) Добавить для обмена.epf
+#	new file:   src/extermal/705) Настройка распределения затрат по номенклатурным группам.epf
+#	new file:   src/extermal/706) Распределение затрат по номенклатурным группам.erf
+#	new file:   src/extermal/707) Загрузка мобильных звонков XML.epf
+#	new file:   src/extermal/708) Номенклатурная матрица франчайзи.epf
+#	new file:   src/extermal/709) Формирование заказов для франчайзи по матрице.epf
+#	new file:   src/extermal/710) Сравнение цен с конкурентами.erf
+#	new file:   src/extermal/711) Удаление из актуальной номенклатуры по файлу Excel.epf
+#	new file:   src/extermal/712) Назначение регионов операторам Отдела обеспечения.epf
+#	new file:   src/extermal/713) План-факт ежемесячного планирования ДП.erf
+#	new file:   src/extermal/714) Деньги в товарных группах 2.erf
+#	new file:   src/extermal/715) РаспределениеПлановыхЗатрат по подразделениям.erf
+#	new file:   src/extermal/716) Отчет по закрепленным контрагентам.erf
+#	new file:   src/extermal/717) Свободный остаток в пути.erf
+#	new file:   src/extermal/718) Валовая прибыль в долларах для WG.epf
+#	new file:   src/extermal/719) Автоматическое списание крышек!.epf
+#	new file:   src/extermal/720) Свод плана затрат по подразделению.erf
+#	new file:   src/extermal/721) Планфактный анализ продаж валюта.epf
+#	new file:   src/extermal/722) ДЗ-КЗ для WG.erf
+#	new file:   src/extermal/723) Движения денежных средств WG.erf
+#	new file:   src/extermal/724) Автоматическое перевыставление ПДЗ с клиента на перевозчика!.epf
+#	new file:   src/extermal/725) Продажи дисков в сравнении.erf
+#	new file:   src/extermal/726) Отчет по сезонным заказам дисков в сравнении.erf
+#	new file:   src/extermal/727) Заказ Заготовок.erf
+#	new file:   src/extermal/728) Отчет поставщику.epf
+#	new file:   src/extermal/729) Рабочее место.epf
+#	new file:   src/extermal/730) Расшифровка транспортных затрат.erf
+#	new file:   src/extermal/731) Расчет рейсов.erf
+#	new file:   src/extermal/732) Статус заявок на возврат и возвратов.erf
+#	new file:   src/extermal/733) Мотивация WG.erf
+#	new file:   src/extermal/734) Суды для ДЗ-КЗ.epf
+#	new file:   src/extermal/735) Премии Ангара-Ковка.erf
+#	new file:   src/extermal/736) Расчет премии Вострилову А..erf
+#	new file:   src/extermal/737) Движения по ОТХ.erf
+#	new file:   src/extermal/738) Вознаграждение Формулы по безналам.erf
+#	new file:   src/extermal/739) Продажи резерва ИМ в ценах КТ.epf
+#	new file:   src/extermal/740) Анализ заказов Беларусь.epf
+#	new file:   src/extermal/741) Анализ доп.расходов.erf
+#	new file:   src/extermal/742) Утверждение заказов.epf
+#	new file:   src/extermal/743) Движение товара по обособке (москва).erf
+#	new file:   src/extermal/744) Сопоставить номенклатуру франчайзи.epf
+#	new file:   src/extermal/745) мотивация.erf
+#	new file:   src/extermal/746) Сравнение цен в заказе с ценами FOB.erf
+#	new file:   src/extermal/747) Динамика изменения цен.erf
+#	new file:   src/extermal/748) Пени для китайцев.erf
+#	new file:   src/extermal/749) Заполнение декларации на страхование грузов.epf
+#	new file:   src/extermal/750) План-Факт поступления денег.erf
+#	new file:   src/extermal/751) Проработка номенклдатурных групп.epf
+#	new file:   src/prnform/Акт Лояльность.epf
+#	new file:   src/prnform/Акт Предоплата.epf
+#	new file:   src/prnform/Акт Рейтинг.epf
+#	new file:   src/prnform/Акт приема-передачи ФА_.epf
+#	new file:   src/prnform/Акт приема-передачи рекл.продукции.epf
+#	new file:   src/prnform/Анализ заказа.epf
+#	new file:   src/prnform/Ведомость ковка.epf
+#	new file:   src/prnform/Групповая печать Евротранс.epf
+#	new file:   src/prnform/Движения Себестоимости (Сезонный заказ).epf
+#	new file:   src/prnform/Движения себестоимости (заказ).epf
+#	new file:   src/prnform/Движения себестоимости.epf
+#	new file:   src/prnform/Диски без крышек.epf
+#	new file:   src/prnform/Диски на проверку.epf
+#	new file:   src/prnform/Загрузочный лист (ТЕСТ).epf
+#	new file:   src/prnform/ЗаданиеВЭД.epf
+#	new file:   src/prnform/Заказ ЯШТ (отв. хранение).epf
+#	new file:   src/prnform/Заказ покупателя АКБ (по характеристикам).epf
+#	new file:   src/prnform/Заказ покупателя Евротранс Объединенный.epf
+#	new file:   src/prnform/Заказ покупателя Евротранс.epf
+#	new file:   src/prnform/Заказ покупателя НОВЫЙ.epf
+#	new file:   src/prnform/Заказ покупателя Общий (разбивка по заказам).epf
+#	new file:   src/prnform/Заказ покупателя ЯШТ пакетный.epf
+#	new file:   src/prnform/Заказ поставщику итог по производителям.epf
+#	new file:   src/prnform/Заключение краткое (внешнее).epf
+#	new file:   src/prnform/Заявка на производство.epf
+#	new file:   src/prnform/Заявка на списание рекл. продукции.epf
+#	new file:   src/prnform/Заявка на транспорт (обратного груза).epf
+#	new file:   src/prnform/Заявка на транспортные услуги.epf
+#	new file:   src/prnform/ИНВ-3 (без фактического количества).epf
+#	new file:   src/prnform/Инвентаризация 4000 Адресное хранение.epf
+#	new file:   src/prnform/Инвентеризация на складе (пустографка).epf
+#	new file:   src/prnform/Испытания Дисков.epf
+#	new file:   src/prnform/Коммерческий инвойс (INVOICE).epf
+#	new file:   src/prnform/Крышки TopDriver.epf
+#	new file:   src/prnform/Крышки заказ поставщику.epf
+#	new file:   src/prnform/Крышки заказ.epf
+#	new file:   src/prnform/Крышки перемещение.epf
+#	new file:   src/prnform/Крышки поступление.epf
+#	new file:   src/prnform/Крышки реализация.epf
+#	new file:   src/prnform/Крышки списание.epf
+#	new file:   src/prnform/КрышкиЗадание.epf
+#	new file:   src/prnform/М-15.epf
+#	new file:   src/prnform/М-4 ЯШТ (С пустыми строками).epf
+#	new file:   src/prnform/М-4 ЯШТ.epf
+#	new file:   src/prnform/МХ-1 (ответ. хранение).epf
+#	new file:   src/prnform/МХ-1 (реализация).epf
+#	new file:   src/prnform/МХ-1.epf
+#	new file:   src/prnform/МХ-3 (отв. хранение) из поступления.epf
+#	new file:   src/prnform/МХ-3 (отв. хранение).epf
+#	new file:   src/prnform/МХ-3 (отв. хранение)1.epf
+#	new file:   src/prnform/МХ-3 Реализации.epf
+#	new file:   src/prnform/Маркировка дисков.epf
+#	new file:   src/prnform/Маршрутный лист (ТЕСТ).epf
+#	new file:   src/prnform/ОстаткиНаСкладеТЕСТ.epf
+#	new file:   src/prnform/Ответ на перенаправление претензии (внешня).epf
+#	new file:   src/prnform/Отклонения 4000. (по адресам).epf
+#	new file:   src/prnform/Отчет комиссионера о продажах.epf
+#	new file:   src/prnform/Отчет по заменам.epf
+#	new file:   src/prnform/Отчет по крышкам.epf
+#	new file:   src/prnform/Отчет поставщику.epf
+#	new file:   src/prnform/Перемещение для испытаний.epf
+#	new file:   src/prnform/Перечень товаров с применяемостью.epf
+#	new file:   src/prnform/Печатная форма рекламационной карточки (внешняя).epf
+#	new file:   src/prnform/Печать брака для задания на отгрузку.epf
+#	new file:   src/prnform/Печать договора в Word.epf
+#	new file:   src/prnform/Печать наклеек DPD.epf
+#	new file:   src/prnform/Печать наклеек дя АЭ.epf
+#	new file:   src/prnform/Печать пакета документов для филиалов.epf
+#	new file:   src/prnform/Печать товарных чеков ИМ.epf
+#	new file:   src/prnform/Печать этикеток DPD Опт.epf
+#	new file:   src/prnform/Письмо о возврате обеспечения ФА_.epf
+#	new file:   src/prnform/Подбор маршрутов.epf
+#	new file:   src/prnform/Последние приходы по заказу покупателя.epf
+#	new file:   src/prnform/Прайс.epf
+#	new file:   src/prnform/Приход 4000. Адресное хранение.epf
+#	new file:   src/prnform/Приход 5000 (Адресное хранение).epf
+#	new file:   src/prnform/Приход ЦЦЛ (Адресное хранение).epf
+#	new file:   src/prnform/Приход ЦЦЛ (Последний адрес).epf
+#	new file:   src/prnform/Проформа (экспорт инвойс).epf
+#	new file:   src/prnform/Проформа WGL.epf
+#	new file:   src/prnform/Проформа Турция.epf
+#	new file:   src/prnform/Распоряжение (для Филиала).epf
+#	new file:   src/prnform/Расход 4000 Адресное хранение.epf
+#	new file:   src/prnform/Расхождения 5000 Адресное хранение.epf
+#	new file:   src/prnform/Реестр DPD.epf
+#	new file:   src/prnform/Сертификаты (для дисков).epf
+#	new file:   src/prnform/Соглашение Лояльность.epf
+#	new file:   src/prnform/Соглашение Предоплата.epf
+#	new file:   src/prnform/Соглашение Рейтинг.epf
+#	new file:   src/prnform/Состояния заказа в ДПД.epf
+#	new file:   src/prnform/Спецификация (SPECIFICATION).epf
+#	new file:   src/prnform/Спецификация (Реализация Товаров и услуг).epf
+#	new file:   src/prnform/Спецификация (сезонный заказ).epf
+#	new file:   src/prnform/Спецификация - новая форма.epf
+#	new file:   src/prnform/Спецификация.epf
+#	new file:   src/prnform/Страховка ЖАСО.epf
+#	new file:   src/prnform/Страховое заявление (перемещение).epf
+#	new file:   src/prnform/Страховое заявление.epf
+#	new file:   src/prnform/Счет для ФА_.epf
+#	new file:   src/prnform/Счет на оплату (Артикул).epf
+#	new file:   src/prnform/Счет-фактура (в ред. от 11.05.2006 N283) Факторинг.epf
+#	new file:   src/prnform/Счет-фактура (в ред. от 11.05.2006 N283).epf
+#	new file:   src/prnform/ТОРГ-12 (Сертификаты соответствия).epf
+#	new file:   src/prnform/ТОРГ-12 (Яршинторг без нетто).epf
+#	new file:   src/prnform/ТОРГ-12 (Яршинторг с нетто)..epf
+#	new file:   src/prnform/ТОРГ-12 (Яршинторг)..epf
+#	new file:   src/prnform/ТОРГ-12 Факторинг ПромсвязьБанк..epf
+#	new file:   src/prnform/ТОРГ-13 ОТХ.epf
+#	new file:   src/prnform/ТОРГ-2.epf
+#	new file:   src/prnform/ТОРГ12.epf
+#	new file:   src/prnform/ТОРГ13.epf
+#	new file:   src/prnform/ТОРГ2.epf
+#	new file:   src/prnform/ТТН (Списание).epf
+#	new file:   src/prnform/ТТН для заявок.epf
+#	new file:   src/prnform/ТТН-2012 (ТН прил.N4, СВ прил.N8).epf
+#	new file:   src/prnform/Табель контролера.epf
+#	new file:   src/prnform/Товарный чек (Ростов-на-Дону).epf
+#	new file:   src/prnform/Товары-Адреса храненения..epf
+#	new file:   src/prnform/Торг-12 Факторинг НацТоргКомпания.epf
+#	new file:   src/prnform/Торг-13 (цена из заказа).epf
+#	new file:   src/prnform/Упаковочный лист (PACKING).epf
+#	new file:   src/prnform/Форма МХ-6 (для склада - по реализации).epf
+#	new file:   src/prnform/Формы списания с отв.хр. МХ-3.epf
+#	new file:   src/prnform/Экспорт Печать CMR.epf
+#	new file:   src/prnform/Экспорт Печать заявка на экспертизу.epf
+#	new file:   src/prnform/Экспорт Печать коммерческий инвойс.epf
+#	new file:   src/prnform/Экспорт Печать спецификации.epf
+#	new file:   src/prnform/Экспорт Печать упаковочный лист.epf
+#	new file:   src/prnform/Экспорт заказ печать коммерческий инвойс WGL.epf
+#	new file:   src/prnform/Экспорт заказ печать коммерческий инвойс ТТ.epf
+#	new file:   src/prnform/Экспорт заказ печать коммерческий инвойс.epf
+#	new file:   src/prnform/Экспорт заказ печать пакета документов WGL.epf
+#	new file:   src/prnform/Экспорт заказ печать пакета документов ТТ.epf
+#	new file:   src/prnform/Экспорт заказ печать пакета документов.epf
+#	new file:   src/prnform/Экспорт заказ печать спецификации WGL.epf
+#	new file:   src/prnform/Экспорт заказ печать спецификации ТТ.epf
+#	new file:   src/prnform/Экспорт заказ печать спецификации.epf
+#	new file:   src/prnform/Экспорт заказ печать упаковочный лист WGL.epf
+#	new file:   src/prnform/Экспорт заказ печать упаковочный лист ТТ.epf
+#	new file:   src/prnform/Экспорт заказ печать упаковочный лист.epf
+#	new file:   src/prnform/Экспорт печать пакета документов.epf
+#
+# Untracked files:
+#	src/src/
+#

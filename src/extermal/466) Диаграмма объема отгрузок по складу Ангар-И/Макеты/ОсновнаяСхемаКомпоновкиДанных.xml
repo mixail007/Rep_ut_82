@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>Календарь</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПериода</dataPath>
+				<field>ДатаПериода</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	0 КАК Цифра
+ПОМЕСТИТЬ Единицы
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	1
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	2
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	3
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	4
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	5
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	6
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	7
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	8
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	9
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Десятки.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Десятки
+ИЗ
+	Единицы КАК Десятки
+ГДЕ
+	Десятки.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Сотни.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Сотни
+ИЗ
+	Десятки КАК Сотни
+ГДЕ
+	Сотни.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Тысячи.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Тысячи
+ИЗ
+	Сотни КАК Тысячи
+ГДЕ
+	Тысячи.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДесяткиТысяч.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ ДесяткиТысяч
+ИЗ
+	Тысячи КАК ДесяткиТысяч
+ГДЕ
+	ДесяткиТысяч.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СотниТысяч.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ СотниТысяч
+ИЗ
+	ДесяткиТысяч КАК СотниТысяч
+ГДЕ
+	СотниТысяч.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Десятки.Цифра + Единицы.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоСотни
+ИЗ
+	Десятки КАК Десятки,
+	Единицы КАК Единицы
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Тысячи.Цифра + Сотни.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоДесятиТысяч
+ИЗ
+	Тысячи КАК Тысячи,
+	Сотни КАК Сотни
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДоДесятиТысяч.Цифра + ДоСотни.Цифра КАК Цифра
+ПОМЕСТИТЬ ПолныеДесятьТысяч
+ИЗ
+	ДоДесятиТысяч КАК ДоДесятиТысяч,
+	ДоСотни КАК ДоСотни
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СотниТысяч.Цифра + ДесяткиТысяч.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоМиллиона
+ИЗ
+	СотниТысяч КАК СотниТысяч,
+	ДесяткиТысяч КАК ДесяткиТысяч
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДОБАВИТЬКДАТЕ(НАЧАЛОПЕРИОДА(&amp;НачалоПериода, ДЕНЬ), ДЕНЬ, ДоМиллиона.Цифра + ПолныеДесятьТысяч.Цифра) КАК ДатаПериода
+ИЗ
+	ДоМиллиона КАК ДоМиллиона,
+	ПолныеДесятьТысяч КАК ПолныеДесятьТысяч
+ГДЕ
+	ДоМиллиона.Цифра + ПолныеДесятьТысяч.Цифра &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+
+УПОРЯДОЧИТЬ ПО
+	ДатаПериода</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Всего</dataPath>
+				<field>Всего</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДПД</dataPath>
+				<field>ДПД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подмосковье</dataPath>
+				<field>Подмосковье</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	СУММА(ТоварыНаСкладахОбороты.КоличествоРасход) КАК Всего,
+	&amp;Период,
+	СУММА(ВЫБОР
+			КОГДА ТоварыНаСкладахОбороты.Регистратор.Контрагент В( &amp;ДПД )
+				ТОГДА ТоварыНаСкладахОбороты.КоличествоРасход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК ДПД,
+	СУММА(ВЫБОР
+			КОГДА ТоварыНаСкладахОбороты.Регистратор.Контрагент В( &amp;ДПД)
+				ТОГДА 0
+			ИНАЧЕ ТоварыНаСкладахОбороты.КоличествоРасход
+		КОНЕЦ) КАК Подмосковье
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Обороты(, , Регистратор, Склад = &amp;Склад) КАК ТоварыНаСкладахОбороты
+ГДЕ
+	ТоварыНаСкладахОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+	И НАЧАЛОПЕРИОДА(ТоварыНаСкладахОбороты.Регистратор.Дата, ДЕНЬ) = НАЧАЛОПЕРИОДА(&amp;Период, ДЕНЬ)</query>
+		</dataSet>
+		<dataSetLink>
+			<sourceDataSet>Календарь</sourceDataSet>
+			<destinationDataSet>НаборДанных1</destinationDataSet>
+			<sourceExpression>ДатаПериода</sourceExpression>
+			<destinationExpression>Период</destinationExpression>
+			<parameter>Период</parameter>
+			<parameterListAllowed>false</parameterListAllowed>
+		</dataSetLink>
+		<totalField>
+			<dataPath>Всего</dataPath>
+			<expression>Сумма(Всего)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ДПД</dataPath>
+			<expression>Сумма(ДПД)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подмосковье</dataPath>
+			<expression>Сумма(Подмосковье)</expression>
+		</totalField>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">2016-05-15T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">2016-05-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<availableAsField>false</availableAsField>
+		</parameter>
+		<parameter>
+			<name>Склад</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Склад</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДПД</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>ДПД</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Контрагенты</Type>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>Склад</dcscor:parameter>
+			<dcscor:value xsi:type="xs:string">2d38f1b2-9c88-11e4-abc1-d4ae52b5e909</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>ДПД</dcscor:parameter>
+			<dcscor:value xsi:type="xs:string">82111dda-ed04-11e5-98cf-d4ae52b5e909</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ДатаПериода</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>ДатаПериода</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ДПД</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Подмосковье</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Всего</field>
+			</item>
+		</selection>
+	</item>
+	<item xsi:type="StructureItemChart">
+		<point>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ДатаПериода</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</point>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>ДПД</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Подмосковье</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Всего</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ChartType</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:ChartType">Line</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

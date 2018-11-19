@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументОприходования</dataPath>
+				<field>ДокументОприходования</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказ</dataPath>
+				<field>Заказ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Премия</dataPath>
+				<field>Премия</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СебестоимостьДиска</dataPath>
+				<field>СебестоимостьДиска</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкладПолучатель</dataPath>
+				<field>СкладПолучатель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ТоварыНаСкладахОбороты.Склад,
+	ТоварыНаСкладахОбороты.КоличествоРасход,
+	ВЫРАЗИТЬ(ТоварыНаСкладахОбороты.Регистратор КАК Документ.ПеремещениеТоваров) КАК Регистратор,
+	ТоварыНаСкладахОбороты.Номенклатура,
+	ТоварыНаСкладахОбороты.НомерСтроки
+ПОМЕСТИТЬ ПеремещеноСоСклада
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Обороты(,, Авто, Склад = &amp;Склад) КАК ТоварыНаСкладахОбороты
+ГДЕ
+	ТоварыНаСкладахОбороты.КоличествоРасход &gt; 0
+	И ТоварыНаСкладахОбороты.Регистратор ССЫЛКА Документ.ПеремещениеТоваров
+
+СГРУППИРОВАТЬ ПО
+	ТоварыНаСкладахОбороты.Склад,
+	ТоварыНаСкладахОбороты.КоличествоРасход,
+	ТоварыНаСкладахОбороты.Номенклатура,
+	ТоварыНаСкладахОбороты.НомерСтроки,
+	ВЫРАЗИТЬ(ТоварыНаСкладахОбороты.Регистратор КАК Документ.ПеремещениеТоваров)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ПеремещеноСоСклада.Склад,
+	ПеремещеноСоСклада.КоличествоРасход,
+	ПеремещеноСоСклада.Номенклатура,
+	ВЫБОР
+		КОГДА ПеремещениеТоваровТовары.Склад = ЗНАЧЕНИЕ(справочник.Склады.ПустаяССылка)
+			ТОГДА ПеремещениеТоваровТовары.Ссылка.СкладПолучатель
+		ИНАЧЕ ПеремещениеТоваровТовары.Склад
+	КОНЕЦ КАК СкладПолучатель
+ПОМЕСТИТЬ АнализПеремещений
+ИЗ
+	ПеремещеноСоСклада КАК ПеремещеноСоСклада
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПеремещениеТоваров.Товары КАК ПеремещениеТоваровТовары
+		ПО ПеремещеноСоСклада.Номенклатура = ПеремещениеТоваровТовары.Номенклатура
+			И ПеремещеноСоСклада.КоличествоРасход = ПеремещениеТоваровТовары.Количество
+			И ПеремещеноСоСклада.Регистратор = ПеремещениеТоваровТовары.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПартииТоваровНаСкладахОбороты.Номенклатура,
+	ВЫБОР
+		КОГДА ПартииТоваровНаСкладахОбороты.КоличествоРасход = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(ПартииТоваровНаСкладахОбороты.СтоимостьРасход / ПартииТоваровНаСкладахОбороты.КоличествоРасход КАК ЧИСЛО(15, 2))
+	КОНЕЦ КАК СебестоимостьДиска
+ПОМЕСТИТЬ Себестоимость
+ИЗ
+	РегистрНакопления.ПартииТоваровНаСкладах.Обороты(
+			,
+			,
+			Авто,
+			Склад = &amp;Склад
+				И Номенклатура В
+					(ВЫБРАТЬ РАЗЛИЧНЫЕ
+						АнализПеремещений.Номенклатура
+					ИЗ
+						АнализПеремещений КАК АнализПеремещений)) КАК ПартииТоваровНаСкладахОбороты
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	АнализПеремещений.Склад КАК Склад,
+	СУММА(АнализПеремещений.КоличествоРасход) КАК Количество,
+	АнализПеремещений.Номенклатура,
+	АнализПеремещений.СкладПолучатель,
+	Себестоимость.СебестоимостьДиска,
+	(ВЫРАЗИТЬ(Себестоимость.СебестоимостьДиска * 0.01 КАК ЧИСЛО(15, 2))) * АнализПеремещений.КоличествоРасход КАК Премия
+ИЗ
+	АнализПеремещений КАК АнализПеремещений
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ Себестоимость КАК Себестоимость
+		ПО АнализПеремещений.Номенклатура = Себестоимость.Номенклатура
+ГДЕ
+	НЕ АнализПеремещений.СкладПолучатель.ЗапретитьИспользование
+
+СГРУППИРОВАТЬ ПО
+	АнализПеремещений.Номенклатура,
+	АнализПеремещений.СкладПолучатель,
+	АнализПеремещений.Склад,
+	Себестоимость.СебестоимостьДиска,
+	(ВЫРАЗИТЬ(Себестоимость.СебестоимостьДиска * 0.01 КАК ЧИСЛО(15, 2))) * АнализПеремещений.КоличествоРасход</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Количество</dataPath>
+			<expression>Сумма(Количество)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Премия</dataPath>
+			<expression>Сумма(Премия)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СебестоимостьДиска</dataPath>
+			<expression>Сумма(СебестоимостьДиска)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Склад</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Склад</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Склады.НайтиПоКоду("02097")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>Номенклатура</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Номенклатура.Code</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СкладПолучатель</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Количество</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СебестоимостьДиска</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Премия</field>
+			</item>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаявкаНаРасходование</dataPath>
+				<field>ЗаявкаНаРасходование</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ответственный</dataPath>
+				<field>Ответственный</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодПланирования</dataPath>
+				<field>ПериодПланирования</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатьяДвиженияДенежныхСредств</dataPath>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатьяРасхода</dataPath>
+				<field>СтатьяРасхода</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПриход</dataPath>
+				<field>СуммаПриход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма План</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаРасход</dataPath>
+				<field>СуммаРасход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма в заявках</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НеОплачено</dataPath>
+				<field>НеОплачено</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>из них не оплачено</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаЗаявки</dataPath>
+				<field>СуммаЗаявки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заявка</dataPath>
+				<field>Заявка</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Остаток</dataPath>
+				<field>Остаток</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Остаток бюджета</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаЗаявкиВнеПлан</dataPath>
+				<field>СуммаЗаявкиВнеПлан</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка КАК ЗаявкаНаРасходование,
+	ВЫБОР
+		КОГДА ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Контрагент = ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка)
+			ТОГДА ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Получатель
+		ИНАЧЕ ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Контрагент
+	КОНЕЦ КАК Контрагент,
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.СтатьяРасхода,
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.ОтветственныйЗаПланирование,
+	СУММА(ЗаявкиНаРасходованиеСредствОстатки.СуммаВзаиморасчетовОстаток) КАК СуммаВзаиморасчетовОстаток,
+	СУММА(ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.СуммаВзаиморасчетов) КАК СуммаВзаиморасчетов
+ПОМЕСТИТЬ Заявки
+ИЗ
+	Документ.ЗаявкаНаРасходованиеСредств.РасшифровкаПлатежа КАК ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаявкиНаРасходованиеСредств.Остатки(, ) КАК ЗаявкиНаРасходованиеСредствОстатки
+		ПО (ЗаявкиНаРасходованиеСредствОстатки.ЗаявкаНаРасходование = ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка)
+			И (ЗаявкиНаРасходованиеСредствОстатки.Сделка = ВЫБОР
+				КОГДА ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Сделка.Представление ЕСТЬ NULL 
+					ТОГДА НЕОПРЕДЕЛЕНО
+				ИНАЧЕ ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Сделка
+			КОНЕЦ)
+			И (ЗаявкиНаРасходованиеСредствОстатки.ДоговорКонтрагента = ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.ДоговорКонтрагента)
+			И (ЗаявкиНаРасходованиеСредствОстатки.ЗаявкаНаРасходование = ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка)
+ГДЕ
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Состояние &lt;&gt; ЗНАЧЕНИЕ(Перечисление.СостоянияОбъектов.Отклонен)
+	И НАЧАЛОПЕРИОДА(ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.ДатаРасхода, МЕСЯЦ) = &amp;ПериодПланирования
+	И ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Проведен
+
+СГРУППИРОВАТЬ ПО
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.ОтветственныйЗаПланирование,
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.СтатьяРасхода,
+	ВЫБОР
+		КОГДА ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Контрагент = ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка)
+			ТОГДА ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Получатель
+		ИНАЧЕ ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка.Контрагент
+	КОНЕЦ,
+	ЗаявкаНаРасходованиеСредствРасшифровкаПлатежа.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КонтрольПланируемыхРасходовДСОбороты.Ответственный КАК Ответственный,
+	КонтрольПланируемыхРасходовДСОбороты.Регистратор КАК Заявка,
+	КонтрольПланируемыхРасходовДСОбороты.Контрагент КАК Контрагент,
+	КонтрольПланируемыхРасходовДСОбороты.СтатьяРасхода КАК СтатьяРасхода,
+	КонтрольПланируемыхРасходовДСОбороты.СуммаПриход КАК СуммаПриход,
+	ВЫБОР
+		КОГДА НЕ Заявки.СтатьяРасхода.НеКонтролировать
+			ТОГДА КонтрольПланируемыхРасходовДСОбороты.СуммаРасход
+		ИНАЧЕ 0
+	КОНЕЦ КАК СуммаРасход,
+	ЕСТЬNULL(Заявки.СуммаВзаиморасчетовОстаток, 0) КАК НеОплачено,
+	Заявки.СуммаВзаиморасчетов КАК СуммаЗаявки,
+	ЕСТЬNULL(КонтрольПланируемыхРасходовДСОбороты.СуммаПриход, 0) - ВЫБОР
+		КОГДА НЕ Заявки.СтатьяРасхода.НеКонтролировать
+			ТОГДА ЕСТЬNULL(КонтрольПланируемыхРасходовДСОбороты.СуммаРасход, 0)
+		ИНАЧЕ 0
+	КОНЕЦ КАК Остаток,
+	ВЫБОР
+		КОГДА Заявки.СтатьяРасхода.НеКонтролировать
+			ТОГДА КонтрольПланируемыхРасходовДСОбороты.СуммаРасход
+		ИНАЧЕ 0
+	КОНЕЦ КАК СуммаЗаявкиВнеПлан
+ИЗ
+	РегистрНакопления.КонтрольПланируемыхРасходовДС.Обороты(, , Регистратор, ПериодПланирования = &amp;ПериодПланирования) КАК КонтрольПланируемыхРасходовДСОбороты
+		ЛЕВОЕ СОЕДИНЕНИЕ Заявки КАК Заявки
+		ПО КонтрольПланируемыхРасходовДСОбороты.Ответственный = Заявки.ОтветственныйЗаПланирование
+			И КонтрольПланируемыхРасходовДСОбороты.Регистратор = Заявки.ЗаявкаНаРасходование
+			И КонтрольПланируемыхРасходовДСОбороты.СтатьяРасхода = Заявки.СтатьяРасхода
+			И (ВЫБОР
+				КОГДА КонтрольПланируемыхРасходовДСОбороты.СтатьяРасхода.ПоКонтрагентам
+					ТОГДА КонтрольПланируемыхРасходовДСОбороты.Контрагент = Заявки.Контрагент
+				ИНАЧЕ ИСТИНА
+			КОНЕЦ)</query>
+		</dataSet>
+		<totalField>
+			<dataPath>СуммаПриход</dataPath>
+			<expression>Сумма(СуммаПриход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаРасход</dataPath>
+			<expression>Сумма(СуммаРасход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НеОплачено</dataPath>
+			<expression>Сумма(НеОплачено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>Сумма(Остаток)</expression>
+			<group>Контрагент</group>
+			<group>СтатьяРасхода</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаЗаявкиВнеПлан</dataPath>
+			<expression>Сумма(СуммаЗаявкиВнеПлан)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ПериодПланирования</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период планирования</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПриход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаРасход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаЗаявкиВнеПлан</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НеОплачено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Остаток</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<use>false</use>
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Ответственный</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>СтатьяРасхода</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+						<item xsi:type="SelectedItemField">
+							<field>Заявка</field>
+						</item>
+					</selection>
+					<conditionalAppearance>
+						<item>
+							<selection>
+								<item>
+									<field>Остаток</field>
+								</item>
+							</selection>
+							<filter/>
+							<appearance>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>Текст</dcscor:parameter>
+									<dcscor:value xsi:type="xs:string"/>
+								</dcscor:item>
+							</appearance>
+							<presentation xsi:type="v8:LocalStringType">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>0</v8:content>
+								</v8:item>
+							</presentation>
+						</item>
+					</conditionalAppearance>
+				</item>
+			</item>
+		</item>
+	</item>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>СтатьяРасхода</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Ответственный</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>Заявка</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

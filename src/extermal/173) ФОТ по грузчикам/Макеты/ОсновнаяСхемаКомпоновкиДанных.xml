@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВесНеттоОборот</dataPath>
+				<field>ВесНеттоОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Вес нетто оборот</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Дата</dataPath>
+				<field>Дата</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Оклад1</dataPath>
+				<field>Оклад1</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Оклад1</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Оклад2</dataPath>
+				<field>Оклад2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Оклад2</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПереработкаЧасов</dataPath>
+				<field>ПереработкаЧасов</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Переработка часов</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодДень</dataPath>
+				<field>ПериодДень</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Период день</d5p1:content>
+					</d5p1:item>
+				</title>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сотрудник</dataPath>
+				<field>Сотрудник</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сотрудник</d5p1:content>
+					</d5p1:item>
+				</title>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаСделки</dataPath>
+				<field>СуммаСделки</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма сделки</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПереработки</dataPath>
+				<field>СуммаПереработки</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма переработки</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаИтого</dataPath>
+				<field>СуммаИтого</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма итого</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДискиОборот</dataPath>
+				<field>СуммаДискиОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма диски оборот</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаИмпортОборот</dataPath>
+				<field>СуммаИмпортОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма импорт оборот</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаНеттоОборот</dataPath>
+				<field>СуммаНеттоОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма нетто оборот</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПеремещенияОборот</dataPath>
+				<field>СуммаПеремещенияОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма перемещения оборот</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Отпуск1</dataPath>
+				<field>Отпуск1</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Отпуск1</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Отпуск2</dataPath>
+				<field>Отпуск2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Отпуск2</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоПодмосковью</dataPath>
+				<field>СуммаПоПодмосковью</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма по подмосковью</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДоплаты</dataPath>
+				<field>СуммаДоплаты</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма доплаты</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+				<useRestriction>
+					<field>true</field>
+					<group>true</group>
+					<order>true</order>
+				</useRestriction>
+				<attributeUseRestriction>
+					<field>true</field>
+					<condition>true</condition>
+					<group>true</group>
+					<order>true</order>
+				</attributeUseRestriction>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЕСТЬNULL(ОборотыСделка.Сотрудник, ТабельРаботыКладовщиков.ФизЛицо) КАК Сотрудник,
+	ЕСТЬNULL(ОборотыСделка.ПериодДень, ТабельРаботыКладовщиков.Период) КАК ПериодДень,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.ВесНеттоОборот, 0) КАК ЧИСЛО(15, 0)) КАК ВесНеттоОборот,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.ПереработкаЧасов, 0) КАК ПереработкаЧасов,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.Оклад1, 0) КАК Оклад1,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.Оклад2, 0) КАК Оклад2,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.Отпуск1, 0) КАК Отпуск1,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.Отпуск2, 0) КАК Отпуск2,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаНетто, 0) КАК ЧИСЛО(15, 2)) КАК СуммаНеттоОборот,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаДиски, 0) КАК ЧИСЛО(15, 2)) КАК СуммаДискиОборот,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаИмпорт, 0) КАК ЧИСЛО(15, 2)) КАК СуммаИмпортОборот,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаПеремещения, 0) КАК ЧИСЛО(15, 2)) КАК СуммаПеремещенияОборот,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаВыходные, 0) КАК ЧИСЛО(15, 2)) КАК СуммаПоПодмосковью,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ТабельРаботыКладовщиков.ПереработкаСумма, 0) КАК ЧИСЛО(15, 2)) КАК СуммаПереработки,
+	ЕСТЬNULL(ТабельРаботыКладовщиков.Доплата, 0) КАК СуммаДоплаты,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ОборотыСделка.СуммаСделки, 0) КАК ЧИСЛО(15, 2)) КАК СуммаСделки,
+	ВЫРАЗИТЬ(ЕСТЬNULL(ТабельРаботыКладовщиков.Отпуск1, 0) + ЕСТЬNULL(ТабельРаботыКладовщиков.Отпуск2, 0) + ЕСТЬNULL(ТабельРаботыКладовщиков.Оклад1, 0) + ЕСТЬNULL(ТабельРаботыКладовщиков.Оклад2, 0) + ЕСТЬNULL(ОборотыСделка.СуммаСделки, 0) + ЕСТЬNULL(ТабельРаботыКладовщиков.ПереработкаСумма, 0) + ЕСТЬNULL(ТабельРаботыКладовщиков.Доплата, 0) КАК ЧИСЛО(15, 2)) КАК СуммаИтого,
+	ОборотыСделка.Подразделение
+ИЗ
+	(ВЫБРАТЬ
+		ДанныеПоГрузчикамОбороты.Сотрудник КАК Сотрудник,
+		ДанныеПоГрузчикамОбороты.ПериодДень КАК ПериодДень,
+		СУММА(ДанныеПоГрузчикамОбороты.ВесНеттоОборот) КАК ВесНеттоОборот,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаНетто) КАК СуммаНетто,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаДиски) КАК СуммаДиски,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаИмпорт) КАК СуммаИмпорт,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаПеремещения) КАК СуммаПеремещения,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаВыходные) КАК СуммаВыходные,
+		СУММА(ДанныеПоГрузчикамОбороты.СуммаНетто + ДанныеПоГрузчикамОбороты.СуммаДиски + ДанныеПоГрузчикамОбороты.СуммаИмпорт + ДанныеПоГрузчикамОбороты.СуммаПеремещения + ДанныеПоГрузчикамОбороты.СуммаВыходные) КАК СуммаСделки,
+		ДанныеПоГрузчикамОбороты.Подразделение КАК Подразделение
+	ИЗ
+		(ВЫБРАТЬ
+			ДанныеПоГрузчикамОбороты.Сотрудник КАК Сотрудник,
+			ДанныеПоГрузчикамОбороты.ВесНеттоОборот КАК ВесНеттоОборот,
+			ДанныеПоГрузчикамОбороты.ВесНеттоОборот * &amp;Расценка КАК СуммаНетто,
+			ДанныеПоГрузчикамОбороты.ВесДискиОборот * &amp;Расценка КАК СуммаДиски,
+			ДанныеПоГрузчикамОбороты.ВесИмпортОборот * &amp;Расценка КАК СуммаИмпорт,
+			ДанныеПоГрузчикамОбороты.ВесПеремещенияОборот * &amp;Расценка КАК СуммаПеремещения,
+			ДанныеПоГрузчикамОбороты.ВесВыходныеОборот * &amp;Расценка КАК СуммаВыходные,
+			НАЧАЛОПЕРИОДА(ДанныеПоГрузчикамОбороты.Период, ДЕНЬ) КАК ПериодДень,
+			ДанныеПоГрузчикамОбороты.Регистратор.Подразделение КАК Подразделение
+		ИЗ
+			РегистрНакопления.ДанныеПоГрузчикам.Обороты(&amp;НачалоПериода, &amp;КонецПериода, Регистратор, ) КАК ДанныеПоГрузчикамОбороты) КАК ДанныеПоГрузчикамОбороты
+	
+	СГРУППИРОВАТЬ ПО
+		ДанныеПоГрузчикамОбороты.Сотрудник,
+		ДанныеПоГрузчикамОбороты.ПериодДень,
+		ДанныеПоГрузчикамОбороты.Подразделение) КАК ОборотыСделка
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ТабельРаботыКладовщиков.ФизЛицо КАК ФизЛицо,
+			ТабельРаботыКладовщиков.Период КАК Период,
+			ТабельРаботыКладовщиков.Оклад1 КАК Оклад1,
+			ТабельРаботыКладовщиков.Оклад2 КАК Оклад2,
+			ТабельРаботыКладовщиков.Отпуск1 КАК Отпуск1,
+			ТабельРаботыКладовщиков.Отпуск2 КАК Отпуск2,
+			ТабельРаботыКладовщиков.ПереработкаЧасов КАК ПереработкаЧасов,
+			ТабельРаботыКладовщиков.ПереработкаСумма КАК ПереработкаСумма,
+			ТабельРаботыКладовщиков.Доплата КАК Доплата,
+			&amp;ПодразделениеЯрославль КАК ПодразделениеЯрославль
+		ИЗ
+			РегистрСведений.ТабельРаботыКладовщиков КАК ТабельРаботыКладовщиков
+		ГДЕ
+			ТабельРаботыКладовщиков.Период МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода) КАК ТабельРаботыКладовщиков
+		ПО ОборотыСделка.Сотрудник = ТабельРаботыКладовщиков.ФизЛицо
+			И ОборотыСделка.ПериодДень = ТабельРаботыКладовщиков.Период
+			И ОборотыСделка.Подразделение = ТабельРаботыКладовщиков.ПодразделениеЯрославль</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Оклад1</dataPath>
+			<expression>Сумма(Оклад1)</expression>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Оклад2</dataPath>
+			<expression>Сумма(Оклад2)</expression>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВесНеттоОборот</dataPath>
+			<expression>Сумма(ВесНеттоОборот)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПереработкаЧасов</dataPath>
+			<expression>Сумма(ПереработкаЧасов)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаСделки</dataPath>
+			<expression>Сумма(СуммаСделки)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПереработки</dataPath>
+			<expression>Сумма(СуммаПереработки)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаИтого</dataPath>
+			<expression>Сумма(СуммаИтого)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаНеттоОборот</dataPath>
+			<expression>Сумма(СуммаНеттоОборот)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПеремещенияОборот</dataPath>
+			<expression>Сумма(СуммаПеремещенияОборот)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДискиОборот</dataPath>
+			<expression>Сумма(СуммаДискиОборот)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаИмпортОборот</dataPath>
+			<expression>Сумма(СуммаИмпортОборот)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Отпуск1</dataPath>
+			<expression>Сумма(Отпуск1)</expression>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Отпуск2</dataPath>
+			<expression>Сумма(Отпуск2)</expression>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПоПодмосковью</dataPath>
+			<expression>Сумма(СуммаПоПодмосковью)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДоплаты</dataPath>
+			<expression>Сумма(СуммаДоплаты)</expression>
+			<group>ПериодДень</group>
+			<group>Сотрудник</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<expression>КонецПериода(&amp;КонецПериода,"День")</expression>
+		</parameter>
+		<parameter>
+			<name>Расценка</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Расценка</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0.07</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ПодразделениеЯрославль</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Подразделение ярославль</d4p1:content>
+				</d4p1:item>
+			</title>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Подразделения.НайтиПоКоду("00005")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ПереработкаЧасов</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВесНеттоОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаНеттоОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДискиОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаИмпортОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПеремещенияОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПоПодмосковью</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПереработки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДоплаты</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаСделки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаИтого</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Оклад1</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Оклад2</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Отпуск1</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Отпуск2</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Расценка</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0.07</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>ПериодДень</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Сотрудник</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemTable">
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ПериодДень</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Сотрудник</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</row>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+				<dcscor:value xsi:type="DataCompositionTextOutputType">Auto</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Данные по грузчикам</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+	<item xsi:type="StructureItemTable">
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Сотрудник</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+				<item xsi:type="OrderItemField">
+					<field>Сотрудник.Description</field>
+					<orderType>Asc</orderType>
+				</item>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemField">
+					<field>Сотрудник</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ВесНеттоОборот</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ПереработкаЧасов</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Оклад1</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Оклад2</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Отпуск1</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Отпуск2</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаСделки</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаПереработки</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаИтого</field>
+				</item>
+				<item xsi:type="SelectedItemAuto">
+					<use>false</use>
+				</item>
+			</selection>
+		</row>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+				<dcscor:value xsi:type="DataCompositionTextOutputType">Auto</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ФОТ по работникам склада</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

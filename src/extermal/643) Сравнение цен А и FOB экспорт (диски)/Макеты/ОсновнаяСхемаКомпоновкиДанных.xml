@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЦенаFOB</dataPath>
+				<field>ЦенаFOB</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Шрифт</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xsi:type="d7p1:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Производитель</dataPath>
+				<field>Производитель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>PCD</dataPath>
+				<field>PCD</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вылет</dataPath>
+				<field>Вылет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диаметр</dataPath>
+				<field>Диаметр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДиаметрСтупицы</dataPath>
+				<field>ДиаметрСтупицы</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоОтверстий</dataPath>
+				<field>КоличествоОтверстий</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ширина</dataPath>
+				<field>Ширина</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	СезонныйАссортимент.Номенклатура
+ПОМЕСТИТЬ Ассортимент
+ИЗ
+	РегистрСведений.СезонныйАссортимент КАК СезонныйАссортимент
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СезонныйАссортиментЭкспорт.Номенклатура
+ИЗ
+	РегистрСведений.СезонныйАссортиментЭкспорт КАК СезонныйАссортиментЭкспорт
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Ассортимент.Номенклатура КАК Номенклатура,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ЦеныФопЭкспортСрезПоследних.Цена, 0) = 0
+			ТОГДА ЕСТЬNULL(ЦеныФОПСрезПоследних.Цена, 0)
+		ИНАЧЕ ЦеныФопЭкспортСрезПоследних.Цена
+	КОНЕЦ КАК ЦенаFOB,
+	Ассортимент.Номенклатура.Код КАК Код,
+	Ассортимент.Номенклатура.Производитель КАК Производитель,
+	Ассортимент.Номенклатура.Типоразмер.Ширина КАК Ширина,
+	Ассортимент.Номенклатура.Типоразмер.Диаметр КАК Диаметр,
+	Ассортимент.Номенклатура.Типоразмер.КоличествоОтверстий КАК КоличествоОтверстий,
+	Ассортимент.Номенклатура.Типоразмер.PCD КАК PCD,
+	Ассортимент.Номенклатура.Типоразмер.Вылет КАК Вылет,
+	Ассортимент.Номенклатура.Типоразмер.ДиаметрСтупицы КАК ДиаметрСтупицы
+ИЗ
+	Ассортимент КАК Ассортимент
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЦеныФопЭкспорт.СрезПоследних КАК ЦеныФопЭкспортСрезПоследних
+		ПО Ассортимент.Номенклатура = ЦеныФопЭкспортСрезПоследних.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЦеныФОП.СрезПоследних КАК ЦеныФОПСрезПоследних
+		ПО Ассортимент.Номенклатура = ЦеныФОПСрезПоследних.Номенклатура</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetObject">
+			<name>НаборДанных2</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Номенклатура</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МинимальнаяЦена</dataPath>
+				<field>МинимальнаяЦена</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Цена А</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Шрифт</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xsi:type="d7p1:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Приоритет</dataPath>
+				<field>Приоритет</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Приоритет</d5p1:content>
+					</d5p1:item>
+				</title>
+				<valueType>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+					<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+						<Digits>0</Digits>
+						<FractionDigits>0</FractionDigits>
+						<AllowedSign>Any</AllowedSign>
+					</NumberQualifiers>
+				</valueType>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<objectName>ТабЦенА</objectName>
+		</dataSet>
+		<dataSetLink>
+			<sourceDataSet>НаборДанных1</sourceDataSet>
+			<destinationDataSet>НаборДанных2</destinationDataSet>
+			<sourceExpression>Номенклатура</sourceExpression>
+			<destinationExpression>Номенклатура</destinationExpression>
+		</dataSetLink>
+		<calculatedField>
+			<dataPath>ПроцентНаценки</dataPath>
+			<expression>Выбор когда ЦенаFOB = 0 Тогда 0 Иначе 100*(МинимальнаяЦена-ЦенаFOB)/ЦенаFOB Конец</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Наценка, %</d4p1:content>
+				</d4p1:item>
+			</title>
+			<appearance>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+					<parameter>Шрифт</parameter>
+					<value xmlns:d6p1="http://v8.1c.ru/8.1/data/ui" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xsi:type="d6p1:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+				</item>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+					<parameter>Формат</parameter>
+					<value xsi:type="xs:string">ЧДЦ=2</value>
+				</item>
+			</appearance>
+		</calculatedField>
+		<calculatedField>
+			<dataPath>Наценка</dataPath>
+			<expression>МинимальнаяЦена-ЦенаFOB</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Наценка, $</d4p1:content>
+				</d4p1:item>
+			</title>
+		</calculatedField>
+		<totalField>
+			<dataPath>Приоритет</dataPath>
+			<expression>Минимум(Приоритет)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Код</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ширина</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Диаметр</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоОтверстий</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>PCD</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Вылет</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДиаметрСтупицы</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЦенаFOB</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МинимальнаяЦена</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Наценка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентНаценки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<use>false</use>
+			<field>Приоритет</field>
+		</item>
+	</selection>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Номенклатура</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>МинимальнаяЦена</field>
+				</item>
+				<item>
+					<field>PCD</field>
+				</item>
+				<item>
+					<field>Вылет</field>
+				</item>
+				<item>
+					<field>Диаметр</field>
+				</item>
+				<item>
+					<field>ДиаметрСтупицы</field>
+				</item>
+				<item>
+					<field>Код</field>
+				</item>
+				<item>
+					<field>КоличествоОтверстий</field>
+				</item>
+				<item>
+					<field>Наценка</field>
+				</item>
+				<item>
+					<field>ПроцентНаценки</field>
+				</item>
+				<item>
+					<field>Номенклатура</field>
+				</item>
+				<item>
+					<field>Производитель</field>
+				</item>
+				<item>
+					<field>ЦенаFOB</field>
+				</item>
+				<item>
+					<field>Ширина</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">Приоритет</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="xs:decimal">-7000</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">#FFFF99</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Производитель</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

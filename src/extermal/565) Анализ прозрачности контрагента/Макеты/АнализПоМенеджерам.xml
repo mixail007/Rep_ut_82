@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>важность</dataPath>
+				<field>важность</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>заполнено</dataPath>
+				<field>заполнено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>контрагент</dataPath>
+				<field>контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеПродаж</dataPath>
+				<field>НаправлениеПродаж</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджерКонтрагента</dataPath>
+				<field>ОсновнойМенеджерКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>прозрачность</dataPath>
+				<field>прозрачность</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регион</dataPath>
+				<field>Регион</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект КАК Контрагент,
+	ЗначенияСвойствОбъектов.Значение КАК ОсновнойКонтрагент
+ПОМЕСТИТЬ ОсновныеКонтрагенты
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;СвойствоОсновнойКонтрагент
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ КонтрагентыНеУчитывать
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;Статус
+	И (ЗначенияСвойствОбъектов.Значение = ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Закрылись)
+			ИЛИ ЗначенияСвойствОбъектов.Значение = ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ВременноНеРаботаем)
+			ИЛИ ЗначенияСвойствОбъектов.Значение = ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Потенциальные))
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ЕСТЬNULL(ОсновныеКонтрагенты.ОсновнойКонтрагент, ПродажиОбороты.ДоговорКонтрагента.Владелец) КАК Контрагент
+ПОМЕСТИТЬ Контрагенты
+ИЗ
+	РегистрНакопления.Продажи.Обороты КАК ПродажиОбороты
+		ЛЕВОЕ СОЕДИНЕНИЕ ОсновныеКонтрагенты КАК ОсновныеКонтрагенты
+		ПО ПродажиОбороты.ДоговорКонтрагента.Владелец = ОсновныеКонтрагенты.Контрагент
+		ЛЕВОЕ СОЕДИНЕНИЕ КонтрагентыНеУчитывать КАК КонтрагентыНеУчитывать
+		ПО ПродажиОбороты.ДоговорКонтрагента.Владелец = КонтрагентыНеУчитывать.Объект
+ГДЕ
+	ПродажиОбороты.ДоговорКонтрагента.Владелец.ОсновнойМенеджерКонтрагента.НаправлениеПродаж &lt;&gt; ЗНАЧЕНИЕ(Справочник.направленияпродаж.пустаяссылка)
+	И КонтрагентыНеУчитывать.Значение ЕСТЬ NULL 
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КонтактнаяИнформация.Объект,
+	КонтактнаяИнформация.Поле2 КАК Регион
+ПОМЕСТИТЬ Адреса
+ИЗ
+	РегистрСведений.КонтактнаяИнформация КАК КонтактнаяИнформация
+ГДЕ
+	КонтактнаяИнформация.Вид = &amp;Вид
+	И КонтактнаяИнформация.Объект В
+			(ВЫБРАТЬ
+				Контрагенты.Контрагент
+			ИЗ
+				Контрагенты КАК Контрагенты)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение КАК важность
+ПОМЕСТИТЬ Важностьконтрагентов
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Объект В
+			(ВЫБРАТЬ
+				Контрагенты.Контрагент
+			ИЗ
+				Контрагенты КАК Контрагенты)
+	И ЗначенияСвойствОбъектов.Свойство = &amp;Свойство
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Прозрачность КАК Прозрачность,
+	ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Ссылка.Владелец КАК контрагент
+ПОМЕСТИТЬ ЗаполненнаяПрозрачность
+ИЗ
+	Справочник.ДополнительнаяИнформацияПоКонтрагентам.ПрозрачностьКонтрагента КАК ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента
+ГДЕ
+	ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Год = &amp;Год
+	И ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Полугодие = &amp;Полугодие
+
+СГРУППИРОВАТЬ ПО
+	ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Прозрачность,
+	ДополнительнаяИнформацияПоКонтрагентамПрозрачностьКонтрагента.Ссылка.Владелец
+
+ИНДЕКСИРОВАТЬ ПО
+	контрагент,
+	Прозрачность
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ПрозрачностьКонтрагентов.Ссылка КАК прозрачность,
+	Контрагенты.Контрагент КАК контрагент
+ПОМЕСТИТЬ втПрозрачность
+ИЗ
+	Справочник.ПрозрачностьКонтрагентов КАК ПрозрачностьКонтрагентов,
+	Контрагенты КАК Контрагенты
+ГДЕ
+	ПрозрачностьКонтрагентов.ЭтоГруппа = ЛОЖЬ
+	И Контрагенты.Контрагент &lt;&gt; ЗНАЧЕНИЕ(Справочник.контрагенты.пустаяссылка)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втПрозрачность.контрагент,
+	втПрозрачность.прозрачность,
+	ВЫБОР
+		КОГДА ЗаполненнаяПрозрачность.Прозрачность ЕСТЬ NULL 
+			ТОГДА ЛОЖЬ
+		ИНАЧЕ ИСТИНА
+	КОНЕЦ КАК заполнено
+ПОМЕСТИТЬ прозраностьВТ
+ИЗ
+	втПрозрачность КАК втПрозрачность
+		ЛЕВОЕ СОЕДИНЕНИЕ ЗаполненнаяПрозрачность КАК ЗаполненнаяПрозрачность
+		ПО втПрозрачность.контрагент = ЗаполненнаяПрозрачность.контрагент
+			И втПрозрачность.прозрачность = ЗаполненнаяПрозрачность.Прозрачность
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	прозраностьВТ.контрагент,
+	прозраностьВТ.прозрачность,
+	прозраностьВТ.заполнено,
+	Адреса.Регион,
+	Важностьконтрагентов.важность,
+	прозраностьВТ.контрагент.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджерКонтрагента,
+	прозраностьВТ.контрагент.ОсновнойМенеджерКонтрагента.НаправлениеПродаж КАК НаправлениеПродаж
+ИЗ
+	прозраностьВТ КАК прозраностьВТ
+		ЛЕВОЕ СОЕДИНЕНИЕ Адреса КАК Адреса
+		ПО прозраностьВТ.контрагент = Адреса.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ Важностьконтрагентов КАК Важностьконтрагентов
+		ПО прозраностьВТ.контрагент = Важностьконтрагентов.Объект</query>
+		</dataSet>
+		<totalField>
+			<dataPath>заполнено</dataPath>
+			<expression>Максимум(заполнено)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Вид</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Вид</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ВидыКонтактнойИнформации</Type>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>50</Length>
+					<AllowedLength>Variable</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ВидыКонтактнойИнформации.ФактАдресКонтрагента</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Год</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Год</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>4</Length>
+					<AllowedLength>Variable</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<value xsi:type="xs:string">2017</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Полугодие</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Полугодие</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>11</Length>
+					<AllowedLength>Variable</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<value xsi:type="xs:string">целый год</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Свойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+			<expression>ПланыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90184")</expression>
+		</parameter>
+		<parameter>
+			<name>Статус</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Статус</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>ПланыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90218")</expression>
+		</parameter>
+		<parameter>
+			<name>СвойствоОсновнойКонтрагент</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство основной контрагент</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>ПланыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90230")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">прозрачность</left>
+			<comparisonType>InHierarchy</comparisonType>
+		</item>
+	</filter>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>НаправлениеПродаж</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+				<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ОсновнойМенеджерКонтрагента</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<outputParameters>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+					<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+				</dcscor:item>
+			</outputParameters>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Регион</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>важность</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemField">
+						<field>контрагент.Наименование</field>
+						<orderType>Asc</orderType>
+					</item>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+					<item xsi:type="SelectedItemField">
+						<field>заполнено</field>
+					</item>
+				</selection>
+				<outputParameters>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+						<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+					</dcscor:item>
+				</outputParameters>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>прозрачность</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<outputParameters>
+						<dcscor:item xsi:type="SettingsParameterValue">
+							<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+							<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+						</dcscor:item>
+					</outputParameters>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,287 @@
+﻿<HTML><HEAD><TITLE>Google Maps</TITLE>
+<META http-equiv=content-type content="text/html; charset=UTF-8">
+<SCRIPT src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAsNRBx2BHu3ZXzh-l09394hT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQKpj71JwR4a9ojl84iVhsGVc0f8g" type=text/javascript></SCRIPT>
+
+<META content="MSHTML 6.00.6000.20696" name=GENERATOR><BASE href=""></HEAD>
+<BODY onunload=GUnload()>
+<DIV id=map style="WIDTH: 100%; HEIGHT: 100%"></DIV><NOSCRIPT></NOSCRIPT>
+<SCRIPT type=text/javascript>
+    //<![CDATA[
+    
+    if (GBrowserIsCompatible()) 
+    { 
+    }
+    
+    // display a warning if the browser was not compatible
+    else {
+      alert("Sorry, the Google Maps API is not compatible with this browser");
+    }
+
+
+      function createMarker(point,html) 
+      {
+        var marker = new GMarker(point);
+        GEvent.addListener(marker, "click", function() {
+          marker.openInfoWindowHtml(html);
+        });
+        return marker;
+      }
+
+      function createMarker2() 
+      {
+        var marker = new GMarker(new GLatLng(55.726723,37.646713));
+        GEvent.addListener(marker, "click", function() {
+          marker.openInfoWindowHtml("Здесь!");
+        });
+        return this;
+      }
+
+
+   function MyPrintControl() 
+    {
+    }
+    MyPrintControl.prototype = new GControl();
+
+    // Creates a one DIV for each of the buttons and places them in a container
+    // DIV which is returned as our control element. We add the control to
+    // to the map container and return the element for the map class to
+    // position properly.
+    MyPrintControl.prototype.initialize = function(map) {
+      var container = document.createElement("div");
+
+      var printDiv = document.createElement("div");
+      this.setButtonStyle_(printDiv);
+      container.appendChild(printDiv);
+      printDiv.appendChild(document.createTextNode("Печать"));
+      GEvent.addDomListener(printDiv, "click", function() 
+      {
+        printPage();
+      });
+
+
+      map.getContainer().appendChild(container);
+      return container;
+    }
+
+    // By default, the control will appear in the top left corner of the
+    // map with 7 pixels of padding.
+    MyPrintControl.prototype.getDefaultPosition = function() {
+      return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(7, 270));
+    }
+
+    // Sets the proper CSS for the given button element.
+    MyPrintControl.prototype.setButtonStyle_ = function(button) 
+    {
+      button.style.textDecoration = "underline";
+      button.style.color = "#0000cc";
+      button.style.backgroundColor = "white";
+      button.style.font = "small Arial";
+      button.style.border = "1px solid black";
+      button.style.padding = "2px";
+      button.style.marginBottom = "3px";
+      button.style.textAlign = "center";
+      button.style.width = "3em";
+      button.style.cursor = "pointer";
+    }
+
+
+
+	  var map;
+      var mm;
+      var markersAll = [];      
+	  function ShowMap()
+	  {
+	      // Display the map, with some controls and set the initial location 
+	      map = new GMap2(document.getElementById("map"));
+	      map.addControl(new GLargeMapControl());
+	      map.addControl(new GMapTypeControl());
+	      //map.setCenter(new GLatLng(55.726723,37.646713),10);
+	      map.setCenter(new GLatLng(55.489748,37.803268),11);//для карты 2000 на 2000 точек
+	      map.addControl(new MyPrintControl());
+      }
+	  function ShowMapByAddr(lat,lng)
+	  {
+	      // Display the map, with some controls and set the initial location 
+	      map = new GMap2(document.getElementById("map"));
+	      map.addControl(new GLargeMapControl());
+	      map.addControl(new GMapTypeControl());
+	      map.setCenter(new GLatLng(lat,lng),15);
+ 	      map.addControl(new MyPrintControl());
+     }
+      
+    
+
+
+	  var nAddresCount=0;
+	  var aAddresArray=[];
+	  var aNameArray=[];
+	  
+      function InitAddres() 
+      {
+		  nAddresCount=0;
+		  aAddresArray=[];
+		  aNameArray=[];
+      }
+      function GetAddresCount() 
+      {
+        return nAddresCount;
+      }
+      function GetAddresAt(i) 
+      {
+        return aAddresArray[i];
+      }
+      function GetNameAt(i) 
+      {
+        return aNameArray[i];
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      function AddMarkerByGeo(lat,lng,Name,letter) 
+      {
+			// Lets assume that the first marker is the one we want
+			var point = new GLatLng(lat,lng);
+			var letteredIcon = new GIcon(G_DEFAULT_ICON);
+			letteredIcon.image = "http://www.google.com/mapfiles/marker" + letter + ".png";
+			//Настройка свойств объекта GMarkerOptions
+			markerOptions = { icon:letteredIcon };
+			//var marker = new GMarker(point, markerOptions);
+			  
+			var marker = new GMarker(point,markerOptions);
+			GEvent.addListener(marker, "click", function() 
+			{
+				  marker.openInfoWindowHtml(Name);
+			});
+			  
+			map.addOverlay(marker);
+
+      }
+
+
+      var icon = new GIcon();
+      icon.image = "http://labs.google.com/ridefinder/images/mm_20_red.png";
+      icon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
+      icon.iconSize = new GSize(12, 20);
+      icon.shadowSize = new GSize(22, 20);
+      icon.iconAnchor = new GPoint(6, 20);
+      icon.infoWindowAnchor = new GPoint(5, 1);      
+
+      icongray = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_gray.png");
+      
+      iconred = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_red.png"); 
+      icongreen = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_green.png"); 
+      iconblue = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_blue.png"); 
+      iconyellow = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_yellow.png"); 
+      iconbrown = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_brown.png"); 
+      iconpurple = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_purple.png"); 
+      iconwhite = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_white.png"); 
+      iconblack = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_black.png"); 
+      iconorange = new GIcon(icon,"http://labs.google.com/ridefinder/images/mm_20_orange.png"); 
+      
+
+
+      function QuikAddMarkerByGeo(lat,lng,Name,icon)
+      {
+			var point = new GLatLng(lat,lng);
+			var marker = new GMarker(point,{icon:icon});
+			
+			GEvent.addListener(marker, "click", function() 
+			{
+				  marker.openInfoWindowHtml(Name);
+			});
+			markersAll.push(marker);
+      }
+      
+      
+      function QuikAddMarkerByGeoAndLetter(lat,lng,Name,letter)
+      {
+			var point = new GLatLng(lat,lng);
+			
+			var letteredIcon = new GIcon(G_DEFAULT_ICON);
+			letteredIcon.image = "http://www.google.com/mapfiles/marker" + letter + ".png";
+			var marker = new GMarker(point,{icon:letteredIcon});
+			
+			GEvent.addListener(marker, "click", function() 
+			{
+				  marker.openInfoWindowHtml(Name);
+			});
+			markersAll.push(marker);
+      }
+      
+      function InitMM()
+      {
+        map.clearOverlays();
+      	markersAll = [];
+      }
+
+	  var pts = [];
+      function AddLine(lat1,lng1,lat2,lng2,color)
+      {
+      	color=1;
+      	if(pts[color]==null)
+      		pts[color]=[];
+      
+			var point1=new GLatLng(lat1,lng1);
+			var point2=new GLatLng(lat2,lng2);
+			pts[color].push(point1);
+			pts[color].push(point2);
+      }
+	  
+      
+      function RefreshMM()
+      {
+        mm = new GMarkerManager(map, {borderPadding:1});
+		mm.addMarkers(markersAll,4,16);
+        mm.refresh();
+		map.addOverlay(new GPolyline(pts[1],255,1)); 
+        //map.disableDragging();
+      }
+      function panDirection(dx,dy)
+      {
+      	map.panDirection(dx,dy);
+      }
+
+		function printPage() 
+		{ 
+			window.print();
+		} 
+
+
+		//// === Plot the polylines ===
+		//for (var i=0; i<jsonData.lines.length; i++) {
+		//  var pts = [];
+		//  for (var j=0; j<jsonData.lines[i].points.length; j++) {
+		//	pts[j] = new GLatLng(jsonData.lines[i].points[j].lat, jsonData.lines[i].points[j].lng);
+		//  }
+		//  map.addOverlay(new GPolyline(pts, jsonData.lines[i].colour, jsonData.lines[i].width)); 
+		//}
+
+
+		  //var letteredIcon = new GIcon(baseIcon);
+		  //letteredIcon.image = "http://www.google.com/mapfiles/marker" + letter + ".png";
+		//Настройка свойств объекта GMarkerOptions
+		 // markerOptions = { icon:letteredIcon };
+		  //var marker = new GMarker(point, markerOptions);
+
+
+
+
+    //]]>
+    </SCRIPT>
+</BODY></HTML>
+

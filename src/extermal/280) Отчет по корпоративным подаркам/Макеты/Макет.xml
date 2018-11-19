@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Важность</dataPath>
+				<field>Важность</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+				<role>
+					<required xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</required>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регион</dataPath>
+				<field>Регион</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеПродаж</dataPath>
+				<field>НаправлениеПродаж</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок1</dataPath>
+				<field>Подарок1</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Ежедневник</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок2</dataPath>
+				<field>Подарок2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Настенный календарь</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок3</dataPath>
+				<field>Подарок3</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Настольный календарь</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок4</dataPath>
+				<field>Подарок4</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Набор</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок5</dataPath>
+				<field>Подарок5</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подарок6</dataPath>
+				<field>Подарок6</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатАКС</dataPath>
+				<field>СертификатАКС</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатАКСVIP</dataPath>
+				<field>СертификатАКСVIP</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатДиски</dataPath>
+				<field>СертификатДиски</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатДискиVIP</dataPath>
+				<field>СертификатДискиVIP</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатШины</dataPath>
+				<field>СертификатШины</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СертификатШиныVIP</dataPath>
+				<field>СертификатШиныVIP</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МесяцВручения</dataPath>
+				<field>МесяцВручения</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=MMMM</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>БрендыСертификатаДиски</dataPath>
+				<field>БрендыСертификатаДиски</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поле4</dataPath>
+				<field>Поле4</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ Важность
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство.Код = "90184"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПодаркиКлиентамСрезПоследних.Контрагент.ОсновнойМенеджерКонтрагента.НаправлениеПродаж КАК НаправлениеПродаж,
+	ПодаркиКлиентамСрезПоследних.Менеджер КАК Менеджер,
+	ПодаркиКлиентамСрезПоследних.Контрагент КАК Контрагент,
+	КИ.Регион,
+	ЕСТЬNULL(Важность.Значение, 0) КАК Важность,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.Сертификат ПОДОБНО "%#СертификатШины%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатШины,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.Сертификат ПОДОБНО "%#СертификатДиски%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатДиски,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.Сертификат ПОДОБНО "%#СертификатАКС%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатАКС,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.VIPСертификат ПОДОБНО "%#СертификатШиныVIP%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатШиныVIP,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.VIPСертификат ПОДОБНО "%#СертификатДискиVIP%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатДискиVIP,
+	МАКСИМУМ(ЕСТЬNULL(ВЫБОР
+				КОГДА ПодаркиКлиентамСрезПоследних.VIPСертификат ПОДОБНО "%#СертификатАКСVIP%"
+					ТОГДА 1
+				ИНАЧЕ 0
+			КОНЕЦ, 0)) КАК СертификатАКСVIP,
+	МАКСИМУМ(ПодаркиКлиентамСрезПоследних.БрендыСертификатаДиски) КАК БрендыСертификатаДиски,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок1, 0)) КАК Подарок1,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок2, 0)) КАК Подарок2,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок3, 0)) КАК Подарок3,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок4, 0)) КАК Подарок4,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок5, 0)) КАК Подарок5,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок6, 0)) КАК Подарок6,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок1, 0) + ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок2, 0) + ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок3, 0) + ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок4, 0) + ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок5, 0) + ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.Подарок6, 0)) КАК Поле4,
+	МАКСИМУМ(ЕСТЬNULL(ПодаркиКлиентамСрезПоследних.МесяцВручения, ДАТАВРЕМЯ(1, 1, 1))) КАК МесяцВручения
+ИЗ
+	РегистрСведений.ПодаркиКлиентам.СрезПоследних(&amp;КонецПериода, ) КАК ПодаркиКлиентамСрезПоследних
+		ЛЕВОЕ СОЕДИНЕНИЕ Важность КАК Важность
+		ПО ПодаркиКлиентамСрезПоследних.Контрагент = Важность.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЮрКИ.Объект КАК Объект,
+			ВЫБОР
+				КОГДА ПОДСТРОКА(ЮрКИ.Регион, 1, 1) = """"
+					ТОГДА ФактКИ.Поле2
+				ИНАЧЕ ЮрКИ.Регион
+			КОНЕЦ КАК Регион
+		ИЗ
+			(ВЫБРАТЬ
+				КонтактнаяИнформация.Объект КАК Объект,
+				КонтактнаяИнформация.Поле2 КАК Регион
+			ИЗ
+				РегистрСведений.КонтактнаяИнформация КАК КонтактнаяИнформация
+			ГДЕ
+				КонтактнаяИнформация.Вид.Код = "00001") КАК ЮрКИ
+				ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.КонтактнаяИнформация КАК ФактКИ
+				ПО ЮрКИ.Объект = ФактКИ.Объект
+					И (ФактКИ.Вид.Код = "00002")) КАК КИ
+		ПО ПодаркиКлиентамСрезПоследних.Контрагент = КИ.Объект
+ГДЕ
+	ПодаркиКлиентамСрезПоследних.Период МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ПодаркиКлиентамСрезПоследних.Контрагент,
+	ЕСТЬNULL(Важность.Значение, 0),
+	КИ.Регион,
+	ПодаркиКлиентамСрезПоследних.Менеджер.НаправлениеПродаж,
+	ПодаркиКлиентамСрезПоследних.Менеджер,
+	ПодаркиКлиентамСрезПоследних.Контрагент.ОсновнойМенеджерКонтрагента.НаправлениеПродаж
+
+УПОРЯДОЧИТЬ ПО
+	НаправлениеПродаж,
+	Менеджер,
+	Контрагент
+</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Подарок1</dataPath>
+			<expression>Сумма(Подарок1)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подарок2</dataPath>
+			<expression>Сумма(Подарок2)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подарок3</dataPath>
+			<expression>Сумма(Подарок3)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подарок4</dataPath>
+			<expression>Сумма(Подарок4)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подарок5</dataPath>
+			<expression>Сумма(Подарок5)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Подарок6</dataPath>
+			<expression>Сумма(Подарок6)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатАКС</dataPath>
+			<expression>Сумма(СертификатАКС)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатАКСVIP</dataPath>
+			<expression>Сумма(СертификатАКСVIP)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатДиски</dataPath>
+			<expression>Сумма(СертификатДиски)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатДискиVIP</dataPath>
+			<expression>Сумма(СертификатДискиVIP)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатШины</dataPath>
+			<expression>Сумма(СертификатШины)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СертификатШиныVIP</dataPath>
+			<expression>Сумма(СертификатШиныVIP)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>НаправлениеПродаж</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Менеджер</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Важность</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Регион</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>МесяцВручения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатШины</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатДиски</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатАКС</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатШиныVIP</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатДискиVIP</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СертификатАКСVIP</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Подарок1</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Подарок2</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Подарок3</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Подарок4</field>
+		</item>
+	</selection>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>НаправлениеПродаж</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

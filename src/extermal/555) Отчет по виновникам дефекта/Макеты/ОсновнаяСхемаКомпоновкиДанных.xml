@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВиновникВозникновенияДефекта</dataPath>
+				<field>ВиновникВозникновенияДефекта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаявкаНаБрак</dataPath>
+				<field>ЗаявкаНаБрак</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПринято</dataPath>
+				<field>КоличествоПринято</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Себестоимость</dataPath>
+				<field>Себестоимость</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>штраф</dataPath>
+				<field>штраф</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Погашено</dataPath>
+				<field>Погашено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УточнениеПоВиновнику</dataPath>
+				<field>УточнениеПоВиновнику</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">30</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Водитель</dataPath>
+				<field>Водитель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Перевозчик</dataPath>
+				<field>Перевозчик</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументОприходования</dataPath>
+				<field>ДокументОприходования</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказ</dataPath>
+				<field>Заказ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СебестоимостьЕдиницы</dataPath>
+				<field>СебестоимостьЕдиницы</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">20</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаводДляТерминала</dataPath>
+				<field>ЗаводДляТерминала</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидДефектаДляУценки</dataPath>
+				<field>ВидДефектаДляУценки</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаявкаНаБракРасшифровка.Ссылка КАК ЗаявкаНаБрак,
+	ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта,
+	ЗаявкаНаБракРасшифровка.Реализация,
+	ЗаявкаНаБракРасшифровка.КоличествоПринято,
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	ВЫБОР
+		КОГДА ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта = ЗНАЧЕНИЕ(Перечисление.ВиновникиВозникновенияДефекта.СкладОобнаружилиСамостоятельно)
+			ТОГДА 0.5
+		ИНАЧЕ 1
+	КОНЕЦ * ВЫБОР
+		КОГДА ЗаявкаНаБракРасшифровка.Номенклатура.НоменклатурнаяГруппа = &amp;НомГруппаЛитые
+			ТОГДА 1200 * ЗаявкаНаБракРасшифровка.КоличествоПринято
+		КОГДА ЗаявкаНаБракРасшифровка.Номенклатура.НоменклатурнаяГруппа = &amp;НомГруппаШтамп
+			ТОГДА 500 * ЗаявкаНаБракРасшифровка.КоличествоПринято
+		ИНАЧЕ 0
+	КОНЕЦ КАК Штраф,
+	ЗаявкаНаБракРасшифровка.Погашено,
+	ЗаявкаНаБракРасшифровка.Реализация.Водитель КАК Водитель,
+	ЗаявкаНаБракРасшифровка.Реализация.Перевозчик КАК Перевозчик,
+	ЗаявкаНаБракРасшифровка.ВидБрака,
+	ВЫБОР
+		КОГДА ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта = ЗНАЧЕНИЕ(Перечисление.ВиновникиВозникновенияДефекта.Клиент)
+				И ЗаявкаНаБракРасшифровка.КоличествоПринято &gt; 0
+			ТОГДА ЗаявкаНаБракРасшифровка.Реализация.ДоговорКонтрагента.ОтветственноеЛицо
+		ИНАЧЕ ЗНАЧЕНИЕ(Справочник.Пользователи.ПустаяСсылка)
+	КОНЕЦ КАК Менеджер,
+	ЗаявкаНаБракРасшифровка.Ссылка.КомментарийЗавСкладом КАК УточнениеПоВиновнику,
+	ЗаявкаНаБракРасшифровка.ВидДефектаДляУценки
+ПОМЕСТИТЬ втЗаявки
+ИЗ
+	Документ.ЗаявкаНаБрак.Расшифровка КАК ЗаявкаНаБракРасшифровка
+ГДЕ
+	ЗаявкаНаБракРасшифровка.Ссылка.ВидТовара = ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Диски)
+	И (ЗаявкаНаБракРасшифровка.Ссылка.СостояниеЗаявки = ЗНАЧЕНИЕ(Перечисление.СостоянияЗаявкиНаБрак.Отклонить)
+			ИЛИ ЗаявкаНаБракРасшифровка.Ссылка.СостояниеЗаявки = ЗНАЧЕНИЕ(Перечисление.СостоянияЗаявкиНаБрак.ПризнатьБрак))
+	И ЗаявкаНаБракРасшифровка.ВиновникВозникновенияДефекта &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ВиновникиВозникновенияДефекта.Пустаяссылка)
+	И ЗаявкаНаБракРасшифровка.Ссылка.Проведен
+	И ЗаявкаНаБракРасшифровка.Ссылка.ПометкаУдаления = ЛОЖЬ
+	И ЗаявкаНаБракРасшифровка.ОкончаниеЭкспертизы МЕЖДУ &amp;ДатаН И &amp;ДатаК
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	А.Номенклатура,
+	А.Количество,
+	А.Стоимость,
+	ВЫБОР
+		КОГДА А.Количество &lt;&gt; 0
+			ТОГДА А.Стоимость / А.Количество
+		ИНАЧЕ 0
+	КОНЕЦ КАК Себестоимость
+ПОМЕСТИТЬ втСебестоимость
+ИЗ
+	(ВЫБРАТЬ
+		ПартииТоваровНаСкладахОбороты.Номенклатура КАК Номенклатура,
+		СУММА(ПартииТоваровНаСкладахОбороты.КоличествоПриход) КАК Количество,
+		СУММА(ПартииТоваровНаСкладахОбороты.СтоимостьРасход) КАК Стоимость
+	ИЗ
+		РегистрНакопления.ПартииТоваровНаСкладах.Обороты(
+				ДОБАВИТЬКДАТЕ(&amp;Датак, ГОД, -1),
+				&amp;ДатаК,
+				,
+				Номенклатура В
+					(ВЫБРАТЬ РАЗЛИЧНЫЕ
+						втЗаявки.Номенклатура КАК номСпр
+					ИЗ
+						втЗаявки)) КАК ПартииТоваровНаСкладахОбороты
+	
+	СГРУППИРОВАТЬ ПО
+		ПартииТоваровНаСкладахОбороты.Номенклатура) КАК А
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	А.Регистратор,
+	А.Номенклатура,
+	А.Стоимость,
+	А.Количество,
+	ВЫБОР
+		КОГДА А.Количество &lt;&gt; 0
+			ТОГДА А.Стоимость / А.Количество
+		ИНАЧЕ 0
+	КОНЕЦ КАК СебестоимостьИзРеализации
+ПОМЕСТИТЬ втСебестоимостьПоРеализациям
+ИЗ
+	(ВЫБРАТЬ
+		ПродажиСебестоимость.Регистратор КАК Регистратор,
+		ПродажиСебестоимость.Номенклатура КАК Номенклатура,
+		СУММА(ПродажиСебестоимость.Стоимость) КАК Стоимость,
+		СУММА(ПродажиСебестоимость.Количество) КАК Количество
+	ИЗ
+		РегистрНакопления.ПродажиСебестоимость КАК ПродажиСебестоимость
+	ГДЕ
+		(ПродажиСебестоимость.Регистратор, ПродажиСебестоимость.Номенклатура) В
+				(ВЫБРАТЬ
+					втЗаявки.Реализация,
+					втЗаявки.Номенклатура
+				ИЗ
+					втЗаявки)
+	
+	СГРУППИРОВАТЬ ПО
+		ПродажиСебестоимость.Регистратор,
+		ПродажиСебестоимость.Номенклатура) КАК А
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ втЗаводДляТерминала
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;Свойство
+	И ЗначенияСвойствОбъектов.Объект В
+			(ВЫБРАТЬ
+				втЗаявки.Номенклатура
+			ИЗ
+				втЗаявки)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втЗаявки.ЗаявкаНаБрак,
+	ВЫБОР
+		КОГДА втЗаявки.Менеджер = ЗНАЧЕНИЕ(Справочник.Пользователи.ПустаяСсылка)
+			ТОГДА втЗаявки.ВиновникВозникновенияДефекта
+		ИНАЧЕ втЗаявки.Менеджер
+	КОНЕЦ КАК ВиновникВозникновенияДефекта,
+	втЗаявки.Реализация,
+	втЗаявки.КоличествоПринято,
+	втЗаявки.Номенклатура,
+	ВЫБОР
+		КОГДА втЗаявки.ВиновникВозникновенияДефекта = ЗНАЧЕНИЕ(Перечисление.ВиновникиВозникновенияДефекта.СкладОобнаружилиСамостоятельно)
+				И втЗаявки.ВидБрака = ЗНАЧЕНИЕ(перечисление.ВидыБрака.Неустранимый)
+			ТОГДА 0.5 * ВЫБОР
+					КОГДА ЕСТЬNULL(втСебестоимостьПоРеализациям.СебестоимостьИзРеализации, 0) = 0
+						ТОГДА ЕСТЬNULL(втСебестоимость.Себестоимость, 0)
+					ИНАЧЕ втСебестоимостьПоРеализациям.СебестоимостьИзРеализации
+				КОНЕЦ * втЗаявки.КоличествоПринято
+		КОГДА втЗаявки.ВиновникВозникновенияДефекта = ЗНАЧЕНИЕ(Перечисление.ВиновникиВозникновенияДефекта.Клиент)
+			ТОГДА 500 * втЗаявки.КоличествоПринято
+		КОГДА втЗаявки.ВидБрака = ЗНАЧЕНИЕ(перечисление.ВидыБрака.Неустранимый)
+			ТОГДА ВЫБОР
+					КОГДА ЕСТЬNULL(втСебестоимостьПоРеализациям.СебестоимостьИзРеализации, 0) = 0
+						ТОГДА ЕСТЬNULL(втСебестоимость.Себестоимость, 0)
+					ИНАЧЕ втСебестоимостьПоРеализациям.СебестоимостьИзРеализации
+				КОНЕЦ * втЗаявки.КоличествоПринято
+		ИНАЧЕ втЗаявки.Штраф
+	КОНЕЦ КАК штраф,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(втСебестоимостьПоРеализациям.СебестоимостьИзРеализации, 0) = 0
+			ТОГДА ЕСТЬNULL(втСебестоимость.Себестоимость, 0)
+		ИНАЧЕ втСебестоимостьПоРеализациям.СебестоимостьИзРеализации
+	КОНЕЦ * втЗаявки.КоличествоПринято КАК Себестоимость,
+	втЗаявки.Погашено,
+	ВЫРАЗИТЬ(втЗаявки.УточнениеПоВиновнику КАК СТРОКА(200)) КАК УточнениеПоВиновнику,
+	втЗаявки.Водитель,
+	втЗаявки.Перевозчик,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(втСебестоимостьПоРеализациям.СебестоимостьИзРеализации, 0) = 0
+			ТОГДА ЕСТЬNULL(втСебестоимость.Себестоимость, 0)
+		ИНАЧЕ втСебестоимостьПоРеализациям.СебестоимостьИзРеализации
+	КОНЕЦ КАК СебестоимостьЕдиницы,
+	втЗаявки.Менеджер,
+	ЕСТЬNULL(втЗаводДляТерминала.Значение, "") КАК ЗаводДляТерминала,
+	втЗаявки.ВидДефектаДляУценки
+ИЗ
+	втЗаявки КАК втЗаявки
+		ЛЕВОЕ СОЕДИНЕНИЕ втСебестоимость КАК втСебестоимость
+		ПО втЗаявки.Номенклатура = втСебестоимость.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ втСебестоимостьПоРеализациям КАК втСебестоимостьПоРеализациям
+		ПО втЗаявки.Номенклатура = втСебестоимостьПоРеализациям.Номенклатура
+			И втЗаявки.Реализация = втСебестоимостьПоРеализациям.Регистратор
+		ЛЕВОЕ СОЕДИНЕНИЕ втЗаводДляТерминала КАК втЗаводДляТерминала
+		ПО втЗаявки.Номенклатура = втЗаводДляТерминала.Объект</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоПринято</dataPath>
+			<expression>Сумма(КоличествоПринято)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Себестоимость</dataPath>
+			<expression>Сумма(Себестоимость)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Штраф</dataPath>
+			<expression>Сумма(Штраф)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>УточнениеПоВиновнику</dataPath>
+			<expression>Максимум(УточнениеПоВиновнику)</expression>
+		</totalField>
+		<parameter>
+			<name>ДатаН</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата Н</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаНачала</expression>
+		</parameter>
+		<parameter>
+			<name>ДатаК</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата К</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>НомГруппаЛитые</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ном группа литые</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НоменклатурныеГруппы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.НоменклатурныеГруппы.НайтиПоКоду("00026")</expression>
+		</parameter>
+		<parameter>
+			<name>НомГруппаШтамп</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ном группа штамп</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НоменклатурныеГруппы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.НоменклатурныеГруппы.НайтиПоКоду("00049")</expression>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Свойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>ПланыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90185")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ВиновникВозникновенияДефекта</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаявкаНаБрак</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПринято</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Себестоимость</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Штраф</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Погашено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УточнениеПоВиновнику</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Водитель</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Перевозчик</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Менеджер</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Период</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardPeriod">
+				<v8:variant xsi:type="v8:StandardPeriodVariant">ThisMonth</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">Auto</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отчет по виновникам возникновения дефекта</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">Auto</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ВиновникВозникновенияДефекта</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Номенклатура</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>Погашено</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ЗаводДляТерминала</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

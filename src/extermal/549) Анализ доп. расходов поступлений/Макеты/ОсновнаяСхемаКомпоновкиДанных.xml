@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПлатежа</dataPath>
+				<field>ДатаПлатежа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПоступлениеДопРасходов</dataPath>
+				<field>ПоступлениеДопРасходов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаВыставленоФакт</dataPath>
+				<field>СуммаВыставленоФакт</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОплаченоФакт</dataPath>
+				<field>СуммаОплаченоФакт</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма оплачено (руб.)</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОстаток</dataPath>
+				<field>СуммаОстаток</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПлан</dataPath>
+				<field>СуммаПлан</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма план (руб.)</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Услуга</dataPath>
+				<field>Услуга</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДопРасходов</dataPath>
+				<field>СуммаДопРасходов</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма доп расходов (руб.)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Валюта</dataPath>
+				<field>Валюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаВыставленоФактВалюта</dataPath>
+				<field>СуммаВыставленоФактВалюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДопРасходовВалюта</dataPath>
+				<field>СуммаДопРасходовВалюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОплаченоФактВалюта</dataPath>
+				<field>СуммаОплаченоФактВалюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОстатокВалюта</dataPath>
+				<field>СуммаОстатокВалюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПланВалюта</dataPath>
+				<field>СуммаПланВалюта</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	А.ЗаказПоставщику,
+	А.Номенклатура,
+	СУММА(А.Сумма) КАК Сумма,
+	А.ДатаПлатежа,
+	А.СуммаВзаиморасчетов,
+	А.Валюта
+ПОМЕСТИТЬ втДопРасходыПлан
+ИЗ
+	(ВЫБРАТЬ
+		ЗаказПоставщикуПлановыеДопРасходы.Ссылка КАК ЗаказПоставщику,
+		ЗаказПоставщикуПлановыеДопРасходы.Номенклатура КАК Номенклатура,
+		СУММА(ЗаказПоставщикуПлановыеДопРасходы.СуммаУпр) КАК Сумма,
+		ЗаказПоставщикуПлановыеДопРасходы.ДатаПлатежа КАК ДатаПлатежа,
+		СУММА(ЗаказПоставщикуПлановыеДопРасходы.СуммаВзаиморасчетов) КАК СуммаВзаиморасчетов,
+		ЗаказПоставщикуПлановыеДопРасходы.Валюта КАК Валюта
+	ИЗ
+		Документ.ЗаказПоставщику.ПлановыеДопРасходы КАК ЗаказПоставщикуПлановыеДопРасходы
+	ГДЕ
+		ЗаказПоставщикуПлановыеДопРасходы.Ссылка.ВалютаДокумента = &amp;ВалютаДокументаДоллар
+	
+	СГРУППИРОВАТЬ ПО
+		ЗаказПоставщикуПлановыеДопРасходы.Ссылка,
+		ЗаказПоставщикуПлановыеДопРасходы.Номенклатура,
+		ЗаказПоставщикуПлановыеДопРасходы.ДатаПлатежа,
+		ЗаказПоставщикуПлановыеДопРасходы.Валюта) КАК А
+
+СГРУППИРОВАТЬ ПО
+	А.ЗаказПоставщику,
+	А.Номенклатура,
+	А.ДатаПлатежа,
+	А.СуммаВзаиморасчетов,
+	А.Валюта
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втДопРасходыПлан.ЗаказПоставщику,
+	втДопРасходыПлан.Номенклатура,
+	втДопРасходыПлан.Сумма КАК СуммаПлан,
+	втДопРасходыПлан.ДатаПлатежа,
+	ПоступленияТоваровПоЗаказу.ПоступлениеТоваровУслуг,
+	втДопРасходыПлан.СуммаВзаиморасчетов КАК СуммаПланВзаим,
+	втДопРасходыПлан.Валюта
+ПОМЕСТИТЬ втДопРасходыПоступления
+ИЗ
+	втДопРасходыПлан КАК втДопРасходыПлан
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ЗаказыПоставщикам.Регистратор КАК ПоступлениеТоваровУслуг,
+			ЗаказыПоставщикам.ЗаказПоставщику КАК ЗаказПоставщику
+		ИЗ
+			РегистрНакопления.ЗаказыПоставщикам КАК ЗаказыПоставщикам
+		ГДЕ
+			ЗаказыПоставщикам.Регистратор ССЫЛКА Документ.ПоступлениеТоваровУслуг
+			И ЗаказыПоставщикам.ЗаказПоставщику В
+					(ВЫБРАТЬ
+						втДопРасходыПлан.ЗаказПоставщику
+					ИЗ
+						втДопРасходыПлан)) КАК ПоступленияТоваровПоЗаказу
+		ПО втДопРасходыПлан.ЗаказПоставщику = ПоступленияТоваровПоЗаказу.ЗаказПоставщику
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Закупки.Регистратор КАК ПоступлениеДопРасходов,
+	СУММА(Закупки.Стоимость) КАК Стоимость,
+	Закупки.Регистратор.Услуга,
+	Закупки.ДокументЗакупки,
+	Закупки.ДокументЗакупки.Сделка КАК ЗаказПоставщику,
+	Закупки.ДоговорКонтрагента.ВалютаВзаиморасчетов КАК ВалютаВзаиморасчетов,
+	СУММА(Закупки.Стоимость * Закупки.Регистратор.КурсВзаиморасчетов) КАК СтоимостьВалюта
+ПОМЕСТИТЬ ЗаказПоставщикуДопРасходы
+ИЗ
+	РегистрНакопления.Закупки КАК Закупки
+ГДЕ
+	Закупки.Регистратор ССЫЛКА Документ.ПоступлениеДопРасходов
+	И Закупки.ДокументЗакупки В
+			(ВЫБРАТЬ
+				втДопРасходыПоступления.ПоступлениеТоваровУслуг
+			ИЗ
+				втДопРасходыПоступления)
+
+СГРУППИРОВАТЬ ПО
+	Закупки.Регистратор,
+	Закупки.Регистратор.Услуга,
+	Закупки.ДокументЗакупки,
+	Закупки.ДокументЗакупки.Сделка,
+	Закупки.ДоговорКонтрагента.ВалютаВзаиморасчетов
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	А.ПоступлениеДопРасходов,
+	СУММА(А.Стоимость) КАК Стоимость,
+	А.РегистраторУслуга,
+	А.ДокументЗакупки,
+	СУММА(А.СуммаУпрПриход) КАК СуммаУпрПриход,
+	СУММА(А.СуммаУпрРасход) КАК СуммаУпрРасход,
+	А.ЗаказПоставщику,
+	СУММА(А.СуммаВзаиморасчетовПриход) КАК СуммаВзаиморасчетовПриход,
+	СУММА(А.СуммаВзаиморасчетовРасход) КАК СуммаВзаиморасчетовРасход,
+	А.Валюта,
+	СУММА(А.СтоимостьВалюта) КАК СтоимостьВалюта
+ПОМЕСТИТЬ вт
+ИЗ
+	(ВЫБРАТЬ
+		ЗаказПоставщикуДопРасходы.ПоступлениеДопРасходов КАК ПоступлениеДопРасходов,
+		ЗаказПоставщикуДопРасходы.Стоимость КАК Стоимость,
+		ЗаказПоставщикуДопРасходы.РегистраторУслуга КАК РегистраторУслуга,
+		ЗаказПоставщикуДопРасходы.ДокументЗакупки КАК ДокументЗакупки,
+		ВзаиморасчетыСКонтрагентамиОбороты.СуммаУпрПриход КАК СуммаУпрПриход,
+		ВзаиморасчетыСКонтрагентамиОбороты.СуммаУпрРасход КАК СуммаУпрРасход,
+		ЗаказПоставщикуДопРасходы.ЗаказПоставщику КАК ЗаказПоставщику,
+		ВзаиморасчетыСКонтрагентамиОбороты.СуммаВзаиморасчетовПриход КАК СуммаВзаиморасчетовПриход,
+		ВзаиморасчетыСКонтрагентамиОбороты.СуммаВзаиморасчетовРасход КАК СуммаВзаиморасчетовРасход,
+		ЗаказПоставщикуДопРасходы.ВалютаВзаиморасчетов КАК Валюта,
+		ЗаказПоставщикуДопРасходы.СтоимостьВалюта КАК СтоимостьВалюта,
+		NULL КАК СуммаУпрПриход1
+	ИЗ
+		ЗаказПоставщикуДопРасходы КАК ЗаказПоставщикуДопРасходы
+			ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами.Обороты(
+					,
+					,
+					,
+					Сделка В
+						(ВЫБРАТЬ
+							ЗаказПоставщикуДопРасходы.ПоступлениеДопРасходов
+						ИЗ
+							ЗаказПоставщикуДопРасходы)) КАК ВзаиморасчетыСКонтрагентамиОбороты
+			ПО ЗаказПоставщикуДопРасходы.ПоступлениеДопРасходов = ВзаиморасчетыСКонтрагентамиОбороты.Сделка
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		NULL,
+		МАКСИМУМ(втДопРасходыПоступления.ЗаказПоставщику.СуммаДокумента / втДопРасходыПоступления.ЗаказПоставщику.КурсВзаиморасчетов),
+		"FOB",
+		NULL,
+		МАКСИМУМ(втДопРасходыПоступления.ПоступлениеТоваровУслуг.СуммаДокумента * втДопРасходыПоступления.ЗаказПоставщику.КурсВзаиморасчетов),
+		МАКСИМУМ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаУпрКонечныйОстаток - втДопРасходыПоступления.ПоступлениеТоваровУслуг.СуммаДокумента),
+		втДопРасходыПоступления.ЗаказПоставщику,
+		МАКСИМУМ(втДопРасходыПоступления.ПоступлениеТоваровУслуг.СуммаДокумента),
+		МАКСИМУМ(втДопРасходыПоступления.ПоступлениеТоваровУслуг.СуммаДокумента),
+		&amp;ВалютаДокументаДоллар,
+		МАКСИМУМ(втДопРасходыПоступления.ПоступлениеТоваровУслуг.СуммаДокумента),
+		СУММА(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаУпрПриход)
+	ИЗ
+		втДопРасходыПоступления КАК втДопРасходыПоступления
+			ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами.ОстаткиИОбороты КАК ВзаиморасчетыСКонтрагентамиОстаткиИОбороты
+			ПО (ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.Сделка = втДопРасходыПоступления.ЗаказПоставщику)
+	
+	СГРУППИРОВАТЬ ПО
+		втДопРасходыПоступления.ЗаказПоставщику) КАК А
+
+СГРУППИРОВАТЬ ПО
+	А.ПоступлениеДопРасходов,
+	А.ДокументЗакупки,
+	А.РегистраторУслуга,
+	А.ЗаказПоставщику,
+	А.Валюта
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(втДопРасходыПоступления.ЗаказПоставщику, вт.ЗаказПоставщику) КАК ЗаказПоставщику,
+	ЕСТЬNULL(втДопРасходыПоступления.Номенклатура, вт.РегистраторУслуга) КАК Услуга,
+	вт.ПоступлениеДопРасходов КАК ПоступлениеДопРасходов,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта = &amp;ВалютаРуб
+				ТОГДА ЕСТЬNULL(вт.Стоимость, 0)
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаДопРасходов,
+	МАКСИМУМ(втДопРасходыПоступления.ДатаПлатежа) КАК ДатаПлатежа,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта = &amp;Валютаруб
+				ТОГДА вт.СуммаУпрПриход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаОплаченоФакт,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта = &amp;ВалютаРуб
+				ТОГДА вт.СуммаВзаиморасчетовРасход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаВыставленоФакт,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта = &amp;ВалютаРуб
+				ТОГДА вт.Стоимость - вт.СуммаУпрПриход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаОстаток,
+	СУММА(ВЫБОР
+			КОГДА втДопРасходыПоступления.Валюта = &amp;ВалютаРуб
+				ТОГДА втДопРасходыПоступления.СуммаПлан
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаПлан,
+	ЕСТЬNULL(вт.Валюта, втДопРасходыПоступления.Валюта) КАК Валюта,
+	СУММА(ВЫБОР
+			КОГДА втДопРасходыПоступления.Валюта &lt;&gt; &amp;ВалютаРуб
+				ТОГДА втДопРасходыПоступления.СуммаПланВзаим
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаПланВалюта,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта &lt;&gt; &amp;Валютаруб
+				ТОГДА вт.СуммаВзаиморасчетовПриход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаОплаченоФактВалюта,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта &lt;&gt; &amp;ВалютаРуб
+				ТОГДА вт.СуммаВзаиморасчетовРасход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаВыставленоФактВалюта,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта &lt;&gt; &amp;ВалютаРуб
+				ТОГДА вт.СтоимостьВалюта - вт.СуммаУпрПриход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаОстатокВалюта,
+	СУММА(ВЫБОР
+			КОГДА вт.Валюта &lt;&gt; &amp;валютаРуб
+				ТОГДА вт.СтоимостьВалюта
+			ИНАЧЕ 0
+		КОНЕЦ) КАК СуммаДопРасходовВалюта
+ПОМЕСТИТЬ втОснова
+ИЗ
+	втДопРасходыПоступления КАК втДопРасходыПоступления
+		ПОЛНОЕ СОЕДИНЕНИЕ вт КАК вт
+		ПО втДопРасходыПоступления.ПоступлениеТоваровУслуг = вт.ДокументЗакупки
+			И втДопРасходыПоступления.Номенклатура = вт.РегистраторУслуга
+
+СГРУППИРОВАТЬ ПО
+	вт.ПоступлениеДопРасходов,
+	ЕСТЬNULL(втДопРасходыПоступления.ЗаказПоставщику, вт.ЗаказПоставщику),
+	ЕСТЬNULL(втДопРасходыПоступления.Номенклатура, вт.РегистраторУслуга),
+	ЕСТЬNULL(вт.Валюта, втДопРасходыПоступления.Валюта)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втОснова.ЗаказПоставщику,
+	втОснова.Услуга,
+	ЕСТЬNULL(втОснова.СуммаДопРасходов, 0) КАК СуммаДопРасходов,
+	ВЫБОР
+		КОГДА втОснова.ДатаПлатежа &lt; &amp;ТекДата
+				И ЕСТЬNULL(втОснова.СуммаОстаток, 0) &gt; 0
+			ТОГДА &amp;ТекДата
+		ИНАЧЕ втОснова.ДатаПлатежа
+	КОНЕЦ КАК ДатаПлатежа,
+	ЕСТЬNULL(втОснова.СуммаОплаченоФакт, 0) КАК СуммаОплаченоФакт,
+	ЕСТЬNULL(втОснова.СуммаВыставленоФакт, 0) КАК СуммаВыставленоФакт,
+	ЕСТЬNULL(втОснова.СуммаДопРасходов, 0) - ЕСТЬNULL(втОснова.СуммаОплаченоФакт, 0) КАК СуммаОстаток,
+	ЕСТЬNULL(втОснова.СуммаПлан, 0) КАК СуммаПлан,
+	втОснова.Валюта,
+	втОснова.СуммаВыставленоФактВалюта,
+	втОснова.СуммаОплаченоФактВалюта,
+	втОснова.СуммаПланВалюта,
+	втОснова.СуммаДопРасходовВалюта,
+	втОснова.ПоступлениеДопРасходов,
+	втОснова.СуммаДопРасходовВалюта - втОснова.СуммаВыставленоФактВалюта КАК СуммаОстатокВалюта
+ИЗ
+	втОснова КАК втОснова</query>
+		</dataSet>
+		<totalField>
+			<dataPath>СуммаВыставленоФакт</dataPath>
+			<expression>Сумма(СуммаВыставленоФакт)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДопРасходов</dataPath>
+			<expression>Сумма(СуммаДопРасходов)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОплаченоФакт</dataPath>
+			<expression>Сумма(СуммаОплаченоФакт)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОстаток</dataPath>
+			<expression>Сумма(СуммаОстаток)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПлан</dataPath>
+			<expression>Сумма(СуммаПлан)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПланВалюта</dataPath>
+			<expression>Сумма(СуммаПланВалюта)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОстатокВалюта</dataPath>
+			<expression>Сумма(СуммаОстатокВалюта)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОплаченоФактВалюта</dataPath>
+			<expression>Сумма(СуммаОплаченоФактВалюта)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДопРасходовВалюта</dataPath>
+			<expression>Сумма(СуммаДопРасходовВалюта)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаВыставленоФактВалюта</dataPath>
+			<expression>Сумма(СуммаВыставленоФактВалюта)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<availableAsField>false</availableAsField>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<availableAsField>false</availableAsField>
+		</parameter>
+		<parameter>
+			<name>ВалютаДокументаДоллар</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Валюта документа доллар</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Валюты</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Валюты.НайтиПоКоду("840")</expression>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тек дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>ТекущаяДата()</expression>
+		</parameter>
+		<parameter>
+			<name>ВалютаРуб</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Валюта руб</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Валюты</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Валюты.НайтиПоКоду("643")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказПоставщику</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПоступлениеДопРасходов</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Услуга</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПлатежа</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПлан</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПланВалюта</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДопРасходов</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДопРасходовВалюта</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаОплаченоФакт</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаОплаченоФактВалюта</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаОстаток</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаОстатокВалюта</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Валюта</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemGroup">
+			<groupType>OrGroup</groupType>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">СуммаОстаток</left>
+				<comparisonType>Greater</comparisonType>
+				<right xsi:type="xs:decimal">0</right>
+			</item>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">СуммаВыставленоФакт</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:decimal">0</right>
+			</item>
+		</item>
+		<item xsi:type="FilterItemGroup">
+			<groupType>OrGroup</groupType>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">СуммаВыставленоФактВалюта</left>
+				<comparisonType>Equal</comparisonType>
+				<right xsi:type="xs:decimal">0</right>
+			</item>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">СуммаОстатокВалюта</left>
+				<comparisonType>Greater</comparisonType>
+				<right xsi:type="xs:decimal">0</right>
+			</item>
+		</item>
+	</filter>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ДатаПлатежа</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику.Контрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Услуга</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+	<item xsi:type="StructureItemTable">
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ДатаПлатежа</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику.Контрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ЗаказПоставщику</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item>
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>Услуга</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<item>
+						<groupItems>
+							<item xsi:type="GroupItemField">
+								<field>ПоступлениеДопРасходов</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+						</groupItems>
+						<order>
+							<item xsi:type="OrderItemAuto"/>
+						</order>
+						<selection>
+							<item xsi:type="SelectedItemAuto"/>
+						</selection>
+					</item>
+				</item>
+			</item>
+		</row>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

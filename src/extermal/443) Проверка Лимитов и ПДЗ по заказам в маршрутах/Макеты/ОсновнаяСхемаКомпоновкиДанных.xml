@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗначениеУсловияАвтоматическойСкидки</dataPath>
+				<field>ЗначениеУсловияАвтоматическойСкидки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентАвтоматическихСкидок</dataPath>
+				<field>ПроцентАвтоматическихСкидок</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентСкидкиНаценки</dataPath>
+				<field>ПроцентСкидкиНаценки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УсловиеАвтоматическойСкидки</dataPath>
+				<field>УсловиеАвтоматическойСкидки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Лимит</dataPath>
+				<field>Лимит</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейПДЗ</dataPath>
+				<field>ДнейПДЗ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПДЗ</dataPath>
+				<field>СуммаПДЗ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОстатокЛимита</dataPath>
+				<field>ОстатокЛимита</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаЗаказано</dataPath>
+				<field>СуммаЗаказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаОтгрузки</dataPath>
+				<field>ДатаОтгрузки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДолга</dataPath>
+				<field>СуммаДолга</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаОкончанияДоговора</dataPath>
+				<field>ДатаОкончанияДоговора</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗапретитьВводЗаказаПокупателя</dataPath>
+				<field>ЗапретитьВводЗаказаПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗапретОтгрузки</dataPath>
+				<field>ЗапретОтгрузки</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказыПоМенедежеру.ДоговорКонтрагента.Владелец КАК Контрагент
+ПОМЕСТИТЬ ВТ_Контр
+ИЗ
+	РегистрНакопления.ЗаказыПокупателей.Остатки(
+			&amp;ДатаСреза,
+			ДоговорКонтрагента.ОтветственноеЛицо = &amp;Менеджер
+				И ЗаказПокупателя.Проверен
+				И ЗаказПокупателя.ВМаршрут = ИСТИНА) КАК ЗаказыПоМенедежеру
+ГДЕ
+	ЗаказыПоМенедежеру.КоличествоОстаток &gt; 0
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказыПокупателейОстатки.ДоговорКонтрагента.Владелец КАК Контрагент,
+	ЗаказыПокупателейОстатки.ДоговорКонтрагента,
+	СУММА(ЗаказыПокупателейОстатки.СуммаВзаиморасчетовОстаток) КАК СуммаЗаказано,
+	ЗаказыПокупателейОстатки.ЗаказПокупателя,
+	ЗаказыПокупателейОстатки.ЗаказПокупателя.ДатаОтгрузки КАК ДатаОтгрузки
+ПОМЕСТИТЬ ВТ_Заказы
+ИЗ
+	РегистрНакопления.ЗаказыПокупателей.Остатки(&amp;ДатаСреза,
+			ДоговорКонтрагента.Владелец В (ВЫБРАТЬ ВТ_Контр.Контрагент 	ИЗ 	ВТ_Контр)
+				И ЗаказПокупателя.Проверен
+				И ЗаказПокупателя.ВМаршрут = ИСТИНА) КАК ЗаказыПокупателейОстатки
+
+СГРУППИРОВАТЬ ПО
+	ЗаказыПокупателейОстатки.ДоговорКонтрагента.Владелец,
+	ЗаказыПокупателейОстатки.ДоговорКонтрагента,
+	ЗаказыПокупателейОстатки.ЗаказПокупателя,
+	ЗаказыПокупателейОстатки.ЗаказПокупателя.ДатаОтгрузки
+
+ИМЕЮЩИЕ
+	СУММА(ЗаказыПокупателейОстатки.СуммаВзаиморасчетовОстаток) &lt;&gt; 0
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	дог.Владелец КАК Контрагент,
+	дог.Ссылка КАК ДоговорКонтрагента,
+	дог.Владелец.ДопустимаяСуммаЗадолженности КАК Лимит
+ПОМЕСТИТЬ ВТ_Договоры
+ИЗ
+	Справочник.ДоговорыКонтрагентов КАК дог
+ГДЕ
+	дог.Владелец В 	(ВЫБРАТЬ зак.Контрагент ИЗ ВТ_Контр КАК зак)
+	И дог.ПометкаУдаления = ЛОЖЬ
+	И (дог.ВидДоговора = ЗНАЧЕНИЕ(перечисление.ВидыДоговоровКонтрагентов.СПокупателем)
+			ИЛИ дог.ВидДоговора = ЗНАЧЕНИЕ(перечисление.ВидыДоговоровКонтрагентов.СКомиссионером))
+	И дог.ЭтоГруппа = ЛОЖЬ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Дог.Контрагент КАК Контрагент,
+	Дог.ДоговорКонтрагента КАК ДоговорКонтрагента,
+	Дог.Лимит КАК Лимит,
+	ЕСТЬNULL(ПросроченнаяДЗ.СуммаВзаиморасчетов, 0) КАК СуммаДолга,
+	ЕСТЬNULL(ПросроченнаяДЗ.СуммаПДЗ, 0) КАК СуммаПДЗ,
+	ЕСТЬNULL(ПросроченнаяДЗ.ДнейПДЗ, 0) КАК ДнейПДЗ,
+	Дог.Лимит - ЕСТЬNULL(ПросроченнаяДЗ.СуммаВзаиморасчетов, 0) - ЕСТЬNULL(заказы.СуммаЗаказано, 0) КАК ОстатокЛимита,
+	ЕСТЬNULL(заказы.СуммаЗаказано, 0) КАК СуммаЗаказано,
+	заказы.ЗаказПокупателя,
+	заказы.ДатаОтгрузки,
+	ВЫБОР
+		КОГДА Дог.ДоговорКонтрагента.ДатаОкончанияДействия &gt; ДАТАВРЕМЯ(1, 1, 1)
+				И Дог.ДоговорКонтрагента.ДатаОкончанияДействия &lt; &amp;ДатаСреза
+				И НЕ(Дог.ДоговорКонтрагента.ТипДоговора = &amp;Предоплата
+						И Дог.ДоговорКонтрагента.Наименование ПОДОБНО "%*%")
+			ТОГДА Дог.ДоговорКонтрагента.ДатаОкончанияДействия
+		ИНАЧЕ КОНЕЦПЕРИОДА(заказы.ЗаказПокупателя.Дата, ГОД)
+	КОНЕЦ КАК ДатаОкончанияДоговора,
+	Дог.Контрагент.ЗапретитьВводЗаказаПокупателя КАК ЗапретитьВводЗаказаПокупателя,
+	Дог.Контрагент.ЗапретОтгрузки КАК ЗапретОтгрузки
+ИЗ
+	ВТ_Договоры КАК Дог
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			Дебиторка.ДоговорКонтрагента.Владелец КАК Контрагент,
+			Дебиторка.ДоговорКонтрагента КАК ДоговорКонтрагента,
+			СУММА(Дебиторка.СуммаВзаиморасчетовОстаток) КАК СуммаВзаиморасчетов,
+			СУММА(ВЫБОР
+					КОГДА Дебиторка.Сделка ССЫЛКА Документ.ЗаказПокупателя
+						ТОГДА ВЫБОР
+								КОГДА ВЫРАЗИТЬ(Дебиторка.Сделка КАК Документ.ЗаказПокупателя).ДатаОплаты &lt;= &amp;ДатаСреза
+										И Дебиторка.СуммаВзаиморасчетовОстаток &gt; 0
+									ТОГДА Дебиторка.СуммаВзаиморасчетовОстаток
+								ИНАЧЕ 0
+							КОНЕЦ
+					ИНАЧЕ ВЫБОР
+							КОГДА ВЫРАЗИТЬ(Дебиторка.Сделка КАК Документ.ЗаказПокупателя).Дата &lt; &amp;ДатаСреза
+									И Дебиторка.СуммаВзаиморасчетовОстаток &gt; 0
+								ТОГДА Дебиторка.СуммаВзаиморасчетовОстаток
+							ИНАЧЕ 0
+						КОНЕЦ
+				КОНЕЦ) КАК СуммаПДЗ,
+			МАКСИМУМ(ВЫБОР
+					КОГДА Дебиторка.Сделка ССЫЛКА Документ.ЗаказПокупателя
+						ТОГДА ВЫБОР
+								КОГДА ВЫРАЗИТЬ(Дебиторка.Сделка КАК Документ.ЗаказПокупателя).ДатаОплаты &lt;= &amp;ДатаСреза
+										И Дебиторка.СуммаВзаиморасчетовОстаток &gt; 0
+									ТОГДА РАЗНОСТЬДАТ(ВЫРАЗИТЬ(Дебиторка.Сделка КАК Документ.ЗаказПокупателя).ДатаОплаты, &amp;ДатаСреза, ДЕНЬ) + 1
+								ИНАЧЕ 0
+							КОНЕЦ
+					ИНАЧЕ ВЫБОР
+							КОГДА Дебиторка.Сделка.Дата &lt; &amp;ДатаСреза
+									И Дебиторка.СуммаВзаиморасчетовОстаток &gt; 0
+								ТОГДА РАЗНОСТЬДАТ(Дебиторка.Сделка.Дата, &amp;ДатаСреза, ДЕНЬ) + 1
+							ИНАЧЕ 0
+						КОНЕЦ
+				КОНЕЦ) КАК ДнейПДЗ
+		ИЗ
+			РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(&amp;ДатаСреза,
+					ДоговорКонтрагента В (ВЫБРАТЬ вт.ДоговорКонтрагента ИЗ ВТ_Договоры КАК вт)) КАК Дебиторка
+		
+		СГРУППИРОВАТЬ ПО
+			Дебиторка.ДоговорКонтрагента.Владелец,
+			Дебиторка.ДоговорКонтрагента) КАК ПросроченнаяДЗ
+		ПО Дог.Контрагент = ПросроченнаяДЗ.Контрагент
+			И Дог.ДоговорКонтрагента = ПросроченнаяДЗ.ДоговорКонтрагента
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_Заказы КАК заказы
+		ПО Дог.Контрагент = заказы.Контрагент
+			И Дог.ДоговорКонтрагента = заказы.ДоговорКонтрагента
+ГДЕ
+	(заказы.СуммаЗаказано &lt;&gt; 0
+			ИЛИ ПросроченнаяДЗ.СуммаВзаиморасчетов &lt;&gt; 0)
+	И Дог.ДоговорКонтрагента.ТипДоговора &lt;&gt; ЗНАЧЕНИЕ(справочник.ТипыДоговоров.ФормулаАвтоПлюс)
+
+СГРУППИРОВАТЬ ПО
+	Дог.Контрагент,
+	Дог.ДоговорКонтрагента,
+	Дог.Лимит,
+	ПросроченнаяДЗ.СуммаВзаиморасчетов,
+	ПросроченнаяДЗ.СуммаПДЗ,
+	ПросроченнаяДЗ.ДнейПДЗ,
+	заказы.СуммаЗаказано,
+	заказы.ЗаказПокупателя,
+	заказы.ДатаОтгрузки,
+	ВЫБОР
+		КОГДА Дог.ДоговорКонтрагента.ДатаОкончанияДействия &gt; ДАТАВРЕМЯ(1, 1, 1)
+				И Дог.ДоговорКонтрагента.ДатаОкончанияДействия &lt; &amp;ДатаСреза
+				И НЕ(Дог.ДоговорКонтрагента.ТипДоговора = &amp;Предоплата
+						И Дог.ДоговорКонтрагента.Наименование ПОДОБНО "%*%")
+			ТОГДА Дог.ДоговорКонтрагента.ДатаОкончанияДействия
+		ИНАЧЕ КОНЕЦПЕРИОДА(заказы.ЗаказПокупателя.Дата, ГОД)
+	КОНЕЦ,
+	Дог.Контрагент.ЗапретитьВводЗаказаПокупателя,
+	Дог.Контрагент.ЗапретОтгрузки</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Лимит</dataPath>
+			<expression>Максимум(Лимит)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейПДЗ</dataPath>
+			<expression>Максимум(ДнейПДЗ)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОстатокЛимита</dataPath>
+			<expression>Максимум(Лимит) - Максимум(СуммаДолга)-Сумма(СуммаЗаказано)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>ДоговорКонтрагента Иерархия</group>
+			<group>ЗаказПокупателя</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПДЗ</dataPath>
+			<expression>Максимум(СуммаПДЗ)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>ДоговорКонтрагента Иерархия</group>
+			<group>ЗаказПокупателя</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаЗаказано</dataPath>
+			<expression>Сумма(СуммаЗаказано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОстатокЛимита</dataPath>
+			<expression>Максимум(Лимит) - Сумма(ВычислитьВыражениеСГруппировкойМассив("Максимум(СуммаДолга)", "ДоговорКонтрагента")) -Сумма(СуммаЗаказано)</expression>
+			<group>Контрагент</group>
+			<group>Контрагент Иерархия</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПДЗ</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив("Максимум(СуммаПДЗ)", "ДоговорКонтрагента"))</expression>
+			<group>Контрагент</group>
+			<group>Контрагент Иерархия</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДатаОтгрузки</dataPath>
+			<expression>Минимум(ДатаОтгрузки)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДолга</dataPath>
+			<expression>Максимум(СуммаДолга)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>ДоговорКонтрагента Иерархия</group>
+			<group>ЗаказПокупателя</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДолга</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив("Максимум(СуммаДолга)", "ДоговорКонтрагента")) </expression>
+			<group>Контрагент</group>
+			<group>Контрагент Иерархия</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДатаОкончанияДоговора</dataPath>
+			<expression>Минимум(ДатаОкончанияДоговора)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗапретитьВводЗаказаПокупателя</dataPath>
+			<expression>Максимум(ЗапретитьВводЗаказаПокупателя)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗапретОтгрузки</dataPath>
+			<expression>Максимум(ЗапретОтгрузки)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Менеджер</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Менеджер</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Пользователи</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаСреза</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата среза</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Предоплата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Предоплата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ТипыДоговоров</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остаток Лимита</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>Лимит</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаДолга</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаЗаказано</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ОстатокЛимита</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Просроченная дебиторская задолженность</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ДнейПДЗ</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаПДЗ</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОтгрузки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаОкончанияДоговора</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗапретОтгрузки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗапретитьВводЗаказаПокупателя</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Менеджер</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ДатаСреза</dcscor:parameter>
+			<dcscor:value xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.ФормулаАвтоПлюс</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Предоплата</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+	</dataParameters>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>Лимит</field>
+				</item>
+				<item>
+					<field>ОстатокЛимита</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ВыделятьОтрицательные</dcscor:parameter>
+					<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ДнейПДЗ</field>
+				</item>
+				<item>
+					<field>СуммаПДЗ</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДнейПДЗ</left>
+					<comparisonType>Greater</comparisonType>
+					<right xsi:type="xs:decimal">7</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветТекста</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">style:NegativeTextColor</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ДатаОкончанияДоговора</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДатаОкончанияДоговора</left>
+					<comparisonType>Less</comparisonType>
+					<right xsi:type="dcscor:Field">ПараметрыДанных.ДатаСреза</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветТекста</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">style:NegativeTextColor</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ДатаОтгрузки</field>
+				</item>
+				<item>
+					<field>ДатаОкончанияДоговора</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ДЛФ=D; ДП=-</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ДатаОтгрузки</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДатаОтгрузки</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="dcscor:Field">ПараметрыДанных.ДатаСреза</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">#FFFF99</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ЦветТекста</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">#000080</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Шрифт</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ДЛФ=DD</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ЗапретитьВводЗаказаПокупателя</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ЗапретитьВводЗаказаПокупателя</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="xs:boolean">true</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветТекста</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">style:NegativeTextColor</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>ЗапретОтгрузки</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ЗапретОтгрузки</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="xs:boolean">true</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветТекста</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">style:NegativeTextColor</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<filter>
+			<item xsi:type="FilterItemGroup">
+				<groupType>OrGroup</groupType>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ОстатокЛимита</left>
+					<comparisonType>Less</comparisonType>
+					<right xsi:type="xs:decimal">0</right>
+				</item>
+				<item xsi:type="FilterItemGroup">
+					<groupType>AndGroup</groupType>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">ДнейПДЗ</left>
+						<comparisonType>Greater</comparisonType>
+						<right xsi:type="xs:decimal">7</right>
+					</item>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Контрагент.РазрешитьГрузитьПриПДЗБолееСемиДней</left>
+						<comparisonType>Equal</comparisonType>
+						<right xsi:type="xs:boolean">false</right>
+					</item>
+				</item>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДатаОкончанияДоговора</left>
+					<comparisonType>Less</comparisonType>
+					<right xsi:type="dcscor:Field">ПараметрыДанных.ДатаСреза</right>
+				</item>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">Контрагент.ЗапретОтгрузки</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="xs:boolean">true</right>
+				</item>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">Контрагент.ЗапретитьВводЗаказаПокупателя</left>
+					<comparisonType>Equal</comparisonType>
+					<right xsi:type="xs:boolean">true</right>
+				</item>
+			</item>
+		</filter>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ДоговорКонтрагента</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ДоговорКонтрагента.ОтветственноеЛицо</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ЗаказПокупателя</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

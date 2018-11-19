@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КредитныйДоговор</dataPath>
+				<field>КредитныйДоговор</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сумма</dataPath>
+				<field>Сумма</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>День</dataPath>
+				<field>День</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Месяц</dataPath>
+				<field>Месяц</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	КредитныеЛинии.КредитныйДоговор,
+	КредитныеЛинии.Дата КАК День,
+	КредитныеЛинии.Сумма,
+	НАЧАЛОПЕРИОДА(КредитныеЛинии.Дата, МЕСЯЦ) КАК Месяц,
+	КредитныеЛинии.КредитныйДоговор.Владелец КАК Контрагент
+ИЗ
+	РегистрСведений.КредитныеЛинии КАК КредитныеЛинии
+ГДЕ
+	КредитныеЛинии.ВидДвижения = &amp;Движение
+	И КредитныеЛинии.Дата МЕЖДУ &amp;ДатаС И &amp;ДатаПо
+	И КредитныеЛинии.КредитныйДоговор.ТипДоговора = &amp;Кредит
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента,
+	ВЫБОР
+		КОГДА ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовОборот &gt; 0
+			ТОГДА ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень
+		ИНАЧЕ ВЫБОР
+				КОГДА ДЕНЬНЕДЕЛИ(ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)) = 7
+					ТОГДА ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша - 2)
+				ИНАЧЕ ВЫБОР
+						КОГДА ДЕНЬНЕДЕЛИ(ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)) = 6
+							ТОГДА ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша - 1)
+						ИНАЧЕ ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)
+					КОНЕЦ
+			КОНЕЦ
+	КОНЕЦ,
+	-ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовОборот,
+	НАЧАЛОПЕРИОДА(ВЫБОР
+			КОГДА ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовОборот &gt; 0
+				ТОГДА ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень
+			ИНАЧЕ ВЫБОР
+					КОГДА ДЕНЬНЕДЕЛИ(ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)) = 7
+						ТОГДА ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша - 2)
+					ИНАЧЕ ВЫБОР
+							КОГДА ДЕНЬНЕДЕЛИ(ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)) = 6
+								ТОГДА ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша - 1)
+							ИНАЧЕ ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша)
+						КОНЕЦ
+				КОНЕЦ
+		КОНЕЦ, МЕСЯЦ),
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Владелец
+ИЗ
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.ОстаткиИОбороты(
+			ДОБАВИТЬКДАТЕ(&amp;ДатаС, ДЕНЬ, -360),
+			&amp;ДатаПо,
+			Авто,
+			,
+			ДоговорКонтрагента.ТипДоговора = &amp;Кредит
+				И ДоговорКонтрагента.Кр_Транш = ИСТИНА) КАК ВзаиморасчетыСКонтрагентамиОстаткиИОбороты
+ГДЕ
+	ДОБАВИТЬКДАТЕ(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодДень, ДЕНЬ, ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_СрокТранша) МЕЖДУ &amp;ДатаС И &amp;ДатаПо</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Сумма)</expression>
+		</totalField>
+		<parameter>
+			<name>Движение</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Движение</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:EnumRef.ВидыДвиженийПриходРасход</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаС</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата С</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаПо</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата по</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Кредит</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кредит</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ТипыДоговоров</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Сумма</field>
+		</item>
+	</selection>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>Месяц</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">ДФ='ММММ гггг "г."'</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>День</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">ДФ=dd.MM.yyyy</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<item xsi:type="StructureItemTable">
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Месяц</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Контрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>КредитныйДоговор</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item>
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>День</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</row>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

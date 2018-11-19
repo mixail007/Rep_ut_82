@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДолгНаКонец</dataPath>
+				<field>ДолгНаКонец</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДолгНаНачало</dataPath>
+				<field>ДолгНаНачало</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проверка</dataPath>
+				<field>Проверка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОтгрузок</dataPath>
+				<field>СуммаОтгрузок</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоступленийДС</dataPath>
+				<field>СуммаПоступленийДС</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	А.Контрагент,
+	А.ДолгНаНачало,
+	А.СуммаОтгрузок КАК СуммаОтгрузок,
+	А.СуммаПоступленийДС,
+	А.ДолгНаКонец,
+	ВЫБОР
+		КОГДА А.ДолгНаНачало + А.СуммаОтгрузок - А.СуммаПоступленийДС = А.ДолгНаКонец
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК Проверка
+ИЗ
+	(ВЫБРАТЬ
+		ОБЩИЙЗапрос.ДоговорКонтрагента.Владелец КАК Контрагент,
+		СУММА(ОБЩИЙЗапрос.СуммаНаНачало) КАК ДолгНаНачало,
+		СУММА(ОБЩИЙЗапрос.СуммаОтгрузок) КАК СуммаОтгрузок,
+		СУММА(ОБЩИЙЗапрос.СуммаПоступленийДС) КАК СуммаПоступленийДС,
+		СУММА(ОБЩИЙЗапрос.СуммаНаКонец) КАК ДолгНаКонец
+	ИЗ
+		(ВЫБРАТЬ
+			ВнутреннийЗапрос.ДоговорКонтрагента КАК ДоговорКонтрагента,
+			ВнутреннийЗапрос.СуммаНаНачало КАК СуммаНаНачало,
+			ВнутреннийЗапрос.СуммаОтгрузок КАК СуммаОтгрузок,
+			ЕСТЬNULL(ПриходныйКассовыйОрдер.Сумма, 0) КАК СуммаПоступленийДС,
+			ЕСТЬNULL(ВзаиморасчетыОкончание.СуммаУпрОстаток, 0) КАК СуммаНаКонец
+		ИЗ
+			(ВЫБРАТЬ
+				ЕСТЬNULL(ПродажиОбороты.ДоговорКонтрагента, ВзаиморасчетыНачало.ДоговорКонтрагента) КАК ДоговорКонтрагента,
+				ЕСТЬNULL(ВзаиморасчетыНачало.СуммаУпрОстаток, 0) КАК СуммаНаНачало,
+				ЕСТЬNULL(ПродажиОбороты.СтоимостьОборот, 0) КАК СуммаОтгрузок
+			ИЗ
+				РегистрНакопления.Продажи.Обороты(&amp;НачДата, КОНЕЦПЕРИОДА(&amp;КонДата, ДЕНЬ), , ДоговорКонтрагента.Наименование ПОДОБНО "%*%") КАК ПродажиОбороты
+					ПОЛНОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(&amp;НачДата, ДоговорКонтрагента.Наименование ПОДОБНО "%*%") КАК ВзаиморасчетыНачало
+					ПО ПродажиОбороты.ДоговорКонтрагента = ВзаиморасчетыНачало.ДоговорКонтрагента) КАК ВнутреннийЗапрос
+				ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(КОНЕЦПЕРИОДА(&amp;КонДата, ДЕНЬ), ДоговорКонтрагента.Наименование ПОДОБНО "%*%") КАК ВзаиморасчетыОкончание
+				ПО ВнутреннийЗапрос.ДоговорКонтрагента = ВзаиморасчетыОкончание.ДоговорКонтрагента
+				ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+					ПриходныйКассовыйОрдер.ДоговорКонтрагента КАК ДоговорКонтрагента,
+					СУММА(ПриходныйКассовыйОрдер.СуммаДокумента) КАК Сумма
+				ИЗ
+					Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер
+				ГДЕ
+					ПриходныйКассовыйОрдер.Дата МЕЖДУ &amp;НачДата И КОНЕЦПЕРИОДА(&amp;КонДата, ДЕНЬ)
+					И ПриходныйКассовыйОрдер.Проведен
+				
+				СГРУППИРОВАТЬ ПО
+					ПриходныйКассовыйОрдер.ДоговорКонтрагента) КАК ПриходныйКассовыйОрдер
+				ПО ВнутреннийЗапрос.ДоговорКонтрагента = ПриходныйКассовыйОрдер.ДоговорКонтрагента) КАК ОБЩИЙЗапрос
+	
+	СГРУППИРОВАТЬ ПО
+		ОБЩИЙЗапрос.ДоговорКонтрагента.Владелец) КАК А</query>
+		</dataSet>
+		<totalField>
+			<dataPath>ДолгНаКонец</dataPath>
+			<expression>Сумма(ДолгНаКонец)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ДолгНаНачало</dataPath>
+			<expression>Сумма(ДолгНаНачало)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Проверка</dataPath>
+			<expression>Максимум(Проверка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОтгрузок</dataPath>
+			<expression>Сумма(СуммаОтгрузок)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПоступленийДС</dataPath>
+			<expression>Сумма(СуммаПоступленийДС)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ДолгНаНачало</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаОтгрузок</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПоступленийДС</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДолгНаКонец</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Проверка</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>КонДата</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfLastDay</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>НачДата</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisYear</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>ДолгНаКонец</field>
+				</item>
+				<item>
+					<field>ДолгНаНачало</field>
+				</item>
+				<item>
+					<field>СуммаОтгрузок</field>
+				</item>
+				<item>
+					<field>СуммаПоступленийДС</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Шрифт</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" kind="WindowsFont"/>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ВыделятьОтрицательные</dcscor:parameter>
+					<dcscor:value xsi:type="xs:boolean">true</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

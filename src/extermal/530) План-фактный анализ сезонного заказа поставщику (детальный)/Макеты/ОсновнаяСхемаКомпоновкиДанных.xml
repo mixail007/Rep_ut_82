@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регистратор</dataPath>
+				<field>Регистратор</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонный</dataPath>
+				<field>ЗаказПоставщикуСезонный</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонныйДата</dataPath>
+				<field>ЗаказПоставщикуСезонныйДата</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата создания</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонныйДатаДействияПо</dataPath>
+				<field>ЗаказПоставщикуСезонныйДатаДействияПо</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата действия</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоРасход</dataPath>
+				<field>КоличествоРасход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество отгружено</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПриход</dataPath>
+				<field>КоличествоПриход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество заказано</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцПоСроку</dataPath>
+				<field>ПроцПоСроку</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% выполнения по плану</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцОтставания</dataPath>
+				<field>ПроцОтставания</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% отставания</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцПоФакту</dataPath>
+				<field>ПроцПоФакту</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% выполнения по факту</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонныйКонтрагент</dataPath>
+				<field>ЗаказПоставщикуСезонныйКонтрагент</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Поставщик</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонныйНоменклатурнаяГруппа</dataPath>
+				<field>ЗаказПоставщикуСезонныйНоменклатурнаяГруппа</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Вид товара</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураКод</dataPath>
+				<field>НоменклатураКод</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Код</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерКонтейнера</dataPath>
+				<field>НомерКонтейнера</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВЭД</dataPath>
+				<field>ВЭД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураАртикул</dataPath>
+				<field>НоменклатураАртикул</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Артикул </d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный,
+	СУММА(ЗаказыПоставщикамСезонныеОбороты.КоличествоПриход) КАК КоличествоПриход,
+	СУММА(ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход) КАК КоличествоРасход,
+	ЗаказыПоставщикамСезонныеОбороты.Регистратор,
+	ВЫБОР
+		КОГДА &amp;Период &lt; ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо
+			ТОГДА (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, &amp;Период, ДЕНЬ) + 1) / (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) * 100
+		ИНАЧЕ (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) / (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) * 100
+	КОНЕЦ КАК ПроцПоСроку,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо,
+	СУММА(0) КАК ПроцПоФакту,
+	СУММА(0) КАК ПроцОтставания,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Контрагент,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.НоменклатурнаяГруппа,
+	ЗаказыПоставщикамСезонныеОбороты.Номенклатура,
+	ЗаказыПоставщикамСезонныеОбороты.Номенклатура.Код,
+	ЗаказыПоставщикамСезонныеОбороты.Номенклатура.Артикул,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ЗаказДубль.НомерКонтейнера КАК НомерКонтейнера
+ПОМЕСТИТЬ втРегистр
+ИЗ
+	РегистрНакопления.ЗаказыПоставщикамСезонные.Обороты(, , Регистратор, ЗаказПоставщикуСезонный В (&amp;Заказ)) КАК ЗаказыПоставщикамСезонныеОбороты
+ГДЕ
+	НЕ ЗаказыПоставщикамСезонныеОбороты.Регистратор ССЫЛКА Документ.ЗакрытиеЗаказовПоставщикамСезонных
+
+СГРУППИРОВАТЬ ПО
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамСезонныеОбороты.Регистратор,
+	ЗаказыПоставщикамСезонныеОбороты.Номенклатура,
+	ВЫБОР
+		КОГДА &amp;Период &lt; ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо
+			ТОГДА (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, &amp;Период, ДЕНЬ) + 1) / (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) * 100
+		ИНАЧЕ (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) / (РАЗНОСТЬДАТ(ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата, ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо, ДЕНЬ) + 1) * 100
+	КОНЕЦ,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Дата,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ДатаДействияПо,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.Контрагент,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.НоменклатурнаяГруппа,
+	ЗаказыПоставщикамСезонныеОбороты.Номенклатура.Код,
+	ЗаказыПоставщикамСезонныеОбороты.ЗаказПоставщикуСезонный.ЗаказДубль.НомерКонтейнера
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втРегистр.ЗаказПоставщикуСезонный,
+	втРегистр.КоличествоПриход,
+	втРегистр.КоличествоРасход,
+	втРегистр.Регистратор,
+	втРегистр.ПроцПоСроку,
+	втРегистр.ЗаказПоставщикуСезонныйДата,
+	втРегистр.ЗаказПоставщикуСезонныйДатаДействияПо,
+	втРегистр.ПроцПоФакту,
+	втРегистр.ПроцОтставания,
+	втРегистр.ЗаказПоставщикуСезонныйКонтрагент,
+	втРегистр.ЗаказПоставщикуСезонныйНоменклатурнаяГруппа,
+	втРегистр.Номенклатура,
+	втРегистр.НоменклатураКод,
+	втРегистр.НоменклатураАртикул,
+	втРегистр.НомерКонтейнера,
+	ЕСТЬNULL(втЗаказСезонныйТовары.Цена, 0) КАК Цена
+ИЗ
+	втРегистр КАК втРегистр
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЗаказПоставщикуСезонныйТовары.Ссылка КАК Ссылка,
+			ЗаказПоставщикуСезонныйТовары.Номенклатура КАК Номенклатура,
+			СРЕДНЕЕ(ЗаказПоставщикуСезонныйТовары.Цена) КАК Цена
+		ИЗ
+			Документ.ЗаказПоставщикуСезонный.Товары КАК ЗаказПоставщикуСезонныйТовары
+		ГДЕ
+			ЗаказПоставщикуСезонныйТовары.Ссылка В
+					(ВЫБРАТЬ
+						втРегистр.ЗаказПоставщикуСезонный
+					ИЗ
+						втРегистр)
+		
+		СГРУППИРОВАТЬ ПО
+			ЗаказПоставщикуСезонныйТовары.Ссылка,
+			ЗаказПоставщикуСезонныйТовары.Номенклатура) КАК втЗаказСезонныйТовары
+		ПО втРегистр.ЗаказПоставщикуСезонный = втЗаказСезонныйТовары.Ссылка
+			И втРегистр.Номенклатура = втЗаказСезонныйТовары.Номенклатура</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоПриход</dataPath>
+			<expression>Сумма(КоличествоПриход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоРасход</dataPath>
+			<expression>Сумма(КоличествоРасход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцПоСроку</dataPath>
+			<expression>Среднее(ПроцПоСроку)</expression>
+			<group>ЗаказПоставщикуСезонный</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцПоСроку</dataPath>
+			<expression>0</expression>
+			<group>Регистратор</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцПоФакту</dataPath>
+			<expression>выбор когда Сумма(КоличествоПриход)=0 тогда 100 иначе   Сумма(КоличествоРасход)/Сумма(КоличествоПриход)*100 конец</expression>
+			<group>ЗаказПоставщикуСезонный</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцОтставания</dataPath>
+			<expression>выбор когда Сумма(КоличествоПриход)=0 тогда 100 иначе (1-(Сумма(КоличествоРасход)/Сумма(КоличествоПриход))*100/Среднее(ПроцПоСроку))*100 конец</expression>
+			<group>ЗаказПоставщикуСезонный</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцПоФакту</dataPath>
+			<expression>0</expression>
+			<group>Регистратор</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцОтставания</dataPath>
+			<expression>0</expression>
+			<group>Регистратор</group>
+		</totalField>
+		<totalField>
+			<dataPath>Цена</dataPath>
+			<expression>Среднее(Цена)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>На дату</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Заказ</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Заказ</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:DocumentRef.ЗаказПоставщикуСезонный</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemAuto"/>
+		<item xsi:type="SelectedItemField">
+			<field>Цена</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПриход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоРасход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцПоСроку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцПоФакту</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцОтставания</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерКонтейнера</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Период</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заказ</dcscor:parameter>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>План-фактный анализ сезонных заказов</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ЗаказПоставщикуСезонныйНоменклатурнаяГруппа</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщикуСезонныйКонтрагент</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>НомерКонтейнера</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ЗаказПоставщикуСезонный</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ЗаказПоставщикуСезонныйДата</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ЗаказПоставщикуСезонныйДатаДействияПо</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>НоменклатураКод</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+						<item xsi:type="GroupItemField">
+							<field>Номенклатура</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+						<item xsi:type="GroupItemField">
+							<field>НоменклатураАртикул</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<item xsi:type="StructureItemGroup">
+						<use>false</use>
+						<groupItems>
+							<item xsi:type="GroupItemField">
+								<field>Регистратор</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+						</groupItems>
+						<order>
+							<item xsi:type="OrderItemAuto"/>
+						</order>
+						<selection>
+							<item xsi:type="SelectedItemAuto"/>
+						</selection>
+					</item>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

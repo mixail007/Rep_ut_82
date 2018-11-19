@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вес</dataPath>
+				<field>Вес</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заявка</dataPath>
+				<field>Заявка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Объем</dataPath>
+				<field>Объем</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регистратор</dataPath>
+				<field>Регистратор</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Адрес</dataPath>
+				<field>Адрес</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаявкаНаБрак.Ссылка КАК ЗаявкаНаБрак,
+	ЗаявкаНаВозвратТоваров.Ссылка КАК ЗаявкаНаВозврат
+ПОМЕСТИТЬ Наоборот
+ИЗ
+	Документ.ЗаявкаНаВозвратТоваров КАК ЗаявкаНаВозвратТоваров
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаявкаНаБрак КАК ЗаявкаНаБрак
+		ПО ЗаявкаНаВозвратТоваров.Ссылка = ЗаявкаНаБрак.ДокументОснование
+ГДЕ
+	НЕ ЗаявкаНаБрак.Ссылка ЕСТЬ NULL 
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование.ДокументОснование КАК ЗаявкаНаБрак,
+	ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование КАК Регистратор,
+	ТоварыНаОтветственномХраненииОбороты.Номенклатура,
+	СУММА(ЕСТЬNULL(ТоварыНаОтветственномХраненииОбороты.КоличествоОборот, 0)) КАК КоличествоОборот,
+	ТоварыНаОтветственномХраненииОбороты.Склад,
+	ТоварыНаОтветственномХраненииОбороты.ДоговорКонтрагента
+ПОМЕСТИТЬ Врем
+ИЗ
+	РегистрНакопления.ТоварыНаОтветственномХранении.Обороты(, , Регистратор, ) КАК ТоварыНаОтветственномХраненииОбороты
+ГДЕ
+	ТИПЗНАЧЕНИЯ(ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование) = ТИП(Документ.ЗаявкаНавозвратТоваров)
+	И ТИПЗНАЧЕНИЯ(ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование.ДокументОснование) = ТИП(Документ.ЗаявкаНаБрак)
+	И ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование.ДокументОснование.СостояниеЗаявки = &amp;Отклонить
+
+СГРУППИРОВАТЬ ПО
+	ТоварыНаОтветственномХраненииОбороты.Номенклатура,
+	ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование,
+	ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование.ДокументОснование,
+	ТоварыНаОтветственномХраненииОбороты.Склад,
+	ТоварыНаОтветственномХраненииОбороты.ДоговорКонтрагента
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	Наоборот.ЗаявкаНаБрак,
+	Наоборот.ЗаявкаНаВозврат,
+	ТоварыНаОтветственномХраненииОбороты.Номенклатура,
+	СУММА(ЕСТЬNULL(ТоварыНаОтветственномХраненииОбороты.КоличествоОборот, 0)),
+	ТоварыНаОтветственномХраненииОбороты.Склад,
+	ТоварыНаОтветственномХраненииОбороты.ДоговорКонтрагента
+ИЗ
+	РегистрНакопления.ТоварыНаОтветственномХранении.Обороты(, , Регистратор, ) КАК ТоварыНаОтветственномХраненииОбороты
+		ЛЕВОЕ СОЕДИНЕНИЕ Наоборот КАК Наоборот
+		ПО ТоварыНаОтветственномХраненииОбороты.Регистратор.ДокументОснование = Наоборот.ЗаявкаНаВозврат
+ГДЕ
+	НЕ Наоборот.ЗаявкаНаВозврат ЕСТЬ NULL 
+	И Наоборот.ЗаявкаНаБрак.СостояниеЗаявки = &amp;Отклонить
+
+СГРУППИРОВАТЬ ПО
+	ТоварыНаОтветственномХраненииОбороты.Номенклатура,
+	ТоварыНаОтветственномХраненииОбороты.Склад,
+	ТоварыНаОтветственномХраненииОбороты.ДоговорКонтрагента,
+	Наоборот.ЗаявкаНаБрак,
+	Наоборот.ЗаявкаНаВозврат
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаявкаНаБракРасшифровка.Ссылка,
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	СУММА(ЗаявкаНаБракРасшифровка.Количество) КАК Количество,
+	СУММА(ЗаявкаНаБракРасшифровка.КоличествоПринято) КАК КоличествоПринято,
+	ЗаявкаНаБракРасшифровка.Склад
+ПОМЕСТИТЬ ЗаявкаНаБрак
+ИЗ
+	Документ.ЗаявкаНаБрак.Расшифровка КАК ЗаявкаНаБракРасшифровка
+
+СГРУППИРОВАТЬ ПО
+	ЗаявкаНаБракРасшифровка.Ссылка,
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	ЗаявкаНаБракРасшифровка.Склад
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВЫБОР
+		КОГДА Врем.ЗаявкаНаБрак.НаПеремещение
+			ТОГДА Врем.ЗаявкаНаБрак.Филиал
+		ИНАЧЕ Врем.ЗаявкаНаБрак.Контрагент
+	КОНЕЦ КАК Контрагент,
+	Врем.ЗаявкаНаБрак КАК Заявка,
+	Врем.Регистратор КАК Регистратор,
+	Врем.Номенклатура,
+	Врем.КоличествоОборот - ЗаявкаНаБракРасшифровка.КоличествоПринято КАК Количество,
+	Врем.Склад,
+	Врем.Номенклатура.ЕдиницаХраненияОстатков.Объем * (Врем.КоличествоОборот - ЗаявкаНаБракРасшифровка.КоличествоПринято) КАК Объем,
+	Врем.Номенклатура.ЕдиницаХраненияОстатков.Вес * (Врем.КоличествоОборот - ЗаявкаНаБракРасшифровка.КоличествоПринято) КАК Вес,
+	Врем.ДоговорКонтрагента,
+	ВЫБОР
+		КОГДА Врем.ЗаявкаНаБрак.АдресДоставки ПОДОБНО ""
+			ТОГДА Врем.Регистратор.АдресДоставки
+		ИНАЧЕ Врем.ЗаявкаНаБрак.АдресДоставки
+	КОНЕЦ КАК Адрес
+ИЗ
+	Врем КАК Врем
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ ЗаявкаНаБрак КАК ЗаявкаНаБракРасшифровка
+		ПО Врем.ЗаявкаНаБрак = ЗаявкаНаБракРасшифровка.Ссылка
+			И Врем.Номенклатура = ЗаявкаНаБракРасшифровка.Номенклатура
+			И (ВЫБОР
+				КОГДА ЗаявкаНаБракРасшифровка.Склад = ЗНАЧЕНИЕ(Справочник.Склады.ПустаяСсылка)
+					ТОГДА ИСТИНА
+				ИНАЧЕ Врем.Склад = ЗаявкаНаБракРасшифровка.Склад
+			КОНЕЦ)
+ГДЕ
+	Врем.КоличествоОборот &gt; 0
+	И Врем.КоличествоОборот - ЗаявкаНаБракРасшифровка.КоличествоПринято &gt; 0
+	И Врем.Склад.Подразделение В(&amp;СписокПодразделений)
+
+УПОРЯДОЧИТЬ ПО
+	Заявка,
+	Контрагент</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Вес</dataPath>
+			<expression>Сумма(Вес)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Количество</dataPath>
+			<expression>Сумма(Количество)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Объем</dataPath>
+			<expression>Сумма(Объем)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Отклонить</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отклонить</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:EnumRef.СостоянияЗаявкиНаБрак</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СписокПодразделений</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список подразделений</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Количество</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Заявка</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Номенклатура</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Адрес</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Склад</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

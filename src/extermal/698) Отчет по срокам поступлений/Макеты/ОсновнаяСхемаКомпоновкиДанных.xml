@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПоступления</dataPath>
+				<field>ДатаПоступления</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПриходаВПортИлиНаТаможнюETA</dataPath>
+				<field>ДатаПриходаВПортИлиНаТаможнюETA</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказПоставщику.Ссылка КАК ЗаказПоставщику,
+	ЗаказПоставщику.ДатаПоступления,
+	ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA,
+	ЗаказПоставщику.Контрагент
+ИЗ
+	Документ.ЗаказПоставщику КАК ЗаказПоставщику
+ГДЕ
+	ЗаказПоставщику.Проведен
+	И ЗаказПоставщику.ВалютаДокумента &lt;&gt; &amp;ВалютаРуб
+	И ЗаказПоставщику.ДатаПоступления &gt; ДОБАВИТЬКДАТЕ(ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA, ДЕНЬ, 7)
+	И ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA &lt;&gt; ДАТАВРЕМЯ(1, 1, 1)
+	И ЗаказПоставщику.ДатаПоступления &lt;= &amp;ТекДата</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных2</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаЗаказа</dataPath>
+				<field>ДатаЗаказа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПриходаВПортИлиНаТаможнюETA2</dataPath>
+				<field>ДатаПриходаВПортИлиНаТаможнюETA2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата прихода в порт или на таможню ETA</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику2</dataPath>
+				<field>ЗаказПоставщику2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Заказ поставщику</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент2</dataPath>
+				<field>Контрагент2</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Контрагент</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказПоставщику.Ссылка КАК ЗаказПоставщику2,
+	ЗаказПоставщику.Дата КАК ДатаЗаказа,
+	ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA КАК ДатаПриходаВПортИлиНаТаможнюETA2,
+	ЗаказПоставщику.Контрагент КАК Контрагент2
+ИЗ
+	Документ.ЗаказПоставщику КАК ЗаказПоставщику
+ГДЕ
+	ЗаказПоставщику.Проведен
+	И ЗаказПоставщику.ВалютаДокумента &lt;&gt; &amp;ВалютаРуб
+	И ДОБАВИТЬКДАТЕ(ЗаказПоставщику.Дата, ДЕНЬ, 45) &lt; ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA
+	И ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA &lt;&gt; ДАТАВРЕМЯ(1, 1, 1)
+	И ЗаказПоставщику.ДатаПоступления &lt;= &amp;ТекДата</query>
+		</dataSet>
+		<parameter>
+			<name>ВалютаРуб</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Валюта руб</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Валюты</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Валюты.НайтиПокоду("643")</expression>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тек дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>ТекущаяДата()</expression>
+		</parameter>
+		<nestedSchema>
+			<name>Отчет1</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет1</d4p1:content>
+				</d4p1:item>
+			</title>
+			<schema>
+				<dataSource>
+					<name>ИсточникДанных1</name>
+					<dataSourceType>Local</dataSourceType>
+				</dataSource>
+				<dataSet xsi:type="DataSetQuery">
+					<name>НаборДанных1</name>
+					<field xsi:type="DataSetFieldField">
+						<dataPath>Дата</dataPath>
+						<field>Дата</field>
+					</field>
+					<field xsi:type="DataSetFieldField">
+						<dataPath>Ссылка</dataPath>
+						<field>Ссылка</field>
+					</field>
+					<field xsi:type="DataSetFieldField">
+						<dataPath>ДатаПриходаВПортИлиНаТаможнюETA</dataPath>
+						<field>ДатаПриходаВПортИлиНаТаможнюETA</field>
+					</field>
+					<dataSource>ИсточникДанных1</dataSource>
+					<query>ВЫБРАТЬ
+	ЗаказПоставщику.Ссылка,
+	ЗаказПоставщику.Дата,
+	ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA
+ИЗ
+	Документ.ЗаказПоставщику КАК ЗаказПоставщику
+ГДЕ
+	ЗаказПоставщику.Проведен
+	И ЗаказПоставщику.ВалютаДокумента &lt;&gt; &amp;ВалютаРуб
+	И ДОБАВИТЬКДАТЕ(ЗаказПоставщику.Дата, ДЕНЬ, 45) &gt; ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA</query>
+				</dataSet>
+				<parameter>
+					<name>ВалютаРуб</name>
+					<title xmlns:d6p1="http://v8.1c.ru/8.1/data/core" xsi:type="d6p1:LocalStringType">
+						<d6p1:item>
+							<d6p1:lang>ru</d6p1:lang>
+							<d6p1:content>Валюта руб</d6p1:content>
+						</d6p1:item>
+					</title>
+					<valueType>
+						<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d7p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d7p1:CatalogRef.Валюты</Type>
+					</valueType>
+					<value xsi:nil="true"/>
+					<useRestriction>true</useRestriction>
+				</parameter>
+				<settingsVariant>
+					<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+					<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+					<settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows">
+						<selection>
+							<item xsi:type="SelectedItemField">
+								<field>Ссылка</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>Дата</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>ДатаПриходаВПортИлиНаТаможнюETA</field>
+							</item>
+						</selection>
+						<order>
+							<item xsi:type="OrderItemField">
+								<field>Ссылка</field>
+								<orderType>Asc</orderType>
+							</item>
+						</order>
+						<item xsi:type="StructureItemGroup">
+							<groupItems>
+								<item xsi:type="GroupItemField">
+									<field>Ссылка.Контрагент</field>
+									<groupType>Items</groupType>
+									<periodAdditionType>None</periodAdditionType>
+									<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+									<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+								</item>
+							</groupItems>
+							<order>
+								<item xsi:type="OrderItemAuto"/>
+							</order>
+							<selection>
+								<item xsi:type="SelectedItemAuto"/>
+							</selection>
+							<item xsi:type="StructureItemGroup">
+								<order>
+									<item xsi:type="OrderItemAuto"/>
+								</order>
+								<selection>
+									<item xsi:type="SelectedItemAuto"/>
+								</selection>
+							</item>
+						</item>
+					</settings>
+				</settingsVariant>
+			</schema>
+			<settings xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows"/>
+		</nestedSchema>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказПоставщику</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПоступления</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПриходаВПортИлиНаТаможнюETA</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказПоставщику2</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаЗаказа</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПриходаВПортИлиНаТаможнюETA2</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент2</field>
+		</item>
+	</selection>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>ЗаказПоставщику</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Контрагент</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Дата прихода в порт + 7 дней больше даты поступления</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику.ДатаПриходаВПортИлиНаТаможнюETA</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику.ДатаПоступления</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<outputParameters>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+					<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+				</dcscor:item>
+			</outputParameters>
+		</item>
+	</item>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент2</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Контрагент2</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Заголовок</dcscor:parameter>
+				<dcscor:value xsi:type="v8:LocalStringType">
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Дата заказа + 45 дней больше даты прихода в порт</v8:content>
+					</v8:item>
+				</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику2</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику2.Дата</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику2.ДатаПриходаВПортИлиНаТаможнюETA</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<outputParameters>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+					<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+				</dcscor:item>
+			</outputParameters>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Исполнитель</dataPath>
+				<field>Исполнитель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоДней</dataPath>
+				<field>КоличествоДней</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоЧеловек</dataPath>
+				<field>КоличествоЧеловек</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Международная</dataPath>
+				<field>Международная</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>месяц</dataPath>
+				<field>месяц</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Направление</dataPath>
+				<field>Направление</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ответственный</dataPath>
+				<field>Ответственный</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проезд</dataPath>
+				<field>Проезд</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проживание</dataPath>
+				<field>Проживание</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПрочиеРасходы</dataPath>
+				<field>ПрочиеРасходы</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сотрудник</dataPath>
+				<field>Сотрудник</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Суточные</dataPath>
+				<field>Суточные</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УтвержденоНОК</dataPath>
+				<field>УтвержденоНОК</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УтвержденоОтветственным</dataPath>
+				<field>УтвержденоОтветственным</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>День</dataPath>
+				<field>День</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуточныеСверхНорм</dataPath>
+				<field>СуточныеСверхНорм</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Суточные сверх нормы</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ПланированиеКомандировок.Месяц КАК День,
+	ВЫБОР
+		КОГДА ПланированиеКомандировок.Подразделение.Планирование
+			ТОГДА ПланированиеКомандировок.Подразделение
+		ИНАЧЕ ПланированиеКомандировок.Подразделение.Родитель
+	КОНЕЦ КАК Подразделение,
+	ПланированиеКомандировок.Сотрудник,
+	ПланированиеКомандировок.Ответственный,
+	ПланированиеКомандировок.Международная,
+	ПланированиеКомандировок.Направление,
+	ПланированиеКомандировок.Исполнитель,
+	ПланированиеКомандировок.КоличествоЧеловек,
+	ПланированиеКомандировок.КоличествоДней,
+	ВЫБОР
+		КОГДА ПланированиеКомандировок.Международная
+			ТОГДА ПланированиеКомандировок.Суточные
+		ИНАЧЕ ПланированиеКомандировок.Суточные * 0.7
+	КОНЕЦ КАК Суточные,
+	ПланированиеКомандировок.Проезд,
+	ПланированиеКомандировок.ПрочиеРасходы,
+	ПланированиеКомандировок.Проживание,
+	ПланированиеКомандировок.УтвержденоОтветственным,
+	ПланированиеКомандировок.УтвержденоНОК,
+	НАЧАЛОПЕРИОДА(ПланированиеКомандировок.Месяц, МЕСЯЦ) КАК месяц,
+	ВЫБОР
+		КОГДА ПланированиеКомандировок.Международная
+			ТОГДА 0
+		ИНАЧЕ ПланированиеКомандировок.Суточные * 0.3
+	КОНЕЦ КАК СуточныеСверхНорм
+ИЗ
+	РегистрСведений.ПланированиеКомандировок КАК ПланированиеКомандировок
+ГДЕ
+	ПланированиеКомандировок.ПериодПланирования = &amp;ПериодПланирования
+	И ПланированиеКомандировок.ПериодБюджета = &amp;ПериодБюджета
+	И ПланированиеКомандировок.УтвержденоНОК = ИСТИНА
+{ГДЕ
+	(ВЫБОР
+			КОГДА ПланированиеКомандировок.Подразделение.Планирование
+				ТОГДА ПланированиеКомандировок.Подразделение
+			ИНАЧЕ ПланированиеКомандировок.Подразделение.Родитель
+		КОНЕЦ)= &amp;Подразделение}</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Проезд</dataPath>
+			<expression>Сумма(Проезд)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Проживание</dataPath>
+			<expression>Сумма(Проживание)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПрочиеРасходы</dataPath>
+			<expression>Сумма(ПрочиеРасходы)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Суточные</dataPath>
+			<expression>Сумма(Суточные)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуточныеСверхНорм</dataPath>
+			<expression>Сумма(СуточныеСверхНорм)</expression>
+		</totalField>
+		<parameter>
+			<name>ПериодБюджета</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период бюджета</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ПериодыПланирования</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ПериодПланирования</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период планирования</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>9</Length>
+					<AllowedLength>Variable</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<value xsi:type="xs:string">Полугодие</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Подразделение</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Подразделение</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>По подразделениям</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной1</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>По месяцам</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Проезд</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Проживание</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрочиеРасходы</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Суточные</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуточныеСверхНорм</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Подразделение</field>
+				<groupType>Hierarchy</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<use>false</use>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Месяц</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+		<item xsi:type="StructureItemGroup">
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+				<item xsi:type="OrderItemField">
+					<field>месяц</field>
+					<orderType>Asc</orderType>
+				</item>
+				<item xsi:type="OrderItemField">
+					<field>Сотрудник</field>
+					<orderType>Asc</orderType>
+				</item>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+				<item xsi:type="SelectedItemField">
+					<field>месяц</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>Международная</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Направление</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Сотрудник</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>УтвержденоОтветственным</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>Ответственный</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>УтвержденоНОК</field>
+				</item>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Проезд</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Проживание</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрочиеРасходы</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Суточные</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуточныеСверхНорм</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Месяц</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Подразделение</field>
+					<groupType>Hierarchy</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+					<item xsi:type="SelectedItemField">
+						<field>месяц</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Международная</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Направление</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Сотрудник</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>УтвержденоОтветственным</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>Ответственный</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>УтвержденоНОК</field>
+					</item>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

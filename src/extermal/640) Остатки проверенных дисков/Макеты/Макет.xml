@@ -1,0 +1,670 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Остаток</dataPath>
+				<field>Остаток</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОстатокПроверен</dataPath>
+				<field>ОстатокПроверен</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПрошедшаяНагрузка</dataPath>
+				<field>ПрошедшаяНагрузка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МинимальнаяПрошедшаяНагрузка</dataPath>
+				<field>МинимальнаяПрошедшаяНагрузка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Была хотя бы одна проверка</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТестПройден</dataPath>
+				<field>ТестПройден</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Тест не пройден хотя бы раз</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диаметр</dataPath>
+				<field>Диаметр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МинимальнаяНагрузка</dataPath>
+				<field>МинимальнаяНагрузка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВЭД</dataPath>
+				<field>ВЭД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>АдресХранения</dataPath>
+				<field>АдресХранения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВСтопЛисте</dataPath>
+				<field>ВСтопЛисте</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоОтгрузке</dataPath>
+				<field>НоОтгрузке</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>На отгрузке</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоВпути</dataPath>
+				<field>КоличествоВпути</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УжеТестируются</dataPath>
+				<field>УжеТестируются</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерПартии</dataPath>
+				<field>НомерПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерКонтейнера</dataPath>
+				<field>НомерКонтейнера</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ПроверкаОстатка
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;Свойство
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение КАК Значение
+ПОМЕСТИТЬ МинимальнаяНагрузка
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;СвойствоМинНагрузка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПровереннаяНагрузкаДисков.Номенклатура,
+	ПровереннаяНагрузкаДисков.ПрошедшаяНагрузка,
+	ПровереннаяНагрузкаДисков.ТестПройден,
+	ПровереннаяНагрузкаДисков.НомерПартии,
+	ВЫБОР
+		КОГДА ПровереннаяНагрузкаДисков.НомерКонтейнера = ""
+			ТОГДА "нет"
+		ИНАЧЕ ПровереннаяНагрузкаДисков.НомерКонтейнера
+	КОНЕЦ КАК НомерКонтейнера
+ПОМЕСТИТЬ Нагрузка
+ИЗ
+	РегистрСведений.ПровереннаяНагрузкаДисков КАК ПровереннаяНагрузкаДисков
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказыПоставщикамОстатки.Номенклатура,
+	ЗаказыПоставщикамОстатки.КоличествоОстаток
+ПОМЕСТИТЬ ТоварыВПути
+ИЗ
+	РегистрНакопления.ЗаказыПоставщикам.Остатки КАК ЗаказыПоставщикамОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НоменклатураИмпорт.Номенклатура
+ПОМЕСТИТЬ СтопЛист
+ИЗ
+	РегистрСведений.НоменклатураИмпорт КАК НоменклатураИмпорт
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	РезервНаСкладахОстатки.Номенклатура,
+	СУММА(РезервНаСкладахОстатки.КоличествоОстаток) КАК КоличествоОстаток
+ПОМЕСТИТЬ НаОтгрузке
+ИЗ
+	РегистрНакопления.РезервНаСкладах.Остатки КАК РезервНаСкладахОстатки
+
+СГРУППИРОВАТЬ ПО
+	РезервНаСкладахОстатки.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ТоварыНаСкладахОстатки.Номенклатура
+ПОМЕСТИТЬ ТоварыУжеНаТесте
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Остатки(
+			,
+			Склад = &amp;АнгарРемонт
+				ИЛИ Склад = &amp;АнгарТест) КАК ТоварыНаСкладахОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ТоварыНаСкладахОстатки.Номенклатура,
+	ТоварыНаСкладахОстатки.КоличествоОстаток КАК Остаток,
+	ЕСТЬNULL(ПроверкаОстатка.Значение, ЛОЖЬ) КАК ОстатокПроверен,
+	ЕСТЬNULL(Нагрузка.ПрошедшаяНагрузка, 0) КАК ПрошедшаяНагрузка,
+	ЕСТЬNULL(Нагрузка.ПрошедшаяНагрузка, 0) КАК МинимальнаяПрошедшаяНагрузка,
+	ЕСТЬNULL(Нагрузка.ТестПройден, ЛОЖЬ) КАК ТестПройден,
+	Нагрузка.НомерПартии,
+	Нагрузка.НомерКонтейнера,
+	ТоварыНаСкладахОстатки.Номенклатура.Типоразмер.Диаметр КАК Диаметр,
+	ТоварыНаСкладахОстатки.Номенклатура.Код КАК Код,
+	ЕСТЬNULL(МинимальнаяНагрузка.Значение, 0) КАК МинимальнаяНагрузка,
+	ВЫБОР
+		КОГДА СтопЛист.Номенклатура ЕСТЬ NULL 
+			ТОГДА ЛОЖЬ
+		ИНАЧЕ ИСТИНА
+	КОНЕЦ КАК ВСтопЛисте,
+	ЕСТЬNULL(НаОтгрузке.КоличествоОстаток, 0) КАК НоОтгрузке,
+	ЕСТЬNULL(ТоварыВПути.КоличествоОстаток, 0) КАК КоличествоВпути,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ТоварыУжеНаТесте.Номенклатура, ЛОЖЬ) &lt;&gt; ЛОЖЬ
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК УжеТестируются
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Остатки(
+			,
+			(Склад.ЗапретитьИспользование = ЛОЖЬ
+				ИЛИ Склад = &amp;АнгарТест)
+				И ЕСТЬNULL(Склад.Подразделение.ОбособленноеПодразделение, ЛОЖЬ) = ЛОЖЬ
+				И Номенклатура.НоменклатурнаяГруппа = &amp;Литые) КАК ТоварыНаСкладахОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ ПроверкаОстатка КАК ПроверкаОстатка
+		ПО ТоварыНаСкладахОстатки.Номенклатура = ПроверкаОстатка.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ МинимальнаяНагрузка КАК МинимальнаяНагрузка
+		ПО ТоварыНаСкладахОстатки.Номенклатура = МинимальнаяНагрузка.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ Нагрузка КАК Нагрузка
+		ПО ТоварыНаСкладахОстатки.Номенклатура = Нагрузка.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ ТоварыВПути КАК ТоварыВПути
+		ПО ТоварыНаСкладахОстатки.Номенклатура = ТоварыВПути.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ СтопЛист КАК СтопЛист
+		ПО ТоварыНаСкладахОстатки.Номенклатура = СтопЛист.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ НаОтгрузке КАК НаОтгрузке
+		ПО ТоварыНаСкладахОстатки.Номенклатура = НаОтгрузке.Номенклатура
+		ЛЕВОЕ СОЕДИНЕНИЕ ТоварыУжеНаТесте КАК ТоварыУжеНаТесте
+		ПО ТоварыНаСкладахОстатки.Номенклатура = ТоварыУжеНаТесте.Номенклатура</query>
+		</dataSet>
+		<calculatedField>
+			<dataPath>НагрузкаПечать</dataPath>
+			<expression/>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нагрузка печать</d4p1:content>
+				</d4p1:item>
+			</title>
+			<appearance>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+					<parameter>Формат</parameter>
+					<value xsi:type="xs:string">ЧДЦ=0</value>
+				</item>
+			</appearance>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>15</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+		</calculatedField>
+		<calculatedField>
+			<dataPath>Итого</dataPath>
+			<expression/>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Итого</d4p1:content>
+				</d4p1:item>
+			</title>
+		</calculatedField>
+		<calculatedField>
+			<dataPath>Итого1</dataPath>
+			<expression/>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Итого1</d4p1:content>
+				</d4p1:item>
+			</title>
+			<appearance>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+					<parameter>Формат</parameter>
+					<value xsi:type="xs:string">ЧДЦ=2</value>
+				</item>
+			</appearance>
+		</calculatedField>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>Максимум(Остаток)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НагрузкаПечать</dataPath>
+			<expression>Выбор когда Минимум(ВычислитьВыражениеСГруппировкойМассив("ПрошедшаяНагрузка","Номенклатура"))&lt;Минимум(ВычислитьВыражениеСГруппировкойМассив("МинимальнаяНагрузка","Номенклатура"))  тогда Минимум(ВычислитьВыражениеСГруппировкойМассив("ПрошедшаяНагрузка","Номенклатура")) иначе  Минимум(ВычислитьВыражениеСГруппировкойМассив("МинимальнаяНагрузка","Номенклатура")) конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОстатокПроверен</dataPath>
+			<expression>Максимум(ОстатокПроверен)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Итого</dataPath>
+			<expression>ВычислитьВыражение("Сумма(Остаток)","Номенклатура","Группировка","Первая","Текущая",,,)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПрошедшаяНагрузка</dataPath>
+			<expression>Массив(ПрошедшаяНагрузка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>МинимальнаяПрошедшаяНагрузка</dataPath>
+			<expression>Выбор когда Минимум(ВычислитьВыражениеСГруппировкойМассив("ПрошедшаяНагрузка","Номенклатура"))=0 тогда Ложь иначе Истина конец</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<totalField>
+			<dataPath>ОстатокПроверен</dataPath>
+			<expression>""</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПрошедшаяНагрузка</dataPath>
+			<expression>0</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ТестПройден</dataPath>
+			<expression>Максимум(ТестПройден)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ТестПройден</dataPath>
+			<expression>""</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Итого1</dataPath>
+			<expression>isNull(ВычислитьВыражение("Сумма(Остаток)","Номенклатура","Группировка","Первая","Предыдущая",,,),0)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>МинимальнаяНагрузка</dataPath>
+			<expression>Минимум(МинимальнаяНагрузка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>МинимальнаяНагрузка</dataPath>
+			<expression>""</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>ВычислитьВыражение("Сумма(Остаток)","Номенклатура","Группировка","Первая","Текущая",,,)</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВСтопЛисте</dataPath>
+			<expression>Максимум(ВСтопЛисте)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НоОтгрузке</dataPath>
+			<expression>Максимум(НоОтгрузке)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НоОтгрузке</dataPath>
+			<expression>ВычислитьВыражение("Сумма(НоОтгрузке)","Номенклатура","Группировка","Первая","Текущая",,,)</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоВпути</dataPath>
+			<expression>Максимум(КоличествоВпути)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоВпути</dataPath>
+			<expression>ВычислитьВыражение("Сумма(КоличествоВПути)","Номенклатура","Группировка","Первая","Текущая",,,)</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>УжеТестируются</dataPath>
+			<expression>Максимум(УжеТестируются)</expression>
+			<group>Номенклатура</group>
+		</totalField>
+		<totalField>
+			<dataPath>НомерПартии</dataPath>
+			<expression>Массив(НомерПартии)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НомерПартии</dataPath>
+			<expression>""</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>НомерКонтейнера</dataPath>
+			<expression>Массив(НомерКонтейнера)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НомерКонтейнера</dataPath>
+			<expression>""</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>На дату</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Свойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>планыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90255")</expression>
+		</parameter>
+		<parameter>
+			<name>СвойствоМинНагрузка</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство мин нагрузка</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>планыВидовХарактеристик.СвойстваОбъектов.НайтиПоКоду("90250")</expression>
+		</parameter>
+		<parameter>
+			<name>Литые</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Литые</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НоменклатурныеГруппы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.НоменклатурныеГруппы.НайтиПоКоду("00026")</expression>
+		</parameter>
+		<parameter>
+			<name>ВыбратьОстаток</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Выгружать до</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>15</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>АнгарТест</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ангар тест</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Склады.НайтиПоКоду("02332")</expression>
+		</parameter>
+		<parameter>
+			<name>АнгарРемонт</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ангар ремонт</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.Склады.НайтиПоКоду("02316")</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">ОстатокПроверен</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="xs:boolean">false</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">МинимальнаяПрошедшаяНагрузка</left>
+			<comparisonType>Equal</comparisonType>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Склад</left>
+			<comparisonType>Equal</comparisonType>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыбратьОстаток</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">1000</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Остаток</field>
+			<orderType>Desc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Код</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Номенклатура</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<field>Диаметр</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>Остаток</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоВПути</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НоОтгрузке</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ОстатокПроверен</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>МинимальнаяПрошедшаяНагрузка</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>МинимальнаяНагрузка</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПрошедшаяНагрузка</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НагрузкаПечать</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Итого</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ОстатокПроверен</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ВСтопЛисте</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>УжеТестируются</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ТестПройден</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НомерПартии</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НомерКонтейнера</field>
+			</item>
+		</selection>
+		<conditionalAppearance>
+			<item>
+				<selection/>
+				<filter>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Итого1</left>
+						<comparisonType>Less</comparisonType>
+						<right xsi:type="dcscor:Field">ПараметрыДанных.ВыбратьОстаток</right>
+					</item>
+				</filter>
+				<appearance>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">web:LightCyan</dcscor:value>
+					</dcscor:item>
+				</appearance>
+			</item>
+		</conditionalAppearance>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

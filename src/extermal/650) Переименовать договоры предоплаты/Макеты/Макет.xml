@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>БезНал</dataPath>
+				<field>БезНал</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Важность</dataPath>
+				<field>Важность</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДопустимоеЧислоДнейЗадолженности</dataPath>
+				<field>ДопустимоеЧислоДнейЗадолженности</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕстьНал</dataPath>
+				<field>ЕстьНал</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Нал</dataPath>
+				<field>Нал</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновноеНаправлениеПродаж</dataPath>
+				<field>ОсновноеНаправлениеПродаж</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойДоговор</dataPath>
+				<field>ОсновнойДоговор</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">5</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">10</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджер</dataPath>
+				<field>ОсновнойМенеджер</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">5</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОтветственноеЛицоОсновногоДоговора</dataPath>
+				<field>ОтветственноеЛицоОсновногоДоговора</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>способОтгрузки</dataPath>
+				<field>способОтгрузки</field>
+				<valueType>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+					<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+						<Length>0</Length>
+						<AllowedLength>Variable</AllowedLength>
+					</StringQualifiers>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТипДоговора</dataPath>
+				<field>ТипДоговора</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УсловияОплаты</dataPath>
+				<field>УсловияОплаты</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	А.Контрагент КАК Контрагент,
+	А.Контрагент.ОсновнойДоговорКонтрагента КАК ОсновнойДоговорКонтрагента,
+	А.Контрагент.ОсновнойДоговорКонтрагента.ОтветственноеЛицо КАК ОтветственноеЛицоОсновногоДоговора,
+	А.Контрагент.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджерКонтрагента,
+	А.Контрагент.УсловияОплаты КАК УсловияОплаты,
+	А.Контрагент.Безнал КАК БезНал,
+	А.Контрагент.Нал КАК Нал,
+	А.Контрагент.способОтгрузки КАК способОтгрузки,
+	А.Контрагент.ОсновнойДоговорКонтрагента.ТипДоговора КАК ТипДоговора,
+	А.Контрагент.ДопустимоеЧислоДнейЗадолженности КАК ДопустимоеЧислоДнейЗадолженности,
+	А.Контрагент.КатегорияПокупателя КАК ОсновноеНаправлениеПродаж
+ПОМЕСТИТЬ вт
+ИЗ
+	(ВЫБРАТЬ
+		Контрагенты.Ссылка КАК Контрагент
+	ИЗ
+		Справочник.Контрагенты КАК Контрагенты
+	ГДЕ
+		Контрагенты.ОсновнойМенеджерКонтрагента В(&amp;Пользователь)
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		ДоговорыКонтрагентов.Владелец
+	ИЗ
+		Справочник.ДоговорыКонтрагентов КАК ДоговорыКонтрагентов
+	ГДЕ
+		ДоговорыКонтрагентов.ОтветственноеЛицо В(&amp;Пользователь)) КАК А
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.Контрагент КАК Контрагент,
+	вт.ОсновнойДоговорКонтрагента,
+	вт.ОтветственноеЛицоОсновногоДоговора,
+	вт.ОсновнойМенеджерКонтрагента,
+	вт.УсловияОплаты,
+	вт.БезНал,
+	вт.Нал,
+	вт.ТипДоговора,
+	вт.ДопустимоеЧислоДнейЗадолженности,
+	вт.способОтгрузки.Наименование КАК способОтгрузки,
+	вт.ОсновноеНаправлениеПродаж,
+	ЕСТЬNULL(СвойствоВажность.Важность, 0) КАК Важность
+ПОМЕСТИТЬ вт2
+ИЗ
+	вт КАК вт
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ПродажиОбороты.ДоговорКонтрагента.Владелец КАК ДоговорКонтрагентаВладелец
+		ИЗ
+			РегистрНакопления.Продажи.Обороты(
+					&amp;НачПериода,
+					,
+					,
+					ДоговорКонтрагента.Владелец В
+							(ВЫБРАТЬ
+								вт.Контрагент
+							ИЗ
+								вт)
+						И ДоговорКонтрагента.ОтветственноеЛицо В (&amp;Пользователь)) КАК ПродажиОбороты) КАК взПродажи
+		ПО (взПродажи.ДоговорКонтрагентаВладелец = вт.Контрагент)
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЗначенияСвойствОбъектов.Объект КАК Контрагент,
+			ЗначенияСвойствОбъектов.Значение КАК Важность
+		ИЗ
+			РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ГДЕ
+			ЗначенияСвойствОбъектов.Свойство = &amp;СвойствоВажность
+			И ЗначенияСвойствОбъектов.Объект В
+					(ВЫБРАТЬ
+						вт.Контрагент
+					ИЗ
+						вт)) КАК СвойствоВажность
+		ПО вт.Контрагент = СвойствоВажность.Контрагент
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт2.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджер,
+	вт2.Контрагент КАК Контрагент,
+	вт2.Важность,
+	вт2.ОсновноеНаправлениеПродаж,
+	вт2.ОсновнойДоговорКонтрагента КАК ОсновнойДоговор,
+	вт2.ОтветственноеЛицоОсновногоДоговора,
+	вт2.УсловияОплаты,
+	вт2.БезНал,
+	вт2.Нал,
+	вт2.ТипДоговора,
+	вт2.ДопустимоеЧислоДнейЗадолженности,
+	вт2.способОтгрузки,
+	ЕСТЬNULL(взЕстьНалБезнал.ЕстьНал, ЛОЖЬ) КАК ЕстьНал
+ИЗ
+	вт2 КАК вт2
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ПродажиОбороты.ДоговорКонтрагента.Владелец КАК Контрагент,
+			МАКСИМУМ(ВЫБОР
+					КОГДА ПродажиОбороты.ДоговорКонтрагента.Наименование ПОДОБНО "%*%"
+						ТОГДА ИСТИНА
+					ИНАЧЕ ЛОЖЬ
+				КОНЕЦ) КАК ЕстьНал,
+			МАКСИМУМ(ВЫБОР
+					КОГДА ПродажиОбороты.ДоговорКонтрагента.Наименование ПОДОБНО "%*%"
+						ТОГДА ЛОЖЬ
+					ИНАЧЕ ИСТИНА
+				КОНЕЦ) КАК ЕстьБН
+		ИЗ
+			РегистрНакопления.Продажи.Обороты(
+					&amp;НачПериода,
+					,
+					,
+					ДоговорКонтрагента.Владелец В
+						(ВЫБРАТЬ
+							вт2.Контрагент
+						ИЗ
+							вт2)) КАК ПродажиОбороты
+		
+		СГРУППИРОВАТЬ ПО
+			ПродажиОбороты.ДоговорКонтрагента.Владелец) КАК взЕстьНалБезнал
+		ПО вт2.Контрагент = взЕстьНалБезнал.Контрагент</query>
+		</dataSet>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Пользователь</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Пользователь</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Пользователи</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>СвойствоВажность</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство важность</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>ОсновнойМенеджер</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Важность</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОсновнойДоговор</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОтветственноеЛицоОсновногоДоговора</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>УсловияОплаты</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>БезНал</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Нал</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТипДоговора</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДопустимоеЧислоДнейЗадолженности</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>способОтгрузки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЕстьНал</field>
+		</item>
+	</selection>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>ОсновнойМенеджер</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

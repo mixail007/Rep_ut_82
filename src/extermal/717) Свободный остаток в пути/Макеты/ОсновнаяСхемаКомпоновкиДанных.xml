@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Аналог</dataPath>
+				<field>Аналог</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Взаказах</dataPath>
+				<field>Взаказах</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>В заказах</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПути</dataPath>
+				<field>ВПути</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВРезерве</dataPath>
+				<field>ВРезерве</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВЭД</dataPath>
+				<field>ВЭД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателяСезонный</dataPath>
+				<field>ЗаказПокупателяСезонный</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Остаток</dataPath>
+				<field>Остаток</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>PCD</dataPath>
+				<field>PCD</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вылет</dataPath>
+				<field>Вылет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диаметр</dataPath>
+				<field>Диаметр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДиаметрСтупицы</dataPath>
+				<field>ДиаметрСтупицы</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоОтверстий</dataPath>
+				<field>КоличествоОтверстий</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ширина</dataPath>
+				<field>Ширина</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказыПоставщикамОстатки.Номенклатура,
+	ЕСТЬNULL(ЗаказыПоставщикамОстатки.КоличествоОстаток, 0) - ЕСТЬNULL(ЗаказыПокупателейСезонныеОстатки.КоличествоОстаток, 0) КАК Остаток,
+	ЗаказыПокупателейСезонныеОстатки.КоличествоОстаток КАК Взаказах,
+	ЗаказыПоставщикамОстатки.КоличествоОстаток КАК ВПути,
+	ЗаказыПоставщикамОстатки.Номенклатура.Код КАК Код,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.Ширина КАК Ширина,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.Диаметр КАК Диаметр,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.КоличествоОтверстий КАК КоличествоОтверстий,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.PCD КАК PCD,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.Вылет КАК Вылет,
+	ЗаказыПоставщикамОстатки.Номенклатура.Типоразмер.ДиаметрСтупицы КАК ДиаметрСтупицы
+ИЗ
+	РегистрНакопления.ЗаказыПоставщикам.Остатки(, Номенклатура.ВидТовара = ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Диски)) КАК ЗаказыПоставщикамОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПокупателейСезонные.Остатки КАК ЗаказыПокупателейСезонныеОстатки
+		ПО ЗаказыПоставщикамОстатки.Номенклатура = ЗаказыПокупателейСезонныеОстатки.Номенклатура</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Взаказах</dataPath>
+			<expression>Сумма(Взаказах)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ВПути</dataPath>
+			<expression>Сумма(ВПути)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Остаток</dataPath>
+			<expression>Сумма(Остаток)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<left xsi:type="dcscor:Field">Остаток</left>
+			<comparisonType>Greater</comparisonType>
+			<right xsi:type="xs:decimal">0</right>
+		</item>
+	</filter>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Код</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>Код</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Номенклатура</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ВПути</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Взаказах</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Остаток</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Ширина</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Диаметр</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоОтверстий</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>PCD</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Вылет</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ДиаметрСтупицы</field>
+			</item>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

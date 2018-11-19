@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Дата</dataPath>
+				<field>Дата</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номер</dataPath>
+				<field>Номер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ссылка</dataPath>
+				<field>Ссылка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Важность</dataPath>
+				<field>Важность</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВажностьПоАксам</dataPath>
+				<field>ВажностьПоАксам</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидСобытия</dataPath>
+				<field>ВидСобытия</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Категория</dataPath>
+				<field>Категория</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КатегорияПоАксам</dataPath>
+				<field>КатегорияПоАксам</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КонтактноеЛицо</dataPath>
+				<field>КонтактноеЛицо</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеПродаж</dataPath>
+				<field>НаправлениеПродаж</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОписаниеСобытия</dataPath>
+				<field>ОписаниеСобытия</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регион</dataPath>
+				<field>Регион</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СодержаниеСобытия</dataPath>
+				<field>СодержаниеСобытия</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ВТ_Важность
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство.Код = "90184"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ВТ_ВажностьПоАксам
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство.Код = "90268"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ВТ_Категория
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство.Код = "90218"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ВТ_КатегорияПоАксам
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство.Код = "90235"
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Событие.Ссылка,
+	Событие.Номер,
+	Событие.Дата,
+	Событие.Ответственный КАК Менеджер,
+	Событие.ВидСобытия,
+	КИ.Регион,
+	Событие.КонтактноеЛицо,
+	Событие.Контрагент,
+	Событие.СодержаниеСобытия,
+	Событие.ОписаниеСобытия,
+	ВТ_Важность.Значение КАК Важность,
+	ВТ_ВажностьПоАксам.Значение КАК ВажностьПоАксам,
+	ВТ_Категория.Значение КАК Категория,
+	ВТ_КатегорияПоАксам.Значение КАК КатегорияПоАксам,
+	Событие.Ответственный.НаправлениеПродаж КАК НаправлениеПродаж
+ИЗ
+	Документ.Событие КАК Событие
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЮрКИ.Объект КАК Объект,
+			ВЫБОР
+				КОГДА ПОДСТРОКА(ЮрКИ.Регион, 1, 1) = ""
+					ТОГДА ФактКИ.Поле2
+				ИНАЧЕ ЮрКИ.Регион
+			КОНЕЦ КАК Регион
+		ИЗ
+			(ВЫБРАТЬ
+				КонтактнаяИнформация.Объект КАК Объект,
+				КонтактнаяИнформация.Поле2 КАК Регион
+			ИЗ
+				РегистрСведений.КонтактнаяИнформация КАК КонтактнаяИнформация
+			ГДЕ
+				КонтактнаяИнформация.Вид.Код = "00001") КАК ЮрКИ
+				ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.КонтактнаяИнформация КАК ФактКИ
+				ПО ЮрКИ.Объект = ФактКИ.Объект
+					И (ФактКИ.Вид.Код = "00002")) КАК КИ
+		ПО Событие.Контрагент = КИ.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_Важность КАК ВТ_Важность
+		ПО Событие.Контрагент = ВТ_Важность.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_ВажностьПоАксам КАК ВТ_ВажностьПоАксам
+		ПО Событие.Контрагент = ВТ_ВажностьПоАксам.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_Категория КАК ВТ_Категория
+		ПО Событие.Контрагент = ВТ_Категория.Объект
+		ЛЕВОЕ СОЕДИНЕНИЕ ВТ_КатегорияПоАксам КАК ВТ_КатегорияПоАксам
+		ПО Событие.Контрагент = ВТ_КатегорияПоАксам.Объект
+ГДЕ
+	НЕ Событие.ПометкаУдаления
+	И Событие.Дата МЕЖДУ &amp;ДатаНачала И &amp;ДатаОкончания
+	И Событие.Ответственный.Код &lt;&gt; "Робот (центр - номенклатура)"
+	И НЕ Событие.ОписаниеСобытия В (&amp;ОписаниеСобытия)
+	И НЕ Событие.ОписаниеСобытия ПОДОБНО "%Изменено НОВОЕ правило%"
+	И НЕ Событие.ВидСобытия = ЗНАЧЕНИЕ(Перечисление.ВидыСобытий.КомментарийПДЗ)
+	</query>
+		</dataSet>
+		<parameter>
+			<name>ДатаНачала</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата начала</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаОкончания</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата окончания</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ОписаниеСобытия</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Описание события</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>200</Length>
+					<AllowedLength>Variable</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>НаправлениеПродаж</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Менеджер</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Регион</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Важность</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВажностьПоАксам</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Категория</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КатегорияПоАксам</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Дата</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидСобытия</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КонтактноеЛицо</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОписаниеСобытия</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СодержаниеСобытия</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ссылка</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>ОписаниеСобытия</dcscor:parameter>
+			<dcscor:value xsi:type="xs:string">Закрытие заказов покупателей</dcscor:value>
+			<dcscor:value xsi:type="xs:string">Письмо о возникновении ПДЗ</dcscor:value>
+			<dcscor:value xsi:type="xs:string">Проверить крышки</dcscor:value>
+			<dcscor:value xsi:type="xs:string">Недогруз по перемещениям по ТЕНДЕРАМ!</dcscor:value>
+			<dcscor:value xsi:type="xs:string">Создан новый склад</dcscor:value>
+			<dcscor:value xsi:type="xs:string">Согласование электронного документа</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>НаправлениеПродаж</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Менеджер</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>НаправлениеПродаж</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Регион</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

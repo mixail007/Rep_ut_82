@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПриходРасход</dataPath>
+				<field>ПриходРасход</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Статья</dataPath>
+				<field>Статья</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Разница</dataPath>
+				<field>Разница</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сумма</dataPath>
+				<field>Сумма</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>БанковскийСчетКасса</dataPath>
+				<field>БанковскийСчетКасса</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидДенежныхСредств</dataPath>
+				<field>ВидДенежныхСредств</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаВВалюте</dataPath>
+				<field>СуммаВВалюте</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ПланДвиженийДенежныхСредств.Статья,
+	СУММА(ПланДвиженийДенежныхСредств.Неделя1 + ПланДвиженийДенежныхСредств.Неделя2 + ПланДвиженийДенежныхСредств.Неделя3 + ПланДвиженийДенежныхСредств.Неделя4 + ПланДвиженийДенежныхСредств.Неделя5) КАК Сумма,
+	ПланДвиженийДенежныхСредств.Подразделение,
+	ПланДвиженийДенежныхСредств.ПриходРасход,
+	СУММА(ВЫБОР
+			КОГДА ПланДвиженийДенежныхСредств.ПриходРасход = ЗНАЧЕНИЕ(Перечисление.видыДвиженийПриходРасход.Расход)
+				ТОГДА -(ПланДвиженийДенежныхСредств.Неделя1 + ПланДвиженийДенежныхСредств.Неделя2 + ПланДвиженийДенежныхСредств.Неделя3 + ПланДвиженийДенежныхСредств.Неделя4 + ПланДвиженийДенежныхСредств.Неделя5)
+			ИНАЧЕ ПланДвиженийДенежныхСредств.Неделя1 + ПланДвиженийДенежныхСредств.Неделя2 + ПланДвиженийДенежныхСредств.Неделя3 + ПланДвиженийДенежныхСредств.Неделя4 + ПланДвиженийДенежныхСредств.Неделя5
+		КОНЕЦ) КАК Разница,
+	NULL КАК СуммаВВалюте
+ИЗ
+	РегистрСведений.ПланДвиженийДенежныхСредств КАК ПланДвиженийДенежныхСредств
+ГДЕ
+	ПланДвиженийДенежныхСредств.МесяцПланирования = &amp;МесяцПланирования
+	И ПланДвиженийДенежныхСредств.АктивностьЗаписи = ИСТИНА
+
+СГРУППИРОВАТЬ ПО
+	ПланДвиженийДенежныхСредств.Статья,
+	ПланДвиженийДенежныхСредств.Подразделение,
+	ПланДвиженийДенежныхСредств.ПриходРасход
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ВЫБОР
+		КОГДА ДенежныеСредстваОстатки.БанковскийСчетКасса.ВалютаДенежныхСредств.Наименование = "руб."
+			ТОГДА " Рубли"
+		ИНАЧЕ ДенежныеСредстваОстатки.БанковскийСчетКасса.ВалютаДенежныхСредств.Наименование
+	КОНЕЦ,
+	СУММА(ДенежныеСредстваОстатки.СуммаУпрОстаток),
+	NULL,
+	NULL,
+	СУММА(ДенежныеСредстваОстатки.СуммаУпрОстаток),
+	СУММА(ДенежныеСредстваОстатки.СуммаОстаток)
+ИЗ
+	РегистрНакопления.ДенежныеСредства.Остатки({(&amp;МесяцПланирования)}, ) КАК ДенежныеСредстваОстатки
+ГДЕ
+	(ДенежныеСредстваОстатки.БанковскийСчетКасса.Владелец = &amp;Владелец
+			ИЛИ ДенежныеСредстваОстатки.БанковскийСчетКасса.Родитель = &amp;Родитель)
+
+СГРУППИРОВАТЬ ПО
+	ВЫБОР
+		КОГДА ДенежныеСредстваОстатки.БанковскийСчетКасса.ВалютаДенежныхСредств.Наименование = "руб."
+			ТОГДА " Рубли"
+		ИНАЧЕ ДенежныеСредстваОстатки.БанковскийСчетКасса.ВалютаДенежныхСредств.Наименование
+	КОНЕЦ</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Сумма)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Разница</dataPath>
+			<expression>Сумма(Разница)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Разница)</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаВВалюте</dataPath>
+			<expression>Сумма(СуммаВВалюте)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаВВалюте</dataPath>
+			<expression>0</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<parameter>
+			<name>МесяцПланирования</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Месяц планирования</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Владелец</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Владелец</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Организации</Type>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Контрагенты</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Родитель</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Родитель</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Кассы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>МесяцПланирования</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Владелец</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Родитель</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Статья</field>
+				<groupType>Hierarchy</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+			<item xsi:type="SelectedItemField">
+				<field>Сумма</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаВВалюте</field>
+			</item>
+		</selection>
+		<conditionalAppearance>
+			<item>
+				<selection/>
+				<filter>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Статья</left>
+						<comparisonType>InHierarchy</comparisonType>
+						<right xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.РАСХОДЫ</right>
+					</item>
+				</filter>
+				<appearance>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">#FFB59B</dcscor:value>
+					</dcscor:item>
+				</appearance>
+			</item>
+			<item>
+				<selection/>
+				<filter>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Статья</left>
+						<comparisonType>InHierarchy</comparisonType>
+						<right xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.ДОХОДЫ</right>
+					</item>
+				</filter>
+				<appearance>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>ЦветФона</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Color">#33CCCC</dcscor:value>
+					</dcscor:item>
+				</appearance>
+			</item>
+			<item>
+				<selection/>
+				<filter>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Статья.ЭтоГруппа</left>
+						<comparisonType>Equal</comparisonType>
+						<right xsi:type="xs:boolean">true</right>
+					</item>
+				</filter>
+				<appearance>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>Шрифт</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+					</dcscor:item>
+				</appearance>
+			</item>
+		</conditionalAppearance>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Подразделение</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">Подразделение</left>
+					<comparisonType>NotEqual</comparisonType>
+					<right xsi:type="dcscor:DesignTimeValue">Справочник.Подразделения.ПустаяСсылка</right>
+				</item>
+			</filter>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<outputParameters>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+					<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+				</dcscor:item>
+			</outputParameters>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

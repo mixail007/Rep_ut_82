@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ЕмкостьСклада</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидТовара</dataPath>
+				<field>ВидТовара</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоОстаток</dataPath>
+				<field>КоличествоОстаток</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ЧДЦ=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Месяц</dataPath>
+				<field>Месяц</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ДФ='ММMM yyyy'</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазрезДанных</dataPath>
+				<field>РазрезДанных</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>    </d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	&amp;Период,
+	СУММА(ВЫБОР
+			КОГДА НормыЗагрузки.КоэффициентКоличества = 0
+					ИЛИ НормыЗагрузки.КоэффициентКоличества ЕСТЬ NULL 
+				ТОГДА ТоварыНаСкладахОстатки.КоличествоОстаток
+			ИНАЧЕ ТоварыНаСкладахОстатки.КоличествоОстаток * НормыЗагрузки.КоэффициентКоличества
+		КОНЕЦ) КАК Поле1,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ТоварыНаСкладахОстатки.Номенклатура) КАК Номенклатура
+ПОМЕСТИТЬ ТабШины
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Остатки(&amp;Период, Номенклатура.ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.Шины)) КАК ТоварыНаСкладахОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.НормыЗагрузки КАК НормыЗагрузки
+		ПО ТоварыНаСкладахОстатки.Номенклатура.Типоразмер = НормыЗагрузки.Типоразмер
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	&amp;Период,
+	СУММА(ТоварыНаСкладахОстатки.КоличествоОстаток) КАК КоличествоОстаток,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ТоварыНаСкладахОстатки.Номенклатура) КАК Номенклатура
+ПОМЕСТИТЬ ТабДиски
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Остатки(&amp;Период, Номенклатура.ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.Диски)) КАК ТоварыНаСкладахОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	&amp;Период,
+	СУММА(ТоварыНаСкладахОстатки.КоличествоОстаток) КАК КоличествоОстаток,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ТоварыНаСкладахОстатки.Номенклатура) КАК Номенклатура
+ПОМЕСТИТЬ ТабАКБ
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Остатки(&amp;Период, Номенклатура.ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.АКБ)) КАК ТоварыНаСкладахОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Шины) КАК ВидТовара,
+	ТабШины.Период,
+	ТабШины.Поле1 КАК КоличествоОстаток,
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ) КАК Месяц,
+	"Количество шт хранения за период" КАК РазрезДанных
+ИЗ
+	ТабШины КАК ТабШины
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Диски),
+	ТабДиски.Период,
+	ВЫРАЗИТЬ(ТабДиски.КоличествоОстаток КАК ЧИСЛО(15, 2)),
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ),
+	"Количество шт хранения за период"
+ИЗ
+	ТабДиски КАК ТабДиски
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.АКБ),
+	ТабАКБ.Период,
+	ВЫРАЗИТЬ(ТабАКБ.КоличествоОстаток КАК ЧИСЛО(15, 2)),
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ),
+	"Количество шт хранения за период"
+ИЗ
+	ТабАКБ КАК ТабАКБ
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЕмкостьСкладаСрезПоследних.ВидТовара,
+	&amp;Период,
+	ЕмкостьСкладаСрезПоследних.Количество,
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ),
+	"Емкость склада"
+ИЗ
+	РегистрСведений.ЕмкостьСклада.СрезПоследних(
+			&amp;Период,
+			ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.Шины)
+				И Подразделение В (&amp;Подразделение)) КАК ЕмкостьСкладаСрезПоследних
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЕмкостьСкладаСрезПоследних.ВидТовара,
+	&amp;Период,
+	ЕмкостьСкладаСрезПоследних.Количество,
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ),
+	"Емкость склада"
+ИЗ
+	РегистрСведений.ЕмкостьСклада.СрезПоследних(
+			&amp;Период,
+			ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.Диски)
+				И Подразделение В (&amp;Подразделение)) КАК ЕмкостьСкладаСрезПоследних
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЕмкостьСкладаСрезПоследних.ВидТовара,
+	&amp;Период,
+	ЕмкостьСкладаСрезПоследних.Количество,
+	НАЧАЛОПЕРИОДА(&amp;Период, МЕСЯЦ),
+	"Емкость склада"
+ИЗ
+	РегистрСведений.ЕмкостьСклада.СрезПоследних(
+			&amp;Период,
+			ВидТовара = ЗНАЧЕНИЕ(перечисление.ВидыТоваров.АКБ)
+				И Подразделение В (&amp;Подразделение)) КАК ЕмкостьСкладаСрезПоследних</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>Календарь</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПериода</dataPath>
+				<field>ДатаПериода</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	0 КАК Цифра
+ПОМЕСТИТЬ Единицы
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	1
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	2
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	3
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	4
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	5
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	6
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	7
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	8
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	9
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Десятки.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Десятки
+ИЗ
+	Единицы КАК Десятки
+ГДЕ
+	Десятки.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Сотни.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Сотни
+ИЗ
+	Десятки КАК Сотни
+ГДЕ
+	Сотни.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Тысячи.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ Тысячи
+ИЗ
+	Сотни КАК Тысячи
+ГДЕ
+	Тысячи.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДесяткиТысяч.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ ДесяткиТысяч
+ИЗ
+	Тысячи КАК ДесяткиТысяч
+ГДЕ
+	ДесяткиТысяч.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СотниТысяч.Цифра * 10 КАК Цифра
+ПОМЕСТИТЬ СотниТысяч
+ИЗ
+	ДесяткиТысяч КАК СотниТысяч
+ГДЕ
+	СотниТысяч.Цифра * 10 &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Десятки.Цифра + Единицы.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоСотни
+ИЗ
+	Десятки КАК Десятки,
+	Единицы КАК Единицы
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Тысячи.Цифра + Сотни.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоДесятиТысяч
+ИЗ
+	Тысячи КАК Тысячи,
+	Сотни КАК Сотни
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДоДесятиТысяч.Цифра + ДоСотни.Цифра КАК Цифра
+ПОМЕСТИТЬ ПолныеДесятьТысяч
+ИЗ
+	ДоДесятиТысяч КАК ДоДесятиТысяч,
+	ДоСотни КАК ДоСотни
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СотниТысяч.Цифра + ДесяткиТысяч.Цифра КАК Цифра
+ПОМЕСТИТЬ ДоМиллиона
+ИЗ
+	СотниТысяч КАК СотниТысяч,
+	ДесяткиТысяч КАК ДесяткиТысяч
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДОБАВИТЬКДАТЕ(НАЧАЛОПЕРИОДА(&amp;НачалоПериода, ДЕНЬ), ДЕНЬ, ДоМиллиона.Цифра + ПолныеДесятьТысяч.Цифра) КАК ДатаПериода
+ИЗ
+	ДоМиллиона КАК ДоМиллиона,
+	ПолныеДесятьТысяч КАК ПолныеДесятьТысяч
+ГДЕ
+	ДоМиллиона.Цифра + ПолныеДесятьТысяч.Цифра &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)
+
+УПОРЯДОЧИТЬ ПО
+	ДатаПериода</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ТовароОборот</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Дата</dataPath>
+				<field>Дата</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументОприходования</dataPath>
+				<field>ДокументОприходования</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказ</dataPath>
+				<field>Заказ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сотрудник</dataPath>
+				<field>Сотрудник</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидИзмеренияТоварооборот</dataPath>
+				<field>ВидИзмеренияТоварооборот</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодТоварооборот</dataPath>
+				<field>ПериодТоварооборот</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ДФ='MMММ yyyy'</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПоказательТоварооборот</dataPath>
+				<field>ПоказательТоварооборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Показатель</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ДанныеПоГрузчикамОбороты.Сотрудник) КАК КоличествоГрузчиков
+ПОМЕСТИТЬ Грузчики
+ИЗ
+	РегистрНакопления.ДанныеПоГрузчикам.Обороты(, , Период, ) КАК ДанныеПоГрузчикамОбороты
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПартииТоваровНаСкладахОбороты.Период,
+	СУММА(ПартииТоваровНаСкладахОбороты.КоличествоПриход + ПартииТоваровНаСкладахОбороты.КоличествоРасход) КАК Вштуках,
+	СУММА(ПартииТоваровНаСкладахОбороты.СтоимостьПриход + ПартииТоваровНаСкладахОбороты.СтоимостьРасход) КАК Врублях,
+	СУММА(ПартииТоваровНаСкладахОбороты.Номенклатура.ЕдиницаХраненияОстатков.Вес * (ПартииТоваровНаСкладахОбороты.КоличествоПриход + ПартииТоваровНаСкладахОбороты.КоличествоРасход)) КАК Втоннах,
+	СУММА(ПартииТоваровНаСкладахОбороты.Номенклатура.ЕдиницаХраненияОстатков.Вес * (ПартииТоваровНаСкладахОбороты.КоличествоПриход + ПартииТоваровНаСкладахОбороты.КоличествоРасход) / Грузчики.КоличествоГрузчиков) КАК ВтоннахЧеловеках
+ПОМЕСТИТЬ ТовароОборот
+ИЗ
+	РегистрНакопления.ПартииТоваровНаСкладах.Обороты(
+			,
+			,
+			Месяц,
+			НЕ Склад.ЗапретитьИспользование
+				И Номенклатура.ВидТовара &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Прочее)) КАК ПартииТоваровНаСкладахОбороты,
+	Грузчики КАК Грузчики
+
+СГРУППИРОВАТЬ ПО
+	ПартииТоваровНаСкладахОбороты.Период
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ТовароОборот.Период КАК ПериодТоварооборот,
+	ТовароОборот.Вштуках КАК ПоказательТоварооборот,
+	"В штуках" КАК ВидИзмеренияТоварооборот
+ИЗ
+	ТовароОборот КАК ТовароОборот
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ТовароОборот.Период,
+	ТовароОборот.Врублях,
+	"В рублях"
+ИЗ
+	ТовароОборот КАК ТовароОборот
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ТовароОборот.Период,
+	ТовароОборот.Втоннах,
+	"В тоннах"
+ИЗ
+	ТовароОборот КАК ТовароОборот
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ТовароОборот.Период,
+	ТовароОборот.ВтоннахЧеловеках,
+	"тонна/человек"
+ИЗ
+	ТовароОборот КАК ТовароОборот</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>РаботаСклада</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазрезПоказателей</dataPath>
+				<field>РазрезПоказателей</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодСклад</dataPath>
+				<field>ПериодСклад</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	РеализацияТоваровУслугТовары.Ссылка,
+	РеализацияТоваровУслугТовары.Номенклатура,
+	РеализацияТоваровУслугТовары.Склад,
+	РеализацияТоваровУслугТовары.Ссылка.Дата
+ПОМЕСТИТЬ Документы
+ИЗ
+	Документ.РеализацияТоваровУслуг.Товары КАК РеализацияТоваровУслугТовары
+ГДЕ
+	РеализацияТоваровУслугТовары.Ссылка.Дата МЕЖДУ &amp;Началопериода И &amp;КонецПериода
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПеремещениеТоваровТовары.Ссылка,
+	ПеремещениеТоваровТовары.Номенклатура,
+	ПеремещениеТоваровТовары.Склад,
+	ПеремещениеТоваровТовары.Ссылка.Дата
+ИЗ
+	Документ.ПеремещениеТоваров.Товары КАК ПеремещениеТоваровТовары
+ГДЕ
+	ПеремещениеТоваровТовары.Ссылка.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.НомерОчереди,
+	ИнформацияПоПроезду.Реализация
+ПОМЕСТИТЬ ИнформацияпоПроезду
+ИЗ
+	РегистрСведений.ИнформацияПоПроезду КАК ИнформацияПоПроезду
+ГДЕ
+	ИнформацияПоПроезду.Реализация.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.НомерОчереди,
+	ИнформацияПоПроезду.Реализация
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НАЧАЛОПЕРИОДА(ИнформацияпоПроезду.Реализация.Дата, МЕСЯЦ) КАК Период,
+	КОЛИЧЕСТВО(ИнформацияпоПроезду.НомерОчереди) КАК КоличествоЗаявок
+ПОМЕСТИТЬ ПодсчетКоличестваЗаявок
+ИЗ
+	ИнформацияпоПроезду КАК ИнформацияпоПроезду
+
+СГРУППИРОВАТЬ ПО
+	НАЧАЛОПЕРИОДА(ИнформацияпоПроезду.Реализация.Дата, МЕСЯЦ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Документы.Номенклатура) КАК КоличествоАртикулов,
+	КОЛИЧЕСТВО(Документы.Склад) КАК КоличествоСтрок,
+	НАЧАЛОПЕРИОДА(ИнформацияпоПроезду.Реализация.Дата, МЕСЯЦ) КАК Период
+ПОМЕСТИТЬ ПодсчетКоличестваСтрок
+ИЗ
+	ИнформацияпоПроезду КАК ИнформацияпоПроезду
+		ЛЕВОЕ СОЕДИНЕНИЕ Документы КАК Документы
+		ПО ИнформацияпоПроезду.Реализация = Документы.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	НАЧАЛОПЕРИОДА(ИнформацияпоПроезду.Реализация.Дата, МЕСЯЦ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КОЛИЧЕСТВО(ЗаданиеНаОтгрузкуТовары.ПричинаНедогруза) КАК ПричинаНедогруза,
+	НАЧАЛОПЕРИОДА(ЗаданиеНаОтгрузкуТовары.Ссылка.Дата, МЕСЯЦ) КАК Период,
+	СУММА(ВЫБОР
+			КОГДА ЗаданиеНаОтгрузкуТовары.ПричинаНедогруза В (&amp;ОшибкиСклада)
+				ТОГДА 1
+			ИНАЧЕ 0
+		КОНЕЦ) КАК ОшибкиСклада
+ПОМЕСТИТЬ подсчетОшибокСклада
+ИЗ
+	Документ.ЗаданиеНаОтгрузку.Товары КАК ЗаданиеНаОтгрузкуТовары
+ГДЕ
+	ЗаданиеНаОтгрузкуТовары.Ссылка.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+	И НЕ ЗаданиеНаОтгрузкуТовары.ПричинаНедогруза = ЗНАЧЕНИЕ(Перечисление.ПричиныНедогруза.ПустаяССылка)
+
+СГРУППИРОВАТЬ ПО
+	НАЧАЛОПЕРИОДА(ЗаданиеНаОтгрузкуТовары.Ссылка.Дата, МЕСЯЦ)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПодсчетКоличестваЗаявок.Период КАК ПериодСклад,
+	"2.Количество поступивших заявок" КАК РазрезПоказателей,
+	ПодсчетКоличестваЗаявок.КоличествоЗаявок КАК Количество
+ИЗ
+	ПодсчетКоличестваЗаявок КАК ПодсчетКоличестваЗаявок
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПодсчетКоличестваСтрок.Период,
+	"4.Количество строк за период",
+	ПодсчетКоличестваСтрок.КоличествоСтрок
+ИЗ
+	ПодсчетКоличестваСтрок КАК ПодсчетКоличестваСтрок
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПодсчетКоличестваСтрок.Период,
+	"1.Количество артикулов",
+	ПодсчетКоличестваСтрок.КоличествоАртикулов
+ИЗ
+	ПодсчетКоличестваСтрок КАК ПодсчетКоличестваСтрок
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПодсчетКоличестваЗаявок.Период,
+	"3.Количество поступивших заявок на человека",
+	ВЫРАЗИТЬ(ПодсчетКоличестваЗаявок.КоличествоЗаявок / 70 КАК ЧИСЛО(15, 2))
+ИЗ
+	ПодсчетКоличестваЗаявок КАК ПодсчетКоличестваЗаявок
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ПодсчетКоличестваСтрок.Период,
+	"5.Количество строк заявок на человека",
+	ВЫРАЗИТЬ(ПодсчетКоличестваСтрок.КоличествоСтрок / 70 КАК ЧИСЛО(15, 2))
+ИЗ
+	ПодсчетКоличестваСтрок КАК ПодсчетКоличестваСтрок
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	подсчетОшибокСклада.Период,
+	"6.Количество ошибок склада",
+	подсчетОшибокСклада.ОшибкиСклада
+ИЗ
+	подсчетОшибокСклада КАК подсчетОшибокСклада
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	подсчетОшибокСклада.Период,
+	"7. Удельный вес ошибок склада",
+	ВЫРАЗИТЬ(подсчетОшибокСклада.ОшибкиСклада / подсчетОшибокСклада.ПричинаНедогруза * 100 КАК ЧИСЛО(15, 2))
+ИЗ
+	подсчетОшибокСклада КАК подсчетОшибокСклада</query>
+		</dataSet>
+		<dataSetLink>
+			<sourceDataSet>Календарь</sourceDataSet>
+			<destinationDataSet>ЕмкостьСклада</destinationDataSet>
+			<sourceExpression>ДатаПериода</sourceExpression>
+			<destinationExpression>Период</destinationExpression>
+			<parameter>Период</parameter>
+			<parameterListAllowed>false</parameterListAllowed>
+		</dataSetLink>
+		<calculatedField>
+			<dataPath>ДнейВМесяце</dataPath>
+			<expression>РазностьДат(НачалоПериода(Месяц,"Месяц"),КонецПериода(Месяц,"Месяц"),"День")+1</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дней в месяце</d4p1:content>
+				</d4p1:item>
+			</title>
+		</calculatedField>
+		<totalField>
+			<dataPath>КоличествоОстаток</dataPath>
+			<expression>Сумма(КоличествоОстаток)/ДнейВМесяце 
+</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейВМесяце</dataPath>
+			<expression>Максимум(ДнейВМесяце)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПоказательТоварооборот</dataPath>
+			<expression>Сумма(ПоказательТоварооборот)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоОстаток</dataPath>
+			<expression>Среднее(ВычислитьВыражениеСГруппировкойМассив("Сумма(КоличествоОстаток)/ДнейВМесяце
+","Месяц" ))
+</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Количество</dataPath>
+			<expression>Сумма(Количество)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+			<expression>конецпериода(&amp;КонецПериода,"ДЕНЬ")</expression>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ОшибкиСклада</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ошибки склада</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:EnumRef.ПричиныНедогруза</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>Подразделение</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Подразделение</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>КонецПериода</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">2016-01-15T00:00:00</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>НачалоПериода</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">2016-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>DataParametersOutput</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemTable">
+		<name>ЕмкостьСклада</name>
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Месяц</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<name>РазрезДанных</name>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>РазрезДанных</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item>
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ВидТовара</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</row>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоОстаток</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>TotalsPlacement</dcscor:parameter>
+				<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">Begin</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Title</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">Емкость склада</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+	<item xsi:type="StructureItemTable">
+		<name>Товарооборот</name>
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ПериодТоварооборот</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ВидИзмеренияТоварооборот</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</row>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>ПоказательТоварооборот</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>TotalsPlacement</dcscor:parameter>
+				<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">Begin</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>VerticalOverallPlacement</dcscor:parameter>
+				<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
+			</dcscor:item>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Title</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">Товарооборот (приход+расход) склада</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+	<item xsi:type="StructureItemTable">
+		<column>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ПериодСклад</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</column>
+		<row>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>РазрезПоказателей</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</row>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Количество</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>Title</dcscor:parameter>
+				<dcscor:value xsi:type="xs:string">Работа склада</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<template>
+			<name>Макет1</name>
+			<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+				<dcsat:item xsi:type="dcsat:TableRow">
+					<dcsat:tableCell>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:Parameter">количествоОстаток</dcsat:value>
+						</dcsat:item>
+						<dcsat:appIndex>0</dcsat:appIndex>
+					</dcsat:tableCell>
+				</dcsat:item>
+			</template>
+			<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+				<dcsat:name>количествоОстаток</dcsat:name>
+				<dcsat:expression>Формат(ВычислитьВыражение("Сумма(КоличествоОстаток)/ДнейВМесяце 
+","РазрезДанных","Группировка","Последняя","Последняя")/ВычислитьВыражение("Сумма(КоличествоОстаток)/ДнейВМесяце 
+","РазрезДанных","Группировка","Первая","Первая")*100,"ЧДЦ=2")</dcsat:expression>
+			</parameter>
+		</template>
+		<template>
+			<name>Макет2</name>
+			<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+				<dcsat:item xsi:type="dcsat:TableRow">
+					<dcsat:tableCell>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:Parameter">количествоОстаток</dcsat:value>
+						</dcsat:item>
+						<dcsat:appIndex>0</dcsat:appIndex>
+					</dcsat:tableCell>
+				</dcsat:item>
+			</template>
+			<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+				<dcsat:name>количествоОстаток</dcsat:name>
+				<dcsat:expression>Формат(ВычислитьВыражение("Сумма(КоличествоОстаток)/ДнейВМесяце 
+","РазрезДанных","Группировка","Последняя","Последняя")/ВычислитьВыражение("Сумма(КоличествоОстаток)/ДнейВМесяце 
+","РазрезДанных","Группировка","Первая","Первая")*100,"ЧДЦ=2")</dcsat:expression>
+			</parameter>
+		</template>
+		<template>
+			<name>Макет3</name>
+			<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+				<dcsat:item xsi:type="dcsat:TableRow">
+					<dcsat:tableCell>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:d8p1="http://v8.1c.ru/8.1/data/core" xsi:type="d8p1:LocalStringType">
+								<d8p1:item>
+									<d8p1:lang>ru</d8p1:lang>
+									<d8p1:content>% использования площадей</d8p1:content>
+								</d8p1:item>
+							</dcsat:value>
+						</dcsat:item>
+					</dcsat:tableCell>
+				</dcsat:item>
+			</template>
+		</template>
+		<template>
+			<name>Макет4</name>
+			<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+				<dcsat:item xsi:type="dcsat:TableRow">
+					<dcsat:tableCell>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:d8p1="http://v8.1c.ru/8.1/data/core" xsi:type="d8p1:LocalStringType">
+								<d8p1:item>
+									<d8p1:lang>ru</d8p1:lang>
+									<d8p1:content>Средние показатели за период</d8p1:content>
+								</d8p1:item>
+							</dcsat:value>
+						</dcsat:item>
+					</dcsat:tableCell>
+				</dcsat:item>
+			</template>
+		</template>
+		<groupTemplate>
+			<groupField>РазрезДанных</groupField>
+			<templateType>OverallHeader</templateType>
+			<template>Макет3</template>
+		</groupTemplate>
+		<groupTemplate>
+			<groupField>Месяц</groupField>
+			<templateType>OverallHeader</templateType>
+			<template>Макет4</template>
+		</groupTemplate>
+		<totalFieldsTemplate>
+			<groupField1>РазрезДанных</groupField1>
+			<templateType1>OverallHeader</templateType1>
+			<groupField2>Месяц</groupField2>
+			<templateType2>Header</templateType2>
+			<template>Макет1</template>
+		</totalFieldsTemplate>
+		<totalFieldsTemplate>
+			<groupField1>РазрезДанных</groupField1>
+			<templateType1>OverallHeader</templateType1>
+			<groupField2>Месяц</groupField2>
+			<templateType2>OverallHeader</templateType2>
+			<template>Макет2</template>
+		</totalFieldsTemplate>
+	</dataCompositionSchema>
+	<appearance xmlns="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="TableCellAppearance">
+		<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core">
+			<parameter>MinimumWidth</parameter>
+			<value xsi:type="xs:decimal">30</value>
+		</item>
+		<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core">
+			<parameter>MaximumWidth</parameter>
+			<value xsi:type="xs:decimal">30</value>
+		</item>
+	</appearance>
+</SchemaFile>

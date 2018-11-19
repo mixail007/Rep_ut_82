@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПроизводстве</dataPath>
+				<field>ВПроизводстве</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПутиБолее14Дней</dataPath>
+				<field>ВПутиБолее14Дней</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПутиДо14Дней</dataPath>
+				<field>ВПутиДо14Дней</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПутиПросрочено</dataPath>
+				<field>ВПутиПросрочено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДопПоля</dataPath>
+				<field>ДопПоля</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказано</dataPath>
+				<field>Заказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонный</dataPath>
+				<field>ЗаказПоставщикуСезонный</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Поступило</dataPath>
+				<field>Поступило</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВПути</dataPath>
+				<field>ВПути</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказПоставщикуСезонный.Ссылка КАК ЗаказПоставщикуСезонный,
+	МИНИМУМ(ЗаказПоставщикуСезонный.Дата) КАК Дата
+ПОМЕСТИТЬ втДействующиеСЗ
+ИЗ
+	Документ.ЗаказПоставщикуСезонный КАК ЗаказПоставщикуСезонный
+ГДЕ
+	ЗаказПоставщикуСезонный.Проведен = ИСТИНА
+	И ИСТИНА
+	И ВЫБОР
+			КОГДА НЕ &amp;Транзит
+					И &amp;Подразделение = ЗНАЧЕНИЕ(справочник.Подразделения.пустаяСсылка)
+				ТОГДА ИСТИНА
+			ИНАЧЕ ЗаказПоставщикуСезонный.Транзит = &amp;Транзит
+					И ЗаказПоставщикуСезонный.Подразделение = &amp;Подразделение
+		КОНЕЦ
+
+СГРУППИРОВАТЬ ПО
+	ЗаказПоставщикуСезонный.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(ЗапросВПроизводстве.ЗаказПоставщикуСезонный, ЗапросЗаказано.Ссылка) КАК ЗаказПоставщикуСезонный,
+	ЕСТЬNULL(ЗапросВПроизводстве.Номенклатура, ЗапросЗаказано.Номенклатура) КАК Номенклатура,
+	ЕСТЬNULL(ЗапросЗаказано.Количество, 0) КАК Заказано,
+	ЕСТЬNULL(ЗапросВПроизводстве.ВПроизводстве, 0) КАК ВПроизводстве,
+	ЗНАЧЕНИЕ(Документ.ЗаказПоставщику.ПустаяСсылка) КАК ЗаказПоставщику
+ПОМЕСТИТЬ втЗаказаноВПроизводстве
+ИЗ
+	(ВЫБРАТЬ
+		ЗаказПоставщикуСезонныйТовары.Ссылка КАК Ссылка,
+		ЗаказПоставщикуСезонныйТовары.Номенклатура КАК Номенклатура,
+		СУММА(ЗаказПоставщикуСезонныйТовары.Количество) КАК Количество
+	ИЗ
+		Документ.ЗаказПоставщикуСезонный.Товары КАК ЗаказПоставщикуСезонныйТовары
+	ГДЕ
+		ЗаказПоставщикуСезонныйТовары.Ссылка В
+				(ВЫБРАТЬ
+					втДействующиеСЗ.ЗаказПоставщикуСезонный
+				ИЗ
+					втДействующиеСЗ КАК втДействующиеСЗ)
+	
+	СГРУППИРОВАТЬ ПО
+		ЗаказПоставщикуСезонныйТовары.Номенклатура,
+		ЗаказПоставщикуСезонныйТовары.Ссылка) КАК ЗапросЗаказано
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЗаказыПоставщикамСезонныеОстатки.ЗаказПоставщикуСезонный КАК ЗаказПоставщикуСезонный,
+			ЗаказыПоставщикамСезонныеОстатки.Номенклатура КАК Номенклатура,
+			СУММА(ВЫБОР
+					КОГДА ЗаказыПоставщикамСезонныеОстатки.КоличествоОстаток &lt; 0
+						ТОГДА 0
+					ИНАЧЕ ЗаказыПоставщикамСезонныеОстатки.КоличествоОстаток
+				КОНЕЦ) КАК ВПроизводстве
+		ИЗ
+			РегистрНакопления.ЗаказыПоставщикамСезонные.Остатки(
+					,
+					ЗаказПоставщикуСезонный В
+						(ВЫБРАТЬ
+							втДействующиеСЗ.ЗаказПоставщикуСезонный
+						ИЗ
+							втДействующиеСЗ КАК втДействующиеСЗ)) КАК ЗаказыПоставщикамСезонныеОстатки
+		
+		СГРУППИРОВАТЬ ПО
+			ЗаказыПоставщикамСезонныеОстатки.Номенклатура,
+			ЗаказыПоставщикамСезонныеОстатки.ЗаказПоставщикуСезонный) КАК ЗапросВПроизводстве
+		ПО ЗапросЗаказано.Ссылка = ЗапросВПроизводстве.ЗаказПоставщикуСезонный
+			И ЗапросЗаказано.Номенклатура = ЗапросВПроизводстве.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказыПоставщикамСезонные.ЗаказПоставщикуСезонный КАК ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамСезонные.Номенклатура КАК Номенклатура,
+	ЗаказыПоставщикамСезонные.Регистратор КАК Регистратор
+ПОМЕСТИТЬ втСЗВПути
+ИЗ
+	РегистрНакопления.ЗаказыПоставщикамСезонные КАК ЗаказыПоставщикамСезонные
+ГДЕ
+	ЗаказыПоставщикамСезонные.Регистратор ССЫЛКА Документ.ЗаказПоставщику
+	И ЗаказыПоставщикамСезонные.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+	И (ЗаказыПоставщикамСезонные.ЗаказПоставщикуСезонный В
+				(ВЫБРАТЬ
+					втДействующиеСЗ.ЗаказПоставщикуСезонный
+				ИЗ
+					втДействующиеСЗ КАК втДействующиеСЗ)
+			ИЛИ ЗаказыПоставщикамСезонные.ЗаказПоставщикуСезонный = ЗНАЧЕНИЕ(Документ.ЗаказПоставщикуСезонный.ПустаяСсылка))
+
+СГРУППИРОВАТЬ ПО
+	ЗаказыПоставщикамСезонные.ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамСезонные.Номенклатура,
+	ЗаказыПоставщикамСезонные.Регистратор
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втСЗВПути.ЗаказПоставщикуСезонный,
+	втСЗВПути.Номенклатура,
+	ЗаказыПоставщикамОстатки.ЗаказПоставщику,
+	СРЕДНЕЕ(ЗаказыПоставщикамОстатки.КоличествоОстаток) КАК ВПути,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления &gt;= &amp;ТекДата
+					И ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления &lt;= ДОБАВИТЬКДАТЕ(&amp;ТекДата, ДЕНЬ, 14)
+				ТОГДА ЕСТЬNULL(ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход, 0)
+			ИНАЧЕ 0
+		КОНЕЦ) КАК ВПутиДо14Дней,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления &gt; ДОБАВИТЬКДАТЕ(&amp;ТекДата, ДЕНЬ, 14)
+					ИЛИ ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления = ДАТАВРЕМЯ(1, 1, 1)
+				ТОГДА ЕСТЬNULL(ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход, 0)
+			ИНАЧЕ 0
+		КОНЕЦ) КАК ВПутиБолее14Дней,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления = ДАТАВРЕМЯ(1, 1, 1)
+				ТОГДА 0
+			ИНАЧЕ ВЫБОР
+					КОГДА ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДатаПоступления &lt; &amp;ТекДата
+						ТОГДА ЕСТЬNULL(ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход, 0)
+					ИНАЧЕ 0
+				КОНЕЦ
+		КОНЕЦ) КАК ВПутиПросрочено,
+	ВЫРАЗИТЬ(ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДопПоля КАК СТРОКА(1000)) КАК ДопПоля,
+	ЗаказыПоставщикамОстатки.КоличествоОстаток
+ПОМЕСТИТЬ втВПути
+ИЗ
+	втСЗВПути КАК втСЗВПути
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикам.Остатки(, ) КАК ЗаказыПоставщикамОстатки
+			ПОЛНОЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикамСезонные.Обороты(, , Регистратор, ) КАК ЗаказыПоставщикамСезонныеОбороты
+			ПО (ЗаказыПоставщикамСезонныеОбороты.Регистратор = ЗаказыПоставщикамОстатки.ЗаказПоставщику)
+				И (ЗаказыПоставщикамСезонныеОбороты.Номенклатура = ЗаказыПоставщикамОстатки.Номенклатура)
+		ПО втСЗВПути.Регистратор = ЗаказыПоставщикамОстатки.ЗаказПоставщику
+			И втСЗВПути.Номенклатура = ЗаказыПоставщикамОстатки.Номенклатура
+
+СГРУППИРОВАТЬ ПО
+	втСЗВПути.ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамОстатки.ЗаказПоставщику,
+	втСЗВПути.Номенклатура,
+	ВЫРАЗИТЬ(ЗаказыПоставщикамОстатки.ЗаказПоставщику.ДопПоля КАК СТРОКА(1000)),
+	ЗаказыПоставщикамОстатки.КоличествоОстаток
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаказыПоставщикам.ЗаказПоставщику,
+	ЗаказыПоставщикам.Номенклатура,
+	СУММА(ЗаказыПоставщикам.Количество) КАК Поступило1,
+	втСЗВПути.ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход КАК Поступило
+ПОМЕСТИТЬ втПоступило
+ИЗ
+	втСЗВПути КАК втСЗВПути
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикам КАК ЗаказыПоставщикам
+			ВНУТРЕННЕЕ СОЕДИНЕНИЕ втДействующиеСЗ КАК втДействующиеСЗ
+			ПО (втДействующиеСЗ.Дата &lt;= ЗаказыПоставщикам.Период)
+			ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрНакопления.ЗаказыПоставщикамСезонные.Обороты(, , Регистратор, ) КАК ЗаказыПоставщикамСезонныеОбороты
+			ПО (ЗаказыПоставщикамСезонныеОбороты.Регистратор = ЗаказыПоставщикам.ЗаказПоставщику)
+				И ЗаказыПоставщикам.Номенклатура = ЗаказыПоставщикамСезонныеОбороты.Номенклатура
+		ПО втСЗВПути.Регистратор = ЗаказыПоставщикам.ЗаказПоставщику
+			И втСЗВПути.Номенклатура = ЗаказыПоставщикам.Номенклатура
+ГДЕ
+	ЗаказыПоставщикам.Регистратор ССЫЛКА Документ.ПоступлениеТоваровУслуг
+	И ЗаказыПоставщикам.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+
+СГРУППИРОВАТЬ ПО
+	ЗаказыПоставщикам.Номенклатура,
+	ЗаказыПоставщикам.ЗаказПоставщику,
+	втСЗВПути.ЗаказПоставщикуСезонный,
+	ЗаказыПоставщикамСезонныеОбороты.КоличествоРасход
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВЫРАЗИТЬ(ЕСТЬNULL(А.ЗаказПоставщикуСезонный, втПоступило.ЗаказПоставщикуСезонный) КАК Документ.ЗаказПоставщикуСезонный) КАК ЗаказПоставщикуСезонный,
+	ЕСТЬNULL(А.ЗаказПоставщику, втПоступило.ЗаказПоставщику) КАК ЗаказПоставщику,
+	ЕСТЬNULL(А.Номенклатура, втПоступило.Номенклатура) КАК Номенклатура,
+	ЕСТЬNULL(А.Заказано, 0) КАК Заказано,
+	ЕСТЬNULL(А.ВПроизводстве, 0) КАК ВПроизводстве,
+	ЕСТЬNULL(А.ВПути, 0) КАК ВПути,
+	ЕСТЬNULL(А.ВПутиДо14Дней, 0) КАК ВПутиДо14Дней,
+	ЕСТЬNULL(А.ВПутиБолее14Дней, 0) КАК ВПутиБолее14Дней,
+	ЕСТЬNULL(А.ВПутиПросрочено, 0) КАК ВПутиПросрочено,
+	ЕСТЬNULL(А.ДопПоля, "") КАК ДопПоля,
+	ЕСТЬNULL(втПоступило.Поступило, 0) КАК Поступило
+ИЗ
+	(ВЫБРАТЬ
+		ЕСТЬNULL(втЗаказаноВПроизводстве.ЗаказПоставщикуСезонный, втВПути.ЗаказПоставщикуСезонный) КАК ЗаказПоставщикуСезонный,
+		ЕСТЬNULL(втВПути.ЗаказПоставщику, втЗаказаноВПроизводстве.ЗаказПоставщику) КАК ЗаказПоставщику,
+		ЕСТЬNULL(втЗаказаноВПроизводстве.Номенклатура, втВПути.Номенклатура) КАК Номенклатура,
+		СУММА(ЕСТЬNULL(втЗаказаноВПроизводстве.Заказано, 0)) КАК Заказано,
+		СУММА(ЕСТЬNULL(втЗаказаноВПроизводстве.ВПроизводстве, 0)) КАК ВПроизводстве,
+		СУММА(ЕСТЬNULL(втВПути.ВПути, 0)) КАК ВПути,
+		СУММА(ЕСТЬNULL(втВПути.ВПутиДо14Дней, 0)) КАК ВПутиДо14Дней,
+		СУММА(ЕСТЬNULL(втВПути.ВПутиБолее14Дней, 0)) КАК ВПутиБолее14Дней,
+		СУММА(ЕСТЬNULL(втВПути.ВПутиПросрочено, 0)) КАК ВПутиПросрочено,
+		ЕСТЬNULL(втВПути.ДопПоля, "") КАК ДопПоля
+	ИЗ
+		втЗаказаноВПроизводстве КАК втЗаказаноВПроизводстве
+			ПОЛНОЕ СОЕДИНЕНИЕ втВПути КАК втВПути
+			ПО втЗаказаноВПроизводстве.ЗаказПоставщикуСезонный = втВПути.ЗаказПоставщикуСезонный
+				И втЗаказаноВПроизводстве.Номенклатура = втВПути.Номенклатура
+				И втЗаказаноВПроизводстве.ЗаказПоставщику = втВПути.ЗаказПоставщику
+	
+	СГРУППИРОВАТЬ ПО
+		ЕСТЬNULL(втЗаказаноВПроизводстве.ЗаказПоставщикуСезонный, втВПути.ЗаказПоставщикуСезонный),
+		ЕСТЬNULL(втВПути.ЗаказПоставщику, втЗаказаноВПроизводстве.ЗаказПоставщику),
+		ЕСТЬNULL(втЗаказаноВПроизводстве.Номенклатура, втВПути.Номенклатура),
+		ЕСТЬNULL(втВПути.ДопПоля, "")) КАК А
+		ПОЛНОЕ СОЕДИНЕНИЕ втПоступило КАК втПоступило
+		ПО А.ЗаказПоставщику = втПоступило.ЗаказПоставщику
+			И А.Номенклатура = втПоступило.Номенклатура
+			И А.ЗаказПоставщикуСезонный = втПоступило.ЗаказПоставщикуСезонный</query>
+		</dataSet>
+		<totalField>
+			<dataPath>ВПроизводстве</dataPath>
+			<expression>Сумма(ВПроизводстве)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ВПутиБолее14Дней</dataPath>
+			<expression>Сумма(ВПутиБолее14Дней)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ВПутиДо14Дней</dataPath>
+			<expression>Сумма(ВПутиДо14Дней)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ВПутиПросрочено</dataPath>
+			<expression>Сумма(ВПутиПросрочено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Заказано</dataPath>
+			<expression>Сумма(Заказано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Поступило</dataPath>
+			<expression>Сумма(Поступило)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Подразделение</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Подразделение</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+			<use>Always</use>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тек дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>ТекущаяДата()</expression>
+		</parameter>
+		<parameter>
+			<name>Транзит</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Транзит</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:boolean</Type>
+			</valueType>
+			<value xsi:type="xs:boolean">false</value>
+			<useRestriction>false</useRestriction>
+			<use>Always</use>
+		</parameter>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Заказано</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВПроизводстве</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВПутиДо14Дней</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВПутиБолее14Дней</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВПутиПросрочено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВПути</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Поступило</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ЗаказПоставщикуСезонный</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщику</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Номенклатура</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

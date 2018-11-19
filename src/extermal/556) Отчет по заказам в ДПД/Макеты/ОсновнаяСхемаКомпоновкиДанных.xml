@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВыручкаЗаДоставку</dataPath>
+				<field>ВыручкаЗаДоставку</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>День</dataPath>
+				<field>День</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЕдиницаИзмерения</dataPath>
+				<field>ЕдиницаИзмерения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказовОтгружено</dataPath>
+				<field>ЗаказовОтгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказовОформлено</dataPath>
+				<field>ЗаказовОформлено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗначениеУсловияАвтоматическойСкидки</dataPath>
+				<field>ЗначениеУсловияАвтоматическойСкидки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Неделя</dataPath>
+				<field>Неделя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОборотОтгружено</dataPath>
+				<field>ОборотОтгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентАвтоматическихСкидок</dataPath>
+				<field>ПроцентАвтоматическихСкидок</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентСкидкиНаценки</dataPath>
+				<field>ПроцентСкидкиНаценки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцНаценкиЗаДоставку</dataPath>
+				<field>ПроцНаценкиЗаДоставку</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СебестоимостьДоставки</dataPath>
+				<field>СебестоимостьДоставки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>УсловиеАвтоматическойСкидки</dataPath>
+				<field>УсловиеАвтоматическойСкидки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ШтукЗаказано</dataPath>
+				<field>ШтукЗаказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ШтукОтгружено</dataPath>
+				<field>ШтукОтгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказовОтменено</dataPath>
+				<field>ЗаказовОтменено</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказыПокупателейОбороты.ЗаказПокупателя.Контрагент КАК ЗаказПокупателяКонтрагент,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПокупателейОбороты.Номенклатура.Услуга
+				ТОГДА 0
+			ИНАЧЕ ЗаказыПокупателейОбороты.КоличествоПриход
+		КОНЕЦ) КАК ШтукЗаказано,
+	СУММА(ВЫБОР
+			КОГДА НЕ ЗаказыПокупателейОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+					ИЛИ ЗаказыПокупателейОбороты.Номенклатура.Услуга
+				ТОГДА 0
+			ИНАЧЕ ЗаказыПокупателейОбороты.КоличествоРасход
+		КОНЕЦ) КАК ШтукОтгружено,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПокупателейОбороты.Номенклатура.Услуга
+					ИЛИ НЕ ЗаказыПокупателейОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+					ИЛИ ЗаказыПокупателейОбороты.Номенклатура.Услуга
+				ТОГДА 0
+			ИНАЧЕ ЗаказыПокупателейОбороты.СуммаУпрРасход
+		КОНЕЦ) КАК СуммаОтгружено,
+	СУММА(ВЫБОР
+			КОГДА ЗаказыПокупателейОбороты.Номенклатура.Услуга
+					И ЗаказыПокупателейОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+				ТОГДА ЗаказыПокупателейОбороты.СуммаУпрРасход
+			ИНАЧЕ 0
+		КОНЕЦ) КАК ВыручкаЗаДоставку,
+	МИНИМУМ(1) КАК КоличествоЗаказов,
+	НАЧАЛОПЕРИОДА(ЗаказыПокупателейОбороты.ЗаказПокупателя.Дата, ДЕНЬ) КАК День,
+	ЗаказыПокупателейОбороты.ЗаказПокупателя,
+	НЕДЕЛЯ(ЗаказыПокупателейОбороты.ЗаказПокупателя.Дата) КАК Неделя,
+	МАКСИМУМ(ВЫБОР
+			КОГДА ЗаказыПокупателейОбороты.Номенклатура.Услуга
+					ИЛИ НЕ ЗаказыПокупателейОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+				ТОГДА 0
+			ИНАЧЕ 1
+		КОНЕЦ) КАК ЗаказовОтгружено
+ПОМЕСТИТЬ вт
+ИЗ
+	РегистрНакопления.ЗаказыПокупателей.Обороты(
+			,
+			,
+			Регистратор,
+			ЗаказПокупателя.TerminalОтгрузкаТранспортнойКомпанией
+				И ЗаказПокупателя.СтатусПеревозчика &lt;&gt; ""
+				И ЗаказПокупателя.СтатусПеревозчика &lt;&gt; "no-data-found") КАК ЗаказыПокупателейОбороты
+
+СГРУППИРОВАТЬ ПО
+	ЗаказыПокупателейОбороты.ЗаказПокупателя.Контрагент,
+	НАЧАЛОПЕРИОДА(ЗаказыПокупателейОбороты.ЗаказПокупателя.Дата, ДЕНЬ),
+	ЗаказыПокупателейОбороты.ЗаказПокупателя,
+	НЕДЕЛЯ(ЗаказыПокупателейОбороты.ЗаказПокупателя.Дата)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.День КАК День,
+	вт.ЗаказПокупателяКонтрагент КАК Контрагент,
+	вт.ВыручкаЗаДоставку КАК ВыручкаЗаДоставку,
+	вт.КоличествоЗаказов КАК ЗаказовОформлено,
+	вт.ЗаказПокупателя КАК ЗаказПокупателя,
+	вт.Неделя КАК Неделя,
+	вт.ШтукЗаказано КАК ШтукЗаказано,
+	вт.ШтукОтгружено КАК ШтукОтгружено,
+	вт.СуммаОтгружено КАК ОборотОтгружено,
+	вт.ЗаказовОтгружено КАК ЗаказовОтгружено,
+	ЗаказПокупателяДок.СтоимостьДоставки КАК СебестоимостьДоставки,
+	ЕСТЬNULL(взСвойство.Значение, 0) КАК ПроцНаценкиЗаДоставку,
+	0 КАК ЗаказовОтменено
+ИЗ
+	вт КАК вт
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказПокупателя КАК ЗаказПокупателяДок
+		ПО вт.ЗаказПокупателя = ЗаказПокупателяДок.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЗначенияСвойствОбъектов.Объект КАК Объект,
+			ЗначенияСвойствОбъектов.Значение КАК Значение
+		ИЗ
+			РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ГДЕ
+			ЗначенияСвойствОбъектов.Свойство.Код = "90212"
+			И ЗначенияСвойствОбъектов.Объект В
+					(ВЫБРАТЬ
+						вт.ЗаказПокупателяКонтрагент
+					ИЗ
+						вт)) КАК взСвойство
+		ПО вт.ЗаказПокупателяКонтрагент = взСвойство.Объект</query>
+		</dataSet>
+		<totalField>
+			<dataPath>ВыручкаЗаДоставку</dataPath>
+			<expression>Сумма(ВыручкаЗаДоставку)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗаказовОтгружено</dataPath>
+			<expression>Сумма(ЗаказовОтгружено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗаказовОформлено</dataPath>
+			<expression>Сумма(ЗаказовОформлено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОборотОтгружено</dataPath>
+			<expression>Сумма(ОборотОтгружено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцНаценкиЗаДоставку</dataPath>
+			<expression>Максимум(ПроцНаценкиЗаДоставку)</expression>
+			<group>ЗаказПокупателя</group>
+			<group>Контрагент</group>
+		</totalField>
+		<totalField>
+			<dataPath>СебестоимостьДоставки</dataPath>
+			<expression>Сумма(СебестоимостьДоставки)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ШтукЗаказано</dataPath>
+			<expression>Сумма(ШтукЗаказано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ШтукОтгружено</dataPath>
+			<expression>Сумма(ШтукОтгружено)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗаказовОтменено</dataPath>
+			<expression>Сумма(ЗаказовОтменено)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаНачала</expression>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;СтандартныйПериод.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>СтандартныйПериод</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Стандартный период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Неделя</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>День</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказПокупателя</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказовОформлено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказовОтменено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказовОтгружено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ШтукОтгружено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОборотОтгружено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СебестоимостьДоставки</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцНаценкиЗаДоставку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыручкаЗаДоставку</field>
+		</item>
+	</selection>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отчет по заказам в ДПД</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Неделя</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>День</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Продажи ИМ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard,package.geocode,package.geoQuery,package.clusters&lang=ru-RU&mode=debug\" type="text/javascript"></script>	
+</head>
+
+    <style>
+        body, html {
+            font-family: Arial;
+            font-size: 11pt;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        p {
+            padding: 10px;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+<script type="text/javascript">
+	function init () {
+		var myMap = new ymaps.Map("map", {
+			center: [57.622376, 39.888199],
+			zoom: 9,
+			behaviors: ['default', 'scrollZoom']
+		}, {
+           searchControlProvider: 'yandex#search'
+	});
+        
+	var result = ymaps.geoQuery(ymaps.geocode('Россия город Москва'))
+	&AdressData&
+			.applyBoundsToMap(myMap, {checkZoomRange: true});
+    
+    myMap.geoObjects.add(result.clusterize());
+	}
+	ymaps.ready(init);
+</script>
+
+<body>    
+    <div id="map"></div>
+</body>
+
+</html>

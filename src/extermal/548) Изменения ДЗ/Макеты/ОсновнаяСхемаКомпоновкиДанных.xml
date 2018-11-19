@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Владелец</dataPath>
+				<field>Владелец</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПоследнегоУвеличения</dataPath>
+				<field>ДатаПоследнегоУвеличения</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">3</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>ГоризонтальноеПоложение</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:HorizontalAlign">Right</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПоследнегоУменьшения</dataPath>
+				<field>ДатаПоследнегоУменьшения</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>ГоризонтальноеПоложение</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:HorizontalAlign">Right</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДЗ</dataPath>
+				<field>СуммаДЗ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоследнегоУвеличения</dataPath>
+				<field>СуммаПоследнегоУвеличения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоследнегоУменьшения</dataPath>
+				<field>СуммаПоследнегоУменьшения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейСПоследнегоУвеличения</dataPath>
+				<field>ДнейСПоследнегоУвеличения</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">4</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейСПоследнегоУменьшения</dataPath>
+				<field>ДнейСПоследнегоУменьшения</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">2</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регистратор</dataPath>
+				<field>Регистратор</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">5</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентУвеличения</dataPath>
+				<field>ПроцентУвеличения</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=0</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента,
+	СУММА(ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток) КАК СуммаДЗ
+ПОМЕСТИТЬ втДолги
+ИЗ
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(, ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеКолесаТут) КАК ВзаиморасчетыСКонтрагентамиОстатки
+
+СГРУППИРОВАТЬ ПО
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента
+
+ИМЕЮЩИЕ
+	СУММА(ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток) &gt; 0
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	МАКСИМУМ(взДатаПоследнегоУменьшенияДЗ.ДатаПоследнегоУменьшения) КАК ДатаПоследнегоУменьшения,
+	МАКСИМУМ(взДатаПоследнегоУвеличенияДЗ.ПоследнийДеньУвеличения) КАК ДатаПоследнегоУвеличения,
+	ЕСТЬNULL(взДатаПоследнегоУвеличенияДЗ.ДоговорКонтрагента, взДатаПоследнегоУменьшенияДЗ.ДоговорКонтрагента) КАК ДоговорКонтрагента,
+	ЕСТЬNULL(взДатаПоследнегоУвеличенияДЗ.ДоговорКонтрагента.Код, взДатаПоследнегоУменьшенияДЗ.ДоговорКонтрагента.Код) КАК код
+ПОМЕСТИТЬ втДатыИзмененияДебиторки
+ИЗ
+	(ВЫБРАТЬ
+		МАКСИМУМ(НАЧАЛОПЕРИОДА(ВзаиморасчетыСКонтрагентами.Период, ДЕНЬ)) КАК ПоследнийДеньУвеличения,
+		ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента КАК ДоговорКонтрагента
+	ИЗ
+		РегистрНакопления.ВзаиморасчетыСКонтрагентами КАК ВзаиморасчетыСКонтрагентами
+	ГДЕ
+		(ВзаиморасчетыСКонтрагентами.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Приход)
+					И ВзаиморасчетыСКонтрагентами.СуммаВзаиморасчетов &gt; 0
+				ИЛИ ВзаиморасчетыСКонтрагентами.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+					И ВзаиморасчетыСКонтрагентами.СуммаВзаиморасчетов &lt; 0)
+		И ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеКолесаТут
+		И ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента В
+				(ВЫБРАТЬ
+					втДолги.ДоговорКонтрагента
+				ИЗ
+					втДолги)
+	
+	СГРУППИРОВАТЬ ПО
+		ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента) КАК взДатаПоследнегоУвеличенияДЗ
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			МАКСИМУМ(НАЧАЛОПЕРИОДА(ВзаиморасчетыСКонтрагентами.Период, ДЕНЬ)) КАК ДатаПоследнегоУменьшения,
+			ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента КАК ДоговорКонтрагента
+		ИЗ
+			РегистрНакопления.ВзаиморасчетыСКонтрагентами КАК ВзаиморасчетыСКонтрагентами
+		ГДЕ
+			(ВзаиморасчетыСКонтрагентами.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+						И ВзаиморасчетыСКонтрагентами.СуммаВзаиморасчетов &gt; 0
+					ИЛИ ВзаиморасчетыСКонтрагентами.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Приход)
+						И ВзаиморасчетыСКонтрагентами.СуммаВзаиморасчетов &lt; 0)
+			И ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж = &amp;НаправлениеКолесаТут
+			И ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента В
+					(ВЫБРАТЬ
+						втДолги.ДоговорКонтрагента
+					ИЗ
+						втДолги)
+		
+		СГРУППИРОВАТЬ ПО
+			ВзаиморасчетыСКонтрагентами.ДоговорКонтрагента) КАК взДатаПоследнегоУменьшенияДЗ
+		ПО взДатаПоследнегоУвеличенияДЗ.ДоговорКонтрагента = взДатаПоследнегоУменьшенияДЗ.ДоговорКонтрагента
+
+СГРУППИРОВАТЬ ПО
+	ЕСТЬNULL(взДатаПоследнегоУвеличенияДЗ.ДоговорКонтрагента.Код, взДатаПоследнегоУменьшенияДЗ.ДоговорКонтрагента.Код),
+	ЕСТЬNULL(взДатаПоследнегоУвеличенияДЗ.ДоговорКонтрагента, взДатаПоследнегоУменьшенияДЗ.ДоговорКонтрагента)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втДатыИзмененияДебиторки.ДатаПоследнегоУвеличения,
+	NULL КАК ДатаПоследнегоУменьшения,
+	ВЫБОР
+		КОГДА ВзаиморасчетыСКонтрагентамиУвеличение.СуммаВзаиморасчетов &lt; 0
+			ТОГДА -ВзаиморасчетыСКонтрагентамиУвеличение.СуммаВзаиморасчетов
+		ИНАЧЕ ВзаиморасчетыСКонтрагентамиУвеличение.СуммаВзаиморасчетов
+	КОНЕЦ КАК СуммаПоследнегоУвеличения,
+	0 КАК СуммаПоследнегоУменьшения,
+	втДатыИзмененияДебиторки.ДоговорКонтрагента,
+	ВзаиморасчетыСКонтрагентамиУвеличение.Регистратор
+ПОМЕСТИТЬ вт
+ИЗ
+	втДатыИзмененияДебиторки КАК втДатыИзмененияДебиторки
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами КАК ВзаиморасчетыСКонтрагентамиУвеличение
+		ПО (втДатыИзмененияДебиторки.ДатаПоследнегоУвеличения = НАЧАЛОПЕРИОДА(ВзаиморасчетыСКонтрагентамиУвеличение.Период, ДЕНЬ))
+			И (ВзаиморасчетыСКонтрагентамиУвеличение.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Приход)
+					И ВзаиморасчетыСКонтрагентамиУвеличение.СуммаВзаиморасчетов &gt; 0
+				ИЛИ ВзаиморасчетыСКонтрагентамиУвеличение.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.расход)
+					И ВзаиморасчетыСКонтрагентамиУвеличение.СуммаВзаиморасчетов &lt; 0)
+			И втДатыИзмененияДебиторки.ДоговорКонтрагента = ВзаиморасчетыСКонтрагентамиУвеличение.ДоговорКонтрагента
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	NULL,
+	втДатыИзмененияДебиторки.ДатаПоследнегоУменьшения,
+	0,
+	ВЫБОР
+		КОГДА ВзаиморасчетыСКонтрагентамиУменьшение.СуммаВзаиморасчетов &lt; 0
+			ТОГДА -ВзаиморасчетыСКонтрагентамиУменьшение.СуммаВзаиморасчетов
+		ИНАЧЕ ВзаиморасчетыСКонтрагентамиУменьшение.СуммаВзаиморасчетов
+	КОНЕЦ,
+	втДатыИзмененияДебиторки.ДоговорКонтрагента,
+	ВзаиморасчетыСКонтрагентамиУменьшение.Регистратор
+ИЗ
+	втДатыИзмененияДебиторки КАК втДатыИзмененияДебиторки
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами КАК ВзаиморасчетыСКонтрагентамиУменьшение
+		ПО (втДатыИзмененияДебиторки.ДатаПоследнегоУменьшения = НАЧАЛОПЕРИОДА(ВзаиморасчетыСКонтрагентамиУменьшение.Период, ДЕНЬ))
+			И (ВзаиморасчетыСКонтрагентамиУменьшение.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.Расход)
+					И ВзаиморасчетыСКонтрагентамиУменьшение.СуммаВзаиморасчетов &gt; 0
+				ИЛИ ВзаиморасчетыСКонтрагентамиУменьшение.ВидДвижения = ЗНАЧЕНИЕ(ВидДвиженияНакопления.приход)
+					И ВзаиморасчетыСКонтрагентамиУменьшение.СуммаВзаиморасчетов &lt; 0)
+			И втДатыИзмененияДебиторки.ДоговорКонтрагента = ВзаиморасчетыСКонтрагентамиУменьшение.ДоговорКонтрагента
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ДоговорыКонтрагентов.Владелец,
+	ДоговорыКонтрагентов.Код,
+	МАКСИМУМ(вт.ДатаПоследнегоУвеличения) КАК ДатаПоследнегоУвеличения,
+	МАКСИМУМ(вт.ДатаПоследнегоУменьшения) КАК ДатаПоследнегоУменьшения,
+	МАКСИМУМ(втДолги.СуммаДЗ) КАК СуммаДЗ,
+	СУММА(вт.СуммаПоследнегоУвеличения) КАК СуммаПоследнегоУвеличения,
+	СУММА(вт.СуммаПоследнегоУменьшения) КАК СуммаПоследнегоУменьшения,
+	вт.ДоговорКонтрагента,
+	вт.Регистратор
+ПОМЕСТИТЬ втОснова
+ИЗ
+	вт КАК вт
+		ЛЕВОЕ СОЕДИНЕНИЕ втДолги КАК втДолги
+		ПО вт.ДоговорКонтрагента = втДолги.ДоговорКонтрагента
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.ДоговорыКонтрагентов КАК ДоговорыКонтрагентов
+		ПО вт.ДоговорКонтрагента = ДоговорыКонтрагентов.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	ДоговорыКонтрагентов.Владелец,
+	ДоговорыКонтрагентов.Код,
+	вт.ДоговорКонтрагента,
+	вт.Регистратор
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	втОснова.Владелец,
+	втОснова.Код,
+	втОснова.ДоговорКонтрагента,
+	втОснова.ДатаПоследнегоУвеличения,
+	втОснова.СуммаПоследнегоУвеличения КАК СуммаПоследнегоУвеличения,
+	втОснова.ДатаПоследнегоУменьшения,
+	втОснова.СуммаПоследнегоУменьшения КАК СуммаПоследнегоУменьшения,
+	втОснова.СуммаДЗ,
+	РАЗНОСТЬДАТ(втОснова.ДатаПоследнегоУвеличения, НАЧАЛОПЕРИОДА(&amp;ТекДата, ДЕНЬ), ДЕНЬ) КАК ДнейСПоследнегоУвеличения,
+	РАЗНОСТЬДАТ(втОснова.ДатаПоследнегоУменьшения, НАЧАЛОПЕРИОДА(&amp;ТекДата, ДЕНЬ), ДЕНЬ) КАК ДнейСПоследнегоУменьшения,
+	втОснова.Регистратор,
+	ВЫБОР
+		КОГДА втОснова.СуммаПоследнегоУвеличения &lt;&gt; 0
+			ТОГДА (втОснова.СуммаПоследнегоУвеличения - втОснова.СуммаПоследнегоУменьшения) * 100 / втОснова.СуммаПоследнегоУвеличения
+		ИНАЧЕ 100
+	КОНЕЦ КАК ПроцентУвеличения
+ИЗ
+	втОснова КАК втОснова</query>
+		</dataSet>
+		<totalField>
+			<dataPath>СуммаПоследнегоУвеличения</dataPath>
+			<expression>Сумма(СуммаПоследнегоУвеличения)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+			<group>Регистратор</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПоследнегоУменьшения</dataPath>
+			<expression>Сумма(СуммаПоследнегоУменьшения)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+			<group>Регистратор</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДЗ</dataPath>
+			<expression>Максимум(СуммаДЗ)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДатаПоследнегоУвеличения</dataPath>
+			<expression>Максимум(ДатаПоследнегоУвеличения)</expression>
+			<group>Владелец</group>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДатаПоследнегоУменьшения</dataPath>
+			<expression>Максимум(ДатаПоследнегоУменьшения)</expression>
+			<group>Владелец</group>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейСПоследнегоУвеличения</dataPath>
+			<expression>Максимум(ДнейСПоследнегоУвеличения)</expression>
+			<group>Владелец</group>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейСПоследнегоУменьшения</dataPath>
+			<expression>Максимум(ДнейСПоследнегоУменьшения)</expression>
+			<group>Владелец</group>
+			<group>ДоговорКонтрагента</group>
+			<group>Код</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДЗ</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив ("СуммаДЗ", "ДоговорКонтрагента"))</expression>
+			<group>Владелец</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДЗ</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив ("СуммаДЗ", "ДоговорКонтрагента"))</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентУвеличения</dataPath>
+			<expression>выбор когда Сумма(СуммаПоследнегоУвеличения)&lt;&gt;0 тогда (Сумма(СуммаПоследнегоУвеличения)-Сумма(СуммаПоследнегоУменьшения))/Сумма(СуммаПоследнегоУвеличения) * 100 иначе 100 конец</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НаправлениеКолесаТут</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Направление колеса тут</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НаправленияПродаж</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.НаправленияПродаж.НайтиПоКоду("16")</expression>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тек дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>ТекущаяДата()</expression>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Владелец</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Код</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДоговорКонтрагента</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПоследнегоУвеличения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПоследнегоУвеличения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПоследнегоУменьшения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПоследнегоУменьшения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДЗ</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентУвеличения</field>
+		</item>
+	</selection>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>Владелец</field>
+				</item>
+				<item>
+					<field>ДоговорКонтрагента</field>
+				</item>
+				<item>
+					<field>Код</field>
+				</item>
+				<item>
+					<field>Регистратор</field>
+				</item>
+				<item>
+					<field>ДатаПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>ДатаПоследнегоУменьшения</field>
+				</item>
+				<item>
+					<field>ДнейСПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>ДнейСПоследнегоУменьшения</field>
+				</item>
+				<item>
+					<field>ПроцентУвеличения</field>
+				</item>
+				<item>
+					<field>СуммаДЗ</field>
+				</item>
+				<item>
+					<field>СуммаПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>СуммаПоследнегоУменьшения</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemGroup">
+					<groupType>AndGroup</groupType>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">ПроцентУвеличения</left>
+						<comparisonType>Greater</comparisonType>
+						<right xsi:type="xs:decimal">40</right>
+					</item>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">ПроцентУвеличения</left>
+						<comparisonType>NotEqual</comparisonType>
+						<right xsi:type="xs:decimal">100</right>
+					</item>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">#FFFF00</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>Владелец</field>
+				</item>
+				<item>
+					<field>ДоговорКонтрагента</field>
+				</item>
+				<item>
+					<field>Код</field>
+				</item>
+				<item>
+					<field>ДатаПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>ДатаПоследнегоУменьшения</field>
+				</item>
+				<item>
+					<field>ДнейСПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>ДнейСПоследнегоУменьшения</field>
+				</item>
+				<item>
+					<field>СуммаДЗ</field>
+				</item>
+				<item>
+					<field>СуммаПоследнегоУвеличения</field>
+				</item>
+				<item>
+					<field>СуммаПоследнегоУменьшения</field>
+				</item>
+				<item>
+					<field>ПроцентУвеличения</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemGroup">
+					<groupType>OrGroup</groupType>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">ДнейСПоследнегоУвеличения</left>
+						<comparisonType>Greater</comparisonType>
+						<right xsi:type="xs:decimal">30</right>
+					</item>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">ДнейСПоследнегоУменьшения</left>
+						<comparisonType>Greater</comparisonType>
+						<right xsi:type="xs:decimal">30</right>
+					</item>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">style:SpecialTextColor</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Изменения ДЗ</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Владелец</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Код</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ДоговорКонтрагента</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

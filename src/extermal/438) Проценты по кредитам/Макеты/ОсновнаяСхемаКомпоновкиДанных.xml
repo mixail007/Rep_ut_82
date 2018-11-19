@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ТаблицаДат</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Период</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Format</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ДОБАВИТЬКДАТЕ(&amp;НачалоПериода, ДЕНЬ, aa.a * 1000 + bb.b * 100 + cc.c * 10 + dd.d) КАК Период
+{ВЫБРАТЬ
+	Период}
+ИЗ
+	(ВЫБРАТЬ
+		0 КАК a
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		1
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		2
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		3
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		4
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		5
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		6
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		7
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		8
+	
+	ОБЪЕДИНИТЬ
+	
+	ВЫБРАТЬ
+		9) КАК aa
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			0 КАК b
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			1
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			2
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			3
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			4
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			5
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			6
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			7
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			8
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			9) КАК bb
+		ПО (ИСТИНА)
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			0 КАК c
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			1
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			2
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			3
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			4
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			5
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			6
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			7
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			8
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			9) КАК cc
+		ПО (ИСТИНА)
+		ПОЛНОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			0 КАК d
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			1
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			2
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			3
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			4
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			5
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			6
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			7
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			8
+		
+		ОБЪЕДИНИТЬ
+		
+		ВЫБРАТЬ
+			9) КАК dd
+		ПО (ИСТИНА)
+ГДЕ
+	aa.a * 1000 + bb.b * 100 + cc.c * 10 + dd.d &lt;= РАЗНОСТЬДАТ(&amp;НачалоПериода, &amp;КонецПериода, ДЕНЬ)</query>
+			<autoFillFields>false</autoFillFields>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ОстаткиСЦенами</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Регистратор</dataPath>
+				<field>Регистратор</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+				<orderExpression>
+					<expression xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Регистратор</expression>
+					<orderType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Asc</orderType>
+					<autoOrder xmlns="http://v8.1c.ru/8.1/data-composition-system/common">false</autoOrder>
+				</orderExpression>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПериодСекунда</dataPath>
+				<field>ПериодСекунда</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">2</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+				<orderExpression>
+					<expression xmlns="http://v8.1c.ru/8.1/data-composition-system/common">ПериодСекунда</expression>
+					<orderType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Asc</orderType>
+					<autoOrder xmlns="http://v8.1c.ru/8.1/data-composition-system/common">false</autoOrder>
+				</orderExpression>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Договор</dataPath>
+				<field>Договор</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Лимит</dataPath>
+				<field>Лимит</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Приход</dataPath>
+				<field>Приход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Погашение</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентЗаЛимит</dataPath>
+				<field>ПроцентЗаЛимит</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентнаяСтавка</dataPath>
+				<field>ПроцентнаяСтавка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Расход</dataPath>
+				<field>Расход</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Получение</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаНачальныйОстаток</dataPath>
+				<field>СуммаНачальныйОстаток</field>
+				<role>
+					<balance xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</balance>
+					<balanceGroupName xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Сумма</balanceGroupName>
+					<balanceType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">OpeningBalance</balanceType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаКонечныйОстаток</dataPath>
+				<field>СуммаКонечныйОстаток</field>
+				<role>
+					<balance xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</balance>
+					<balanceGroupName xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Сумма</balanceGroupName>
+					<balanceType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">ClosingBalance</balanceType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+				<role>
+					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">3</periodNumber>
+					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоДней</dataPath>
+				<field>КоличествоДней</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НачисленоЗаЛимит</dataPath>
+				<field>НачисленоЗаЛимит</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОстатокПоЛимиту</dataPath>
+				<field>ОстатокПоЛимиту</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НачисленоПроцентов</dataPath>
+				<field>НачисленоПроцентов</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НачисленоЗаПользование</dataPath>
+				<field>НачисленоЗаПользование</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентЗаПользование</dataPath>
+				<field>ПроцентЗаПользование</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	&amp;Период КАК Период,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовНачальныйОстаток КАК СуммаНачальныйОстаток,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовПриход КАК Приход,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовРасход КАК Расход,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовКонечныйОстаток КАК СуммаКонечныйОстаток,
+	ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента, ДоговорыКонтрагентов.Ссылка) КАК Договор,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.Регистратор,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ПериодСекунда,
+	ВЫБОР
+		КОГДА ДоговорыКонтрагентов.Кр_ДинамическаяСтавка = ИСТИНА
+			ТОГДА ДоговорыКонтрагентовКр_ПроцентныеСтавки.Ставка
+		ИНАЧЕ ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_ПроцентнаяСтавка, ДоговорыКонтрагентов.Кр_ПроцентнаяСтавка)
+	КОНЕЦ КАК ПроцентнаяСтавка,
+	ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_ПроцентЗаЛимит, ДоговорыКонтрагентов.Кр_ПроцентЗаЛимит) КАК ПроцентЗаЛимит,
+	ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_Лимит, ДоговорыКонтрагентов.Кр_Лимит) КАК Лимит,
+	-ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовНачальныйОстаток / 100 * ВЫБОР
+		КОГДА ДоговорыКонтрагентов.Кр_ДинамическаяСтавка = ИСТИНА
+			ТОГДА ДоговорыКонтрагентовКр_ПроцентныеСтавки.Ставка
+		ИНАЧЕ ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_ПроцентнаяСтавка, ДоговорыКонтрагентов.Кр_ПроцентнаяСтавка)
+	КОНЕЦ / ДЕНЬГОДА(КОНЕЦПЕРИОДА(&amp;Период, ГОД)) КАК НачисленоПроцентов,
+	ДЕНЬГОДА(КОНЕЦПЕРИОДА(&amp;Период, ГОД)) КАК КоличествоДней,
+	ВЫБОР
+		КОГДА ДоговорыКонтрагентов.Кр_Лимит = 0
+			ТОГДА 0
+		ИНАЧЕ ДоговорыКонтрагентов.Кр_Лимит + ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовНачальныйОстаток, 0)
+	КОНЕЦ / 100 * ДоговорыКонтрагентов.Кр_ПроцентЗаЛимит / ДЕНЬГОДА(КОНЕЦПЕРИОДА(&amp;Период, ГОД)) КАК НачисленоЗаЛимит,
+	ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Владелец, ДоговорыКонтрагентов.Владелец) КАК Контрагент,
+	ВЫБОР
+		КОГДА ДоговорыКонтрагентов.Кр_Лимит = 0
+			ТОГДА 0
+		ИНАЧЕ ДоговорыКонтрагентов.Кр_Лимит + ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовНачальныйОстаток, 0)
+	КОНЕЦ КАК ОстатокПоЛимиту,
+	ЕСТЬNULL(ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_ПроцентЗаПользование, ДоговорыКонтрагентов.Кр_ПроцентЗаПользование) КАК ПроцентЗаПользование,
+	-ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.СуммаВзаиморасчетовНачальныйОстаток / 100 * ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Кр_ПроцентЗаПользование / ДЕНЬГОДА(КОНЕЦПЕРИОДА(&amp;Период, ГОД)) КАК НачисленоЗаПользование
+ИЗ
+	Справочник.ДоговорыКонтрагентов КАК ДоговорыКонтрагентов
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрНакопления.ВзаиморасчетыСКонтрагентами.ОстаткиИОбороты(
+				НАЧАЛОПЕРИОДА(&amp;Период, ДЕНЬ) {(НАЧАЛОПЕРИОДА(&amp;Период, ДЕНЬ))},
+				КОНЕЦПЕРИОДА(&amp;Период, ДЕНЬ) {(КОНЕЦПЕРИОДА(&amp;Период, ДЕНЬ))},
+				Авто,
+				,
+				ДоговорКонтрагента.ТипДоговора В (&amp;ТипыДоговоров)
+					И (&amp;Период МЕЖДУ ДоговорКонтрагента.Кр_СрокКредитаС И ДоговорКонтрагента.Кр_СрокКредитаПо)) КАК ВзаиморасчетыСКонтрагентамиОстаткиИОбороты
+		ПО (ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента = ДоговорыКонтрагентов.Ссылка)
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.ДоговорыКонтрагентов.Кр_ПроцентныеСтавки КАК ДоговорыКонтрагентовКр_ПроцентныеСтавки
+		ПО (ДоговорыКонтрагентовКр_ПроцентныеСтавки.Ссылка = ДоговорыКонтрагентов.Ссылка)
+			И (&amp;Период &lt;= ДоговорыКонтрагентовКр_ПроцентныеСтавки.ДатаПо)
+			И (&amp;Период &gt;= ДоговорыКонтрагентовКр_ПроцентныеСтавки.ДатаС)
+ГДЕ
+	&amp;Период МЕЖДУ ДоговорыКонтрагентов.Кр_СрокКредитаС И ДоговорыКонтрагентов.Кр_СрокКредитаПо
+	И ДоговорыКонтрагентов.ТипДоговора В(&amp;ТипыДоговоров)
+{ГДЕ
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.Владелец.* КАК Контрагент,
+	ВзаиморасчетыСКонтрагентамиОстаткиИОбороты.ДоговорКонтрагента.* КАК Договор}</query>
+		</dataSet>
+		<dataSetLink>
+			<sourceDataSet>ТаблицаДат</sourceDataSet>
+			<destinationDataSet>ОстаткиСЦенами</destinationDataSet>
+			<sourceExpression>Период</sourceExpression>
+			<destinationExpression>Период</destinationExpression>
+			<parameter>Период</parameter>
+			<parameterListAllowed>false</parameterListAllowed>
+		</dataSetLink>
+		<totalField>
+			<dataPath>СуммаНачальныйОстаток</dataPath>
+			<expression>Сумма(СуммаНачальныйОстаток)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Приход</dataPath>
+			<expression>Сумма(Приход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Расход</dataPath>
+			<expression>Сумма(Расход)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаКонечныйОстаток</dataPath>
+			<expression>Сумма(СуммаКонечныйОстаток)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НачисленоЗаЛимит</dataPath>
+			<expression>Сумма(НачисленоЗаЛимит)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОстатокПоЛимиту</dataPath>
+			<expression>Максимум(ОстатокПоЛимиту)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НачисленоПроцентов</dataPath>
+			<expression>Сумма(НачисленоПроцентов)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>НачисленоЗаПользование</dataPath>
+			<expression>Сумма(НачисленоЗаПользование)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентнаяСтавка</dataPath>
+			<expression>Сумма(ПроцентнаяСтавка)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>Date</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ТипыДоговоров</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Типы договоров</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ТипыДоговоров</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.ПустаяСсылка</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаНачальныйОстаток</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Приход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Расход</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаКонечныйОстаток</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОстатокПоЛимиту</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентнаяСтавка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НачисленоПроцентов</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НачисленоЗаЛимит</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НачисленоЗаПользование</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Договор</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="dcscor:DesignTimeValue">Справочник.ДоговорыКонтрагентов.ПустаяСсылка</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Контрагент</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="dcscor:DesignTimeValue">Справочник.Контрагенты.ПустаяСсылка</right>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>НачалоПериода</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">Custom</v8:variant>
+				<v8:date>0001-01-01T00:00:00</v8:date>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>КонецПериода</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">Custom</v8:variant>
+				<v8:date>0001-01-01T00:00:00</v8:date>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Период</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>НачисленоЗаЛимит</field>
+				</item>
+				<item>
+					<field>НачисленоПроцентов</field>
+				</item>
+				<item>
+					<field>ОстатокПоЛимиту</field>
+				</item>
+				<item>
+					<field>НачисленоЗаПользование</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Format</dcscor:parameter>
+					<dcscor:value xsi:type="xs:string">ЧДЦ=2</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>HorizontalOverallPlacement</dcscor:parameter>
+			<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Договор</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ПроцентЗаЛимит</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ПроцентЗаПользование</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>Лимит</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Период</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

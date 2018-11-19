@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВЭД</dataPath>
+				<field>ВЭД</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаДействияСезонногоЗаказа</dataPath>
+				<field>ДатаДействияСезонногоЗаказа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДеньНачисленияПени</dataPath>
+				<field>ДеньНачисленияПени</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДеньШтрафа</dataPath>
+				<field>ДеньШтрафа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщикуСезонный</dataPath>
+				<field>ЗаказПоставщикуСезонный</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоДляШтрафа</dataPath>
+				<field>КоличествоДляШтрафа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоЗаказано</dataPath>
+				<field>КоличествоЗаказано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоНеВыгружено</dataPath>
+				<field>КоличествоНеВыгружено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Пени</dataPath>
+				<field>Пени</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентНедогруза</dataPath>
+				<field>ПроцентНедогруза</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазмерПени</dataPath>
+				<field>РазмерПени</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазмерШтрафа</dataPath>
+				<field>РазмерШтрафа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РазрешенныйНедогруз</dataPath>
+				<field>РазрешенныйНедогруз</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Цена</dataPath>
+				<field>Цена</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Штраф</dataPath>
+				<field>Штраф</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейПросроченно</dataPath>
+				<field>ДнейПросроченно</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаказыПоставщикамСезонныеОстатки.ЗаказПоставщикуСезонный.Контрагент КАК Контрагент,
+	ЗаказыПоставщикамСезонныеОстатки.Номенклатура,
+	ЗаказыПоставщикамСезонныеОстатки.КоличествоОстаток,
+	ЗаказПоставщикуСезонныйТовары.Количество КАК КоличествоБыло,
+	ЗаказыПоставщикамСезонныеОстатки.ЗаказПоставщикуСезонный,
+	ЗаказПоставщикуСезонныйТовары.Цена
+ПОМЕСТИТЬ НачДанные
+ИЗ
+	РегистрНакопления.ЗаказыПоставщикамСезонные.Остатки(
+			,
+			ЗаказПоставщикуСезонный &lt;&gt; ЗНАЧЕНИЕ(Документ.ЗаказПоставщикуСезонный.ПустаяСсылка)
+				И ЕСТЬNULL(ВЭД, ЛОЖЬ) = ЛОЖЬ
+				И ЗаказПоставщикуСезонный.НеРассчитыватьПени = ЛОЖЬ) КАК ЗаказыПоставщикамСезонныеОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказПоставщикуСезонный.Товары КАК ЗаказПоставщикуСезонныйТовары
+		ПО ЗаказыПоставщикамСезонныеОстатки.Номенклатура = ЗаказПоставщикуСезонныйТовары.Номенклатура
+			И ЗаказыПоставщикамСезонныеОстатки.ЗаказПоставщикуСезонный = ЗаказПоставщикуСезонныйТовары.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НачДанные.ЗаказПоставщикуСезонный,
+	НачДанные.Контрагент,
+	НачДанные.Номенклатура,
+	НачДанные.КоличествоОстаток,
+	НачДанные.КоличествоБыло,
+	ПараметрыДляНачисленияПениПоставщикам.Контрагент КАК Контрагент1,
+	МАКСИМУМ(ПараметрыДляНачисленияПениПоставщикам.КоличествоВСезонномЗаказе) КАК КоличествоВСезонномЗаказе
+ПОМЕСТИТЬ СПараметрами
+ИЗ
+	НачДанные КАК НачДанные
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ПараметрыДляНачисленияПениПоставщикам КАК ПараметрыДляНачисленияПениПоставщикам
+		ПО (НачДанные.Контрагент = ПараметрыДляНачисленияПениПоставщикам.Контрагент
+				ИЛИ ПараметрыДляНачисленияПениПоставщикам.Контрагент = ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка))
+			И НачДанные.КоличествоБыло &gt;= ПараметрыДляНачисленияПениПоставщикам.КоличествоВСезонномЗаказе
+
+СГРУППИРОВАТЬ ПО
+	НачДанные.Контрагент,
+	НачДанные.Номенклатура,
+	ПараметрыДляНачисленияПениПоставщикам.Контрагент,
+	НачДанные.КоличествоОстаток,
+	НачДанные.КоличествоБыло,
+	НачДанные.ЗаказПоставщикуСезонный
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СПараметрами.Контрагент,
+	СПараметрами.Номенклатура,
+	СПараметрами.КоличествоОстаток,
+	СПараметрами.КоличествоБыло,
+	СПараметрами.Контрагент1,
+	СПараметрами.КоличествоВСезонномЗаказе КАК КоличествоВСезонномЗаказе,
+	СПараметрами.ЗаказПоставщикуСезонный
+ПОМЕСТИТЬ ПоКонтрагенту
+ИЗ
+	СПараметрами КАК СПараметрами
+ГДЕ
+	СПараметрами.Контрагент1 &lt;&gt; ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяСсылка)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НачДанные.Контрагент,
+	НачДанные.ЗаказПоставщикуСезонный,
+	НачДанные.Номенклатура,
+	НачДанные.КоличествоОстаток,
+	НачДанные.КоличествоБыло,
+	НачДанные.Цена,
+	ЕСТЬNULL(ПоКонтрагенту.Контрагент1, ЗНАЧЕНИЕ(Справочник.Контрагенты.ПустаяССылка)) КАК КонтрагентПараметров,
+	ЕСТЬNULL(ПоКонтрагенту.КоличествоВСезонномЗаказе, 0) КАК КоличествоВЗаказе
+ПОМЕСТИТЬ НачДанныеП
+ИЗ
+	НачДанные КАК НачДанные
+		ЛЕВОЕ СОЕДИНЕНИЕ ПоКонтрагенту КАК ПоКонтрагенту
+		ПО НачДанные.Контрагент = ПоКонтрагенту.Контрагент
+			И НачДанные.Номенклатура = ПоКонтрагенту.Номенклатура
+			И НачДанные.ЗаказПоставщикуСезонный = ПоКонтрагенту.ЗаказПоставщикуСезонный
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	НачДанныеП.Контрагент,
+	НачДанныеП.ЗаказПоставщикуСезонный,
+	НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо КАК ДатаДействияСезонногоЗаказа,
+	НачДанныеП.Номенклатура,
+	НачДанныеП.КоличествоОстаток КАК КоличествоНеВыгружено,
+	НачДанныеП.КоличествоБыло КАК КоличествоЗаказано,
+	НачДанныеП.Цена,
+	ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза,
+	ПараметрыДляНачисленияПениПоставщикам.ДеньНачисленияПени,
+	ПараметрыДляНачисленияПениПоставщикам.ДеньШтрафа,
+	ПараметрыДляНачисленияПениПоставщикам.РазмерПени,
+	ПараметрыДляНачисленияПениПоставщикам.РазмерШтрафа,
+	РАЗНОСТЬДАТ(НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо, &amp;Дата, ДЕНЬ) КАК ДнейПросроченно,
+	ВЫРАЗИТЬ(НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100 КАК ЧИСЛО(15, 0)) КАК РазрешенныйНедогруз,
+	ВЫБОР
+		КОГДА НачДанныеП.КоличествоОстаток &lt; НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100
+			ТОГДА 0
+		ИНАЧЕ НачДанныеП.КоличествоОстаток - (ВЫРАЗИТЬ(НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100 КАК ЧИСЛО(15, 0)))
+	КОНЕЦ КАК КоличествоДляШтрафа,
+	ВЫБОР
+		КОГДА РАЗНОСТЬДАТ(НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо, &amp;Дата, ДЕНЬ) &gt; ПараметрыДляНачисленияПениПоставщикам.ДеньНачисленияПени
+				И РАЗНОСТЬДАТ(НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо, &amp;Дата, ДЕНЬ) &lt;= ПараметрыДляНачисленияПениПоставщикам.ДеньШтрафа
+			ТОГДА РАЗНОСТЬДАТ(НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо, &amp;Дата, ДЕНЬ) * ПараметрыДляНачисленияПениПоставщикам.РазмерПени / 100 * НачДанныеП.Цена * ВЫБОР
+					КОГДА НачДанныеП.КоличествоОстаток &lt; НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100
+						ТОГДА 0
+					ИНАЧЕ НачДанныеП.КоличествоОстаток - (ВЫРАЗИТЬ(НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100 КАК ЧИСЛО(15, 0)))
+				КОНЕЦ
+		ИНАЧЕ 0
+	КОНЕЦ КАК Пени,
+	ВЫБОР
+		КОГДА РАЗНОСТЬДАТ(НачДанныеП.ЗаказПоставщикуСезонный.ДатаДействияПо, &amp;Дата, ДЕНЬ) &gt; ПараметрыДляНачисленияПениПоставщикам.ДеньШтрафа
+			ТОГДА ПараметрыДляНачисленияПениПоставщикам.РазмерШтрафа / 100 * НачДанныеП.Цена * ВЫБОР
+					КОГДА НачДанныеП.КоличествоОстаток &lt; НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100
+						ТОГДА 0
+					ИНАЧЕ НачДанныеП.КоличествоОстаток - (ВЫРАЗИТЬ(НачДанныеП.КоличествоБыло * ПараметрыДляНачисленияПениПоставщикам.ПроцентНедогруза / 100 КАК ЧИСЛО(15, 0)))
+				КОНЕЦ
+		ИНАЧЕ 0
+	КОНЕЦ КАК Штраф
+ИЗ
+	НачДанныеП КАК НачДанныеП
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ПараметрыДляНачисленияПениПоставщикам КАК ПараметрыДляНачисленияПениПоставщикам
+		ПО НачДанныеП.КоличествоВЗаказе = ПараметрыДляНачисленияПениПоставщикам.КоличествоВСезонномЗаказе
+			И НачДанныеП.КонтрагентПараметров = ПараметрыДляНачисленияПениПоставщикам.Контрагент</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Штраф</dataPath>
+			<expression>Сумма(Штраф)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Пени</dataPath>
+			<expression>Сумма(Пени)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Дата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Пени</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Штраф</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>ЗаказПоставщикуСезонный</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ДатаДействияСезонногоЗаказа</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>ДнейПросроченно</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Номенклатура</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>КоличествоЗаказано</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Цена</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>КоличествоНеВыгружено</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ПроцентНедогруза</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РазрешенныйНедогруз</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>КоличествоДляШтрафа</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РазмерПени</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РазмерШтрафа</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

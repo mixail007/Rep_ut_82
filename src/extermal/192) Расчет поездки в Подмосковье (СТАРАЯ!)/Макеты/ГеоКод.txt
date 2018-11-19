@@ -1,0 +1,17 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Примеры. Множественное геокодирование</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
+    <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard,package.geoQuery&lang=ru-RU" type="text/javascript"></script>
+    <script type="text/javascript">
+
+function Distance(lat1,lng1,lat2,lng2)
+    {
+   var plq = new YMaps.GeoCoordSystem(); 
+    Rasto = plq.distance(new YMaps.GeoPoint(lat1,lng1), new YMaps.GeoPoint(lat2,lng2));
+    return Rasto;
+   }
+</head>
+</html>

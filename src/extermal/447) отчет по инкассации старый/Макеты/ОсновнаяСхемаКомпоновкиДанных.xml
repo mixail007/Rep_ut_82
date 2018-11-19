@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Задание</dataPath>
+				<field>Задание</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаданиеВодитель</dataPath>
+				<field>ЗаданиеВодитель</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Водитель</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказ</dataPath>
+				<field>Заказ</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Заказ</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоставкаНал</dataPath>
+				<field>ДоставкаНал</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказДолгЗаПредыдущиеОтгрузки</dataPath>
+				<field>ЗаказДолгЗаПредыдущиеОтгрузки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаЗаТоварНал</dataPath>
+				<field>СуммаЗаТоварНал</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ФактДолг</dataPath>
+				<field>ФактДолг</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ФактТовары</dataPath>
+				<field>ФактТовары</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ФактТранспорт</dataPath>
+				<field>ФактТранспорт</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ИнформацияПоПроезду.Контрагент,
+	СУММА(ИнформацияПоПроезду.ДоставкаНал) КАК ДоставкаНал,
+	СУММА(ВЫБОР
+			КОГДА ИнформацияПоПроезду.Заказ.НеЗабиратьОплатуПриВыгрузке
+				ТОГДА 0
+			ИНАЧЕ ИнформацияПоПроезду.СуммаЗаТоварНал
+		КОНЕЦ) КАК СуммаЗаТоварНал,
+	ИнформацияПоПроезду.Заказ.ДолгЗаПредыдущиеОтгрузки КАК ЗаказДолгЗаПредыдущиеОтгрузки,
+	ИнформацияПоПроезду.Реализация,
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.Задание.Водитель КАК ЗаданиеВодитель,
+	ИнформацияПоПроезду.Заказ,
+	ИнформацияПоПроезду.Задание.Подразделение КАК Подразделение
+ПОМЕСТИТЬ ПланВодители
+ИЗ
+	РегистрСведений.ИнформацияПоПроезду КАК ИнформацияПоПроезду
+ГДЕ
+	ИнформацияПоПроезду.Задание.Дата МЕЖДУ &amp;ДатаНач И &amp;ДатаКон
+	И ИнформацияПоПроезду.Задание.Выполнено
+	И (ИнформацияПоПроезду.ДоставкаНал &lt;&gt; 0
+			ИЛИ ИнформацияПоПроезду.СуммаЗаТоварНал &lt;&gt; 0
+			ИЛИ ИнформацияПоПроезду.Заказ.ДолгЗаПредыдущиеОтгрузки &lt;&gt; 0)
+
+СГРУППИРОВАТЬ ПО
+	ИнформацияПоПроезду.Контрагент,
+	ИнформацияПоПроезду.Реализация,
+	ИнформацияПоПроезду.Задание,
+	ИнформацияПоПроезду.Задание.Водитель,
+	ИнформацияПоПроезду.Заказ.ДолгЗаПредыдущиеОтгрузки,
+	ИнформацияПоПроезду.Заказ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланВодители.Задание,
+	ПланВодители.Реализация,
+	ПриходныйКассовыйОрдер.СуммаДокумента КАК ФактТовары
+ПОМЕСТИТЬ ТоварыФакт
+ИЗ
+	ПланВодители КАК ПланВодители
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер
+		ПО ПланВодители.Задание = ПриходныйКассовыйОрдер.СсылкаЗаданиеНаОтгрузку
+			И ПланВодители.Реализация = ПриходныйКассовыйОрдер.ДокументОснование
+ГДЕ
+	ПриходныйКассовыйОрдер.Проведен
+	И ПриходныйКассовыйОрдер.Дата &gt; &amp;ДатаНач
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланВодители.Задание,
+	ПланВодители.Заказ,
+	ПриходныйКассовыйОрдер.СуммаДокумента КАК ФактДолг
+ПОМЕСТИТЬ ТоварыДолг
+ИЗ
+	ПланВодители КАК ПланВодители
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер
+		ПО ПланВодители.Задание = ПриходныйКассовыйОрдер.СсылкаЗаданиеНаОтгрузку
+			И ПланВодители.Заказ = ПриходныйКассовыйОрдер.ДокументОснование
+ГДЕ
+	ПриходныйКассовыйОрдер.Проведен
+	И ПриходныйКассовыйОрдер.Дата &gt; &amp;ДатаНач
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ПланВодители.Задание,
+	ПриходныйКассовыйОрдер.СуммаДокумента КАК ФактТранспорт,
+	ПланВодители.Контрагент КАК Контрагент
+ПОМЕСТИТЬ ТранспортФакт
+ИЗ
+	ПланВодители КАК ПланВодители
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер
+		ПО ПланВодители.Задание = ПриходныйКассовыйОрдер.СсылкаЗаданиеНаОтгрузку
+			И ПланВодители.Контрагент = ПриходныйКассовыйОрдер.Контрагент
+ГДЕ
+	НЕ ПриходныйКассовыйОрдер.ДокументОснование В
+				(ВЫБРАТЬ
+					ПланВодители.Реализация
+				ИЗ
+					ПланВодители КАК ПланВодители)
+	И ПриходныйКассовыйОрдер.ДокументОснование ССЫЛКА Документ.РеализацияТоваровУслуг
+	И ПриходныйКассовыйОрдер.Проведен
+	И ПриходныйКассовыйОрдер.Дата &gt; &amp;ДатаНач
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланВодители.Контрагент КАК Контрагент,
+	ЕСТЬNULL(ПланВодители.ДоставкаНал, 0) КАК ДоставкаНал,
+	ЕСТЬNULL(ПланВодители.СуммаЗаТоварНал, 0) КАК СуммаЗаТоварНал,
+	ЕСТЬNULL(ПланВодители.ЗаказДолгЗаПредыдущиеОтгрузки, 0) КАК ЗаказДолгЗаПредыдущиеОтгрузки,
+	ПланВодители.Реализация,
+	ПланВодители.Задание КАК Задание,
+	ПланВодители.ЗаданиеВодитель КАК ЗаданиеВодитель,
+	ПланВодители.Заказ,
+	ЕСТЬNULL(ТоварыДолг.ФактДолг, 0) КАК ФактДолг,
+	ЕСТЬNULL(ТоварыФакт.ФактТовары, 0) КАК ФактТовары,
+	ЕСТЬNULL(ТранспортФакт.ФактТранспорт, 0) КАК ФактТранспорт,
+	ПланВодители.Подразделение
+ИЗ
+	ПланВодители КАК ПланВодители
+		ЛЕВОЕ СОЕДИНЕНИЕ ТранспортФакт КАК ТранспортФакт
+		ПО ПланВодители.Задание = ТранспортФакт.Задание
+			И ПланВодители.Контрагент = ТранспортФакт.Контрагент
+		ЛЕВОЕ СОЕДИНЕНИЕ ТоварыФакт КАК ТоварыФакт
+		ПО ПланВодители.Задание = ТоварыФакт.Задание
+			И ПланВодители.Реализация = ТоварыФакт.Реализация
+		ЛЕВОЕ СОЕДИНЕНИЕ ТоварыДолг КАК ТоварыДолг
+		ПО ПланВодители.Задание = ТоварыДолг.Задание
+			И ПланВодители.Заказ = ТоварыДолг.Заказ
+
+УПОРЯДОЧИТЬ ПО
+	Задание,
+	ЗаданиеВодитель,
+	Контрагент</query>
+		</dataSet>
+		<calculatedField>
+			<dataPath>Задолженность</dataPath>
+			<expression>0</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Задолженность</d4p1:content>
+				</d4p1:item>
+			</title>
+		</calculatedField>
+		<totalField>
+			<dataPath>Задолженность</dataPath>
+			<expression>(Сумма(СуммаЗаТоварНал)+Сумма(ЗаказДолгЗаПредыдущиеОтгрузки)+Сумма(ВычислитьВыражениеСГруппировкойМассив ("Среднее(ДоставкаНал)", "Контрагент,Задание")))-(Сумма(ФактДолг)+Сумма(ФактТовары)+Сумма(ВычислитьВыражениеСГруппировкойМассив ("Среднее(ФактТранспорт)", "Контрагент,Задание")))</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаЗаТоварНал</dataPath>
+			<expression>Сумма(СуммаЗаТоварНал)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ФактТовары</dataPath>
+			<expression>Сумма(ФактТовары)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ЗаказДолгЗаПредыдущиеОтгрузки</dataPath>
+			<expression>Сумма(ЗаказДолгЗаПредыдущиеОтгрузки)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ФактДолг</dataPath>
+			<expression>Сумма(ФактДолг)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ДоставкаНал</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив ("Среднее(ДоставкаНал)", "Контрагент,Задание"))</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ФактТранспорт</dataPath>
+			<expression>Сумма(ВычислитьВыражениеСГруппировкойМассив ("Среднее(ФактТранспорт)", "Контрагент,Задание"))</expression>
+		</totalField>
+		<parameter>
+			<name>ДатаКон</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата кон</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаНач</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата нач</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>План</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаЗаТоварНал</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ЗаказДолгЗаПредыдущиеОтгрузки</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ДоставкаНал</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Факт</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ФактТовары</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ФактДолг</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ФактТранспорт</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Задолженность</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Подразделение</left>
+			<comparisonType>Equal</comparisonType>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ДатаКон</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">Custom</v8:variant>
+				<v8:date>2016-02-29T00:00:00</v8:date>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ДатаНач</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">Custom</v8:variant>
+				<v8:date>2016-02-18T00:00:00</v8:date>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ЗаданиеВодитель</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Задание</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+				<item xsi:type="StructureItemGroup">
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+						<item xsi:type="SelectedItemField">
+							<field>Заказ</field>
+						</item>
+						<item xsi:type="SelectedItemField">
+							<field>Реализация</field>
+						</item>
+					</selection>
+					<conditionalAppearance>
+						<item>
+							<selection>
+								<item>
+									<field>ДоставкаНал</field>
+								</item>
+								<item>
+									<field>ФактТранспорт</field>
+								</item>
+							</selection>
+							<filter/>
+							<appearance>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>Text</dcscor:parameter>
+									<dcscor:value xsi:type="v8:LocalStringType"/>
+								</dcscor:item>
+							</appearance>
+						</item>
+					</conditionalAppearance>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

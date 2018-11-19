@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Дата</dataPath>
+				<field>Дата</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПредставлениеВозврат</dataPath>
+				<field>ПредставлениеВозврат</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Возврат от покупателя</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПредставлениеЗаявка</dataPath>
+				<field>ПредставлениеЗаявка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Заявка на возврат</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Статус</dataPath>
+				<field>Статус</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбратнаяПродажа</dataPath>
+				<field>ОбратнаяПродажа</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	Пользователи.Ссылка КАК Пользователь
+ПОМЕСТИТЬ ВТ_П
+ИЗ
+	Справочник.Пользователи КАК Пользователи
+ГДЕ
+	Пользователи.ОсновноеПодразделение.ОбособленноеПодразделение = ИСТИНА
+	И Пользователи.ОсновноеПодразделение.ВЭД = ЛОЖЬ
+	И Пользователи.ПометкаУдаления = ЛОЖЬ
+	И Пользователи.Заблокирован = ЛОЖЬ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	Контрагенты.Ссылка КАК Контрагент
+ПОМЕСТИТЬ ВТ_К
+ИЗ
+	РегистрСведений.СоответствиеМенеджеровРегионам КАК СоответствиеМенеджеровРегионам
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Контрагенты КАК Контрагенты
+		ПО СоответствиеМенеджеровРегионам.Регион = Контрагенты.Регион
+ГДЕ
+	(СоответствиеМенеджеровРегионам.Пользователь В (&amp;Пользователь)
+			ИЛИ ЗНАЧЕНИЕ(Справочник.Пользователи.Пустаяссылка) В (&amp;Пользователь))
+	И СоответствиеМенеджеровРегионам.ВидСотрудника = ЗНАЧЕНИЕ(Перечисление.ВидыСотрудниковОтделаПродаж.Оператор)
+	И НЕ Контрагенты.ОсновнойМенеджерКонтрагента В
+				(ВЫБРАТЬ
+					ВТ.Пользователь
+				ИЗ
+					ВТ_П КАК ВТ)
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СоответствиеМенеджеровРегионам.Регион
+ИЗ
+	РегистрСведений.СоответствиеМенеджеровРегионам КАК СоответствиеМенеджеровРегионам
+ГДЕ
+	(СоответствиеМенеджеровРегионам.Пользователь В (&amp;Пользователь)
+			ИЛИ ЗНАЧЕНИЕ(Справочник.Пользователи.Пустаяссылка) В (&amp;Пользователь))
+	И СоответствиеМенеджеровРегионам.ВидСотрудника = ЗНАЧЕНИЕ(Перечисление.ВидыСотрудниковОтделаПродаж.Помощник)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаявкаНаВозвратТоваров.Ссылка КАК ПредставлениеЗаявка,
+	ВозвратТоваровОтПокупателя.Ссылка КАК ПредставлениеВозврат,
+	ЗначенияСвойствОбъектов.Значение КАК Статус,
+	ЗаявкаНаВозвратТоваров.Дата,
+	ПоступлениеТоваровУслуг.Ссылка КАК ОбратнаяПродажа
+ИЗ
+	Документ.ЗаявкаНаВозвратТоваров КАК ЗаявкаНаВозвратТоваров
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ВозвратТоваровОтПокупателя КАК ВозвратТоваровОтПокупателя
+		ПО (ВозвратТоваровОтПокупателя.ЗаявкаОснование = ЗаявкаНаВозвратТоваров.Ссылка)
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ПО (ЗначенияСвойствОбъектов.Объект = ВозвратТоваровОтПокупателя.Ссылка)
+			И (ЗначенияСвойствОбъектов.Свойство = ЗНАЧЕНИЕ(ПланВидовХарактеристик.СвойстваОбъектов.СтатусПоступленияВозврата))
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаказПоставщику КАК ЗаказПоставщику
+		ПО (ЗаявкаНаВозвратТоваров.Ссылка = (ВЫРАЗИТЬ(ЗаказПоставщику.Основание КАК Документ.ЗаявкаНаВозвратТоваров)))
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПоступлениеТоваровУслуг КАК ПоступлениеТоваровУслуг
+		ПО (ЗаказПоставщику.Ссылка = (ВЫРАЗИТЬ(ПоступлениеТоваровУслуг.Сделка КАК Документ.ЗаказПоставщику)))
+ГДЕ
+	ЗаявкаНаВозвратТоваров.Дата МЕЖДУ &amp;НачДата И &amp;КонДата
+	И ЗаявкаНаВозвратТоваров.Проведен
+	И ЗаявкаНаВозвратТоваров.Контрагент В
+			(ВЫБРАТЬ
+				ВТ_К.Контрагент
+			ИЗ
+				ВТ_К КАК ВТ_К)
+	И (ВЫРАЗИТЬ(ЗаявкаНаВозвратТоваров.КомментарийСклада КАК СТРОКА(200))) &lt;&gt; ""</query>
+		</dataSet>
+		<parameter>
+			<name>КонДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Пользователь</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Пользователь</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Пользователи</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Статус</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+				<item xsi:type="OrderItemField">
+					<field>Дата</field>
+					<orderType>Asc</orderType>
+				</item>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemField">
+					<field>СистемныеПоля.НомерПоПорядкуВГруппировке</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ПредставлениеЗаявка</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ПредставлениеВозврат</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Статус</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ОбратнаяПродажа</field>
+				</item>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

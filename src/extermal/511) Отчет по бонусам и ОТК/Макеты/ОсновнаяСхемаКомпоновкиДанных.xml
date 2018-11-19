@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Производитель</dataPath>
+				<field>Производитель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидТовара</dataPath>
+				<field>ВидТовара</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОТК</dataPath>
+				<field>ОТК</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Ставка</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатурнаяГруппа</dataPath>
+				<field>НоменклатурнаяГруппа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Коэффициент</dataPath>
+				<field>Коэффициент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вид</dataPath>
+				<field>Вид</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВходитВПапку</dataPath>
+				<field>ВходитВПапку</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диаметр</dataPath>
+				<field>Диаметр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПодСтрока</dataPath>
+				<field>ПодСтрока</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкидкаНаценка</dataPath>
+				<field>СкидкаНаценка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкидкаПредоплаты</dataPath>
+				<field>СкидкаПредоплаты</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкидкаФакт</dataPath>
+				<field>СкидкаФакт</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	СтавкиБонусовКонтрагентовСрезПоследних.Контрагент.ОсновнойМенеджерКонтрагента КАК Менеджер,
+	СтавкиБонусовКонтрагентовСрезПоследних.Контрагент КАК Контрагент,
+	СтавкиБонусовКонтрагентовСрезПоследних.ВидТовара КАК ВидТовара,
+	ПравилаЦенообразования.Производитель КАК Производитель,
+	ПравилаЦенообразования.НоменклатурнаяГруппа КАК НоменклатурнаяГруппа,
+	ПравилаЦенообразования.ВходитВПапку КАК ВходитВПапку,
+	ПравилаЦенообразования.Диаметр КАК Диаметр,
+	ПравилаЦенообразования.Номенклатура КАК Номенклатура,
+	ПравилаЦенообразования.ПодСтрока КАК ПодСтрока,
+	СтавкиБонусовКонтрагентовСрезПоследних.Значение КАК ОТК,
+	NULL КАК Коэффициент,
+	"2.Бонусы" КАК Вид,
+	ПравилаЦенообразования.СкидкаНаценка КАК СкидкаНаценка,
+	ПравилаЦенообразования.СкидкаНаценка + (ПравилаЦенообразования.СкидкаНаценка + 100) / 100 * -СтавкиБонусовКонтрагентовСрезПоследних.Значение КАК СкидкаФакт,
+	ПравилаЦенообразования.СкидкаПредоплаты КАК СкидкаПредоплаты
+ИЗ
+	РегистрСведений.СтавкиБонусовКонтрагентов.СрезПоследних(, ) КАК СтавкиБонусовКонтрагентовСрезПоследних
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ПравилаЦенообразования КАК ПравилаЦенообразования
+		ПО СтавкиБонусовКонтрагентовСрезПоследних.Контрагент = ПравилаЦенообразования.Контрагент
+			И (ВЫБОР
+				КОГДА СтавкиБонусовКонтрагентовСрезПоследних.ВидТовара &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.ПустаяСсылка)
+					ТОГДА СтавкиБонусовКонтрагентовСрезПоследних.ВидТовара = ПравилаЦенообразования.ВидТовара
+				ИНАЧЕ ВЫБОР
+						КОГДА СтавкиБонусовКонтрагентовСрезПоследних.Производитель = ЗНАЧЕНИЕ(Справочник.Производители.ПустаяСсылка)
+							ТОГДА СтавкиБонусовКонтрагентовСрезПоследних.НоменклатурнаяГруппа = ПравилаЦенообразования.НоменклатурнаяГруппа
+						ИНАЧЕ ВЫБОР
+								КОГДА СтавкиБонусовКонтрагентовСрезПоследних.НоменклатурнаяГруппа = ЗНАЧЕНИЕ(Справочник.НоменклатурныеГруппы.ПустаяСсылка)
+									ТОГДА СтавкиБонусовКонтрагентовСрезПоследних.Производитель = ПравилаЦенообразования.Производитель
+								ИНАЧЕ СтавкиБонусовКонтрагентовСрезПоследних.НоменклатурнаяГруппа = ПравилаЦенообразования.НоменклатурнаяГруппа
+										И СтавкиБонусовКонтрагентовСрезПоследних.Производитель = ПравилаЦенообразования.Производитель
+							КОНЕЦ
+					КОНЕЦ
+			КОНЕЦ)
+ГДЕ
+	СтавкиБонусовКонтрагентовСрезПоследних.Значение &gt; 0
+	И СтавкиБонусовКонтрагентовСрезПоследних.Коэффициент = 0
+	И ПравилаЦенообразования.Категория = ЗНАЧЕНИЕ(Перечисление.КатегорииСкидок.ПустаяСсылка)
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СтавкиБонусовКонтрагентовСрезПоследних.Контрагент.ОсновнойМенеджерКонтрагента,
+	СтавкиБонусовКонтрагентовСрезПоследних.Контрагент,
+	СтавкиБонусовКонтрагентовСрезПоследних.ВидТовара,
+	ПравилаЦенообразования.Производитель,
+	ПравилаЦенообразования.НоменклатурнаяГруппа,
+	ПравилаЦенообразования.ВходитВПапку,
+	ПравилаЦенообразования.Диаметр,
+	ПравилаЦенообразования.Номенклатура,
+	ПравилаЦенообразования.ПодСтрока,
+	СтавкиБонусовКонтрагентовСрезПоследних.Значение,
+	СтавкиБонусовКонтрагентовСрезПоследних.Коэффициент,
+	"1.ОТК",
+	ПравилаЦенообразования.СкидкаНаценка,
+	ПравилаЦенообразования.СкидкаНаценка + (ПравилаЦенообразования.СкидкаНаценка + 100) / 100 * (СтавкиБонусовКонтрагентовСрезПоследних.Значение * СтавкиБонусовКонтрагентовСрезПоследних.Коэффициент),
+	ПравилаЦенообразования.СкидкаПредоплаты
+ИЗ
+	РегистрСведений.СтавкиБонусовКонтрагентов.СрезПоследних(, ) КАК СтавкиБонусовКонтрагентовСрезПоследних
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ПравилаЦенообразования КАК ПравилаЦенообразования
+		ПО (ПравилаЦенообразования.Контрагент = СтавкиБонусовКонтрагентовСрезПоследних.Контрагент)
+			И (ПравилаЦенообразования.ВидТовара = СтавкиБонусовКонтрагентовСрезПоследних.ВидТовара)
+ГДЕ
+	СтавкиБонусовКонтрагентовСрезПоследних.Значение &gt; 0
+	И СтавкиБонусовКонтрагентовСрезПоследних.Коэффициент &gt; 0
+	И ПравилаЦенообразования.Категория = ЗНАЧЕНИЕ(Перечисление.КатегорииСкидок.ПустаяСсылка)
+
+УПОРЯДОЧИТЬ ПО
+	Контрагент,
+	ВидТовара,
+	Производитель,
+	НоменклатурнаяГруппа</query>
+		</dataSet>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Производитель</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="dcscor:DesignTimeValue">Справочник.Производители.ПустаяСсылка</right>
+			<userSettingID>5ad918d6-341d-4216-b203-efdbec000d43</userSettingID>
+			<userSettingPresentation xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Производитель</v8:content>
+				</v8:item>
+			</userSettingPresentation>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">СкидкаФакт</left>
+			<comparisonType>Greater</comparisonType>
+			<right xsi:type="xs:decimal">0</right>
+			<userSettingID>2f1f4836-ae4a-4843-9e7b-5d091d7edd4d</userSettingID>
+			<userSettingPresentation xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Скидка</v8:content>
+				</v8:item>
+			</userSettingPresentation>
+		</item>
+	</filter>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Вид</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ВидТовара</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Производитель</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>НоменклатурнаяГруппа</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ВходитВПапку</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Диаметр</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ПодСтрока</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Номенклатура</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ОТК</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>Коэффициент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>СкидкаНаценка</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>СкидкаФакт</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>СкидкаПредоплаты</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

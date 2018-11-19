@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КодТовара</dataPath>
+				<field>КодТовара</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВидБрака</dataPath>
+				<field>ВидБрака</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Действие</dataPath>
+				<field>Действие</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заключение</dataPath>
+				<field>Заключение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПринято</dataPath>
+				<field>КоличествоПринято</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КомментарийСклада</dataPath>
+				<field>КомментарийСклада</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ответственный</dataPath>
+				<field>Ответственный</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПричинаВозврата</dataPath>
+				<field>ПричинаВозврата</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СостояниеТовара</dataPath>
+				<field>СостояниеТовара</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаЗаявкиНаВозврат</dataPath>
+				<field>ДатаЗаявкиНаВозврат</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоСдано</dataPath>
+				<field>КоличествоСдано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерЗаявкиНаВозврат</dataPath>
+				<field>НомерЗаявкиНаВозврат</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПричинаВозвратаРасшифровка</dataPath>
+				<field>ПричинаВозвратаРасшифровка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерРеализации</dataPath>
+				<field>НомерРеализации</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаявкаНаБракРасшифровка.Номенклатура,
+	ЗаявкаНаБракРасшифровка.Номенклатура.Код КАК КодТовара,
+	ЗаявкаНаБракРасшифровка.Ссылка.Дата КАК ДатаЗаявкиНаВозврат,
+	ЗаявкаНаБракРасшифровка.Ссылка.Номер КАК НомерЗаявкиНаВозврат,
+	ЗаявкаНаБракРасшифровка.Ссылка.Контрагент,
+	ЗаявкаНаБракРасшифровка.Качество КАК ПричинаВозврата,
+	ЗаявкаНаБракРасшифровка.Комментарий КАК ПричинаВозвратаРасшифровка,
+	ЗаявкаНаБракРасшифровка.СостояниеТовара,
+	ЗаявкаНаБракРасшифровка.Заключение,
+	ЗаявкаНаБракРасшифровка.ВидБрака,
+	ЗаявкаНаБракРасшифровка.Реализация.Номер КАК НомерРеализации,
+	ЗаявкаНаБракРасшифровка.Действие,
+	ЗаявкаНаБракРасшифровка.КоличествоПринято,
+	ЗаявкаНаБракРасшифровка.Количество КАК КоличествоСдано,
+	ЗаявкаНаБракРасшифровка.Ссылка.КомментарийСклада,
+	ЗаявкаНаБракРасшифровка.Ссылка.Ответственный,
+	ЗаявкаНаБракРасшифровка.Реализация
+ИЗ
+	Документ.ЗаявкаНаБрак.Расшифровка КАК ЗаявкаНаБракРасшифровка
+ГДЕ
+	НЕ ЗаявкаНаБракРасшифровка.Ссылка.ПометкаУдаления
+	И ЗаявкаНаБракРасшифровка.Номенклатура &lt;&gt; ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка)
+	И ВЫБОР
+			КОГДА &amp;Подразделение = ЗНАЧЕНИЕ(Справочник.Подразделения.ПустаяСсылка)
+				ТОГДА ИСТИНА
+			ИНАЧЕ ЗаявкаНаБракРасшифровка.Ссылка.Ответственный.ОсновноеПодразделение В ИЕРАРХИИ (&amp;Подразделение)
+		КОНЕЦ
+	И ЗаявкаНаБракРасшифровка.Ссылка.Дата МЕЖДУ &amp;Дата1 И &amp;Дата2
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	ЗаявкаНаБрак.Номенклатура,
+	ЗаявкаНаБрак.Номенклатура.Код,
+	ЗаявкаНаБрак.Дата,
+	ЗаявкаНаБрак.Номер,
+	ЗаявкаНаБрак.Контрагент,
+	ВЫБОР
+		КОГДА НЕ ЗаявкаНаБрак.ДефектЛКП = ЗНАЧЕНИЕ(Перечисление.БракВидыДефектовЛКП.ПустаяСсылка)
+			ТОГДА ЗаявкаНаБрак.ДефектЛКП
+		КОГДА НЕ ЗаявкаНаБрак.ДефектЛитья = ЗНАЧЕНИЕ(Перечисление.БракВидыДефектовЛитья.ПустаяСсылка)
+			ТОГДА ЗаявкаНаБрак.ДефектЛитья
+		КОГДА НЕ ЗаявкаНаБрак.МеханическиеПовреждения = ЗНАЧЕНИЕ(Перечисление.БракВидыМеханическихПовреждений.ПустаяСсылка)
+			ТОГДА ЗаявкаНаБрак.МеханическиеПовреждения
+	КОНЕЦ,
+	"",
+	ЗаявкаНаБрак.СостояниеДиска,
+	ЗаявкаНаБрак.Заключение,
+	ЗаявкаНаБрак.ВидБрака,
+	ЗаявкаНаБрак.Реализация.Номер,
+	ЗаявкаНаБрак.Действие,
+	ЗаявкаНаБрак.Количество,
+	ЗаявкаНаБрак.Количество,
+	ЗаявкаНаБрак.КомментарийСклада,
+	ЗаявкаНаБрак.Ответственный,
+	ЗаявкаНаБрак.Реализация
+ИЗ
+	Документ.ЗаявкаНаБрак КАК ЗаявкаНаБрак
+ГДЕ
+	НЕ ЗаявкаНаБрак.ПометкаУдаления
+	И ЗаявкаНаБрак.Номенклатура &lt;&gt; ЗНАЧЕНИЕ(Справочник.Номенклатура.ПустаяСсылка)
+	И ЗаявкаНаБрак.Дата = &amp;Дата
+
+УПОРЯДОЧИТЬ ПО
+	ДатаЗаявкиНаВозврат</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоПринято</dataPath>
+			<expression>Сумма(КоличествоПринято)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоСдано</dataPath>
+			<expression>Сумма(КоличествоСдано)</expression>
+		</totalField>
+		<parameter>
+			<name>Дата1</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата1</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Дата2</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата2</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Подразделение</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Подразделение</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Дата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">ОснованойВариант</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Основной вариант</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодТовара</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Заявка на возврат</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ДатаЗаявкиНаВозврат</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Дата</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НомерЗаявкиНаВозврат</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Номер</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Контрагент</v8:content>
+				</v8:item>
+			</lwsTitle>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Основание возврата</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ПричинаВозврата</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Деффект</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПричинаВозвратаРасшифровка</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Комментарий</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СостояниеТовара</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Заключение</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВидБрака</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерРеализации</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Действие</field>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоСдано</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Сдано</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоПринято</field>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Принято</v8:content>
+					</v8:item>
+				</lwsTitle>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КомментарийСклада</field>
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Комментарий склада</v8:content>
+				</v8:item>
+			</lwsTitle>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Ответственный</field>
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ответственный</v8:content>
+				</v8:item>
+			</lwsTitle>
+		</item>
+	</selection>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>Действие</field>
+				</item>
+				<item>
+					<field>Заключение</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Размещение</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DataCompositionTextPlacementType">Wrap</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">25</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+		<item>
+			<selection>
+				<item>
+					<field>Номенклатура</field>
+				</item>
+				<item>
+					<field>КомментарийСклада</field>
+				</item>
+				<item>
+					<field>ПричинаВозвратаРасшифровка</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Размещение</dcscor:parameter>
+					<dcscor:value xsi:type="dcscor:DataCompositionTextPlacementType">Wrap</dcscor:value>
+				</dcscor:item>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">35</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>МакетОформления</dcscor:parameter>
+			<dcscor:value xsi:type="xs:string">Античный</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отчет по браку</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>АвтоПозицияРесурсов</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionResourcesAutoPosition">DontUse</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,806 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументЗакупки</dataPath>
+				<field>ДокументЗакупки</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПоставщику</dataPath>
+				<field>ЗаказПоставщику</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоОбратныеПродажиВозвраты</dataPath>
+				<field>КоличествоОбратныеПродажиВозвраты</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПродано</dataPath>
+				<field>КоличествоПродано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтатусПартии</dataPath>
+				<field>СтатусПартии</field>
+				<useRestriction>
+					<condition>true</condition>
+				</useRestriction>
+				<attributeUseRestriction>
+					<condition>true</condition>
+				</attributeUseRestriction>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьОбратныеПродажиВозвраты</dataPath>
+				<field>СтоимостьОбратныеПродажиВозвраты</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьПродано</dataPath>
+				<field>СтоимостьПродано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентСумма</dataPath>
+				<field>ПроцентСумма</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент возвратов (сумма)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентКоличество</dataPath>
+				<field>ПроцентКоличество</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент возвратов (количество)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Покупатель</dataPath>
+				<field>Покупатель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоВозвратСМаршрута</dataPath>
+				<field>КоличествоВозвратСМаршрута</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаВозвратСМаршрута</dataPath>
+				<field>СуммаВозвратСМаршрута</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентКоличествоОбщие</dataPath>
+				<field>ПроцентКоличествоОбщие</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент Возвраты+Возвраты с маршрута (количество)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентСуммаОбщие</dataPath>
+				<field>ПроцентСуммаОбщие</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент Возвраты+Возвраты с маршрута (сумма)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентКоличествоКонтр</dataPath>
+				<field>ПроцентКоличествоКонтр</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент возвратов по контрагенту (сумма)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентСуммаКонтр</dataPath>
+				<field>ПроцентСуммаКонтр</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Процент возвратов  по контрагенту(сумма)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	СУММА(ЗакупкиОбороты.СтоимостьОборот) КАК СуммаОбратныеПродажи,
+	ВЫРАЗИТЬ(ЗаявкиНаВозвратТоваровТ.РеализацияСделка КАК Документ.ЗаказПокупателя) КАК ЗаказПокупателя,
+	СУММА(ЗакупкиОбороты.КоличествоОборот) КАК КоличествоОбратныеПродажи,
+	ЗакупкиОбороты.Номенклатура,
+	ЗакупкиОбороты.ДоговорКонтрагента.Владелец КАК Контрагент
+ПОМЕСТИТЬ втОбратныеПродажи
+ИЗ
+	РегистрНакопления.Закупки.Обороты(&amp;НачПериода, &amp;КонПериода, , ЗаказПоставщику.Основание ССЫЛКА Документ.ЗаявкаНаВозвратТоваров) КАК ЗакупкиОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ЗаявкаНаВозвратТоваровТовары.Номенклатура КАК Номенклатура,
+			ЗаявкаНаВозвратТоваровТовары.Ссылка КАК Ссылка,
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка КАК РеализацияСделка
+		ИЗ
+			Документ.ЗаявкаНаВозвратТоваров.Товары КАК ЗаявкаНаВозвратТоваровТовары
+		ГДЕ
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка ССЫЛКА Документ.ЗаказПокупателя
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.Брак)
+			И НЕ(ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСМаршрута)
+						И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ОтказКлиентаПоБраку))
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПометкаУдаления = ЛОЖЬ
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСМаршрута)) КАК ЗаявкиНаВозвратТоваровТ
+		ПО ЗакупкиОбороты.Номенклатура = ЗаявкиНаВозвратТоваровТ.Номенклатура
+			И ЗакупкиОбороты.ЗаказПоставщику.Основание = ЗаявкиНаВозвратТоваровТ.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	ЗакупкиОбороты.Номенклатура,
+	ЗакупкиОбороты.ДоговорКонтрагента.Владелец,
+	ВЫРАЗИТЬ(ЗаявкиНаВозвратТоваровТ.РеализацияСделка КАК Документ.ЗаказПокупателя)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	СУММА(ЗакупкиОбороты.СтоимостьОборот) КАК СуммаОбратныеПродажиВозвратСМаршрута,
+	ВЫРАЗИТЬ(ЗаявкаНаВозвратТоваровТ.РеализацияСделка КАК Документ.ЗаказПокупателя) КАК ЗаказПокупателя,
+	СУММА(ЗакупкиОбороты.КоличествоОборот) КАК КоличествоОбратныеПродажиВозвратСМаршрута,
+	ЗакупкиОбороты.Номенклатура,
+	ЗакупкиОбороты.ДоговорКонтрагента.Владелец КАК Контрагент
+ПОМЕСТИТЬ втОбратныеПродажиВозвратСМаршрута
+ИЗ
+	РегистрНакопления.Закупки.Обороты(&amp;НачПериода, &amp;КонПериода, , ЗаказПоставщику.Основание ССЫЛКА Документ.ЗаявкаНаВозвратТоваров) КАК ЗакупкиОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ЗаявкаНаВозвратТоваровТовары.Ссылка КАК Ссылка,
+			ЗаявкаНаВозвратТоваровТовары.Номенклатура КАК Номенклатура,
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка КАК РеализацияСделка
+		ИЗ
+			Документ.ЗаявкаНаВозвратТоваров.Товары КАК ЗаявкаНаВозвратТоваровТовары
+		ГДЕ
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка ССЫЛКА Документ.ЗаказПокупателя
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСМаршрута)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ОтказКлиентаПоБраку)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.Пересортица)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ПроизводственныйБрак)) КАК ЗаявкаНаВозвратТоваровТ
+		ПО ЗакупкиОбороты.ЗаказПоставщику.Основание = ЗаявкаНаВозвратТоваровТ.Ссылка
+			И ЗакупкиОбороты.Номенклатура = ЗаявкаНаВозвратТоваровТ.Номенклатура
+
+СГРУППИРОВАТЬ ПО
+	ЗакупкиОбороты.Номенклатура,
+	ЗакупкиОбороты.ДоговорКонтрагента.Владелец,
+	ВЫРАЗИТЬ(ЗаявкаНаВозвратТоваровТ.РеализацияСделка КАК Документ.ЗаказПокупателя)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	ПродажиОбороты.Номенклатура,
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	СУММА(-ПродажиОбороты.КоличествоОборот) КАК КоличествоОборотВозвратСМаршрута,
+	СУММА(-ПродажиОбороты.СтоимостьОборот) КАК СтоимостьОборотВозвратСМаршрута,
+	ПродажиОбороты.ЗаказПокупателя
+ПОМЕСТИТЬ втВозвратыВозвратСМаршрута
+ИЗ
+	РегистрНакопления.Продажи.Обороты(&amp;НачПериода, &amp;КонПериода, Регистратор, ) КАК ПродажиОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка КАК РеализацияСделка,
+			ЗаявкаНаВозвратТоваровТовары.Номенклатура КАК Номенклатура,
+			ЗаявкаНаВозвратТоваровТовары.Ссылка КАК Ссылка
+		ИЗ
+			Документ.ЗаявкаНаВозвратТоваров.Товары КАК ЗаявкаНаВозвратТоваровТовары
+		ГДЕ
+			ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСМаршрута)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ОтказКлиентаПоБраку)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.Пересортица)
+			И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса &lt;&gt; ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ПроизводственныйБрак)) КАК ЗаявкаНаВозвратТоваровТ
+		ПО ПродажиОбороты.Номенклатура = ЗаявкаНаВозвратТоваровТ.Номенклатура
+			И ПродажиОбороты.Регистратор.ЗаявкаОснование = ЗаявкаНаВозвратТоваровТ.Ссылка
+			И ПродажиОбороты.Регистратор.Сделка = ЗаявкаНаВозвратТоваровТ.РеализацияСделка
+ГДЕ
+	ПродажиОбороты.Регистратор ССЫЛКА Документ.ВозвратТоваровОтПокупателя
+
+СГРУППИРОВАТЬ ПО
+	ПродажиОбороты.ЗаказПокупателя,
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	ПродажиОбороты.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	ПродажиОбороты.Номенклатура,
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	СУММА(ПродажиОбороты.КоличествоОборот) КАК КоличествоОборот,
+	СУММА(ПродажиОбороты.СтоимостьОборот) КАК СтоимостьОборот,
+	ПродажиОбороты.ЗаказПокупателя
+ПОМЕСТИТЬ втПродажи
+ИЗ
+	РегистрНакопления.Продажи.Обороты(&amp;НачПериода, &amp;КонПериода, Регистратор, ) КАК ПродажиОбороты
+ГДЕ
+	НЕ ПродажиОбороты.Регистратор ССЫЛКА Документ.ВозвратТоваровОтПокупателя
+
+СГРУППИРОВАТЬ ПО
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	ПродажиОбороты.Номенклатура,
+	ПродажиОбороты.ЗаказПокупателя
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗРЕШЕННЫЕ
+	ПродажиОбороты.Номенклатура,
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	СУММА(-ПродажиОбороты.КоличествоОборот) КАК КоличествоОборот,
+	СУММА(-ПродажиОбороты.СтоимостьОборот) КАК СтоимостьОборот,
+	ПродажиОбороты.ЗаказПокупателя
+ПОМЕСТИТЬ втВозвраты
+ИЗ
+	РегистрНакопления.Продажи.Обороты(&amp;НачПериода, &amp;КонПериода, Регистратор, ) КАК ПродажиОбороты
+		ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ РАЗЛИЧНЫЕ
+			ЗаявкаНаВозвратТоваровТовары.Ссылка КАК Ссылка,
+			ЗаявкаНаВозвратТоваровТовары.Реализация.Сделка КАК РеализацияСделка,
+			ЗаявкаНаВозвратТоваровТовары.Номенклатура КАК Номенклатура
+		ИЗ
+			Документ.ЗаявкаНаВозвратТоваров.Товары КАК ЗаявкаНаВозвратТоваровТовары
+		ГДЕ
+			НЕ(ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСМаршрута)
+						И ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричиныВозвратаТоваровИзРейса = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТоваровИзРейса.ОтказКлиентаПоБраку))
+			И НЕ ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.Брак)
+			И НЕ ЗаявкаНаВозвратТоваровТовары.Ссылка.ПричинаВозврата = ЗНАЧЕНИЕ(Перечисление.ПричиныВозвратаТовара.ВозвратСмаршрута)) КАК ЗаявкаНаВозвратТоваровТ
+		ПО ПродажиОбороты.Номенклатура = ЗаявкаНаВозвратТоваровТ.Номенклатура
+			И ПродажиОбороты.Регистратор.ЗаявкаОснование = ЗаявкаНаВозвратТоваровТ.Ссылка
+			И ПродажиОбороты.Регистратор.Сделка = ЗаявкаНаВозвратТоваровТ.РеализацияСделка
+ГДЕ
+	ПродажиОбороты.Регистратор ССЫЛКА Документ.ВозвратТоваровОтПокупателя
+
+СГРУППИРОВАТЬ ПО
+	ПродажиОбороты.ЗаказПокупателя,
+	ПродажиОбороты.ДоговорКонтрагента.Владелец,
+	ПродажиОбороты.Номенклатура
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	А.Контрагент,
+	А.ЗаказПокупателя,
+	А.Номенклатура,
+	СУММА(А.КоличествоПродано) КАК КоличествоПродано,
+	СУММА(А.СтоимостьПродано) КАК СтоимостьПродано,
+	СУММА(А.СтоимостьОбратныеПродажиВозвраты) КАК СтоимостьОбратныеПродажиВозвраты,
+	СУММА(А.КоличествоОбратныеПродажиВозвраты) КАК КоличествоОбратныеПродажиВозвраты,
+	СУММА(А.КоличествоВозвратСМаршрута) КАК КоличествоВозвратСМаршрута,
+	СУММА(А.СуммаВозвратСМаршрута) КАК СуммаВозвратСМаршрута
+ПОМЕСТИТЬ вт
+ИЗ
+	(ВЫБРАТЬ
+		втПродажи.Номенклатура КАК Номенклатура,
+		втПродажи.ДоговорКонтрагентаВладелец КАК Контрагент,
+		втПродажи.КоличествоОборот КАК КоличествоПродано,
+		втПродажи.СтоимостьОборот КАК СтоимостьПродано,
+		втПродажи.ЗаказПокупателя КАК ЗаказПокупателя,
+		0 КАК СтоимостьОбратныеПродажиВозвраты,
+		0 КАК КоличествоОбратныеПродажиВозвраты,
+		0 КАК КоличествоВозвратСМаршрута,
+		0 КАК СуммаВозвратСМаршрута
+	ИЗ
+		втПродажи КАК втПродажи
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		втОбратныеПродажи.Номенклатура,
+		втОбратныеПродажи.Контрагент,
+		0,
+		0,
+		втОбратныеПродажи.ЗаказПокупателя,
+		втОбратныеПродажи.СуммаОбратныеПродажи,
+		втОбратныеПродажи.КоличествоОбратныеПродажи,
+		0,
+		0
+	ИЗ
+		втОбратныеПродажи КАК втОбратныеПродажи
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		втВозвраты.Номенклатура,
+		втВозвраты.ДоговорКонтрагентаВладелец,
+		0,
+		0,
+		втВозвраты.ЗаказПокупателя,
+		втВозвраты.СтоимостьОборот,
+		втВозвраты.КоличествоОборот,
+		0,
+		0
+	ИЗ
+		втВозвраты КАК втВозвраты
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		втОбратныеПродажиВозвратСМаршрута.Номенклатура,
+		втОбратныеПродажиВозвратСМаршрута.Контрагент,
+		0,
+		0,
+		втОбратныеПродажиВозвратСМаршрута.ЗаказПокупателя,
+		0,
+		0,
+		втОбратныеПродажиВозвратСМаршрута.КоличествоОбратныеПродажиВозвратСМаршрута,
+		втОбратныеПродажиВозвратСМаршрута.СуммаОбратныеПродажиВозвратСМаршрута
+	ИЗ
+		втОбратныеПродажиВозвратСМаршрута КАК втОбратныеПродажиВозвратСМаршрута
+	
+	ОБЪЕДИНИТЬ ВСЕ
+	
+	ВЫБРАТЬ
+		втВозвратыВозвратСМаршрута.Номенклатура,
+		втВозвратыВозвратСМаршрута.ДоговорКонтрагентаВладелец,
+		0,
+		0,
+		втВозвратыВозвратСМаршрута.ЗаказПокупателя,
+		0,
+		0,
+		втВозвратыВозвратСМаршрута.КоличествоОборотВозвратСМаршрута,
+		втВозвратыВозвратСМаршрута.СтоимостьОборотВозвратСМаршрута
+	ИЗ
+		втВозвратыВозвратСМаршрута КАК втВозвратыВозвратСМаршрута) КАК А
+
+СГРУППИРОВАТЬ ПО
+	А.Номенклатура,
+	А.Контрагент,
+	А.ЗаказПокупателя
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.Контрагент КАК Покупатель,
+	вт.ЗаказПокупателя,
+	вт.Номенклатура,
+	вт.КоличествоПродано,
+	вт.СтоимостьПродано,
+	вт.СтоимостьОбратныеПродажиВозвраты,
+	вт.КоличествоОбратныеПродажиВозвраты,
+	ВЫБОР
+		КОГДА вт.СтоимостьПродано &lt;&gt; 0
+			ТОГДА вт.СтоимостьОбратныеПродажиВозвраты * 100 / вт.СтоимостьПродано
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцентСумма,
+	ВЫБОР
+		КОГДА вт.КоличествоПродано &lt;&gt; 0
+			ТОГДА вт.КоличествоОбратныеПродажиВозвраты * 100 / вт.КоличествоПродано
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцентКоличество,
+	вт.КоличествоВозвратСМаршрута,
+	вт.СуммаВозвратСМаршрута,
+	ВЫБОР
+		КОГДА вт.СтоимостьПродано &lt;&gt; 0
+			ТОГДА (вт.СтоимостьОбратныеПродажиВозвраты + вт.СуммаВозвратСМаршрута) * 100 / вт.СтоимостьПродано
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцентСуммаОбщие,
+	ВЫБОР
+		КОГДА вт.КоличествоПродано &lt;&gt; 0
+			ТОГДА (вт.КоличествоОбратныеПродажиВозвраты + вт.КоличествоВозвратСМаршрута) * 100 / вт.КоличествоПродано
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцентКоличествоОбщие,
+	взИтогоПоКонтрагенту.ПроцентКоличествоКонтр,
+	взИтогоПоКонтрагенту.ПроцентСуммаКонтр
+ИЗ
+	вт КАК вт
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ОбщееПоКонтрагенту.Контрагент КАК Контрагент,
+			ОбщееПоКонтрагенту.КоличествоПродано КАК КоличествоПродано,
+			ОбщееПоКонтрагенту.КоличествоОбратныеПродажиВозвраты КАК КоличествоОбратныеПродажиВозвраты,
+			ВЫБОР
+				КОГДА ОбщееПоКонтрагенту.КоличествоПродано &lt;&gt; 0
+					ТОГДА ОбщееПоКонтрагенту.КоличествоОбратныеПродажиВозвраты * 100 / ОбщееПоКонтрагенту.КоличествоПродано
+				ИНАЧЕ 0
+			КОНЕЦ КАК ПроцентКоличествоКонтр,
+			ВЫБОР
+				КОГДА ОбщееПоКонтрагенту.СтоимостьПродано &lt;&gt; 0
+					ТОГДА ОбщееПоКонтрагенту.СтоимостьОбратныеПродажиВозвраты * 100 / ОбщееПоКонтрагенту.СтоимостьПродано
+				ИНАЧЕ 0
+			КОНЕЦ КАК ПроцентСуммаКонтр
+		ИЗ
+			(ВЫБРАТЬ
+				вт.Контрагент КАК Контрагент,
+				СУММА(вт.КоличествоПродано) КАК КоличествоПродано,
+				СУММА(вт.КоличествоОбратныеПродажиВозвраты) КАК КоличествоОбратныеПродажиВозвраты,
+				СУММА(вт.СтоимостьПродано) КАК СтоимостьПродано,
+				СУММА(вт.СтоимостьОбратныеПродажиВозвраты) КАК СтоимостьОбратныеПродажиВозвраты
+			ИЗ
+				вт КАК вт
+			
+			СГРУППИРОВАТЬ ПО
+				вт.Контрагент) КАК ОбщееПоКонтрагенту) КАК взИтогоПоКонтрагенту
+		ПО вт.Контрагент = взИтогоПоКонтрагенту.Контрагент</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоОбратныеПродажиВозвраты</dataPath>
+			<expression>Сумма(КоличествоОбратныеПродажиВозвраты)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПродано</dataPath>
+			<expression>Сумма(КоличествоПродано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СтоимостьОбратныеПродажиВозвраты</dataPath>
+			<expression>Сумма(СтоимостьОбратныеПродажиВозвраты)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СтоимостьПродано</dataPath>
+			<expression>Сумма(СтоимостьПродано)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентСумма</dataPath>
+			<expression>выбор когда Сумма(СтоимостьПродано)&lt;&gt;0 тогда Сумма(СтоимостьОбратныеПродажиВозвраты
+)*100/Сумма(СтоимостьПродано) иначе 0 конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентКоличество</dataPath>
+			<expression>выбор когда Сумма(КоличествоПродано)&lt;&gt;0 тогда Сумма(КоличествоОбратныеПродажиВозвраты
+)*100/Сумма(КоличествоПродано) иначе 0 конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоВозвратСМаршрута</dataPath>
+			<expression>Сумма(КоличествоВозвратСМаршрута)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаВозвратСМаршрута</dataPath>
+			<expression>Сумма(СуммаВозвратСМаршрута)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентСуммаОбщие</dataPath>
+			<expression>выбор когда Сумма(СтоимостьПродано)&lt;&gt;0 тогда (Сумма(СтоимостьОбратныеПродажиВозвраты
+)+Сумма(СуммаВозвратСМаршрута
+))*100/Сумма(СтоимостьПродано) иначе 0 конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентКоличествоОбщие</dataPath>
+			<expression>выбор когда Сумма(КоличествоПродано)&lt;&gt;0 тогда (Сумма(КоличествоОбратныеПродажиВозвраты
+)+Сумма(КоличествоВозвратСМаршрута
+))*100/Сумма(КоличествоПродано) иначе 0 конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентКоличествоКонтр</dataPath>
+			<expression>Максимум(ПроцентКоличествоКонтр)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентСуммаКонтр</dataPath>
+			<expression>Максимум(ПроцентСуммаКонтр)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаНачала</expression>
+		</parameter>
+		<parameter>
+			<name>КонПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+			<expression>&amp;Период.ДатаОкончания</expression>
+		</parameter>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">StandardPeriod</Type>
+			</valueType>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:StandardPeriod">
+				<d4p1:variant xsi:type="d4p1:StandardPeriodVariant">Custom</d4p1:variant>
+				<d4p1:startDate>0001-01-01T00:00:00</d4p1:startDate>
+				<d4p1:endDate>0001-01-01T00:00:00</d4p1:endDate>
+			</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Покупатель</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ЗаказПокупателя</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПродано</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьПродано</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоОбратныеПродажиВозвраты</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СтоимостьОбратныеПродажиВозвраты</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоВозвратСМаршрута</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаВозвратСМаршрута</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентСумма</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентКоличество</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентСуммаОбщие</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентКоличествоОбщие</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентКоличествоКонтр</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПроцентСуммаКонтр</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Номенклатура.ВидТовара</left>
+			<comparisonType>Equal</comparisonType>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Покупатель.КатегорияПокупателя</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="dcscor:DesignTimeValue">Справочник.КатегорииПокупателей.ИнтернетМагазин</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">ПроцентСуммаКонтр</left>
+			<comparisonType>Less</comparisonType>
+			<right xsi:type="xs:decimal">0</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">ПроцентКоличествоКонтр</left>
+			<comparisonType>Greater</comparisonType>
+			<right xsi:type="xs:decimal">0</right>
+		</item>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Период</dcscor:parameter>
+			<dcscor:value xsi:type="v8:StandardPeriod">
+				<v8:variant xsi:type="v8:StandardPeriodVariant">ThisMonth</v8:variant>
+			</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Анализ возвратов</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Покупатель</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Номенклатура</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

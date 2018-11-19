@@ -1,0 +1,1752 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>ПДЗиПени</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаНачисления</dataPath>
+				<field>ДатаНачисления</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорЗадолженности</dataPath>
+				<field>ДоговорЗадолженности</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорНачисления</dataPath>
+				<field>ДоговорНачисления</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументНачисления</dataPath>
+				<field>ДокументНачисления</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<use>false</use>
+						<parameter>ЦветФона</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xmlns:d7p2="http://v8.1c.ru/8.1/data/ui/style" xsi:type="d7p1:Color">d7p2:ReportGroup2BackColor</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">50</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НачислилиПеней</dataPath>
+				<field>НачислилиПеней</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВыставилиПеней</dataPath>
+				<field>ВыставилиПеней</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаНачалаСудебногоПроцесса</dataPath>
+				<field>ДатаНачалаСудебногоПроцесса</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Начало судебного процесса</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаОкончанияСудебногоПроцесса</dataPath>
+				<field>ДатаОкончанияСудебногоПроцесса</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Окончание судебного процесса</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПередачиДокументовВЮрОтдел</dataPath>
+				<field>ДатаПередачиДокументовВЮрОтдел</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Передача документов в юр. отдел</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДолга</dataPath>
+				<field>СуммаДолга</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>РезультатСудебногоПроцесса</dataPath>
+				<field>РезультатСудебногоПроцесса</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СделкаДатаОплаты</dataPath>
+				<field>СделкаДатаОплаты</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата оплаты</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СделкаДатаОтгрузки</dataPath>
+				<field>СделкаДатаОтгрузки</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата отгрузки</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МинимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>МаксимальнаяШирина</parameter>
+						<value xsi:type="xs:decimal">12</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НаправлениеПродаж</dataPath>
+				<field>НаправлениеПродаж</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДнейПросрочено</dataPath>
+				<field>ДнейПросрочено</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПросроченногоДолга</dataPath>
+				<field>СуммаПросроченногоДолга</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаВозвращения</dataPath>
+				<field>ДатаВозвращения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаданиеНаОтгрузку</dataPath>
+				<field>ЗаданиеНаОтгрузку</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Заказ</dataPath>
+				<field>Заказ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Реализация</dataPath>
+				<field>Реализация</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаКСдачеВодителем</dataPath>
+				<field>СуммаКСдачеВодителем</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаДолгаВсего</dataPath>
+				<field>СуммаДолгаВсего</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма долга</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПросроченногоДолгаВсего</dataPath>
+				<field>СуммаПросроченногоДолгаВсего</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма просроченного долга</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента.ОтветственноеЛицо КАК Менеджер,
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента.Владелец КАК Контрагент,
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента КАК ДоговорПродажи,
+	ВзаиморасчетыСКонтрагентамиОстатки.Сделка,
+	ВзаиморасчетыСКонтрагентамиОстатки.Сделка.ДатаОтгрузки КАК ДатаОтгрузки,
+	ВзаиморасчетыСКонтрагентамиОстатки.Сделка.ДатаОплаты КАК ДатаОплаты,
+	ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток КАК СуммаДолга,
+	ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток КАК СуммаПросроченногоДолга,
+	0 КАК НачислилиПеней,
+	ВЫБОР
+		КОГДА ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента.ТипДоговора = &amp;Пени
+			ТОГДА ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток
+		ИНАЧЕ 0
+	КОНЕЦ КАК ВыставилиПеней,
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение КАК Подразделение,
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж КАК НаправлениеПродаж
+ПОМЕСТИТЬ вт
+ИЗ
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(, ДоговорКонтрагента.Владелец.Покупатель = ИСТИНА) КАК ВзаиморасчетыСКонтрагентамиОстатки
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	НачисленныеПениОстатки.ДоговорЗадолженности.ОтветственноеЛицо,
+	НачисленныеПениОстатки.Контрагент,
+	НачисленныеПениОстатки.ДоговорЗадолженности,
+	НачисленныеПениОстатки.Сделка,
+	НачисленныеПениОстатки.Сделка.ДатаОтгрузки,
+	НачисленныеПениОстатки.Сделка.ДатаОплаты,
+	0,
+	0,
+	НачисленныеПениОстатки.ПениОстаток,
+	0,
+	НачисленныеПениОстатки.ДоговорЗадолженности.ОтветственноеЛицо.ОсновноеПодразделение,
+	НачисленныеПениОстатки.ДоговорЗадолженности.ОтветственноеЛицо.НаправлениеПродаж
+ИЗ
+	РегистрНакопления.НачисленныеПени.Остатки КАК НачисленныеПениОстатки
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.Контрагент,
+	СУММА(вт.СуммаДолга) КАК СуммаДолга,
+	СУММА(вт.СуммаПросроченногоДолга) КАК СуммаПросроченногоДолга,
+	СУММА(вт.НачислилиПеней) КАК НачислилиПеней,
+	СУММА(вт.ВыставилиПеней) КАК ВыставилиПеней
+ПОМЕСТИТЬ СуммаКонтрагента
+ИЗ
+	вт КАК вт
+
+СГРУППИРОВАТЬ ПО
+	вт.Контрагент
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	вт.Менеджер,
+	вт.Контрагент,
+	вт.ДоговорПродажи,
+	вт.Сделка,
+	вт.ДатаОтгрузки,
+	вт.ДатаОплаты,
+	СУММА(вт.СуммаДолга) КАК СуммаДолга,
+	СУММА(вт.СуммаПросроченногоДолга) КАК СуммаПросроченногоДолга,
+	СУММА(вт.НачислилиПеней) КАК НачислилиПеней,
+	СУММА(вт.ВыставилиПеней) КАК ВыставилиПеней,
+	вт.Подразделение,
+	вт.НаправлениеПродаж
+ПОМЕСТИТЬ свод
+ИЗ
+	вт КАК вт
+
+СГРУППИРОВАТЬ ПО
+	вт.Менеджер,
+	вт.Контрагент,
+	вт.ДоговорПродажи,
+	вт.Сделка,
+	вт.ДатаОтгрузки,
+	вт.ДатаОплаты,
+	вт.Подразделение,
+	вт.НаправлениеПродаж
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента КАК ДоговорКонтрагента,
+	ВзаиморасчетыСКонтрагентамиОстатки.Сделка КАК Сделка,
+	СУММА(ВЫБОР
+			КОГДА &amp;УчитыватьВзимныеОбязательства
+				ТОГДА ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток - ЕСТЬNULL(УпрВзаимозачеты.Сумма, 0)
+			ИНАЧЕ ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток
+		КОНЕЦ) КАК СуммаУпрОстаток
+ПОМЕСТИТЬ ПДЗ
+ИЗ
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(
+			&amp;ТекДата,
+			ДоговорКонтрагента.Владелец.Покупатель = ИСТИНА
+				И Сделка.ДатаОплаты &lt; &amp;ТекДата) КАК ВзаиморасчетыСКонтрагентамиОстатки
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			УправленческийЗачетВзаимныхОбязательствСуммыДолга.ДоговорКонтрагента КАК ДоговорКонтрагента,
+			УправленческийЗачетВзаимныхОбязательствСуммыДолга.Сделка КАК Сделка,
+			УправленческийЗачетВзаимныхОбязательствСуммыДолга.Сумма КАК Сумма
+		ИЗ
+			Документ.УправленческийЗачетВзаимныхОбязательств.СуммыДолга КАК УправленческийЗачетВзаимныхОбязательствСуммыДолга
+		ГДЕ
+			УправленческийЗачетВзаимныхОбязательствСуммыДолга.Ссылка.Проведен
+			И УправленческийЗачетВзаимныхОбязательствСуммыДолга.ВидЗадолженности = ЗНАЧЕНИЕ(Перечисление.ВидыЗадолженности.Дебиторская)) КАК УпрВзаимозачеты
+		ПО ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента = УпрВзаимозачеты.ДоговорКонтрагента
+			И ВзаиморасчетыСКонтрагентамиОстатки.Сделка = УпрВзаимозачеты.Сделка
+ГДЕ
+	ВзаиморасчетыСКонтрагентамиОстатки.СуммаУпрОстаток &gt; 0
+
+СГРУППИРОВАТЬ ПО
+	ВзаиморасчетыСКонтрагентамиОстатки.ДоговорКонтрагента,
+	ВзаиморасчетыСКонтрагентамиОстатки.Сделка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СУММА(ВложенныйЗапрос.СуммаУпрОстаток) КАК СуммаУпрОстаток,
+	ВложенныйЗапрос.ДоговорКонтрагентаВладелец
+ПОМЕСТИТЬ ПДЗКонтрагента
+ИЗ
+	(ВЫБРАТЬ
+		СУММА(ПДЗ.СуммаУпрОстаток) КАК СуммаУпрОстаток,
+		ПДЗ.ДоговорКонтрагента.Владелец КАК ДоговорКонтрагентаВладелец
+	ИЗ
+		ПДЗ КАК ПДЗ
+	
+	СГРУППИРОВАТЬ ПО
+		ПДЗ.ДоговорКонтрагента.Владелец) КАК ВложенныйЗапрос
+
+СГРУППИРОВАТЬ ПО
+	ВложенныйЗапрос.ДоговорКонтрагентаВладелец
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	свод.Менеджер,
+	свод.Контрагент,
+	свод.ДоговорПродажи,
+	свод.Сделка,
+	свод.ДатаОтгрузки,
+	свод.ДатаОплаты,
+	свод.СуммаДолга,
+	ПДЗ.СуммаУпрОстаток КАК СуммаПросроченногоДолга,
+	свод.НачислилиПеней,
+	свод.ВыставилиПеней,
+	свод.Подразделение,
+	свод.НаправлениеПродаж,
+	ВЫБОР
+		КОГДА НЕ ПДЗ.Сделка ЕСТЬ NULL 
+				И ЕСТЬNULL(ПДЗ.СуммаУпрОстаток, 0) &gt; 0
+			ТОГДА ВЫБОР
+					КОГДА РАЗНОСТЬДАТ(ВЫБОР
+								КОГДА ЕСТЬNULL(ПДЗ.Сделка.ДатаОплаты, 0) = 0
+										ИЛИ ПДЗ.Сделка.ДатаОплаты = ДАТАВРЕМЯ(1, 1, 1, 0, 0, 0)
+									ТОГДА ПДЗ.Сделка.Дата
+								ИНАЧЕ ПДЗ.Сделка.ДатаОплаты
+							КОНЕЦ, &amp;ТекДата, ДЕНЬ) + 1 &gt; 0
+						ТОГДА РАЗНОСТЬДАТ(ВЫБОР
+									КОГДА ЕСТЬNULL(ПДЗ.Сделка.ДатаОплаты, 0) = 0
+											ИЛИ ПДЗ.Сделка.ДатаОплаты = ДАТАВРЕМЯ(1, 1, 1, 0, 0, 0)
+										ТОГДА ПДЗ.Сделка.Дата
+									ИНАЧЕ ПДЗ.Сделка.ДатаОплаты
+								КОНЕЦ, &amp;ТекДата, ДЕНЬ) + 1
+					ИНАЧЕ 0
+				КОНЕЦ
+		ИНАЧЕ 0
+	КОНЕЦ КАК ДнейПросрочено,
+	СуммаКонтрагента.СуммаДолга КАК СуммаДолгаВсего,
+	ПДЗКонстрагента.СуммаУпрОстаток
+ПОМЕСТИТЬ Итого
+ИЗ
+	свод КАК свод
+		ЛЕВОЕ СОЕДИНЕНИЕ ПДЗ КАК ПДЗ
+		ПО свод.Сделка = ПДЗ.Сделка
+			И свод.ДоговорПродажи = ПДЗ.ДоговорКонтрагента
+		ПОЛНОЕ СОЕДИНЕНИЕ СуммаКонтрагента КАК СуммаКонтрагента
+		ПО свод.Контрагент = СуммаКонтрагента.Контрагент
+		ПОЛНОЕ СОЕДИНЕНИЕ ПДЗКонтрагента КАК ПДЗКонстрагента
+		ПО свод.Контрагент = ПДЗКонстрагента.ДоговорКонтрагентаВладелец
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	УчетДенежныхСредствВПодотчетеУВодителейОстатки.Заказ,
+	МАКСИМУМ(УчетДенежныхСредствВПодотчетеУВодителейОстатки.ЗаданиеНаОтгрузку) КАК ЗаданиеНаОтгрузку,
+	СУММА(УчетДенежныхСредствВПодотчетеУВодителейОстатки.СуммаОстаток + УчетДенежныхСредствВПодотчетеУВодителейОстатки.СуммаТранспортОстаток + УчетДенежныхСредствВПодотчетеУВодителейОстатки.СуммаПредыдущийДолгОстаток) КАК СуммаКСдачеВодителем
+ПОМЕСТИТЬ ДеньгиУВодителя
+ИЗ
+	РегистрНакопления.УчетДенежныхСредствВПодотчетеУВодителей.Остатки КАК УчетДенежныхСредствВПодотчетеУВодителейОстатки
+
+СГРУППИРОВАТЬ ПО
+	УчетДенежныхСредствВПодотчетеУВодителейОстатки.Заказ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Итого.Менеджер,
+	Итого.Контрагент,
+	Итого.ДоговорПродажи КАК ДоговорКонтрагента,
+	Итого.Сделка,
+	Итого.ДатаОтгрузки КАК СделкаДатаОтгрузки,
+	Итого.ДатаОплаты КАК СделкаДатаОплаты,
+	Итого.СуммаДолга,
+	Итого.Подразделение,
+	Итого.НаправлениеПродаж,
+	Суды.ДатаПередачиДокументовВЮрОтдел,
+	Суды.ДатаНачалаСудебногоПроцесса,
+	Суды.ДатаОкончанияСудебногоПроцесса,
+	Суды.РезультатСудебногоПроцесса,
+	Итого.НачислилиПеней,
+	Итого.ВыставилиПеней,
+	Итого.ДнейПросрочено,
+	Итого.СуммаПросроченногоДолга,
+	ДеньгиУВодителя.ЗаданиеНаОтгрузку,
+	ДеньгиУВодителя.ЗаданиеНаОтгрузку.ДатаВозвращения КАК ДатаВозвращения,
+	ДеньгиУВодителя.СуммаКСдачеВодителем,
+	Итого.СуммаДолгаВсего,
+	Итого.СуммаУпрОстаток КАК СуммаПросроченногоДолгаВсего
+ИЗ
+	Итого КАК Итого
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ПоследняяЗаписьПоСудам.Контрагент КАК Контрагент,
+			СудебныеРазбирательстваСДебиторами.ДатаПередачиДокументовВЮрОтдел КАК ДатаПередачиДокументовВЮрОтдел,
+			СудебныеРазбирательстваСДебиторами.ДатаНачалаСудебногоПроцесса КАК ДатаНачалаСудебногоПроцесса,
+			СудебныеРазбирательстваСДебиторами.ДатаОкончанияСудебногоПроцесса КАК ДатаОкончанияСудебногоПроцесса,
+			СудебныеРазбирательстваСДебиторами.РезультатСудебногоПроцесса КАК РезультатСудебногоПроцесса
+		ИЗ
+			(ВЫБРАТЬ
+				СудебныеРазбирательстваСДебиторами.Контрагент КАК Контрагент,
+				МАКСИМУМ(СудебныеРазбирательстваСДебиторами.НомерЗаписи) КАК НомерЗаписи
+			ИЗ
+				РегистрСведений.СудебныеРазбирательстваСДебиторами КАК СудебныеРазбирательстваСДебиторами
+			
+			СГРУППИРОВАТЬ ПО
+				СудебныеРазбирательстваСДебиторами.Контрагент) КАК ПоследняяЗаписьПоСудам
+				ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.СудебныеРазбирательстваСДебиторами КАК СудебныеРазбирательстваСДебиторами
+				ПО ПоследняяЗаписьПоСудам.Контрагент = СудебныеРазбирательстваСДебиторами.Контрагент
+					И ПоследняяЗаписьПоСудам.НомерЗаписи = СудебныеРазбирательстваСДебиторами.НомерЗаписи) КАК Суды
+		ПО Итого.Контрагент = Суды.Контрагент
+		ЛЕВОЕ СОЕДИНЕНИЕ ДеньгиУВодителя КАК ДеньгиУВодителя
+		ПО Итого.Сделка = ДеньгиУВодителя.Заказ</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetObject">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Объект</dataPath>
+				<field>Объект</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Объект</d5p1:content>
+					</d5p1:item>
+				</title>
+				<valueType>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.Контрагенты</Type>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.ФизическиеЛица</Type>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d6p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d6p1:CatalogRef.КонтактныеЛица</Type>
+				</valueType>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КолвоЗвонков</dataPath>
+				<field>КолвоЗвонков</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество звонков</d5p1:content>
+					</d5p1:item>
+				</title>
+				<valueType>
+					<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+					<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+						<Digits>0</Digits>
+						<FractionDigits>0</FractionDigits>
+						<AllowedSign>Any</AllowedSign>
+					</NumberQualifiers>
+				</valueType>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<objectName>тз</objectName>
+		</dataSet>
+		<dataSetLink>
+			<sourceDataSet>ПДЗиПени</sourceDataSet>
+			<destinationDataSet>НаборДанных1</destinationDataSet>
+			<sourceExpression>Контрагент</sourceExpression>
+			<destinationExpression>Объект</destinationExpression>
+		</dataSetLink>
+		<totalField>
+			<dataPath>НачислилиПеней</dataPath>
+			<expression>Сумма(НачислилиПеней)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Контрагент</group>
+			<group>Менеджер</group>
+			<group>НаправлениеПродаж</group>
+			<group>Подразделение</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВыставилиПеней</dataPath>
+			<expression>Сумма(ВыставилиПеней)</expression>
+			<group>Контрагент</group>
+			<group>Менеджер</group>
+			<group>НаправлениеПродаж</group>
+			<group>Подразделение</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаДолга</dataPath>
+			<expression>Сумма(СуммаДолга)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Контрагент</group>
+			<group>Менеджер</group>
+			<group>НаправлениеПродаж</group>
+			<group>Подразделение</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>ДнейПросрочено</dataPath>
+			<expression>Максимум(ДнейПросрочено)</expression>
+			<group>Контрагент</group>
+			<group>Менеджер</group>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПросроченногоДолга</dataPath>
+			<expression>Сумма(СуммаПросроченногоДолга)</expression>
+			<group>ДоговорКонтрагента</group>
+			<group>Контрагент</group>
+			<group>Менеджер</group>
+			<group>НаправлениеПродаж</group>
+			<group>Подразделение</group>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>КолвоЗвонков</dataPath>
+			<expression>Сумма(КолвоЗвонков)</expression>
+		</totalField>
+		<parameter>
+			<name>Период</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ТекДата</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата отчета</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Пени</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Пени</d4p1:content>
+				</d4p1:item>
+			</title>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<availableValue>
+				<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.Пени</value>
+				<presentation xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Пени</d5p1:content>
+					</d5p1:item>
+				</presentation>
+			</availableValue>
+		</parameter>
+		<parameter>
+			<name>УчитыватьВзимныеОбязательства</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Учитывать взимные обязательства</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:boolean</Type>
+			</valueType>
+			<value xsi:type="xs:boolean">false</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>менеджер</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Менеджер</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Пользователи</Type>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>ПериодЗвонков</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Период звонков</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной1</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Основной1</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДолга</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПросроченногоДолга</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДнейПросрочено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НачислилиПеней</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыставилиПеней</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Контрагент</left>
+			<comparisonType>Equal</comparisonType>
+			<viewMode>Normal</viewMode>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">КолвоЗвонков</left>
+			<comparisonType>Equal</comparisonType>
+			<right xsi:type="xs:decimal">0</right>
+		</item>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">ДатаОкончанияСудебногоПроцесса</left>
+			<comparisonType>LessOrEqual</comparisonType>
+			<right xsi:type="v8:StandardBeginningDate">
+				<v8:variant xsi:type="v8:StandardBeginningDateVariant">Custom</v8:variant>
+				<v8:date>0001-01-01T00:00:00</v8:date>
+			</right>
+		</item>
+		<item xsi:type="FilterItemGroup">
+			<groupType>OrGroup</groupType>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">ДнейПросрочено</left>
+				<comparisonType>GreaterOrEqual</comparisonType>
+				<right xsi:type="xs:decimal">14</right>
+			</item>
+			<item xsi:type="FilterItemComparison">
+				<left xsi:type="dcscor:Field">СуммаПросроченногоДолга</left>
+				<comparisonType>GreaterOrEqual</comparisonType>
+				<right xsi:type="xs:decimal">300000</right>
+			</item>
+		</item>
+		<userSettingID>ed806cd0-ad91-4d7d-ac29-7a90d075132a</userSettingID>
+		<userSettingPresentation xsi:type="xs:string">Отбор</userSettingPresentation>
+	</filter>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ПериодЗвонков</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">14</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Менеджер</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>СуммаКСдачеВодителем</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДатаВозвращения</left>
+					<comparisonType>Less</comparisonType>
+					<right xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisDay</v8:variant>
+					</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">web:MistyRose</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">Output</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>АвтоПозицияРесурсов</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionResourcesAutoPosition">DontUse</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<use>false</use>
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Подразделение</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Подразделение</field>
+			</item>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemField">
+					<field>Менеджер</field>
+				</item>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РезультатСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemField">
+						<field>Контрагент</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>РезультатСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаПросроченногоДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДнейПросрочено</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>НачислилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ВыставилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ПредпоследнееСобыте</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ПоследнееСобытие</field>
+					</item>
+				</selection>
+				<conditionalAppearance>
+					<item>
+						<selection/>
+						<filter/>
+						<appearance>
+							<dcscor:item xsi:type="SettingsParameterValue">
+								<dcscor:parameter>ЦветФона</dcscor:parameter>
+								<dcscor:value xsi:type="v8ui:Color">#FBF6E7</dcscor:value>
+							</dcscor:item>
+						</appearance>
+					</item>
+				</conditionalAppearance>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>ДоговорКонтрагента</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemField">
+							<field>ДоговорКонтрагента</field>
+						</item>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<item xsi:type="StructureItemGroup">
+						<groupItems>
+							<item xsi:type="GroupItemField">
+								<field>Сделка</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОтгрузки</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОплаты</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>ЗаданиеНаОтгрузку</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>ДатаВозвращения</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СуммаКСдачеВодителем</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+						</groupItems>
+						<order>
+							<item xsi:type="OrderItemAuto"/>
+						</order>
+						<selection>
+							<item xsi:type="SelectedItemAuto"/>
+						</selection>
+						<conditionalAppearance>
+							<item>
+								<selection/>
+								<filter>
+									<item xsi:type="FilterItemComparison">
+										<left xsi:type="dcscor:Field">СуммаПросроченногоДолга</left>
+										<comparisonType>Greater</comparisonType>
+										<right xsi:type="xs:decimal">0</right>
+									</item>
+								</filter>
+								<appearance>
+									<dcscor:item xsi:type="SettingsParameterValue">
+										<dcscor:parameter>ЦветФона</dcscor:parameter>
+										<dcscor:value xsi:type="v8ui:Color">web:LightSalmon</dcscor:value>
+									</dcscor:item>
+								</appearance>
+							</item>
+						</conditionalAppearance>
+					</item>
+				</item>
+			</item>
+		</item>
+	</item>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>НаправлениеПродаж</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>НаправлениеПродаж</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаДолга</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаПросроченногоДолга</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ДнейПросрочено</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НачислилиПеней</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ВыставилиПеней</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>КолвоЗвонков</field>
+			</item>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemField">
+					<field>Менеджер</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаДолга</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаПросроченногоДолга</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ДнейПросрочено</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>НачислилиПеней</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ВыставилиПеней</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>КолвоЗвонков</field>
+				</item>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Контрагент</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РезультатСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemField">
+						<field>Контрагент</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>РезультатСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаПросроченногоДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДнейПросрочено</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>НачислилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ВыставилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>КолвоЗвонков</field>
+					</item>
+				</selection>
+				<conditionalAppearance>
+					<item>
+						<selection/>
+						<filter/>
+						<appearance>
+							<dcscor:item xsi:type="SettingsParameterValue">
+								<dcscor:parameter>ЦветФона</dcscor:parameter>
+								<dcscor:value xsi:type="v8ui:Color">#FBF6E7</dcscor:value>
+							</dcscor:item>
+						</appearance>
+					</item>
+				</conditionalAppearance>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>ДоговорКонтрагента</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<conditionalAppearance>
+						<item>
+							<selection/>
+							<filter>
+								<item xsi:type="FilterItemComparison">
+									<left xsi:type="dcscor:Field">ДоговорКонтрагента.ТипДоговора</left>
+									<comparisonType>Equal</comparisonType>
+									<right xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.ПеремещениеОТХ</right>
+								</item>
+							</filter>
+							<appearance>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>ЦветФона</dcscor:parameter>
+									<dcscor:value xsi:type="v8ui:Color">#00FFFD</dcscor:value>
+								</dcscor:item>
+							</appearance>
+						</item>
+					</conditionalAppearance>
+					<item xsi:type="StructureItemGroup">
+						<groupItems>
+							<item xsi:type="GroupItemField">
+								<field>Сделка</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОтгрузки</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОплаты</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>Сделка.КонечнаяДатаОТХ</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>Сделка.СхемаРаботыОТХ</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>Сделка.ПроцентОТХ</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+						</groupItems>
+						<order>
+							<item xsi:type="OrderItemAuto"/>
+						</order>
+						<selection>
+							<item xsi:type="SelectedItemField">
+								<field>Сделка</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>СделкаДатаОтгрузки</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>СделкаДатаОплаты</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>Сделка.КонечнаяДатаОТХ</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>Сделка.СхемаРаботыОТХ</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>Сделка.ПроцентОТХ</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>СуммаДолга</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>СуммаПросроченногоДолга</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>ДнейПросрочено</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>НачислилиПеней</field>
+							</item>
+							<item xsi:type="SelectedItemField">
+								<field>ВыставилиПеней</field>
+							</item>
+						</selection>
+						<conditionalAppearance>
+							<item>
+								<selection/>
+								<filter>
+									<item xsi:type="FilterItemComparison">
+										<left xsi:type="dcscor:Field">СуммаПросроченногоДолга</left>
+										<comparisonType>Greater</comparisonType>
+										<right xsi:type="xs:decimal">0</right>
+									</item>
+								</filter>
+								<appearance>
+									<dcscor:item xsi:type="SettingsParameterValue">
+										<dcscor:parameter>ЦветФона</dcscor:parameter>
+										<dcscor:value xsi:type="v8ui:Color">web:LightSalmon</dcscor:value>
+									</dcscor:item>
+								</appearance>
+							</item>
+							<item>
+								<selection/>
+								<filter>
+									<item xsi:type="FilterItemComparison">
+										<left xsi:type="dcscor:Field">ДоговорКонтрагента.ТипДоговора</left>
+										<comparisonType>InList</comparisonType>
+										<right xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.ПеремещениеОТХ</right>
+									</item>
+								</filter>
+								<appearance>
+									<dcscor:item xsi:type="SettingsParameterValue">
+										<dcscor:parameter>ЦветФона</dcscor:parameter>
+										<dcscor:value xsi:type="v8ui:Color">#00FFFF</dcscor:value>
+									</dcscor:item>
+								</appearance>
+							</item>
+						</conditionalAppearance>
+						<outputParameters>
+							<dcscor:item xsi:type="SettingsParameterValue">
+								<dcscor:parameter>РасположениеРеквизитов</dcscor:parameter>
+								<dcscor:value xsi:type="DataCompositionAttributesPlacement">Separately</dcscor:value>
+							</dcscor:item>
+						</outputParameters>
+					</item>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаДолга</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПросроченногоДолга</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДнейПросрочено</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НачислилиПеней</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ВыставилиПеней</field>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<use>false</use>
+			<left xsi:type="dcscor:Field">Контрагент</left>
+			<comparisonType>Equal</comparisonType>
+			<viewMode>Normal</viewMode>
+		</item>
+		<userSettingID>ed806cd0-ad91-4d7d-ac29-7a90d075132a</userSettingID>
+		<userSettingPresentation xsi:type="xs:string">Отбор</userSettingPresentation>
+	</filter>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Менеджер</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>Контрагент</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>СуммаКСдачеВодителем</field>
+				</item>
+			</selection>
+			<filter>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">ДатаВозвращения</left>
+					<comparisonType>Less</comparisonType>
+					<right xsi:type="v8:StandardBeginningDate">
+						<v8:variant xsi:type="v8:StandardBeginningDateVariant">BeginningOfThisDay</v8:variant>
+					</right>
+				</item>
+			</filter>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>ЦветФона</dcscor:parameter>
+					<dcscor:value xsi:type="v8ui:Color">web:MistyRose</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">Output</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>АвтоПозицияРесурсов</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionResourcesAutoPosition">DontUse</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Контрагент</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<use>false</use>
+				<field>СуммаДолгаВсего</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+			<item xsi:type="GroupItemField">
+				<use>false</use>
+				<field>СуммаПросроченногоДолгаВсего</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<filter>
+			<item xsi:type="FilterItemGroup">
+				<groupType>OrGroup</groupType>
+				<item xsi:type="FilterItemGroup">
+					<groupType>AndGroup</groupType>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">Менеджер</left>
+						<comparisonType>NotInList</comparisonType>
+					</item>
+					<item xsi:type="FilterItemComparison">
+						<left xsi:type="dcscor:Field">СуммаДолгаВсего</left>
+						<comparisonType>Equal</comparisonType>
+						<right xsi:type="dcscor:Field">СуммаДолга</right>
+					</item>
+				</item>
+				<item xsi:type="FilterItemComparison">
+					<left xsi:type="dcscor:Field">СуммаДолгаВсего</left>
+					<comparisonType>NotEqual</comparisonType>
+					<right xsi:type="dcscor:Field">СуммаДолга</right>
+				</item>
+			</item>
+		</filter>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>Контрагент</field>
+			</item>
+			<item xsi:type="SelectedItemFolder">
+				<use>false</use>
+				<lwsTitle>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>ОбщийДолг</v8:content>
+					</v8:item>
+				</lwsTitle>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>СуммаДолгаВсего</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>СуммаПросроченногоДолгаВсего</field>
+				</item>
+				<placement>Auto</placement>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаДолга</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаПросроченногоДолга</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ДнейПросрочено</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>НачислилиПеней</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ВыставилиПеней</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+				<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+			</dcscor:item>
+		</outputParameters>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemField">
+					<field>Менеджер</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаДолга</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаПросроченногоДолга</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ДнейПросрочено</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>НачислилиПеней</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ВыставилиПеней</field>
+				</item>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>ДатаПисьма</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>РезультатСудебногоПроцесса</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ПоследнееСобытие</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+					<item xsi:type="GroupItemField">
+						<field>ПредпоследнееСобыте</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаПисьма</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаПередачиДокументовВЮрОтдел</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаНачалаСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДатаОкончанияСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>РезультатСудебногоПроцесса</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>СуммаПросроченногоДолга</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ДнейПросрочено</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>НачислилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ВыставилиПеней</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ПредпоследнееСобыте</field>
+					</item>
+					<item xsi:type="SelectedItemField">
+						<field>ПоследнееСобытие</field>
+					</item>
+				</selection>
+				<conditionalAppearance>
+					<item>
+						<selection/>
+						<filter/>
+						<appearance>
+							<dcscor:item xsi:type="SettingsParameterValue">
+								<dcscor:parameter>ЦветФона</dcscor:parameter>
+								<dcscor:value xsi:type="v8ui:Color">#FBF6E7</dcscor:value>
+							</dcscor:item>
+						</appearance>
+					</item>
+				</conditionalAppearance>
+				<outputParameters>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>ВыводитьОтбор</dcscor:parameter>
+						<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+					</dcscor:item>
+				</outputParameters>
+				<item xsi:type="StructureItemGroup">
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>ДоговорКонтрагента</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<item xsi:type="StructureItemGroup">
+						<groupItems>
+							<item xsi:type="GroupItemField">
+								<field>Сделка</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОтгрузки</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>СделкаДатаОплаты</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+						</groupItems>
+						<order>
+							<item xsi:type="OrderItemAuto"/>
+						</order>
+						<selection>
+							<item xsi:type="SelectedItemAuto"/>
+						</selection>
+						<conditionalAppearance>
+							<item>
+								<selection/>
+								<filter>
+									<item xsi:type="FilterItemComparison">
+										<left xsi:type="dcscor:Field">СуммаПросроченногоДолга</left>
+										<comparisonType>Greater</comparisonType>
+										<right xsi:type="xs:decimal">0</right>
+									</item>
+								</filter>
+								<appearance>
+									<dcscor:item xsi:type="SettingsParameterValue">
+										<dcscor:parameter>ЦветФона</dcscor:parameter>
+										<dcscor:value xsi:type="v8ui:Color">web:LightSalmon</dcscor:value>
+									</dcscor:item>
+								</appearance>
+							</item>
+						</conditionalAppearance>
+					</item>
+				</item>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Статус</dataPath>
+				<field>Статус</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоКонтрагентовК</dataPath>
+				<field>КоличествоКонтрагентовК</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>На конец периода</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоКонтрагентовН</dataPath>
+				<field>КоличествоКонтрагентовН</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>На начало периода</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджер</dataPath>
+				<field>ОсновнойМенеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Прирост</dataPath>
+				<field>Прирост</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗначенияСвойствОбъектов.Объект,
+	ЗначенияСвойствОбъектов.Значение
+ПОМЕСТИТЬ ПервичныеКонтрагенты
+ИЗ
+	РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;ПервичныйКонтрагент
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Контрагенты.Ссылка
+ПОМЕСТИТЬ ПокупателиН
+ИЗ
+	Справочник.Контрагенты КАК Контрагенты
+		ЛЕВОЕ СОЕДИНЕНИЕ ПервичныеКонтрагенты КАК ПервичныеКонтрагенты
+		ПО Контрагенты.Ссылка = ПервичныеКонтрагенты.Объект
+ГДЕ
+	Контрагенты.Покупатель = ИСТИНА
+	И Контрагенты.ОсновнойМенеджерКонтрагента.НаправлениеПродаж &lt;&gt; ЗНАЧЕНИЕ(Справочник.НаправленияПродаж.пустаяССылка)
+	И Контрагенты.ДатаСоздания &lt; &amp;ДатаНачала
+	И ПервичныеКонтрагенты.Значение ЕСТЬ NULL 
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Контрагенты.Ссылка
+ПОМЕСТИТЬ ПокупателиК
+ИЗ
+	Справочник.Контрагенты КАК Контрагенты
+		ЛЕВОЕ СОЕДИНЕНИЕ ПервичныеКонтрагенты КАК ПервичныеКонтрагенты
+		ПО Контрагенты.Ссылка = ПервичныеКонтрагенты.Объект
+ГДЕ
+	Контрагенты.Покупатель = ИСТИНА
+	И Контрагенты.ОсновнойМенеджерКонтрагента.НаправлениеПродаж &lt;&gt; ЗНАЧЕНИЕ(Справочник.НаправленияПродаж.пустаяССылка)
+	И Контрагенты.ДатаСоздания &lt; &amp;ДатаОкончания
+	И ПервичныеКонтрагенты.Значение ЕСТЬ NULL 
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ВЫРАЗИТЬ(ПродажиОбороты.Регистратор КАК Документ.РеализацияТоваровУслуг) КАК ДокументПродажи,
+	ЕСТЬNULL(ПервичныеКонтрагенты.Значение, ПродажиОбороты.ДокументПродажи.Контрагент) КАК Контрагент
+ПОМЕСТИТЬ ДокументыПродажи
+ИЗ
+	РегистрНакопления.Продажи.Обороты(, , Регистратор, ) КАК ПродажиОбороты
+		ЛЕВОЕ СОЕДИНЕНИЕ ПервичныеКонтрагенты КАК ПервичныеКонтрагенты
+		ПО ПродажиОбороты.ДоговорКонтрагента.Владелец = ПервичныеКонтрагенты.Объект
+ГДЕ
+	ПродажиОбороты.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Покупатели.Ссылка,
+	МАКСИМУМ(ДокументыПродажи.ДокументПродажи.Дата) КАК ДокументПродажиДата,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ДокументыПродажи.ДокументПродажи) КАК ДокументПродажи,
+	Покупатели.Ссылка.ОсновнойМенеджерКонтрагента
+ПОМЕСТИТЬ СДатойРеализацииН
+ИЗ
+	ПокупателиН КАК Покупатели
+		ЛЕВОЕ СОЕДИНЕНИЕ ДокументыПродажи КАК ДокументыПродажи
+		ПО Покупатели.Ссылка = ДокументыПродажи.Контрагент
+
+СГРУППИРОВАТЬ ПО
+	Покупатели.Ссылка,
+	Покупатели.Ссылка.ОсновнойМенеджерКонтрагента
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СДатойРеализации.Ссылка) КАК КоличествоКонтрагентовН,
+	ВЫБОР
+		КОГДА СДатойРеализации.ДокументПродажиДата ЕСТЬ NULL 
+				И Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Потенциальные)
+		КОГДА СДатойРеализации.ДокументПродажиДата ЕСТЬ NULL 
+				И НЕ Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ВРазработке)
+		КОГДА СДатойРеализации.ДокументПродажиДата &lt; ДОБАВИТЬКДАТЕ(&amp;ДатаНачала, МЕСЯЦ, -12)
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.НеРаботающиеБольшеГода)
+		КОГДА СДатойРеализации.ДокументПродажи = 1
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ПерваяПродажа)
+		ИНАЧЕ ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Работающие)
+	КОНЕЦ КАК Статус,
+	СДатойРеализации.СсылкаОсновнойМенеджерКонтрагента
+ПОМЕСТИТЬ КоличествоН
+ИЗ
+	СДатойРеализацииН КАК СДатойРеализации
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Авторизация КАК Авторизация
+		ПО СДатойРеализации.Ссылка = Авторизация.Владелец
+
+СГРУППИРОВАТЬ ПО
+	СДатойРеализации.СсылкаОсновнойМенеджерКонтрагента,
+	ВЫБОР
+		КОГДА СДатойРеализации.ДокументПродажиДата ЕСТЬ NULL 
+				И Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Потенциальные)
+		КОГДА СДатойРеализации.ДокументПродажиДата ЕСТЬ NULL 
+				И НЕ Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ВРазработке)
+		КОГДА СДатойРеализации.ДокументПродажиДата &lt; ДОБАВИТЬКДАТЕ(&amp;ДатаНачала, МЕСЯЦ, -12)
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.НеРаботающиеБольшеГода)
+		КОГДА СДатойРеализации.ДокументПродажи = 1
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ПерваяПродажа)
+		ИНАЧЕ ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Работающие)
+	КОНЕЦ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПокупателиК.Ссылка,
+	МАКСИМУМ(ДокументыПродажи.ДокументПродажи.Дата) КАК ДокументПродажиДата,
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ДокументыПродажи.ДокументПродажи) КАК ДокументПродажи,
+	ПокупателиК.Ссылка.ОсновнойМенеджерКонтрагента
+ПОМЕСТИТЬ СДатойРеализацииК
+ИЗ
+	ПокупателиК КАК ПокупателиК
+		ЛЕВОЕ СОЕДИНЕНИЕ ДокументыПродажи КАК ДокументыПродажи
+		ПО ПокупателиК.Ссылка = ДокументыПродажи.Контрагент
+
+СГРУППИРОВАТЬ ПО
+	ПокупателиК.Ссылка,
+	ПокупателиК.Ссылка.ОсновнойМенеджерКонтрагента
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ СДатойРеализацииК.Ссылка) КАК КоличествоКонтрагентовК,
+	ВЫБОР
+		КОГДА СДатойРеализацииК.ДокументПродажиДата ЕСТЬ NULL 
+				И Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Потенциальные)
+		КОГДА СДатойРеализацииК.ДокументПродажиДата ЕСТЬ NULL 
+				И НЕ Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ВРазработке)
+		КОГДА СДатойРеализацииК.ДокументПродажиДата &lt; ДОБАВИТЬКДАТЕ(&amp;ДатаОкончания, МЕСЯЦ, -12)
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.НеРаботающиеБольшеГода)
+		КОГДА СДатойРеализацииК.ДокументПродажи = 1
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ПерваяПродажа)
+		ИНАЧЕ ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Работающие)
+	КОНЕЦ КАК Статус,
+	СДатойРеализацииК.СсылкаОсновнойМенеджерКонтрагента
+ПОМЕСТИТЬ КоличествоК
+ИЗ
+	СДатойРеализацииК КАК СДатойРеализацииК
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Авторизация КАК Авторизация
+		ПО СДатойРеализацииК.Ссылка = Авторизация.Владелец
+
+СГРУППИРОВАТЬ ПО
+	СДатойРеализацииК.СсылкаОсновнойМенеджерКонтрагента,
+	ВЫБОР
+		КОГДА СДатойРеализацииК.ДокументПродажиДата ЕСТЬ NULL 
+				И Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Потенциальные)
+		КОГДА СДатойРеализацииК.ДокументПродажиДата ЕСТЬ NULL 
+				И НЕ Авторизация.Ссылка ЕСТЬ NULL 
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ВРазработке)
+		КОГДА СДатойРеализацииК.ДокументПродажиДата &lt; ДОБАВИТЬКДАТЕ(&amp;ДатаОкончания, МЕСЯЦ, -12)
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.НеРаботающиеБольшеГода)
+		КОГДА СДатойРеализацииК.ДокументПродажи = 1
+			ТОГДА ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.ПерваяПродажа)
+		ИНАЧЕ ЗНАЧЕНИЕ(Перечисление.КатегорииКонтрагентов.Работающие)
+	КОНЕЦ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(КоличествоН.Статус, КоличествоК.Статус) КАК Статус,
+	КоличествоК.КоличествоКонтрагентовК,
+	КоличествоН.КоличествоКонтрагентовН,
+	ЕСТЬNULL(КоличествоК.КоличествоКонтрагентовК, 0) - ЕСТЬNULL(КоличествоН.КоличествоКонтрагентовН, 0) КАК Прирост,
+	ЕСТЬNULL(КоличествоН.СсылкаОсновнойМенеджерКонтрагента, КоличествоК.СсылкаОсновнойМенеджерКонтрагента) КАК ОсновнойМенеджер
+ИЗ
+	КоличествоН КАК КоличествоН
+		ПОЛНОЕ СОЕДИНЕНИЕ КоличествоК КАК КоличествоК
+		ПО КоличествоН.Статус = КоличествоК.Статус
+			И КоличествоН.СсылкаОсновнойМенеджерКонтрагента = КоличествоК.СсылкаОсновнойМенеджерКонтрагента</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоКонтрагентовК</dataPath>
+			<expression>Сумма(КоличествоКонтрагентовК)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоКонтрагентовН</dataPath>
+			<expression>Сумма(КоличествоКонтрагентовН)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Прирост</dataPath>
+			<expression>Сумма(Прирост)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаНачала</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата начала</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаОкончания</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата окончания</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ПервичныйКонтрагент</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Первичный контрагент</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Количество контрагентов</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоКонтрагентовН</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>КоличествоКонтрагентовК</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Прирост</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>ОсновнойМенеджер</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<conditionalAppearance>
+			<item>
+				<selection/>
+				<filter/>
+				<appearance>
+					<dcscor:item xsi:type="SettingsParameterValue">
+						<dcscor:parameter>Шрифт</dcscor:parameter>
+						<dcscor:value xsi:type="v8ui:Font" ref="sys:DefaultGUIFont" height="9" bold="true" italic="false" underline="false" strikeout="false" kind="WindowsFont"/>
+					</dcscor:item>
+				</appearance>
+			</item>
+		</conditionalAppearance>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Статус</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

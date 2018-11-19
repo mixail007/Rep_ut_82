@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Менеджер</dataPath>
+				<field>Менеджер</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>план</dataPath>
+				<field>план</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сделка</dataPath>
+				<field>Сделка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Статья</dataPath>
+				<field>Статья</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Факт</dataPath>
+				<field>Факт</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента.Владелец,
+	СУММА(-ВзаиморасчетыСКонтрагентамиОбороты.СуммаУпрОборот) КАК СуммаУпрРасход,
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента.ТипДоговора,
+	ВзаиморасчетыСКонтрагентамиОбороты.Сделка,
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента
+ПОМЕСТИТЬ ПриходДенег
+ИЗ
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Обороты(&amp;НачалоПериода, &amp;КонецПериода, Запись, ) КАК ВзаиморасчетыСКонтрагентамиОбороты
+ГДЕ
+	(ВзаиморасчетыСКонтрагентамиОбороты.Регистратор ССЫЛКА Документ.ПлатежноеПоручениеВходящее
+			ИЛИ ВзаиморасчетыСКонтрагентамиОбороты.Регистратор ССЫЛКА Документ.ПриходныйКассовыйОрдер)
+	И ВзаиморасчетыСКонтрагентамиОбороты.СуммаВзаиморасчетовОборот &lt;&gt; 0
+
+СГРУППИРОВАТЬ ПО
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента.Владелец,
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента.ТипДоговора,
+	ВзаиморасчетыСКонтрагентамиОбороты.Сделка,
+	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	СУММА(ПриходДенег.СуммаУпрРасход) КАК Сумма,
+	&amp;Дебиторка КАК Статья,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение КАК Подразделение
+ПОМЕСТИТЬ ФактПрихода
+ИЗ
+	ПриходДенег КАК ПриходДенег
+ГДЕ
+	ПриходДенег.ДоговорКонтрагентаТипДоговора В(&amp;ТипПокупатели)
+	И ЕСТЬNULL(ПриходДенег.Сделка.ДатаОтгрузки, &amp;КонецПериода) &lt; &amp;началоПериода
+
+СГРУППИРОВАТЬ ПО
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СУММА(ПриходДенег.СуммаУпрРасход),
+	&amp;Отгрузки,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение
+ИЗ
+	ПриходДенег КАК ПриходДенег
+ГДЕ
+	ПриходДенег.ДоговорКонтрагентаТипДоговора В(&amp;ТипПокупатели)
+	И ЕСТЬNULL(ПриходДенег.Сделка.ДатаОтгрузки, &amp;КонецПериода) &gt;= &amp;НачалоПериода
+
+СГРУППИРОВАТЬ ПО
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СУММА(ПриходДенег.СуммаУпрРасход),
+	&amp;Факторинг,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение
+ИЗ
+	ПриходДенег КАК ПриходДенег
+ГДЕ
+	ПриходДенег.ДоговорКонтрагентаТипДоговора В(&amp;ТипФакторинг)
+
+СГРУППИРОВАТЬ ПО
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо,
+	ПриходДенег.ДоговорКонтрагента.ОтветственноеЛицо.ОсновноеПодразделение
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ПланДвиженийДенежныхСредств.ОтветственноеЛицо,
+	СУММА(ПланДвиженийДенежныхСредств.Неделя1 + ПланДвиженийДенежныхСредств.Неделя2 + ПланДвиженийДенежныхСредств.Неделя3 + ПланДвиженийДенежныхСредств.Неделя4 + ПланДвиженийДенежныхСредств.Неделя5) КАК СУмма,
+	ПланДвиженийДенежныхСредств.Статья,
+	ПланДвиженийДенежныхСредств.Подразделение
+ПОМЕСТИТЬ План
+ИЗ
+	РегистрСведений.ПланДвиженийДенежныхСредств КАК ПланДвиженийДенежныхСредств
+ГДЕ
+	ПланДвиженийДенежныхСредств.ПриходРасход = &amp;ПриходРасход
+	И ПланДвиженийДенежныхСредств.МесяцПланирования = &amp;НачалоПериода
+	И ПланДвиженийДенежныхСредств.Статья В(&amp;СтатьяРасходов)
+
+СГРУППИРОВАТЬ ПО
+	ПланДвиженийДенежныхСредств.ОтветственноеЛицо,
+	ПланДвиженийДенежныхСредств.Статья,
+	ПланДвиженийДенежныхСредств.Подразделение
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(План.ОтветственноеЛицо, ФактПрихода.ДоговорКонтрагентаОтветственноеЛицо) КАК Менеджер,
+	СРЕДНЕЕ(План.СУмма) КАК план,
+	ЕСТЬNULL(План.Статья, ФактПрихода.Статья) КАК Статья,
+	СУММА(ФактПрихода.Сумма) КАК Факт,
+	ЕСТЬNULL(План.Подразделение, ФактПрихода.Подразделение) КАК Подразделение
+ИЗ
+	План КАК План
+		ПОЛНОЕ СОЕДИНЕНИЕ ФактПрихода КАК ФактПрихода
+		ПО План.Статья = ФактПрихода.Статья
+			И План.Подразделение = ФактПрихода.Подразделение
+			И (ВЫБОР
+				КОГДА План.Подразделение.ОбособленноеПодразделение
+						ИЛИ План.Подразделение = &amp;ИМ
+					ТОГДА ИСТИНА
+				ИНАЧЕ План.ОтветственноеЛицо = ФактПрихода.ДоговорКонтрагентаОтветственноеЛицо
+			КОНЕЦ)
+
+СГРУППИРОВАТЬ ПО
+	ЕСТЬNULL(План.Статья, ФактПрихода.Статья),
+	ЕСТЬNULL(План.Подразделение, ФактПрихода.Подразделение),
+	ЕСТЬNULL(План.ОтветственноеЛицо, ФактПрихода.ДоговорКонтрагентаОтветственноеЛицо)
+
+УПОРЯДОЧИТЬ ПО
+	Подразделение,
+	Менеджер</query>
+		</dataSet>
+		<totalField>
+			<dataPath>Факт</dataPath>
+			<expression>Сумма(Факт)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>план</dataPath>
+			<expression>Сумма(план)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Дебиторка</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дебиторка</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиРасходов</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.ПоступленияСДебиторки</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ИМ</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>ИМ</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Подразделения</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>Справочники.подразделения.НайтиПоКоду("00139")</expression>
+		</parameter>
+		<parameter>
+			<name>Отгрузки</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отгрузки</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиРасходов</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.ПоступленияСОтгрузок</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ПриходРасход</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Приход расход</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:EnumRef.ВидыДвиженийПриходРасход</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Перечисление.ВидыДвиженийПриходРасход.Приход</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ТипПокупатели</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тип покупатели</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ТипыДоговоров</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>ТипФакторинг</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тип факторинг</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.ТипыДоговоров</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.Факторинг</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.ТипыДоговоров.ФакторингПредоплата</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>Факторинг</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Факторинг</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиРасходов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+			<expression>справочники.статьиРасходов.Найтипокоду("000000019")</expression>
+		</parameter>
+		<parameter>
+			<name>СтатьяРасходов</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Статья расходов</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиРасходов</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.ПоступленияСДебиторки</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиРасходов.ПоступленияСОтгрузок</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>план</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Факт</field>
+		</item>
+	</selection>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Менеджер.НаправлениеПродаж</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Менеджер</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+				<item xsi:type="GroupItemField">
+					<field>Подразделение</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+			<item xsi:type="StructureItemGroup">
+				<groupItems>
+					<item xsi:type="GroupItemField">
+						<field>Статья</field>
+						<groupType>Items</groupType>
+						<periodAdditionType>None</periodAdditionType>
+						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+					</item>
+				</groupItems>
+				<order>
+					<item xsi:type="OrderItemAuto"/>
+				</order>
+				<selection>
+					<item xsi:type="SelectedItemAuto"/>
+				</selection>
+			</item>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

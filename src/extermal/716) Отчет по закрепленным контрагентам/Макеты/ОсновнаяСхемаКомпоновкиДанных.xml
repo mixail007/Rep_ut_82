@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Контрагент</dataPath>
+				<field>Контрагент</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОсновнойМенеджерКонтрагента</dataPath>
+				<field>ОсновнойМенеджерКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Важность</dataPath>
+				<field>Важность</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧН=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Категория</dataPath>
+				<field>Категория</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	Пользователи.Ссылка КАК Пользователь
+ПОМЕСТИТЬ ВТ_П
+ИЗ
+	Справочник.Пользователи КАК Пользователи
+ГДЕ
+	Пользователи.ОсновноеПодразделение.ОбособленноеПодразделение = ИСТИНА
+	И Пользователи.ОсновноеПодразделение.ВЭД = ЛОЖЬ
+	И Пользователи.ПометкаУдаления = ЛОЖЬ
+	И Пользователи.Заблокирован = ЛОЖЬ
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	Контрагенты.Ссылка КАК Контрагент,
+	Контрагенты.ОсновнойМенеджерКонтрагента,
+	ЕСТЬNULL(ЗначенияСвойствОбъектов.Значение, "не установлена") КАК Важность
+ПОМЕСТИТЬ ВТ
+ИЗ
+	РегистрСведений.СоответствиеМенеджеровРегионам КАК СоответствиеМенеджеровРегионам
+		ЛЕВОЕ СОЕДИНЕНИЕ Справочник.Контрагенты КАК Контрагенты
+			ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+			ПО Контрагенты.Ссылка = ЗначенияСвойствОбъектов.Объект
+		ПО СоответствиеМенеджеровРегионам.Регион = Контрагенты.Регион
+ГДЕ
+	СоответствиеМенеджеровРегионам.Пользователь В(&amp;Пользователь)
+	И СоответствиеМенеджеровРегионам.ВидСотрудника = ЗНАЧЕНИЕ(Перечисление.ВидыСотрудниковОтделаПродаж.Оператор)
+	И НЕ Контрагенты.ОсновнойМенеджерКонтрагента В
+				(ВЫБРАТЬ
+					ВТ.Пользователь
+				ИЗ
+					ВТ_П КАК ВТ)
+	И ЗначенияСвойствОбъектов.Свойство.Код = &amp;КодСвойство
+
+ОБЪЕДИНИТЬ ВСЕ
+
+ВЫБРАТЬ
+	СоответствиеМенеджеровРегионам.Регион,
+	СоответствиеМенеджеровРегионам.Регион.ОсновнойМенеджерКонтрагента,
+	ЕСТЬNULL(ЗначенияСвойствОбъектов.Значение, "не установлена")
+ИЗ
+	РегистрСведений.СоответствиеМенеджеровРегионам КАК СоответствиеМенеджеровРегионам
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ПО СоответствиеМенеджеровРегионам.Регион = ЗначенияСвойствОбъектов.Объект
+ГДЕ
+	СоответствиеМенеджеровРегионам.Пользователь В(&amp;Пользователь)
+	И СоответствиеМенеджеровРегионам.ВидСотрудника = ЗНАЧЕНИЕ(Перечисление.ВидыСотрудниковОтделаПродаж.Помощник)
+	И НЕ СоответствиеМенеджеровРегионам.Регион.ОсновнойМенеджерКонтрагента В
+				(ВЫБРАТЬ
+					ВТ.Пользователь
+				ИЗ
+					ВТ_П КАК ВТ)
+	И ЗначенияСвойствОбъектов.Свойство.Код = &amp;КодСвойство
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ РАЗЛИЧНЫЕ
+	ВТ.Контрагент КАК Контрагент,
+	ВТ.ОсновнойМенеджерКонтрагента КАК ОсновнойМенеджерКонтрагента,
+	ВТ.Важность КАК Важность,
+	ЗначенияСвойствОбъектов.Значение КАК Категория
+ИЗ
+	ВТ КАК ВТ
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ПО ВТ.Контрагент = ЗначенияСвойствОбъектов.Объект
+ГДЕ
+	ЗначенияСвойствОбъектов.Свойство = &amp;СвойствоКатегория
+	И ЗначенияСвойствОбъектов.Значение В(&amp;ЗначениеКатегория)</query>
+		</dataSet>
+		<parameter>
+			<name>Пользователь</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Пользователь</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Пользователи</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КодСвойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Код свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:string</Type>
+				<StringQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Length>5</Length>
+					<AllowedLength>Fixed</AllowedLength>
+				</StringQualifiers>
+			</valueType>
+			<value xsi:type="xs:string">     </value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ЗначениеКатегория</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Значение категория</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<TypeSet xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:Characteristic.СвойстваОбъектов</TypeSet>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>СвойствоКатегория</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство категория</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Важность</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Контрагент</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОсновнойМенеджерКонтрагента</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>ЗначениеКатегория</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>СвойствоКатегория</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Важность</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemField">
+				<field>Важность</field>
+				<orderType>Asc</orderType>
+			</item>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemField">
+				<field>СистемныеПоля.НомерПоПорядку</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Важность</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Контрагент</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ОсновнойМенеджерКонтрагента</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Категория</field>
+			</item>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>

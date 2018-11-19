@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Дата</dataPath>
+				<field>Дата</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Документ</dataPath>
+				<field>Документ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МаркаАвтомобиля</dataPath>
+				<field>МаркаАвтомобиля</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>МаркаПрицепа</dataPath>
+				<field>МаркаПрицепа</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Направление</dataPath>
+				<field>Направление</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Перевозчик</dataPath>
+				<field>Перевозчик</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Расстояние</dataPath>
+				<field>Расстояние</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Расстояние, км.</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Тариф</dataPath>
+				<field>Тариф</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Тариф, р./км.</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Точки</dataPath>
+				<field>Точки</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Доставка</dataPath>
+				<field>Доставка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Доставка, р.</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вес</dataPath>
+				<field>Вес</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Вес, тонн</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=3</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ИтогОбъем</dataPath>
+				<field>ИтогОбъем</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Объем, м3</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентЛогистики</dataPath>
+				<field>ПроцентЛогистики</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% логистики</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2; ЧН=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СтоимостьКуба</dataPath>
+				<field>СтоимостьКуба</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Стоимость куба, р.</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=2; ЧН=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Ответственный</dataPath>
+				<field>Ответственный</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаОтгрузки</dataPath>
+				<field>СуммаОтгрузки</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма отгрузки, р.</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ГрузоподъемностьТранспортногоСредства</dataPath>
+				<field>ГрузоподъемностьТранспортногоСредства</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Грузоподъемность транспортного средства, тонн</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=3</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемТранспортногоСредства</dataPath>
+				<field>ОбъемТранспортногоСредства</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Объем транспортного средства, м3</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентЗагрузкиПоВесу</dataPath>
+				<field>ПроцентЗагрузкиПоВесу</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% загрузки по весу</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=1</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПроцентЗагрузкиПоОбъему</dataPath>
+				<field>ПроцентЗагрузкиПоОбъему</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>% загрузки по объему</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=1</value>
+					</item>
+				</appearance>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ЗаданиеНаОтгрузку.Дата,
+	ЗаданиеНаОтгрузку.Ссылка,
+	ЗаданиеНаОтгрузку.Перевозчик,
+	ЗаданиеНаОтгрузку.Направление,
+	ВЫРАЗИТЬ(ЗаданиеНаОтгрузку.МаркаАвтомобиля КАК СТРОКА(12)) КАК МаркаАвтомобиля,
+	ЗаданиеНаОтгрузку.МаркаПрицепа,
+	ЗаданиеНаОтгрузку.ИтогОбъем,
+	ЕСТЬNULL(ВложенныйЗапрос.Сумма, 0) КАК Сумма,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(ВложенныйЗапрос.Сумма, 0) &lt;&gt; 0
+			ТОГДА ЗаданиеНаОтгрузку.Тариф * 100 / ЕСТЬNULL(ВложенныйЗапрос.Сумма, 0)
+		ИНАЧЕ 0
+	КОНЕЦ КАК ПроцентЛогистики,
+	ВЫБОР
+		КОГДА ЗаданиеНаОтгрузку.ИтогОбъем &lt;&gt; 0
+			ТОГДА ЗаданиеНаОтгрузку.Тариф / ЗаданиеНаОтгрузку.ИтогОбъем
+		ИНАЧЕ 0
+	КОНЕЦ КАК СтоимостьКуба,
+	ЗаданиеНаОтгрузку.Ответственный,
+	ЗаданиеНаОтгрузку.Подразделение,
+	ЗаданиеНаОтгрузку.Километров
+ПОМЕСТИТЬ Маршруты
+ИЗ
+	Документ.ЗаданиеНаОтгрузку КАК ЗаданиеНаОтгрузку
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка КАК Ссылка,
+			СУММА(ВЫБОР
+					КОГДА ЗаданиеНаОтгрузкуЗаказыПокупателей.Реализация = НЕОПРЕДЕЛЕНО
+						ТОГДА 0
+					КОГДА ЗаданиеНаОтгрузкуЗаказыПокупателей.Реализация ССЫЛКА Документ.ПеремещениеТоваров
+						ТОГДА ЗаданиеНаОтгрузкуЗаказыПокупателей.ЗаказПокупателя.СуммаДокумента
+					ИНАЧЕ ЗаданиеНаОтгрузкуЗаказыПокупателей.Сумма
+				КОНЕЦ) КАК Сумма
+		ИЗ
+			Документ.ЗаданиеНаОтгрузку.ЗаказыПокупателей КАК ЗаданиеНаОтгрузкуЗаказыПокупателей
+		ГДЕ
+			ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка.Дата МЕЖДУ &amp;ДатаНач И &amp;ДатаКон
+			И ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка.Перевозчик &lt;&gt; ""
+		
+		СГРУППИРОВАТЬ ПО
+			ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка) КАК ВложенныйЗапрос
+		ПО ЗаданиеНаОтгрузку.Ссылка = ВложенныйЗапрос.Ссылка
+ГДЕ
+	ЗаданиеНаОтгрузку.Дата МЕЖДУ &amp;ДатаНач И &amp;ДатаКон
+	И ЗаданиеНаОтгрузку.Перевозчик &lt;&gt; ""
+	И НЕ ЗаданиеНаОтгрузку.Перевозчик ПОДОБНО "%Воробъев%"
+	И ЗаданиеНаОтгрузку.Проведен = ИСТИНА
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЗаданиеНаОтгрузкуЗаказыПокупателей.Реализация,
+	Маршруты.Ссылка
+ПОМЕСТИТЬ Документы
+ИЗ
+	Маршруты КАК Маршруты
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ЗаданиеНаОтгрузку.ЗаказыПокупателей КАК ЗаданиеНаОтгрузкуЗаказыПокупателей
+		ПО Маршруты.Ссылка = ЗаданиеНаОтгрузкуЗаказыПокупателей.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	Документы.Ссылка,
+	СУММА(ВЫБОР
+			КОГДА Документы.Реализация ССЫЛКА Документ.РеализацияТоваровУслуг
+				ТОГДА РеализацияТоваровУслугТовары.Вес
+			КОГДА Документы.Реализация ССЫЛКА Документ.ПеремещениеТоваров
+				ТОГДА ПеремещениеТоваровТовары.Вес
+			КОГДА Документы.Реализация ССЫЛКА Документ.СписаниеТоваров
+				ТОГДА СписаниеТоваровТовары.Вес
+			ИНАЧЕ 0
+		КОНЕЦ) КАК Вес
+ПОМЕСТИТЬ Веса
+ИЗ
+	Документы КАК Документы
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.РеализацияТоваровУслуг.Товары КАК РеализацияТоваровУслугТовары
+		ПО Документы.Реализация = РеализацияТоваровУслугТовары.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.ПеремещениеТоваров.Товары КАК ПеремещениеТоваровТовары
+		ПО Документы.Реализация = ПеремещениеТоваровТовары.Ссылка
+		ЛЕВОЕ СОЕДИНЕНИЕ Документ.СписаниеТоваров.Товары КАК СписаниеТоваровТовары
+		ПО Документы.Реализация = СписаниеТоваровТовары.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	Документы.Ссылка
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ ВЫРАЗИТЬ(ИнформацияПоПроезду.Адрес КАК СТРОКА(250))) КАК Точки,
+	Маршруты.Километров КАК Расстояние,
+	Маршруты.Дата,
+	Маршруты.Ссылка КАК Документ,
+	Маршруты.Перевозчик КАК Перевозчик,
+	Маршруты.Направление,
+	Маршруты.МаркаАвтомобиля,
+	Маршруты.МаркаПрицепа,
+	СУММА(0) КАК Тариф,
+	СУММА(ИнформацияПоПроезду.ДоставкаНал + ИнформацияПоПроезду.ДоставкаБНал + ИнформацияПоПроезду.ДоставкаВЦене) КАК Доставка,
+	Веса.Вес / 1000 КАК Вес,
+	Маршруты.ИтогОбъем КАК ИтогОбъем,
+	Маршруты.ПроцентЛогистики,
+	Маршруты.СтоимостьКуба,
+	Маршруты.Подразделение,
+	Маршруты.Ответственный,
+	Маршруты.Сумма КАК СуммаОтгрузки,
+	Маршруты.Ссылка.ВесМакс КАК ГрузоподъемностьТранспортногоСредства,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(Маршруты.Ссылка.ВесМакс, 0) = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(ЕСТЬNULL(Веса.Вес, 0) * 100 / 1000 / ЕСТЬNULL(Маршруты.Ссылка.ВесМакс, 1) КАК ЧИСЛО(5, 1))
+	КОНЕЦ КАК ПроцентЗагрузкиПоВесу,
+	Маршруты.Ссылка.ОбъемМакс КАК ОбъемТранспортногоСредства,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 0) = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(Маршруты.ИтогОбъем * 100 / ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 1) КАК ЧИСЛО(5, 1))
+	КОНЕЦ КАК ПроцентЗагрузкиПоОбъему
+ИЗ
+	Маршруты КАК Маршруты
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ИнформацияПоПроезду КАК ИнформацияПоПроезду
+		ПО Маршруты.Ссылка = ИнформацияПоПроезду.Задание
+		ЛЕВОЕ СОЕДИНЕНИЕ Веса КАК Веса
+		ПО Маршруты.Ссылка = Веса.Ссылка
+
+СГРУППИРОВАТЬ ПО
+	Маршруты.Ссылка,
+	Маршруты.Дата,
+	Маршруты.Перевозчик,
+	Маршруты.МаркаАвтомобиля,
+	Маршруты.МаркаПрицепа,
+	Маршруты.Направление,
+	Маршруты.ПроцентЛогистики,
+	Маршруты.СтоимостьКуба,
+	Маршруты.Подразделение,
+	Маршруты.Ответственный,
+	Маршруты.ИтогОбъем,
+	Маршруты.Километров,
+	Маршруты.Сумма,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(Маршруты.Ссылка.ВесМакс, 0) = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(ЕСТЬNULL(Веса.Вес, 0) * 100 / 1000 / ЕСТЬNULL(Маршруты.Ссылка.ВесМакс, 1) КАК ЧИСЛО(5, 1))
+	КОНЕЦ,
+	Веса.Вес / 1000,
+	Маршруты.Ссылка.ВесМакс,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 0) = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(Маршруты.ИтогОбъем * 100 / ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 1) КАК ЧИСЛО(5, 1))
+	КОНЕЦ,
+	ВЫБОР
+		КОГДА ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 0) = 0
+			ТОГДА 0
+		ИНАЧЕ ВЫРАЗИТЬ(Маршруты.ИтогОбъем * 100 / ЕСТЬNULL(Маршруты.Ссылка.ОбъемМакс, 1) КАК ЧИСЛО(5, 1))
+	КОНЕЦ
+
+УПОРЯДОЧИТЬ ПО
+	Перевозчик</query>
+		</dataSet>
+		<calculatedField>
+			<dataPath>Тариф</dataPath>
+			<expression>выбор когда Расстояние= 0 Тогда 0 иначе Доставка/Расстояние конец</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Тариф</d4p1:content>
+				</d4p1:item>
+			</title>
+			<appearance>
+				<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+					<parameter>Формат</parameter>
+					<value xsi:type="xs:string">ЧДЦ=2</value>
+				</item>
+			</appearance>
+		</calculatedField>
+		<totalField>
+			<dataPath>Расстояние</dataPath>
+			<expression>Сумма(Расстояние)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Тариф</dataPath>
+			<expression>выбор когда Сумма(Расстояние)= 0 Тогда 0 иначе Сумма(Доставка)/Сумма(Расстояние) конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Точки</dataPath>
+			<expression>Сумма(Точки)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Доставка</dataPath>
+			<expression>Сумма(Доставка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ИтогОбъем</dataPath>
+			<expression>Сумма(ИтогОбъем)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Вес</dataPath>
+			<expression>Сумма(Вес)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентЛогистики</dataPath>
+			<expression>выбор когда Сумма(СуммаОтгрузки)=0 тогда 0 иначе 100*сумма(Доставка)/Сумма(СуммаОтгрузки) конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СтоимостьКуба</dataPath>
+			<expression>выбор когда Сумма(ИтогОбъем)=0 тогда 0 иначе Сумма(Доставка)/Сумма(ИтогОбъем) конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаОтгрузки</dataPath>
+			<expression>Сумма(СуммаОтгрузки)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ГрузоподъемностьТранспортногоСредства</dataPath>
+			<expression>Сумма(ГрузоподъемностьТранспортногоСредства)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОбъемТранспортногоСредства</dataPath>
+			<expression>Сумма(ОбъемТранспортногоСредства)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентЗагрузкиПоВесу</dataPath>
+			<expression>выбор когда Сумма(ГрузоподъемностьТранспортногоСредства)=0 тогда 0 иначе 100*Сумма(Вес)/Сумма(ГрузоподъемностьТранспортногоСредства) конец</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ПроцентЗагрузкиПоОбъему</dataPath>
+			<expression>выбор когда Сумма(ОбъемТранспортногоСредства)=0 тогда 0 иначе 100*Сумма(ИтогОбъем)/Сумма(ОбъемТранспортногоСредства) конец</expression>
+		</totalField>
+		<parameter>
+			<name>ДатаКон</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата кон</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ДатаНач</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Дата нач</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>Точки</field>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тариф</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>Расстояние</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Тариф</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Суммы</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>СуммаОтгрузки</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>Доставка</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПроцентЛогистики</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Объем</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>ИтогОбъем</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>СтоимостьКуба</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ОбъемТранспортногоСредства</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПроцентЗагрузкиПоОбъему</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+		<item xsi:type="SelectedItemFolder">
+			<lwsTitle>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Вес</v8:content>
+				</v8:item>
+			</lwsTitle>
+			<item xsi:type="SelectedItemField">
+				<field>Вес</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ГрузоподъемностьТранспортногоСредства</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПроцентЗагрузкиПоВесу</field>
+			</item>
+			<placement>Auto</placement>
+		</item>
+	</selection>
+	<filter>
+		<item xsi:type="FilterItemComparison">
+			<left xsi:type="dcscor:Field">Подразделение</left>
+			<comparisonType>Equal</comparisonType>
+		</item>
+	</filter>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьЗаголовок</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Учет наемного транспорта</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВыводитьПараметрыДанных</dcscor:parameter>
+			<dcscor:value xsi:type="DataCompositionTextOutputType">DontOutput</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
+	<item xsi:type="StructureItemChart">
+		<use>false</use>
+		<point>
+			<groupItems>
+				<item xsi:type="GroupItemField">
+					<field>Перевозчик</field>
+					<groupType>Items</groupType>
+					<periodAdditionType>None</periodAdditionType>
+					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+					<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+				</item>
+			</groupItems>
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+			</selection>
+		</point>
+		<selection>
+			<item xsi:type="SelectedItemAuto">
+				<use>false</use>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПроцентЗагрузкиПоВесу</field>
+			</item>
+			<item xsi:type="SelectedItemField">
+				<field>ПроцентЗагрузкиПоОбъему</field>
+			</item>
+		</selection>
+		<outputParameters>
+			<dcscor:item xsi:type="SettingsParameterValue">
+				<dcscor:parameter>ТипДиаграммы</dcscor:parameter>
+				<dcscor:value xsi:type="v8ui:ChartType">Column</dcscor:value>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:use>false</dcscor:use>
+					<dcscor:parameter>ТипДиаграммы.БазовоеЗначение</dcscor:parameter>
+					<dcscor:value xsi:type="xs:decimal">10</dcscor:value>
+				</dcscor:item>
+			</dcscor:item>
+		</outputParameters>
+	</item>
+	<item xsi:type="StructureItemGroup">
+		<groupItems>
+			<item xsi:type="GroupItemField">
+				<field>Перевозчик</field>
+				<groupType>Items</groupType>
+				<periodAdditionType>None</periodAdditionType>
+				<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+				<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+			</item>
+		</groupItems>
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+		<item xsi:type="StructureItemGroup">
+			<order>
+				<item xsi:type="OrderItemAuto"/>
+			</order>
+			<selection>
+				<item xsi:type="SelectedItemAuto"/>
+				<item xsi:type="SelectedItemField">
+					<field>Дата</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Документ</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Направление</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>МаркаАвтомобиля</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<use>false</use>
+					<field>МаркаПрицепа</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Ответственный</field>
+				</item>
+			</selection>
+		</item>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<template>
+			<name>Макет1</name>
+			<template xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:AreaTemplate">
+				<dcsat:item xsi:type="dcsat:TableRow">
+					<dcsat:tableCell>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:d8p1="http://v8.1c.ru/8.1/data/core" xsi:type="d8p1:LocalStringType">
+								<d8p1:item>
+									<d8p1:lang>ru</d8p1:lang>
+									<d8p1:content>Учет наемного транспорта за период с </d8p1:content>
+								</d8p1:item>
+							</dcsat:value>
+						</dcsat:item>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:Parameter">ДатаНач</dcsat:value>
+						</dcsat:item>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:d8p1="http://v8.1c.ru/8.1/data/core" xsi:type="d8p1:LocalStringType">
+								<d8p1:item>
+									<d8p1:lang>ru</d8p1:lang>
+									<d8p1:content> по </d8p1:content>
+								</d8p1:item>
+							</dcsat:value>
+						</dcsat:item>
+						<dcsat:item xsi:type="dcsat:Field">
+							<dcsat:value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:Parameter">ДатаКон</dcsat:value>
+						</dcsat:item>
+						<dcsat:appIndex>0</dcsat:appIndex>
+					</dcsat:tableCell>
+				</dcsat:item>
+			</template>
+			<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+				<dcsat:name>ДатаНач</dcsat:name>
+				<dcsat:expression>Формат(ПараметрыДанных.ДатаНач,"ДФ=dd.MM.yyyy")</dcsat:expression>
+			</parameter>
+			<parameter xmlns:dcsat="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="dcsat:ExpressionAreaTemplateParameter">
+				<dcsat:name>ДатаКон</dcsat:name>
+				<dcsat:expression>Формат(ПараметрыДанных.ДатаКон,"ДФ=dd.MM.yyyy")</dcsat:expression>
+			</parameter>
+		</template>
+		<groupTemplate>
+			<groupName>Заголовок</groupName>
+			<templateType>Header</templateType>
+			<template>Макет1</template>
+		</groupTemplate>
+	</dataCompositionSchema>
+	<appearance xmlns="http://v8.1c.ru/8.1/data-composition-system/area-template" xsi:type="TableCellAppearance">
+		<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core">
+			<parameter>Шрифт</parameter>
+			<value xmlns:d4p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d4p1:Font" faceName="Arial" height="14" bold="true" italic="false" underline="false" strikeout="false" kind="Absolute"/>
+		</item>
+	</appearance>
+</SchemaFile>
