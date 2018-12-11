@@ -64,7 +64,7 @@
 				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
 					<d5p1:item>
 						<d5p1:lang>ru</d5p1:lang>
-						<d5p1:content>Вид товара</d5p1:content>
+						<d5p1:content>Вид поступления</d5p1:content>
 					</d5p1:item>
 				</title>
 			</field>
@@ -94,7 +94,7 @@
 				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
 					<d5p1:item>
 						<d5p1:lang>ru</d5p1:lang>
-						<d5p1:content>Вид товара</d5p1:content>
+						<d5p1:content>Вид поступления</d5p1:content>
 					</d5p1:item>
 				</title>
 			</field>
@@ -112,21 +112,87 @@
 				<role>
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
 				</role>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>Сумма</dataPath>
 				<field>Сумма</field>
 			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСчет</dataPath>
+				<field>КорСчет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто1</dataPath>
+				<field>КорСубконто1</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто2</dataPath>
+				<field>КорСубконто2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто3</dataPath>
+				<field>КорСубконто3</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто1</dataPath>
+				<field>Субконто1</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто2</dataPath>
+				<field>Субконто2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто3</dataPath>
+				<field>Субконто3</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Валюта</dataPath>
+				<field>Валюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВалютаКор</dataPath>
+				<field>ВалютаКор</field>
+			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
-	ХозрасчетныйОборотыДтКт.Менеджер,
-	ХозрасчетныйОборотыДтКт.СубконтоКт1 КАК СубконтоКт1,
-	ХозрасчетныйОборотыДтКт.СубконтоКт2,
+	ХозрасчетныйОбороты.ПериодПланирования,
+	ХозрасчетныйОбороты.Менеджер,
+	ХозрасчетныйОбороты.Субконто1,
+	ХозрасчетныйОбороты.Субконто2,
+	ХозрасчетныйОбороты1.Субконто3 КАК Субконто3
+ПОМЕСТИТЬ База
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(, , Авто, Счет В (&amp;Список), , ПериодПланирования = &amp;Периодпланирования, , ) КАК ХозрасчетныйОбороты,
+	РегистрБухгалтерии.Хозрасчетный.Обороты(, , , Счет = &amp;ДенСр, , ПериодПланирования = &amp;Периодпланирования, , ) КАК ХозрасчетныйОбороты1
+ГДЕ
+	ХозрасчетныйОбороты1.Субконто3 В(&amp;Субконто3)
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	База.Менеджер,
+	База.Субконто1 КАК СубконтоКт1,
+	База.Субконто2 КАК СубконтоКт2,
+	База.Субконто3,
 	ХозрасчетныйОборотыДтКт.ПериодСекунда КАК Период,
 	ХозрасчетныйОборотыДтКт.СуммаОборот КАК Сумма
 ИЗ
-	РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(, , Авто, СчетДт = &amp;ДенежныеСредства, , СчетКт = &amp;РасчетыСПокупателями, , ПериодПланирования = &amp;ПериодПланирования) КАК ХозрасчетныйОборотыДтКт</query>
+	База КАК База
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(, , Авто, СчетДт = &amp;ДенежныеСредства, , СчетКт = &amp;РасчетыСПокупателями, , ПериодПланирования = &amp;ПериодПланирования) КАК ХозрасчетныйОборотыДтКт
+		ПО База.Менеджер = ХозрасчетныйОборотыДтКт.Менеджер
+			И База.Субконто1 = ХозрасчетныйОборотыДтКт.СубконтоКт1
+			И База.Субконто2 = ХозрасчетныйОборотыДтКт.СубконтоКт2
+			И База.Субконто3 = ХозрасчетныйОборотыДтКт.СубконтоДт3</query>
 		</dataSet>
 		<totalField>
 			<dataPath>Сумма</dataPath>
@@ -208,6 +274,54 @@
 			<value xsi:nil="true"/>
 			<useRestriction>true</useRestriction>
 		</parameter>
+		<parameter>
+			<name>Список</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.ТоварыНаСкладах</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПоставщиками</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.БонусыВходящиеОтПоставщиков</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПокупателями</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>ДенСр</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Ден ср</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетныеСчета</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Субконто3</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Субконто3</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиЗатрат</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиЗатрат.СДебиторки</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиЗатрат.СОтгрузок</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
 		<settingsVariant>
 			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
 			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="xs:string">Основной</presentation>
@@ -281,7 +395,7 @@
 		<row>
 			<groupItems>
 				<item xsi:type="GroupItemField">
-					<field>Менеджер</field>
+					<field>Субконто3</field>
 					<groupType>Items</groupType>
 					<periodAdditionType>None</periodAdditionType>
 					<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
@@ -294,37 +408,10 @@
 			<selection>
 				<item xsi:type="SelectedItemAuto"/>
 			</selection>
-			<conditionalAppearance>
-				<item>
-					<selection>
-						<item>
-							<field>Менеджер</field>
-						</item>
-					</selection>
-					<filter/>
-					<appearance>
-						<dcscor:item xsi:type="SettingsParameterValue">
-							<dcscor:parameter>МинимальнаяШирина</dcscor:parameter>
-							<dcscor:value xsi:type="xs:decimal">26</dcscor:value>
-						</dcscor:item>
-						<dcscor:item xsi:type="SettingsParameterValue">
-							<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
-							<dcscor:value xsi:type="xs:decimal">26</dcscor:value>
-						</dcscor:item>
-					</appearance>
-				</item>
-			</conditionalAppearance>
 			<item>
 				<groupItems>
 					<item xsi:type="GroupItemField">
-						<field>СубконтоКт2</field>
-						<groupType>Items</groupType>
-						<periodAdditionType>None</periodAdditionType>
-						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
-						<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
-					</item>
-					<item xsi:type="GroupItemField">
-						<field>СубконтоКт1</field>
+						<field>Менеджер</field>
 						<groupType>Items</groupType>
 						<periodAdditionType>None</periodAdditionType>
 						<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
@@ -341,40 +428,84 @@
 					<item>
 						<selection>
 							<item>
-								<field>СубконтоКт2</field>
+								<field>Менеджер</field>
 							</item>
 						</selection>
 						<filter/>
 						<appearance>
 							<dcscor:item xsi:type="SettingsParameterValue">
 								<dcscor:parameter>МинимальнаяШирина</dcscor:parameter>
-								<dcscor:value xsi:type="xs:decimal">3</dcscor:value>
+								<dcscor:value xsi:type="xs:decimal">26</dcscor:value>
 							</dcscor:item>
 							<dcscor:item xsi:type="SettingsParameterValue">
 								<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
-								<dcscor:value xsi:type="xs:decimal">3</dcscor:value>
-							</dcscor:item>
-						</appearance>
-					</item>
-					<item>
-						<selection>
-							<item>
-								<field>СубконтоКт1</field>
-							</item>
-						</selection>
-						<filter/>
-						<appearance>
-							<dcscor:item xsi:type="SettingsParameterValue">
-								<dcscor:parameter>МинимальнаяШирина</dcscor:parameter>
-								<dcscor:value xsi:type="xs:decimal">23</dcscor:value>
-							</dcscor:item>
-							<dcscor:item xsi:type="SettingsParameterValue">
-								<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
-								<dcscor:value xsi:type="xs:decimal">23</dcscor:value>
+								<dcscor:value xsi:type="xs:decimal">26</dcscor:value>
 							</dcscor:item>
 						</appearance>
 					</item>
 				</conditionalAppearance>
+				<item>
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>СубконтоКт2</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+						<item xsi:type="GroupItemField">
+							<field>СубконтоКт1</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+					<conditionalAppearance>
+						<item>
+							<selection>
+								<item>
+									<field>СубконтоКт2</field>
+								</item>
+							</selection>
+							<filter/>
+							<appearance>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>МинимальнаяШирина</dcscor:parameter>
+									<dcscor:value xsi:type="xs:decimal">3</dcscor:value>
+								</dcscor:item>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+									<dcscor:value xsi:type="xs:decimal">3</dcscor:value>
+								</dcscor:item>
+							</appearance>
+						</item>
+						<item>
+							<selection>
+								<item>
+									<field>СубконтоКт1</field>
+								</item>
+							</selection>
+							<filter/>
+							<appearance>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>МинимальнаяШирина</dcscor:parameter>
+									<dcscor:value xsi:type="xs:decimal">23</dcscor:value>
+								</dcscor:item>
+								<dcscor:item xsi:type="SettingsParameterValue">
+									<dcscor:parameter>МаксимальнаяШирина</dcscor:parameter>
+									<dcscor:value xsi:type="xs:decimal">23</dcscor:value>
+								</dcscor:item>
+							</appearance>
+						</item>
+					</conditionalAppearance>
+				</item>
 			</item>
 		</row>
 	</item>

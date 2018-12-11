@@ -8,10 +8,6 @@
 		<dataSet xsi:type="DataSetQuery">
 			<name>НаборДанных1</name>
 			<field xsi:type="DataSetFieldField">
-				<dataPath>Количество</dataPath>
-				<field>Количество</field>
-			</field>
-			<field xsi:type="DataSetFieldField">
 				<dataPath>Менеджер</dataPath>
 				<field>Менеджер</field>
 				<role>
@@ -23,20 +19,8 @@
 				<field>Организация</field>
 			</field>
 			<field xsi:type="DataSetFieldField">
-				<dataPath>Период</dataPath>
-				<field>Период</field>
-				<role>
-					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
-					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
-				</role>
-			</field>
-			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодПланирования</dataPath>
 				<field>ПериодПланирования</field>
-			</field>
-			<field xsi:type="DataSetFieldField">
-				<dataPath>Сумма</dataPath>
-				<field>Сумма</field>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>СчетКт</dataPath>
@@ -57,6 +41,12 @@
 			<field xsi:type="DataSetFieldField">
 				<dataPath>СубконтоКт3</dataPath>
 				<field>СубконтоКт3</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Вид поступления</d5p1:content>
+					</d5p1:item>
+				</title>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>СубконтоДт1</dataPath>
@@ -92,9 +82,13 @@
 				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
 					<d5p1:item>
 						<d5p1:lang>ru</d5p1:lang>
-						<d5p1:content>Вид товара</d5p1:content>
+						<d5p1:content>Вид поступления</d5p1:content>
 					</d5p1:item>
 				</title>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
+				</role>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ВалютаКт</dataPath>
@@ -112,8 +106,116 @@
 				<dataPath>Наценка</dataPath>
 				<field>Наценка</field>
 			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Счет</dataPath>
+				<field>Счет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСчет</dataPath>
+				<field>КорСчет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто1</dataPath>
+				<field>КорСубконто1</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто2</dataPath>
+				<field>КорСубконто2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто3</dataPath>
+				<field>КорСубконто3</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто1</dataPath>
+				<field>Субконто1</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто2</dataPath>
+				<field>Субконто2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Субконто3</dataPath>
+				<field>Субконто3</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Валюта</dataPath>
+				<field>Валюта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВалютаКор</dataPath>
+				<field>ВалютаКор</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоступления</dataPath>
+				<field>СуммаПоступления</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма оплат с продаж</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧДЦ=0</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Период</dataPath>
+				<field>Период</field>
+				<role>
+					<ignoreNullValues xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</ignoreNullValues>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Количество</dataPath>
+				<field>Количество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сумма</dataPath>
+				<field>Сумма</field>
+			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
+	ХозрасчетныйОбороты.ПериодПланирования,
+	ХозрасчетныйОбороты.Менеджер,
+	ХозрасчетныйОбороты.Субконто1,
+	ХозрасчетныйОбороты.Субконто2
+ПОМЕСТИТЬ База
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(, , Авто, Счет В (&amp;Список), , ПериодПланирования = &amp;Периодпланирования, , ) КАК ХозрасчетныйОбороты
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	База.Менеджер,
+	База.Субконто1 КАК СубконтоКт1,
+	База.Субконто2 КАК СубконтоКт2,
+	ХозрасчетныйОборотыДтКт.СубконтоДт3,
+	ХозрасчетныйОборотыДтКт.ПериодСекунда КАК Период,
+	ХозрасчетныйОборотыДтКт.СуммаОборот КАК Сумма
+ПОМЕСТИТЬ ПриходДенег
+ИЗ
+	База КАК База
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрБухгалтерии.Хозрасчетный.ОборотыДтКт(
+				,
+				,
+				Авто,
+				СчетДт = &amp;ДенежныеСредства,
+				,
+				СчетКт = &amp;РасчетыСПокупателями,
+				,
+				ПериодПланирования = &amp;ПериодПланирования
+					И СубконтоДт3 &lt;&gt; &amp;СДебиторки) КАК ХозрасчетныйОборотыДтКт
+		ПО База.Менеджер = ХозрасчетныйОборотыДтКт.Менеджер
+			И База.Субконто1 = ХозрасчетныйОборотыДтКт.СубконтоКт1
+			И База.Субконто2 = ХозрасчетныйОборотыДтКт.СубконтоКт2
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
 	ХозрасчетныйОборотыДтКт.Менеджер,
 	ХозрасчетныйОборотыДтКт.СубконтоДт1,
 	ХозрасчетныйОборотыДтКт.СубконтоДт2,
@@ -176,6 +278,7 @@
 	Продажи.Период,
 	NULL КАК ПроцентНаценки,
 	Продажи.Наценка
+ПОМЕСТИТЬ Итого
 ИЗ
 	Продажи КАК Продажи
 
@@ -191,16 +294,62 @@
 	ПроцентНаценки1.ПроцентНаценки,
 	NULL
 ИЗ
-	ПроцентНаценки КАК ПроцентНаценки1</query>
+	ПроцентНаценки КАК ПроцентНаценки1
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	База.Менеджер,
+	База.Субконто1 КАК СубконтоДт1,
+	База.Субконто2 КАК СубконтоДт2,
+	СУММА(Итого.Количество) КАК Количество,
+	СУММА(Итого.Сумма) КАК Сумма,
+	Итого.Период,
+	СУММА(Итого.ПроцентНаценки) КАК ПроцентНаценки,
+	СУММА(Итого.Наценка) КАК Наценка
+ПОМЕСТИТЬ Свод
+ИЗ
+	База КАК База
+		ЛЕВОЕ СОЕДИНЕНИЕ Итого КАК Итого
+		ПО База.Менеджер = Итого.Менеджер
+			И База.Субконто1 = Итого.СубконтоДт1
+			И База.Субконто2 = Итого.СубконтоДт2
+
+СГРУППИРОВАТЬ ПО
+	База.Менеджер,
+	База.Субконто1,
+	База.Субконто2,
+	Итого.Период
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
+	ЕСТЬNULL(Свод.Менеджер, ПриходДенег.Менеджер) КАК Менеджер,
+	ЕСТЬNULL(Свод.СубконтоДт1, ПриходДенег.СубконтоКт1) КАК СубконтоДт1,
+	ЕСТЬNULL(Свод.СубконтоДт2, ПриходДенег.СубконтоКт2) КАК СубконтоДт2,
+	ЕСТЬNULL(Свод.Период, ПриходДенег.Период) КАК Период,
+	Свод.ПроцентНаценки,
+	Свод.Наценка,
+	ПриходДенег.Сумма КАК СуммаПоступления,
+	ПриходДенег.СубконтоДт3,
+	ВЫБОР
+		КОГДА ПриходДенег.СубконтоДт3 = ЗНАЧЕНИЕ(Справочник.статьиЗатрат.СДебиторки)
+			ТОГДА 0
+		ИНАЧЕ Свод.Сумма
+	КОНЕЦ КАК Сумма,
+	ВЫБОР
+		КОГДА ПриходДенег.СубконтоДт3 = ЗНАЧЕНИЕ(Справочник.статьиЗатрат.СДебиторки)
+			ТОГДА 0
+		ИНАЧЕ Свод.Количество
+	КОНЕЦ КАК Количество
+ИЗ
+	Свод КАК Свод
+		ПОЛНОЕ СОЕДИНЕНИЕ ПриходДенег КАК ПриходДенег
+		ПО Свод.Менеджер = ПриходДенег.Менеджер
+			И Свод.СубконтоДт1 = ПриходДенег.СубконтоКт1
+			И Свод.СубконтоДт2 = ПриходДенег.СубконтоКт2
+			И Свод.Период = ПриходДенег.Период</query>
 		</dataSet>
-		<totalField>
-			<dataPath>Количество</dataPath>
-			<expression>Сумма(Количество)</expression>
-		</totalField>
-		<totalField>
-			<dataPath>Сумма</dataPath>
-			<expression>Сумма(Сумма)</expression>
-		</totalField>
 		<totalField>
 			<dataPath>ПроцентНаценки</dataPath>
 			<expression>Выбор когда (Сумма(Сумма)-Сумма(Наценка))=0 тогда 0 иначе Сумма(Наценка)/(Сумма(Сумма)-Сумма(Наценка))*100 конец</expression>
@@ -208,6 +357,18 @@
 		<totalField>
 			<dataPath>Наценка</dataPath>
 			<expression>Сумма(Наценка)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПоступления</dataPath>
+			<expression>Сумма(СуммаПоступления)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Сумма)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>Количество</dataPath>
+			<expression>Сумма(Количество)</expression>
 		</totalField>
 		<parameter>
 			<name>НачалоПериода</name>
@@ -296,7 +457,53 @@
 			<valueType>
 				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
 			</valueType>
-			<value xsi:nil="true"/>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПокупателями</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Список</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.ТоварыНаСкладах</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПоставщиками</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПокупателями</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.БонусыВходящиеОтПоставщиков</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>ДенежныеСредства</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Денежные средства</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетныеСчета</value>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СДебиторки</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>С дебиторки</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.СтатьиЗатрат</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">Справочник.СтатьиЗатрат.СДебиторки</value>
 			<useRestriction>true</useRestriction>
 		</parameter>
 		<settingsVariant>
@@ -408,6 +615,9 @@
 				<item xsi:type="SelectedItemField">
 					<field>Наценка</field>
 				</item>
+				<item xsi:type="SelectedItemField">
+					<field>СуммаПоступления</field>
+				</item>
 			</selection>
 		</column>
 		<row>
@@ -507,6 +717,24 @@
 						</appearance>
 					</item>
 				</conditionalAppearance>
+				<item>
+					<use>false</use>
+					<groupItems>
+						<item xsi:type="GroupItemField">
+							<field>СубконтоДт3</field>
+							<groupType>Items</groupType>
+							<periodAdditionType>None</periodAdditionType>
+							<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+							<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+						</item>
+					</groupItems>
+					<order>
+						<item xsi:type="OrderItemAuto"/>
+					</order>
+					<selection>
+						<item xsi:type="SelectedItemAuto"/>
+					</selection>
+				</item>
 			</item>
 		</row>
 	</item>

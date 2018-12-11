@@ -76,16 +76,26 @@
 				</role>
 			</field>
 			<field xsi:type="DataSetFieldField">
-				<dataPath>СделкаКонечнаяДатаОТХ</dataPath>
-				<field>СделкаКонечнаяДатаОТХ</field>
+				<dataPath>КонечнаяДатаОТХ</dataPath>
+				<field>КонечнаяДатаОТХ</field>
 			</field>
 			<field xsi:type="DataSetFieldField">
-				<dataPath>СделкаПроцентОТХ</dataPath>
-				<field>СделкаПроцентОТХ</field>
+				<dataPath>ПроцентОТХ</dataPath>
+				<field>ПроцентОТХ</field>
 			</field>
 			<field xsi:type="DataSetFieldField">
-				<dataPath>СделкаСхемаРаботыОТХ</dataPath>
-				<field>СделкаСхемаРаботыОТХ</field>
+				<dataPath>СхемаРаботыОТХ</dataPath>
+				<field>СхемаРаботыОТХ</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаОплаты</dataPath>
+				<field>ДатаОплаты</field>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ=dd.MM.yyyy</value>
+					</item>
+				</appearance>
 			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
@@ -100,7 +110,7 @@
 	ВзаиморасчетыСКонтрагентамиОстатки.СуммаВзаиморасчетовОстаток КАК Остаток
 ПОМЕСТИТЬ ВТ
 ИЗ
-	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки(, ДоговорКонтрагента.Наименование ПОДОБНО "%перенос/возврат%") КАК ВзаиморасчетыСКонтрагентамиОстатки
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Остатки({(&amp;КонПериодаП)}, ДоговорКонтрагента.Наименование ПОДОБНО "%перенос/возврат%") КАК ВзаиморасчетыСКонтрагентамиОстатки
 ;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -119,15 +129,7 @@
 	ВзаиморасчетыСКонтрагентамиОбороты.ДоговорКонтрагента
 ПОМЕСТИТЬ Отгрузки
 ИЗ
-	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Обороты(
-			,
-			,
-			Регистратор,
-			Сделка В
-				(ВЫБРАТЬ
-					ВТ.Сделка
-				ИЗ
-					ВТ КАК ВТ)) КАК ВзаиморасчетыСКонтрагентамиОбороты
+	РегистрНакопления.ВзаиморасчетыСКонтрагентами.Обороты({(&amp;НачПериодаП)}, {(&amp;КонПериодаП)}, Регистратор, ДоговорКонтрагента.Наименование ПОДОБНО "%перенос/возврат%") КАК ВзаиморасчетыСКонтрагентамиОбороты
 
 СГРУППИРОВАТЬ ПО
 	ВзаиморасчетыСКонтрагентамиОбороты.Сделка,
@@ -136,13 +138,13 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 ВЫБРАТЬ
-	ВТ.Менеджер,
-	ВТ.НаправлениеПродаж,
-	ВТ.Контрагент,
-	ВТ.Сделка,
-	ВТ.СделкаПроцентОТХ,
-	ВТ.СделкаКонечнаяДатаОТХ,
-	ВТ.СделкаСхемаРаботыОТХ,
+	ЕСТЬNULL(Отгрузки.ДоговорКонтрагента.ОтветственноеЛицо, ВТ.Менеджер) КАК Менеджер,
+	ЕСТЬNULL(Отгрузки.ДоговорКонтрагента.ОтветственноеЛицо.НаправлениеПродаж, ВТ.НаправлениеПродаж) КАК НаправлениеПродаж,
+	ЕСТЬNULL(Отгрузки.ДоговорКонтрагента.Владелец, ВТ.Контрагент) КАК Контрагент,
+	ЕСТЬNULL(Отгрузки.Сделка, ВТ.Сделка) КАК Сделка,
+	ЕСТЬNULL(Отгрузки.Сделка.ПроцентОТХ, ВТ.СделкаПроцентОТХ) КАК ПроцентОТХ,
+	ЕСТЬNULL(Отгрузки.Сделка.КонечнаяДатаОТХ, ВТ.СделкаКонечнаяДатаОТХ) КАК КонечнаяДатаОТХ,
+	ЕСТЬNULL(Отгрузки.Сделка.СхемаРаботыОТХ, ВТ.СделкаСхемаРаботыОТХ) КАК СхемаРаботыОТХ,
 	Отгрузки.Отгрузка,
 	Отгрузки.Возврат,
 	ВЫБОР
@@ -150,15 +152,16 @@
 			ТОГДА ВТ.Остаток
 		ИНАЧЕ 0
 	КОНЕЦ КАК ПДЗ,
-	Отгрузки.Отгрузка + Отгрузки.Возврат - ВТ.Остаток КАК Оплата,
-	(Отгрузки.Отгрузка + Отгрузки.Возврат - ВТ.Остаток) / Отгрузки.Отгрузка * 100 КАК ПроцентОплаты,
+	Отгрузки.Отгрузка + Отгрузки.Возврат - ЕСТЬNULL(ВТ.Остаток, 0) КАК Оплата,
+	(Отгрузки.Отгрузка + Отгрузки.Возврат - ЕСТЬNULL(ВТ.Остаток, 0)) / Отгрузки.Отгрузка * 100 КАК ПроцентОплаты,
 	ВТ.Остаток КАК ДЗ,
-	ВТ.ДоговорКонтрагента
+	ВТ.ДоговорКонтрагента,
+	Отгрузки.Сделка.ДатаОплаты КАК ДатаОплаты
 ИЗ
-	ВТ КАК ВТ
-		ЛЕВОЕ СОЕДИНЕНИЕ Отгрузки КАК Отгрузки
-		ПО ВТ.Сделка = Отгрузки.Сделка
-			И ВТ.ДоговорКонтрагента = Отгрузки.ДоговорКонтрагента</query>
+	Отгрузки КАК Отгрузки
+		ПОЛНОЕ СОЕДИНЕНИЕ ВТ КАК ВТ
+		ПО (ВТ.Сделка = Отгрузки.Сделка)
+			И (ВТ.ДоговорКонтрагента = Отгрузки.ДоговорКонтрагента)</query>
 		</dataSet>
 		<totalField>
 			<dataPath>Возврат</dataPath>
@@ -185,57 +188,6 @@
 			<expression>Сумма(Оплата)/Сумма(Отгрузка)*100</expression>
 		</totalField>
 		<parameter>
-			<name>НачалоПериода</name>
-			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
-				<d4p1:item>
-					<d4p1:lang>ru</d4p1:lang>
-					<d4p1:content>Начало периода</d4p1:content>
-				</d4p1:item>
-			</title>
-			<valueType>
-				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
-				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
-					<DateFractions>DateTime</DateFractions>
-				</DateQualifiers>
-			</valueType>
-			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
-			<useRestriction>false</useRestriction>
-		</parameter>
-		<parameter>
-			<name>КонецПериода</name>
-			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
-				<d4p1:item>
-					<d4p1:lang>ru</d4p1:lang>
-					<d4p1:content>Конец периода</d4p1:content>
-				</d4p1:item>
-			</title>
-			<valueType>
-				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
-				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
-					<DateFractions>DateTime</DateFractions>
-				</DateQualifiers>
-			</valueType>
-			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
-			<useRestriction>false</useRestriction>
-		</parameter>
-		<parameter>
-			<name>Период</name>
-			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
-				<d4p1:item>
-					<d4p1:lang>ru</d4p1:lang>
-					<d4p1:content>Период</d4p1:content>
-				</d4p1:item>
-			</title>
-			<valueType>
-				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
-				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
-					<DateFractions>DateTime</DateFractions>
-				</DateQualifiers>
-			</valueType>
-			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
-			<useRestriction>false</useRestriction>
-		</parameter>
-		<parameter>
 			<name>текущаяДата</name>
 			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
 				<d4p1:item>
@@ -251,6 +203,40 @@
 			</valueType>
 			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
 			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонПериодаП</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Кон периода П</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>НачПериодаП</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Нач периода П</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">2018-06-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
 		</parameter>
 		<settingsVariant>
 			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
@@ -353,21 +339,28 @@
 								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
 							</item>
 							<item xsi:type="GroupItemField">
-								<field>СделкаСхемаРаботыОТХ</field>
+								<field>ДатаОплаты</field>
 								<groupType>Items</groupType>
 								<periodAdditionType>None</periodAdditionType>
 								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
 								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
 							</item>
 							<item xsi:type="GroupItemField">
-								<field>СделкаПроцентОТХ</field>
+								<field>СхемаРаботыОТХ</field>
 								<groupType>Items</groupType>
 								<periodAdditionType>None</periodAdditionType>
 								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
 								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
 							</item>
 							<item xsi:type="GroupItemField">
-								<field>СделкаКонечнаяДатаОТХ</field>
+								<field>ПроцентОТХ</field>
+								<groupType>Items</groupType>
+								<periodAdditionType>None</periodAdditionType>
+								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>
+								<periodAdditionEnd xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionEnd>
+							</item>
+							<item xsi:type="GroupItemField">
+								<field>КонечнаяДатаОТХ</field>
 								<groupType>Items</groupType>
 								<periodAdditionType>None</periodAdditionType>
 								<periodAdditionBegin xsi:type="xs:dateTime">0001-01-01T00:00:00</periodAdditionBegin>

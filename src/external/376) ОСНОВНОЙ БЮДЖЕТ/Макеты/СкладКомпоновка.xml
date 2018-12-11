@@ -316,17 +316,52 @@
 				<dataPath>СуммаОстаток</dataPath>
 				<field>СуммаОстаток</field>
 			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСчет</dataPath>
+				<field>КорСчет</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто1</dataPath>
+				<field>КорСубконто1</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто2</dataPath>
+				<field>КорСубконто2</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КорСубконто3</dataPath>
+				<field>КорСубконто3</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ВалютаКор</dataPath>
+				<field>ВалютаКор</field>
+			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
+	ХозрасчетныйОбороты.ПериодПланирования,
+	ХозрасчетныйОбороты.Менеджер,
+	ХозрасчетныйОбороты.Субконто1,
+	ХозрасчетныйОбороты.Субконто2
+ПОМЕСТИТЬ База
+ИЗ
+	РегистрБухгалтерии.Хозрасчетный.Обороты(, , Авто, Счет В (&amp;Список), , ПериодПланирования = &amp;Периодпланирования, , ) КАК ХозрасчетныйОбороты
+;
+
+////////////////////////////////////////////////////////////////////////////////
+ВЫБРАТЬ
 	&amp;Период1 КАК ПамПам,
 	ХозрасчетныйОстатки.СуммаОстаток,
 	ХозрасчетныйОстатки.КоличествоОстаток,
-	ХозрасчетныйОстатки.Менеджер,
-	ХозрасчетныйОстатки.Субконто1,
-	ХозрасчетныйОстатки.Субконто2,
+	База.Менеджер,
+	База.Субконто1,
+	База.Субконто2,
 	СЕКУНДА(&amp;Период1) КАК Поле1
 ИЗ
-	РегистрБухгалтерии.Хозрасчетный.Остатки(&amp;Период1, Счет = &amp;ТоварыНаСкладах, , ПериодПланирования = &amp;ПериодПланирования) КАК ХозрасчетныйОстатки</query>
+	База КАК База
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрБухгалтерии.Хозрасчетный.Остатки(&amp;Период1, Счет = &amp;ТоварыНаСкладах, , ПериодПланирования = &amp;ПериодПланирования) КАК ХозрасчетныйОстатки
+		ПО База.Менеджер = ХозрасчетныйОстатки.Менеджер
+			И База.Субконто1 = ХозрасчетныйОстатки.Субконто1
+			И База.Субконто2 = ХозрасчетныйОстатки.Субконто2</query>
 		</dataSet>
 		<dataSetLink>
 			<sourceDataSet>НаборДанных1</sourceDataSet>
@@ -439,6 +474,24 @@
 			</valueType>
 			<value xsi:nil="true"/>
 			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Список</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfAccountsRef.Хозрасчетный</Type>
+			</valueType>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.ТоварыНаСкладах</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПоставщиками</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.РасчетыСПокупателями</value>
+			<value xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xsi:type="dcscor:DesignTimeValue">ПланСчетов.Хозрасчетный.БонусыВходящиеОтПоставщиков</value>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
 		</parameter>
 		<settingsVariant>
 			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
