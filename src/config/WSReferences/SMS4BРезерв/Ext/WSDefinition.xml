@@ -6,9 +6,9 @@
 		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
 		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
 		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		xmlns:xsd1="SMS client"
+		xmlns:xsd1="http://schemas.xmlsoap.org/soap/encoding/"
 		xmlns:xsd2="SMS client/AbstractTypes"
-		xmlns:xsd3="http://schemas.xmlsoap.org/soap/encoding/"
+		xmlns:xsd3="SMS client"
 		targetNamespace="SMS client">
 	<documentation>Web-ñåðâèñ äëÿ êëèåíòà SMS</documentation>
 	<types>
@@ -23,7 +23,6 @@
 				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 				xmlns:xsd1="SMS client/AbstractTypes"
 				xmlns:xsd2="http://schemas.xmlsoap.org/soap/encoding/"
-				xmlns:xsd3="SMS client"
 				elementFormDefault="qualified"
 				targetNamespace="SMS client">
 			<s:element name="StartSessionUTC">
@@ -834,7 +833,6 @@
 				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 				xmlns:xsd1="SMS client/AbstractTypes"
 				xmlns:xsd2="http://schemas.xmlsoap.org/soap/encoding/"
-				xmlns:xsd3="SMS client"
 				targetNamespace="SMS client/AbstractTypes">
 			<s:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
 			<s:complexType mixed="false"

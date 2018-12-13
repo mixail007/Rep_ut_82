@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.6">
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.4">
 	<setForNewObjects>true</setForNewObjects>
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>true</independentRightsOfChildObjects>
@@ -78,11 +78,11 @@
 				<condition>ОтчетКомитентуОПродажах  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -640,38 +640,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗакрытиеЗаказовПоставщикам</name>
@@ -1002,11 +970,11 @@
 				<condition>СчетНаОплатуПоставщика  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -1306,11 +1274,11 @@
 				<condition>ПереоценкаТоваровПринятыхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -2530,18 +2498,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.КорректировкаЗаказаПокупателя</name>
@@ -2637,11 +2593,11 @@
 				<condition>ВозвратТоваровОтПокупателя  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -2764,18 +2720,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.Расстояния</name>
@@ -2827,14 +2771,14 @@
 				<condition>ГДЕ ПользовательДляОграниченияПравДоступа = &amp;ТекущийПользователь</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Code</field>
-				<field>DeletionMark</field>
-				<field>Description</field>
-				<field>Predefined</field>
 				<field>Ref</field>
+				<field>DeletionMark</field>
+				<field>Predefined</field>
+				<field>Code</field>
+				<field>Description</field>
+				<field>Фамилия</field>
 				<field>Имя</field>
 				<field>Отчество</field>
-				<field>Фамилия</field>
 				<condition>КонтактныеЛица  ГДЕ (ИСТИНА)</condition>
 			</restrictionByCondition>
 		</right>
@@ -3728,11 +3672,11 @@
 				<condition>ПереоценкаТоваровОтданныхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -3881,18 +3825,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4655,38 +4587,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.КурсыВалютДляПоступления</name>
@@ -4700,18 +4600,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5182,38 +5070,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ВычетНДССАванса</name>
@@ -5337,11 +5193,11 @@
 				<condition>ПоступлениеТоваровУслуг  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -5900,11 +5756,11 @@
 				<condition>ИнвентаризацияТоваровОтданныхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -6267,11 +6123,11 @@
 				<condition>РеализацияТоваровУслуг  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -7447,38 +7303,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.ДоговорыКонтрагентов</name>
@@ -8036,11 +7860,11 @@
 				<condition>ВозвратТоваровПоставщику  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -8349,11 +8173,11 @@
 				<condition>ЗаказПоставщику  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -8986,18 +8810,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.РезервНаСкладах</name>
@@ -9216,13 +9028,13 @@
 				<condition>Контрагенты  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Code</field>
-				<field>DeletionMark</field>
-				<field>Description</field>
-				<field>IsFolder</field>
-				<field>Parent</field>
-				<field>Predefined</field>
 				<field>Ref</field>
+				<field>DeletionMark</field>
+				<field>Predefined</field>
+				<field>Parent</field>
+				<field>IsFolder</field>
+				<field>Code</field>
+				<field>Description</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -9631,11 +9443,11 @@
 				<condition>ЗаказПокупателя  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -9888,20 +9700,20 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>Комментарий</field>
-				<field>Организация</field>
-				<field>Ответственный</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>ОтражатьВУправленческомУчете</field>
-				<field>Подразделение</field>
+				<field>Организация</field>
 				<field>Склад</field>
 				<field>УдалитьЗаказ</field>
+				<field>Подразделение</field>
+				<field>Ответственный</field>
+				<field>Комментарий</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -10108,11 +9920,11 @@
 				<condition>ОтчетКомиссионераОПродажах  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -10667,11 +10479,11 @@
 				<condition>РезервированиеТоваров  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -11099,6 +10911,9 @@
 		</right>
 	</object>
 	<object>
+		<name>InformationRegister.КонтактнаяИнформация</name>
+	</object>
+	<object>
 		<name>Document.ОтражениеРеализацииТоваровИУслугНДС</name>
 		<right>
 			<name>Insert</name>
@@ -11224,18 +11039,6 @@
 		</right>
 		<right>
 			<name>InputByString</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11635,38 +11438,6 @@
 		</right>
 		<right>
 			<name>InputByString</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12155,38 +11926,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.СчетНаОплатуПокупателю</name>
@@ -12197,11 +11936,11 @@
 				<condition>СчетНаОплатуПокупателю  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -12311,47 +12050,47 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>ВидТекстаПисьма</field>
-				<field>ГруппаУчетнойЗаписи</field>
-				<field>ДатаОтправления</field>
-				<field>ЕстьВложения</field>
-				<field>ИдентификаторПисьма</field>
-				<field>Комментарий</field>
-				<field>Кому</field>
+				<field>Тема</field>
 				<field>КомуПредставление</field>
+				<field>Кому</field>
+				<field>ОтправительИмя</field>
+				<field>ОтправительАдресЭлектроннойПочты</field>
+				<field>ОтправительПредставление</field>
+				<field>КопииПредставление</field>
+				<field>Копии</field>
+				<field>СкрытыеКопии</field>
+				<field>УчетнаяЗапись</field>
+				<field>ГруппаУчетнойЗаписи</field>
+				<field>Ответственный</field>
+				<field>Комментарий</field>
+				<field>СтатусПисьма</field>
+				<field>ДатаОтправления</field>
+				<field>ТекстПисьма</field>
+				<field>Основание</field>
+				<field>Предмет</field>
+				<field>ЕстьВложения</field>
+				<field>ПочтовоеСообщение</field>
+				<field>ВидТекстаПисьма</field>
+				<field>НеРассмотрено</field>
+				<field>ИдентификаторПисьма</field>
+				<field>Ответ</field>
+				<field>Переадресация</field>
+				<field>СостояниеПотомкаПисьма</field>
 				<field>КомуТЧ</field>
 				<field>КомуТЧ.LineNumber</field>
-				<field>КомуТЧ.АдресЭлектроннойПочты</field>
 				<field>КомуТЧ.Представление</field>
-				<field>Копии</field>
-				<field>КопииПредставление</field>
+				<field>КомуТЧ.АдресЭлектроннойПочты</field>
 				<field>КопииТЧ</field>
 				<field>КопииТЧ.LineNumber</field>
-				<field>КопииТЧ.АдресЭлектроннойПочты</field>
 				<field>КопииТЧ.Представление</field>
-				<field>НеРассмотрено</field>
-				<field>Основание</field>
-				<field>Ответ</field>
-				<field>Ответственный</field>
-				<field>ОтправительАдресЭлектроннойПочты</field>
-				<field>ОтправительИмя</field>
-				<field>ОтправительПредставление</field>
-				<field>Переадресация</field>
-				<field>ПочтовоеСообщение</field>
-				<field>Предмет</field>
-				<field>СкрытыеКопии</field>
+				<field>КопииТЧ.АдресЭлектроннойПочты</field>
 				<field>СкрытыеКопииТЧ</field>
 				<field>СкрытыеКопииТЧ.LineNumber</field>
-				<field>СкрытыеКопииТЧ.АдресЭлектроннойПочты</field>
 				<field>СкрытыеКопииТЧ.Представление</field>
-				<field>СостояниеПотомкаПисьма</field>
-				<field>СтатусПисьма</field>
-				<field>ТекстПисьма</field>
-				<field>Тема</field>
-				<field>УчетнаяЗапись</field>
+				<field>СкрытыеКопииТЧ.АдресЭлектроннойПочты</field>
 				<condition>ГДЕ УчетнаяЗапись В(&amp;ДоступныеУчетныеЗаписиЭлектроннойПочты)</condition>
 			</restrictionByCondition>
 		</right>

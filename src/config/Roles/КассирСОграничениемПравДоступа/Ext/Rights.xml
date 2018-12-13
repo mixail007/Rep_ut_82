@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.6">
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.4">
 	<setForNewObjects>true</setForNewObjects>
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>true</independentRightsOfChildObjects>
@@ -78,11 +78,11 @@
 				<condition>ОтчетКомитентуОПродажах  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -336,18 +336,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -695,38 +683,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗакрытиеЗаказовПоставщикам</name>
@@ -777,51 +733,51 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>ВалютаДокумента</field>
-				<field>ВидОперации</field>
-				<field>Касса</field>
-				<field>Комментарий</field>
-				<field>Контрагент</field>
 				<field>Организация</field>
+				<field>Касса</field>
+				<field>ВидОперации</field>
+				<field>Контрагент</field>
+				<field>ВалютаДокумента</field>
+				<field>СуммаДокумента</field>
 				<field>Ответственный</field>
+				<field>Комментарий</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>ОтражатьВУправленческомУчете</field>
-				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ВалютаВзаиморасчетовПодотчетника</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ДокументОснование</field>
 				<field>ДокументПланированияПоступления</field>
-				<field>Оплачено</field>
-				<field>Основание</field>
-				<field>ОтраженоВОперУчете</field>
 				<field>Подразделение</field>
-				<field>Приложение</field>
-				<field>ПринятоОт</field>
+				<field>ДоговорКонтрагента</field>
+				<field>ВалютаВзаиморасчетовПодотчетника</field>
 				<field>РасчетныйДокумент</field>
+				<field>ПринятоОт</field>
+				<field>Основание</field>
+				<field>Приложение</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>Оплачено</field>
+				<field>ДокументОснование</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетОрганизации</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.Проект</field>
 				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>СчетОрганизации</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.Проект</field>
 				<condition>ПриходныйКассовыйОрдер ИЗ Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхКассира) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И ПриходныйКассовыйОрдер.Касса = ПраваДоступаПользователей.ОбъектДоступа</condition>
 			</restrictionByCondition>
 		</right>
@@ -1019,18 +975,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.НачислениеАмортизацииОС</name>
@@ -1040,18 +984,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -1142,11 +1074,11 @@
 				<condition>СчетНаОплатуПоставщика  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ДатаВходящегоДокумента</field>
 				<field>ДоговорКонтрагента</field>
@@ -1376,11 +1308,11 @@
 				<condition>ПоступлениеТоваровУслугВНеавтоматизированнуюТорговуюТочку  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<field>БанковскийСчетКонтрагента</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
@@ -1506,18 +1438,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ПереоценкаТоваровПринятыхНаКомиссию</name>
@@ -1528,11 +1448,11 @@
 				<condition>ПереоценкаТоваровПринятыхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -1828,38 +1748,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ИзменениеПараметровНачисленияАмортизацииОС</name>
@@ -1936,18 +1824,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ДанныеПоОТК</name>
@@ -1979,18 +1855,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2068,38 +1932,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.ХозОперации</name>
@@ -2144,18 +1976,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2459,18 +2279,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СостоянияОС</name>
@@ -2480,18 +2288,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2540,18 +2336,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2669,18 +2453,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ДанныеПоГрузчикам</name>
@@ -2737,18 +2509,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2975,18 +2735,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ОтчетВодителяОСдачеДенежныхСредств</name>
@@ -3020,18 +2768,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДанныеПоДопРасходам</name>
@@ -3041,18 +2777,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3243,18 +2967,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.КорректировкаСерийИХарактеристикТоваров</name>
@@ -3377,18 +3089,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.КорректировкаЗаказаПокупателя</name>
@@ -3459,18 +3159,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.СтратегииПланированияЗатрат</name>
@@ -3516,11 +3204,11 @@
 				<condition>ВозвратТоваровОтПокупателя  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -3643,18 +3331,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.Расстояния</name>
@@ -3668,18 +3344,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3723,18 +3387,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ТранспортныеЗатратыПоРеализациям</name>
@@ -3744,18 +3396,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3768,14 +3408,14 @@
 				<condition>ГДЕ ПользовательДляОграниченияПравДоступа = &amp;ТекущийПользователь</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Code</field>
-				<field>DeletionMark</field>
-				<field>Description</field>
-				<field>Predefined</field>
 				<field>Ref</field>
+				<field>DeletionMark</field>
+				<field>Predefined</field>
+				<field>Code</field>
+				<field>Description</field>
+				<field>Фамилия</field>
 				<field>Имя</field>
 				<field>Отчество</field>
-				<field>Фамилия</field>
 				<condition>КонтактныеЛица  ГДЕ (ИСТИНА)</condition>
 			</restrictionByCondition>
 		</right>
@@ -3926,18 +3566,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СтадииВзаимоотношенийСПокупателями</name>
@@ -3947,18 +3575,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3977,18 +3593,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4124,18 +3728,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.КлючевыеОперации</name>
@@ -4191,18 +3783,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4283,11 +3863,11 @@
 				<condition>ПоступлениеДопРасходов  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -4434,18 +4014,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.ВнешниеОбработки</name>
@@ -4490,18 +4058,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4785,18 +4341,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.НоменклатурныеГруппы</name>
@@ -4972,18 +4516,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПлановыеОстаткиТоваров</name>
@@ -5000,18 +4532,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5059,11 +4579,11 @@
 				<condition>ПереоценкаТоваровОтданныхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -5176,18 +4696,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ВводНачальныхОстатковНДС</name>
@@ -5244,18 +4752,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5320,18 +4816,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5613,18 +5097,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ТоварыНаОтветственномХранении</name>
@@ -5645,18 +5117,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5936,18 +5396,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ПлатежноеТребованиеВыставленное</name>
@@ -6092,18 +5540,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.РазмещениеЗаказовПокупателей</name>
@@ -6159,18 +5595,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -6283,38 +5707,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.КурсыВалютДляПоступления</name>
@@ -6328,18 +5720,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -6615,18 +5995,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЧекККМ</name>
@@ -6852,38 +6220,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ВычетНДССАванса</name>
@@ -6929,18 +6265,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7019,11 +6343,11 @@
 				<condition>ПоступлениеТоваровУслуг  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -7140,18 +6464,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗакрытиеПланируемыхПоступленийДенежныхСредств</name>
@@ -7241,18 +6553,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.ПрофилиРаспределенияПоПериодам</name>
@@ -7297,18 +6597,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7490,18 +6778,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПравилаЦенообразованияОбщие</name>
@@ -7511,18 +6787,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7577,18 +6841,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7823,11 +7075,11 @@
 				<condition>ИнвентаризацияТоваровОтданныхНаКомиссию  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -8069,18 +7321,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.ВидыДеятельностиКонтрагентов</name>
@@ -8292,11 +7532,11 @@
 				<condition>РеализацияТоваровУслуг  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -8410,18 +7650,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8668,18 +7896,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ГраницыПериодовПланирования</name>
@@ -8689,18 +7905,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8714,18 +7918,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПервоначальныеСведенияОС</name>
@@ -8735,18 +7927,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8841,18 +8021,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ЦеныНоменклатуры</name>
@@ -8862,18 +8030,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8896,18 +8052,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9115,18 +8259,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.РаспределениеНДСКосвенныхРасходов</name>
@@ -9168,18 +8300,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9329,18 +8449,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ПереоценкаВалютныхСредств</name>
@@ -9439,18 +8547,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9599,18 +8695,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПерсонификацияПоУслугам</name>
@@ -9622,18 +8706,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СрокиОплатыПоГруппамТоваров</name>
@@ -9643,18 +8715,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9980,18 +9040,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДанныеНезарегистрированныхКонтрагентов</name>
@@ -10005,18 +9053,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -10138,18 +9174,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ОтветственныеЛицаОрганизации</name>
@@ -10166,18 +9190,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -10436,18 +9448,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ТоварыПереданные</name>
@@ -10546,18 +9546,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -10682,18 +9670,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ВозвратТоваровПоставщику</name>
@@ -10704,11 +9680,11 @@
 				<condition>ВозвратТоваровПоставщику  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -10973,18 +9949,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.БюджетДоходовИРасходов</name>
@@ -11062,18 +10026,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ЗаявкиНаРасходованиеСредств</name>
@@ -11096,18 +10048,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗаказПоставщику</name>
@@ -11118,11 +10058,11 @@
 				<condition>ЗаказПоставщику  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -11220,18 +10160,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ТоварыВРезервеНаСкладах</name>
@@ -11309,18 +10237,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11501,53 +10417,53 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>ВалютаДокумента</field>
-				<field>ВидОперации</field>
+				<field>Организация</field>
 				<field>Касса</field>
+				<field>ВидОперации</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
-				<field>Организация</field>
-				<field>Ответственный</field>
-				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>ОтражатьВУправленческомУчете</field>
-				<field>ОтраженоВОперУчете</field>
+				<field>ВалютаДокумента</field>
 				<field>СуммаДокумента</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>Ответственный</field>
+				<field>ОтражатьВУправленческомУчете</field>
+				<field>ОтражатьВБухгалтерскомУчете</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ВалютаВзаиморасчетовПодотчетника</field>
-				<field>Выдать</field>
-				<field>ДатаПогашенияАванса</field>
+				<field>Подразделение</field>
 				<field>ДоговорКонтрагента</field>
+				<field>ВалютаВзаиморасчетовПодотчетника</field>
+				<field>ДатаПогашенияАванса</field>
+				<field>РасчетныйДокумент</field>
+				<field>Выдать</field>
+				<field>Основание</field>
+				<field>Приложение</field>
+				<field>ПоДокументу</field>
+				<field>Оплачено</field>
 				<field>ДокументОснование</field>
 				<field>ЗаявкаНаРасходованиеСредств</field>
-				<field>Оплачено</field>
-				<field>Основание</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>ПоДокументу</field>
-				<field>Подразделение</field>
-				<field>Приложение</field>
-				<field>РасчетныйДокумент</field>
+				<field>СчетОрганизации</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.Проект</field>
 				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>СчетОрганизации</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.Проект</field>
 				<condition>РасходныйКассовыйОрдер ИЗ Документ.РасходныйКассовыйОрдер КАК РасходныйКассовыйОрдер ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО РасходныйКассовыйОрдер.Касса = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхКассира) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -11660,18 +10576,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11955,18 +10859,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.РезервНаСкладах</name>
@@ -12053,18 +10945,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ГраницыЗапретаИзмененияДанных</name>
@@ -12078,18 +10958,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12172,18 +11040,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12372,18 +11228,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПричиныЗакрытияЗаказов</name>
@@ -12393,18 +11237,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12548,18 +11380,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.МаркиИНомераАвтомобилей</name>
@@ -12676,18 +11496,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗаявкаНаРасходованиеСредств</name>
@@ -12730,28 +11538,28 @@
 				<condition>ВозвратТоваровПоставщикуИзНеавтоматизированнойТорговойТочки  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>БанковскийСчетОрганизации</field>
-				<field>ВалютаДокумента</field>
-				<field>ДоговорКонтрагента</field>
-				<field>Контрагент</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>НДСВключенВСтоимость</field>
 				<field>Организация</field>
+				<field>БанковскийСчетОрганизации</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>ОтражатьВУправленческомУчете</field>
 				<field>Сделка</field>
 				<field>Склад</field>
-				<field>СуммаВключаетНДС</field>
-				<field>СуммаДокумента</field>
+				<field>ДоговорКонтрагента</field>
+				<field>Контрагент</field>
 				<field>ТипЦен</field>
+				<field>ВалютаДокумента</field>
 				<field>УчитыватьНДС</field>
+				<field>СуммаВключаетНДС</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>СуммаДокумента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>НДСВключенВСтоимость</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -12860,18 +11668,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ЗаявкаНаВозвратТоваров</name>
@@ -12893,11 +11689,11 @@
 				<condition>ЗаказПокупателя  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -13089,18 +11885,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.Валюты</name>
@@ -13167,18 +11951,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13265,18 +12037,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13448,18 +12208,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ОтчетКомиссионераОПродажах</name>
@@ -13470,11 +12218,11 @@
 				<condition>ОтчетКомиссионераОПродажах  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -13685,18 +12433,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.БумажныеДоговоры</name>
@@ -13788,18 +12524,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ЗначенияПравПользователя</name>
@@ -13813,18 +12537,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -14426,18 +13138,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.Города</name>
@@ -14708,18 +13408,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Catalog.Прейскурант</name>
@@ -14791,18 +13479,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СтавкиПениПоКонтрагентам</name>
@@ -14814,18 +13490,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СобытияКалендаряПользователяОбобщенные</name>
@@ -14835,18 +13499,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -14901,18 +13553,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15001,18 +13641,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>ChartOfAccounts.Хозрасчетный.AccountingFlag.Количественный</name>
@@ -15029,18 +13657,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15094,18 +13710,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15345,18 +13949,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ВремяДействияСкидок</name>
@@ -15366,18 +13958,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15427,18 +14007,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15516,38 +14084,6 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ReadDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ReadDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryOfMissingData</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>UpdateDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДоступныеЦеныКонтрагентов</name>
@@ -15559,18 +14095,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>InformationRegister.АдресныйКлассификатор</name>
@@ -15580,18 +14104,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -15723,18 +14235,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ИнвентаризацияТоваровНаСкладе</name>
@@ -15830,18 +14330,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -16007,18 +14495,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ИзменениеСпособовОтраженияРасходовПоАмортизацииОС</name>
@@ -16116,11 +14592,12 @@
 				<condition>СчетНаОплатуПокупателю  ГДЕ (ЛОЖЬ)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Date</field>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
+				<field>Date</field>
 				<field>Posted</field>
-				<field>Ref</field>
+				<field>СтруктурнаяЕдиница</field>
 				<field>ВалютаДокумента</field>
 				<field>ДоговорКонтрагента</field>
 				<field>Комментарий</field>
@@ -16131,7 +14608,6 @@
 				<field>Ответственный</field>
 				<field>Подразделение</field>
 				<field>Склад</field>
-				<field>СтруктурнаяЕдиница</field>
 				<field>СуммаВключаетНДС</field>
 				<field>СуммаДокумента</field>
 				<field>ТипЦен</field>
@@ -16198,18 +14674,6 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
-			<value>false</value>
-		</right>
 	</object>
 	<object>
 		<name>Document.ВводПоказателейЭффективности</name>
@@ -16268,47 +14732,47 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
+				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Posted</field>
-				<field>Ref</field>
-				<field>ВидТекстаПисьма</field>
-				<field>ГруппаУчетнойЗаписи</field>
-				<field>ДатаОтправления</field>
-				<field>ЕстьВложения</field>
-				<field>ИдентификаторПисьма</field>
-				<field>Комментарий</field>
-				<field>Кому</field>
+				<field>Тема</field>
 				<field>КомуПредставление</field>
+				<field>Кому</field>
+				<field>ОтправительИмя</field>
+				<field>ОтправительАдресЭлектроннойПочты</field>
+				<field>ОтправительПредставление</field>
+				<field>КопииПредставление</field>
+				<field>Копии</field>
+				<field>СкрытыеКопии</field>
+				<field>УчетнаяЗапись</field>
+				<field>ГруппаУчетнойЗаписи</field>
+				<field>Ответственный</field>
+				<field>Комментарий</field>
+				<field>СтатусПисьма</field>
+				<field>ДатаОтправления</field>
+				<field>ТекстПисьма</field>
+				<field>Основание</field>
+				<field>Предмет</field>
+				<field>ЕстьВложения</field>
+				<field>ПочтовоеСообщение</field>
+				<field>ВидТекстаПисьма</field>
+				<field>НеРассмотрено</field>
+				<field>ИдентификаторПисьма</field>
+				<field>Ответ</field>
+				<field>Переадресация</field>
+				<field>СостояниеПотомкаПисьма</field>
 				<field>КомуТЧ</field>
 				<field>КомуТЧ.LineNumber</field>
-				<field>КомуТЧ.АдресЭлектроннойПочты</field>
 				<field>КомуТЧ.Представление</field>
-				<field>Копии</field>
-				<field>КопииПредставление</field>
+				<field>КомуТЧ.АдресЭлектроннойПочты</field>
 				<field>КопииТЧ</field>
 				<field>КопииТЧ.LineNumber</field>
-				<field>КопииТЧ.АдресЭлектроннойПочты</field>
 				<field>КопииТЧ.Представление</field>
-				<field>НеРассмотрено</field>
-				<field>Основание</field>
-				<field>Ответ</field>
-				<field>Ответственный</field>
-				<field>ОтправительАдресЭлектроннойПочты</field>
-				<field>ОтправительИмя</field>
-				<field>ОтправительПредставление</field>
-				<field>Переадресация</field>
-				<field>ПочтовоеСообщение</field>
-				<field>Предмет</field>
-				<field>СкрытыеКопии</field>
+				<field>КопииТЧ.АдресЭлектроннойПочты</field>
 				<field>СкрытыеКопииТЧ</field>
 				<field>СкрытыеКопииТЧ.LineNumber</field>
-				<field>СкрытыеКопииТЧ.АдресЭлектроннойПочты</field>
 				<field>СкрытыеКопииТЧ.Представление</field>
-				<field>СостояниеПотомкаПисьма</field>
-				<field>СтатусПисьма</field>
-				<field>ТекстПисьма</field>
-				<field>Тема</field>
-				<field>УчетнаяЗапись</field>
+				<field>СкрытыеКопииТЧ.АдресЭлектроннойПочты</field>
 				<condition>ГДЕ УчетнаяЗапись В(&amp;ДоступныеУчетныеЗаписиЭлектроннойПочты)</condition>
 			</restrictionByCondition>
 		</right>
@@ -16461,18 +14925,6 @@
 		</right>
 		<right>
 			<name>Edit</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>ViewDataHistory</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>EditDataHistoryVersionComment</name>
-			<value>false</value>
-		</right>
-		<right>
-			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
