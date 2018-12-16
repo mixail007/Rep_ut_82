@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.4">
+<Rights xmlns="http://v8.1c.ru/8.2/roles" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Rights" version="2.6">
 	<setForNewObjects>true</setForNewObjects>
 	<setForAttributesByDefault>true</setForAttributesByDefault>
 	<independentRightsOfChildObjects>true</independentRightsOfChildObjects>
@@ -31,57 +31,57 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>Организация</field>
-				<field>ВалютаДокумента</field>
-				<field>СуммаДокумента</field>
-				<field>СуммаВознаграждения</field>
-				<field>Контрагент</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>Сделка</field>
-				<field>Комментарий</field>
-				<field>Ответственный</field>
+				<field>СуммаВознаграждения</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>СпособРасчетаКомиссионногоВознаграждения</field>
-				<field>УдержатьКомиссионноеВознаграждение</field>
-				<field>СтавкаНДСВознаграждения</field>
+				<field>ДенежныеСредства</field>
+				<field>ДенежныеСредства.LineNumber</field>
+				<field>ДенежныеСредства.ВидОтчетаПоПлатежам</field>
+				<field>ДенежныеСредства.СтавкаНДС</field>
+				<field>ДенежныеСредства.Сумма</field>
+				<field>ДенежныеСредства.СуммаНДС</field>
 				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
 				<field>КурсВзаиморасчетов</field>
 				<field>Подразделение</field>
 				<field>ПроцентКомиссионногоВознаграждения</field>
-				<field>КратностьВзаиморасчетов</field>
+				<field>СпособРасчетаКомиссионногоВознаграждения</field>
+				<field>СтавкаНДСВознаграждения</field>
 				<field>ТипЦен</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
+				<field>Товары.ДокументПоступления</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.ЦенаПоступления</field>
-				<field>Товары.СуммаПоступления</field>
-				<field>Товары.Цена</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.СерияНоменклатуры</field>
 				<field>Товары.Сумма</field>
 				<field>Товары.СуммаВознаграждения</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
 				<field>Товары.СуммаНДСВознаграждения</field>
-				<field>Товары.ДокументПоступления</field>
-				<field>ДенежныеСредства</field>
-				<field>ДенежныеСредства.LineNumber</field>
-				<field>ДенежныеСредства.Сумма</field>
-				<field>ДенежныеСредства.СтавкаНДС</field>
-				<field>ДенежныеСредства.СуммаНДС</field>
-				<field>ДенежныеСредства.ВидОтчетаПоПлатежам</field>
+				<field>Товары.СуммаПоступления</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>Товары.ЦенаПоступления</field>
+				<field>УдержатьКомиссионноеВознаграждение</field>
 				<condition>ОтчетКомитентуОПродажах ИЗ Документ.ОтчетКомитентуОПродажах КАК ОтчетКомитентуОПродажах ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ОтчетКомитентуОПродажах.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -288,6 +288,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -622,6 +634,18 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ЗакрытиеЗаказовПоставщикам</name>
@@ -672,51 +696,51 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>Касса</field>
-				<field>ВидОперации</field>
-				<field>Контрагент</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
-				<field>СуммаДокумента</field>
-				<field>Ответственный</field>
+				<field>ВидОперации</field>
+				<field>Касса</field>
 				<field>Комментарий</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтражатьВУправленческомУчете</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ДокументПланированияПоступления</field>
-				<field>Подразделение</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаВзаиморасчетовПодотчетника</field>
-				<field>РасчетныйДокумент</field>
-				<field>ПринятоОт</field>
-				<field>Основание</field>
-				<field>Приложение</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>Оплачено</field>
+				<field>ДоговорКонтрагента</field>
 				<field>ДокументОснование</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>СчетОрганизации</field>
+				<field>ДокументПланированияПоступления</field>
+				<field>Оплачено</field>
+				<field>Основание</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>Подразделение</field>
+				<field>Приложение</field>
+				<field>ПринятоОт</field>
+				<field>РасчетныйДокумент</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетОрганизации</field>
 				<condition>ПриходныйКассовыйОрдер ИЗ Документ.ПриходныйКассовыйОрдер КАК ПриходныйКассовыйОрдер ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПриходныйКассовыйОрдер.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -909,6 +933,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.НачислениеАмортизацииОС</name>
@@ -918,6 +954,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -1005,11 +1053,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ДатаВходящегоДокумента</field>
 				<field>ДоговорКонтрагента</field>
@@ -1022,6 +1070,12 @@
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
 				<field>ВремяНапоминания</field>
 				<field>ДатаОплаты</field>
 				<field>ДатаПоступления</field>
@@ -1036,7 +1090,6 @@
 				<field>СтруктурнаяЕдиница</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
 				<field>Товары.ЕдиницаИзмерения</field>
@@ -1051,21 +1104,16 @@
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<field>Товары.Цена</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Номенклатура</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>СчетНаОплатуПоставщика ИЗ Документ.СчетНаОплатуПоставщика КАК СчетНаОплатуПоставщика ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО СчетНаОплатуПоставщика.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -1258,11 +1306,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
 				<field>ДатаВходящегоДокумента</field>
@@ -1280,7 +1328,14 @@
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>БанковскийСчетКонтрагента</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
 				<field>ДоговорКонтрагента</field>
+				<field>ДокументПеремещения</field>
 				<field>КратностьВзаиморасчетов</field>
 				<field>КурсВзаиморасчетов</field>
 				<field>НДСВключенВСтоимость</field>
@@ -1289,45 +1344,38 @@
 				<field>Сделка</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>ДокументПеремещения</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.ЦенаВРознице</field>
-				<field>Товары.ПроцентРозничнойНаценки</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
 				<field>Товары.Проект</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
+				<field>Товары.ПроцентРозничнойНаценки</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>Товары.ЦенаВРознице</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Номенклатура</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Заказ</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Номенклатура</field>
 				<field>Услуги.НоменклатурнаяГруппа</field>
 				<field>Услуги.Подразделение</field>
-				<field>Услуги.СтатьяЗатрат</field>
 				<field>Услуги.Проект</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.СтатьяЗатрат</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ПоступлениеТоваровУслугВНеавтоматизированнуюТорговуюТочку ИЗ Документ.ПоступлениеТоваровУслугВНеавтоматизированнуюТорговуюТочку КАК ПоступлениеТоваровУслугВНеавтоматизированнуюТорговуюТочку ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПоступлениеТоваровУслугВНеавтоматизированнуюТорговуюТочку.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -1401,6 +1449,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccountingRegister.Хозрасчетный.Attribute.НДСПродукции</name>
@@ -1419,42 +1479,42 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>ОтражатьВУправленческомУчете</field>
-				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>Организация</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
-				<field>Контрагент</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>ОтражатьВБухгалтерскомУчете</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>Подразделение</field>
+				<field>Сделка</field>
 				<field>Склад</field>
 				<field>ТипЦен</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>ДоговорКонтрагента</field>
-				<field>Подразделение</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>Сделка</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.ЦенаСтарая</field>
-				<field>Товары.СуммаСтарая</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
 				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаСтарая</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>Товары.ЦенаСтарая</field>
 				<condition>ПереоценкаТоваровПринятыхНаКомиссию ИЗ Документ.ПереоценкаТоваровПринятыхНаКомиссию КАК ПереоценкаТоваровПринятыхНаКомиссию ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПереоценкаТоваровПринятыхНаКомиссию.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -1703,6 +1763,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ДанныеПоОТК</name>
@@ -1734,6 +1806,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -1833,6 +1917,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>DocumentJournal.ЗаказыПоставщикам</name>
@@ -1877,52 +1973,52 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>РасчетныйДокумент</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
-				<field>ОтраженоВОперУчете</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>РасчетныйДокумент</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ВалютаДокумента</field>
+				<field>ДатаОплаты</field>
+				<field>ДоговорКонтрагента</field>
 				<field>ДокументОснование</field>
 				<field>ДокументПланированияПоступления</field>
-				<field>СчетКонтрагента</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ВалютаДокумента</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>Оплачено</field>
-				<field>ДатаОплаты</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
 				<condition>ПлатежныйОрдерПоступлениеДенежныхСредств ИЗ Документ.ПлатежныйОрдерПоступлениеДенежныхСредств КАК ПлатежныйОрдерПоступлениеДенежныхСредств ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежныйОрдерПоступлениеДенежныхСредств.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -2112,6 +2208,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СостоянияОС</name>
@@ -2121,6 +2229,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2168,6 +2288,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2269,6 +2401,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ДанныеПоГрузчикам</name>
@@ -2321,6 +2465,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2431,6 +2587,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ОтчетВодителяОСдачеДенежныхСредств</name>
@@ -2460,6 +2628,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДанныеПоДопРасходам</name>
@@ -2469,6 +2649,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -2643,6 +2835,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.КорректировкаСерийИХарактеристикТоваров</name>
@@ -2765,6 +2969,18 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccountingRegister.Хозрасчетный.Attribute.НомерЖурнала</name>
@@ -2838,6 +3054,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.СтратегииПланированияЗатрат</name>
@@ -2864,58 +3092,58 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>Организация</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>СкладОрдер</field>
-				<field>ВалютаДокумента</field>
 				<field>СуммаДокумента</field>
-				<field>Контрагент</field>
-				<field>Комментарий</field>
-				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>СуммаВключаетНДС</field>
-				<field>ДоговорКонтрагента</field>
-				<field>Сделка</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>Подразделение</field>
-				<field>КратностьВзаиморасчетов</field>
 				<field>ВидПоступления</field>
-				<field>Проект</field>
-				<field>Товары</field>
-				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.Количество</field>
-				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Цена</field>
-				<field>Товары.ПроцентСкидкиНаценки</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ДокументПартии</field>
-				<field>Товары.Себестоимость</field>
-				<field>Товары.КоличествоМест</field>
-				<field>Товары.Качество</field>
 				<field>ВозвратнаяТара</field>
 				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
 				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
 				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>Подразделение</field>
+				<field>Проект</field>
+				<field>Сделка</field>
+				<field>СуммаВключаетНДС</field>
+				<field>ТипЦен</field>
+				<field>Товары</field>
+				<field>Товары.LineNumber</field>
+				<field>Товары.ДокументПартии</field>
+				<field>Товары.ЕдиницаИзмерения</field>
+				<field>Товары.ЕдиницаИзмеренияМест</field>
+				<field>Товары.Качество</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.ПроцентСкидкиНаценки</field>
+				<field>Товары.Себестоимость</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ВозвратТоваровОтПокупателя ИЗ Документ.ВозвратТоваровОтПокупателя КАК ВозвратТоваровОтПокупателя ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ВозвратТоваровОтПокупателя.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -3005,6 +3233,18 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.Расстояния</name>
@@ -3014,6 +3254,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3057,6 +3309,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ТранспортныеЗатратыПоРеализациям</name>
@@ -3066,6 +3330,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3078,16 +3354,16 @@
 				<condition>КонтактныеЛица ИЗ Справочник.КонтактныеЛица КАК КонтактныеЛица ПОЛНОЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО КонтактныеЛица.КонтрагентДляОграниченияПравДоступа = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) ГДЕ (НЕ((ПраваДоступаПользователей.ОбъектДоступа) ЕСТЬ NULL ) ИЛИ КонтактныеЛица.ПользовательДляОграниченияПравДоступа = &amp;ТекущийПользователь)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
-				<field>DeletionMark</field>
-				<field>Predefined</field>
 				<field>Code</field>
+				<field>DeletionMark</field>
 				<field>Description</field>
-				<field>Фамилия</field>
-				<field>Имя</field>
-				<field>Отчество</field>
-				<field>ОбъектВладелец</field>
+				<field>Predefined</field>
+				<field>Ref</field>
 				<field>ВидКонтактногоЛица</field>
+				<field>Имя</field>
+				<field>ОбъектВладелец</field>
+				<field>Отчество</field>
+				<field>Фамилия</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -3167,29 +3443,29 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Контрагент</field>
+				<field>Ref</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
 				<field>Организация</field>
 				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Подразделение</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВУправленческомУчете</field>
+				<field>Подразделение</field>
 				<field>СуммыДолга</field>
 				<field>СуммыДолга.LineNumber</field>
 				<field>СуммыДолга.ДоговорКонтрагента</field>
+				<field>СуммыДолга.КратностьВзаиморасчетов</field>
+				<field>СуммыДолга.КурсВзаиморасчетов</field>
 				<field>СуммыДолга.Сделка</field>
 				<field>СуммыДолга.УвеличениеДолгаКонтрагента</field>
 				<field>СуммыДолга.УменьшениеДолгаКонтрагента</field>
-				<field>СуммыДолга.КурсВзаиморасчетов</field>
-				<field>СуммыДолга.КратностьВзаиморасчетов</field>
 				<condition>КорректировкаДолга ИЗ Документ.КорректировкаДолга КАК КорректировкаДолга ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО КорректировкаДолга.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -3233,6 +3509,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СтадииВзаимоотношенийСПокупателями</name>
@@ -3242,6 +3530,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3260,6 +3560,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3337,6 +3649,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3447,6 +3771,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>DataProcessor.ВыгрузкаДанныхВИдентичнуюКонфигурацию</name>
@@ -3527,23 +3863,23 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
+				<field>ДатаВходящегоДокумента</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
+				<field>НомерВходящегоДокумента</field>
 				<field>Организация</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>СпособРаспределения</field>
 				<field>Сумма</field>
 				<field>СуммаДокумента</field>
-				<field>Ответственный</field>
-				<field>НомерВходящегоДокумента</field>
-				<field>ДатаВходящегоДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
@@ -3552,29 +3888,29 @@
 				<field>ДоговорКонтрагента</field>
 				<field>КратностьВзаиморасчетов</field>
 				<field>КурсВзаиморасчетов</field>
+				<field>НДСВключенВСтоимость</field>
 				<field>Подразделение</field>
 				<field>Сделка</field>
 				<field>Содержание</field>
 				<field>СтавкаНДС</field>
 				<field>СуммаВключаетНДС</field>
 				<field>СуммаНДС</field>
-				<field>УчитыватьНДС</field>
-				<field>НДСВключенВСтоимость</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
+				<field>Товары.ДокументПартии</field>
 				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.Коэффициент</field>
+				<field>Товары.ЗаказПокупателя</field>
 				<field>Товары.Количество</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.Проект</field>
+				<field>Товары.СерияНоменклатуры</field>
 				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.СуммаТовара</field>
-				<field>Товары.Сумма</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ДокументПартии</field>
-				<field>Товары.ЗаказПокупателя</field>
-				<field>Товары.Проект</field>
+				<field>УчитыватьНДС</field>
 				<condition>ПоступлениеДопРасходов ИЗ Документ.ПоступлениеДопРасходов КАК ПоступлениеДопРасходов ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПоступлениеДопРасходов.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -3600,35 +3936,35 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
 				<field>Организация</field>
-				<field>СуммаДокумента</field>
 				<field>Ответственный</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
 				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КратностьДокумента</field>
 				<field>КурсВзаиморасчетов</field>
 				<field>КурсДокумента</field>
 				<field>Основание</field>
 				<field>Подразделение</field>
 				<field>Сделка</field>
-				<field>КратностьДокумента</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
 				<condition>КорректировкаДолгаПоВозвратнойТаре ИЗ Документ.КорректировкаДолгаПоВозвратнойТаре КАК КорректировкаДолгаПоВозвратнойТаре ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО КорректировкаДолгаПоВозвратнойТаре.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -3734,6 +4070,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.ВнешниеОбработки</name>
@@ -3762,6 +4110,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -3908,6 +4268,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.НоменклатурныеГруппы</name>
@@ -3985,11 +4357,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
@@ -4018,6 +4390,25 @@
 				<field>КПППолучателя</field>
 				<field>НазначениеПлатежа</field>
 				<field>Оплачено</field>
+				<field>РасшифровкаПлатежа</field>
+				<field>РасшифровкаПлатежа.LineNumber</field>
+				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
+				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
+				<field>РеквизитыКонтрагента</field>
+				<field>РеквизитыКонтрагента.LineNumber</field>
+				<field>РеквизитыКонтрагента.Значение</field>
+				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
+				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
 				<field>СрокДействия</field>
 				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>СчетДепонента</field>
@@ -4026,25 +4417,6 @@
 				<field>ТекстПолучателя</field>
 				<field>УсловиеОплаты</field>
 				<field>ЧастичнаяОплата</field>
-				<field>РасшифровкаПлатежа</field>
-				<field>РасшифровкаПлатежа.LineNumber</field>
-				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
-				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
-				<field>РасшифровкаПлатежа.Проект</field>
-				<field>РеквизитыКонтрагента</field>
-				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
-				<field>РеквизитыКонтрагента.Значение</field>
-				<field>РеквизитыКонтрагента.Представление</field>
-				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
 				<condition>АккредитивПереданный ИЗ Документ.АккредитивПереданный КАК АккредитивПереданный ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО АккредитивПереданный.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -4120,6 +4492,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПлановыеОстаткиТоваров</name>
@@ -4136,6 +4520,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4191,38 +4587,38 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
-				<field>Контрагент</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ТипЦен</field>
 				<field>ДоговорКонтрагента</field>
-				<field>Подразделение</field>
-				<field>КурсВзаиморасчетов</field>
 				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>Подразделение</field>
 				<field>Сделка</field>
+				<field>ТипЦен</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
 				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.Сумма</field>
 				<field>Товары.СуммаСтарая</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
 				<condition>ПереоценкаТоваровОтданныхНаКомиссию ИЗ Документ.ПереоценкаТоваровОтданныхНаКомиссию КАК ПереоценкаТоваровОтданныхНаКомиссию ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПереоценкаТоваровОтданныхНаКомиссию.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -4294,6 +4690,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4396,6 +4804,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4625,6 +5045,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.ТоварыНаОтветственномХранении</name>
@@ -4645,6 +5077,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -4773,11 +5217,11 @@
 				<condition>ИзменениеЛимитовВозвратнойТары ИЗ Документ.ИзменениеЛимитовВозвратнойТары КАК ИзменениеЛимитовВозвратнойТары ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ИзменениеЛимитовВозвратнойТары.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
 				<field>Организация</field>
@@ -4825,6 +5269,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ПлатежноеТребованиеВыставленное</name>
@@ -4832,65 +5288,65 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ДокументОснование</field>
-				<field>ДокументПланированияПоступления</field>
-				<field>СчетКонтрагента</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидПлатежа</field>
-				<field>ОчередностьПлатежа</field>
-				<field>НазначениеПлатежа</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>ТекстПлательщика</field>
-				<field>ТекстПолучателя</field>
-				<field>ИННПлательщика</field>
-				<field>КПППлательщика</field>
-				<field>ИННПолучателя</field>
-				<field>КПППолучателя</field>
-				<field>СрокДляАкцепта</field>
-				<field>УсловиеОплаты</field>
-				<field>ОснованиеДляБезакцептногоСписания</field>
-				<field>ДатаОтсылкиДокументов</field>
-				<field>Оплачено</field>
 				<field>ДатаОплаты</field>
-				<field>ЧастичнаяОплата</field>
+				<field>ДатаОтсылкиДокументов</field>
+				<field>ДоговорКонтрагента</field>
+				<field>ДокументОснование</field>
+				<field>ДокументПланированияПоступления</field>
+				<field>ИННПлательщика</field>
+				<field>ИННПолучателя</field>
+				<field>КПППлательщика</field>
+				<field>КПППолучателя</field>
+				<field>НазначениеПлатежа</field>
+				<field>Оплачено</field>
+				<field>ОснованиеДляБезакцептногоСписания</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>ОчередностьПлатежа</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СрокДляАкцепта</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ТекстПлательщика</field>
+				<field>ТекстПолучателя</field>
+				<field>УсловиеОплаты</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>ПлатежноеТребованиеВыставленное ИЗ Документ.ПлатежноеТребованиеВыставленное КАК ПлатежноеТребованиеВыставленное ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежноеТребованиеВыставленное.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -4996,6 +5452,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccumulationRegister.РазмещениеЗаказовПокупателей</name>
@@ -5035,6 +5503,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5132,6 +5612,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5277,58 +5769,58 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>НомерВходящегоДокумента</field>
+				<field>Ref</field>
 				<field>ДатаВходящегоДокумента</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>НомерВходящегоДокумента</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ВалютаДокумента</field>
+				<field>ВидОперации</field>
+				<field>ВидПлатежа</field>
+				<field>ДатаОплаты</field>
+				<field>ДоговорКонтрагента</field>
 				<field>ДокументОснование</field>
 				<field>ЗаявкаНаРасходованиеСредств</field>
-				<field>СчетКонтрагента</field>
-				<field>ВидПлатежа</field>
-				<field>ОчередностьПлатежа</field>
 				<field>НазначениеПлатежа</field>
-				<field>ВалютаДокумента</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ОтраженоВОперУчете</field>
 				<field>Оплачено</field>
-				<field>ДатаОплаты</field>
-				<field>ВидОперации</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>ЧастичнаяОплата</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>ОчередностьПлатежа</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
-				<field>РасшифровкаПлатежа.НомерПлатежа</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.НомерПлатежа</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>ИнкассовоеПоручениеПолученное ИЗ Документ.ИнкассовоеПоручениеПолученное КАК ИнкассовоеПоручениеПолученное ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ИнкассовоеПоручениеПолученное.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -5388,6 +5880,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5594,6 +6098,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ПоказателиДляРасчетаМотивацииПоСотрудникам</name>
@@ -5674,11 +6190,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидПоступления</field>
 				<field>ДатаВходящегоДокумента</field>
@@ -5692,8 +6208,15 @@
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ДоговорКонтрагента</field>
 				<field>БанковскийСчетКонтрагента</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.ЗаказПокупателя</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>ДоговорКонтрагента</field>
 				<field>КратностьВзаиморасчетов</field>
 				<field>КурсВзаиморасчетов</field>
 				<field>НДСВключенВСтоимость</field>
@@ -5705,44 +6228,37 @@
 				<field>Сделка</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Количество</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<field>Товары.ЗаказПокупателя</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
 				<field>Товары.Проект</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
-				<field>ВозвратнаяТара.ЗаказПокупателя</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Номенклатура</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Заказ</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Номенклатура</field>
 				<field>Услуги.НоменклатурнаяГруппа</field>
 				<field>Услуги.Подразделение</field>
-				<field>Услуги.СтатьяЗатрат</field>
 				<field>Услуги.Проект</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.СтатьяЗатрат</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ПоступлениеТоваровУслуг ИЗ Документ.ПоступлениеТоваровУслуг КАК ПоступлениеТоваровУслуг ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПоступлениеТоваровУслуг.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -5808,6 +6324,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -5883,6 +6411,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.ПрофилиРаспределенияПоПериодам</name>
@@ -5911,6 +6451,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -6036,6 +6588,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПравилаЦенообразованияОбщие</name>
@@ -6045,6 +6609,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -6099,6 +6675,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -6187,46 +6775,45 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ЗаказПоставщику</field>
 				<field>Комментарий</field>
-				<field>СуммаДокумента</field>
 				<field>Контрагент</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>УчитыватьНДС</field>
-				<field>СуммаВключаетНДС</field>
-				<field>ТипЦен</field>
-				<field>СтруктурнаяЕдиница</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>Ответственный</field>
-				<field>Товары</field>
-				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.Количество</field>
-				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.ЗаказПокупателя</field>
-				<field>Товары.КоличествоМест</field>
 				<field>ВозвратнаяТара</field>
 				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
 				<field>ВозвратнаяТара.ЗаказПокупателя</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>Ответственный</field>
+				<field>СтруктурнаяЕдиница</field>
+				<field>СуммаВключаетНДС</field>
+				<field>ТипЦен</field>
+				<field>Товары</field>
+				<field>Товары.LineNumber</field>
+				<field>Товары.ЕдиницаИзмерения</field>
+				<field>Товары.ЕдиницаИзмеренияМест</field>
+				<field>Товары.ЗаказПокупателя</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
 				<field>Услуги.Количество</field>
@@ -6236,6 +6823,7 @@
 				<field>Услуги.Сумма</field>
 				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>КорректировкаЗаказаПоставщику ИЗ Документ.КорректировкаЗаказаПоставщику КАК КорректировкаЗаказаПоставщику ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО КорректировкаЗаказаПоставщику.ЗаказПоставщику.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -6301,14 +6889,14 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>Контрагент</field>
+				<field>Ref</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
@@ -6318,15 +6906,15 @@
 				<field>Сделка</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.КоличествоМест</field>
 				<field>Товары.КоличествоУчет</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<condition>ИнвентаризацияТоваровОтданныхНаКомиссию ИЗ Документ.ИнвентаризацияТоваровОтданныхНаКомиссию КАК ИнвентаризацияТоваровОтданныхНаКомиссию ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ИнвентаризацияТоваровОтданныхНаКомиссию.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -6526,6 +7114,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.ВидыДеятельностиКонтрагентов</name>
@@ -6709,39 +7309,45 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
-				<field>Организация</field>
+				<field>ВидПередачи</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>Сделка</field>
 				<field>Склад</field>
-				<field>Контрагент</field>
-				<field>ВалютаДокумента</field>
 				<field>СуммаДокумента</field>
-				<field>Ответственный</field>
-				<field>ВидПередачи</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>АдресДоставки</field>
 				<field>БанковскийСчетОрганизации</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.СпособСписанияОстаткаТоваров</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>Грузоотправитель</field>
+				<field>Грузополучатель</field>
+				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>Подразделение</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>СуммаВключаетНДС</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>АдресДоставки</field>
-				<field>Грузополучатель</field>
-				<field>Грузоотправитель</field>
 				<field>Проект</field>
+				<field>СуммаВключаетНДС</field>
+				<field>ТипЦен</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
 				<field>Товары.ЕдиницаИзмерения</field>
@@ -6759,22 +7365,16 @@
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<field>Товары.Цена</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
-				<field>ВозвратнаяТара.СпособСписанияОстаткаТоваров</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Номенклатура</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>РеализацияТоваровУслуг ИЗ Документ.РеализацияТоваровУслуг КАК РеализацияТоваровУслуг ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО РеализацияТоваровУслуг.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -6878,6 +7478,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7092,6 +7704,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ГраницыПериодовПланирования</name>
@@ -7101,6 +7725,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7114,6 +7750,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПервоначальныеСведенияОС</name>
@@ -7123,6 +7771,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7185,6 +7845,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ЦеныНоменклатуры</name>
@@ -7194,6 +7866,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7216,6 +7900,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7244,11 +7940,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
 				<field>Ответственный</field>
@@ -7256,18 +7952,18 @@
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>НеПроводитьНулевыеЗначения</field>
-				<field>Товары</field>
-				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Валюта</field>
-				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.ТипЦен</field>
-				<field>Товары.ИндексСтрокиТаблицыЦен</field>
 				<field>ТипыЦен</field>
 				<field>ТипыЦен.LineNumber</field>
 				<field>ТипыЦен.ТипЦен</field>
+				<field>Товары</field>
+				<field>Товары.LineNumber</field>
+				<field>Товары.Валюта</field>
+				<field>Товары.ЕдиницаИзмерения</field>
+				<field>Товары.ИндексСтрокиТаблицыЦен</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.ТипЦен</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
 				<condition>УстановкаЦенНоменклатурыКонтрагентов ИЗ Документ.УстановкаЦенНоменклатурыКонтрагентов КАК УстановкаЦенНоменклатурыКонтрагентов ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО УстановкаЦенНоменклатурыКонтрагентов.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -7399,6 +8095,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>ExchangePlan.РаспределеннаяИнформационнаяБаза</name>
@@ -7451,6 +8159,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7568,6 +8288,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ПереоценкаВалютныхСредств</name>
@@ -7650,6 +8382,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7775,6 +8519,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПерсонификацияПоУслугам</name>
@@ -7786,6 +8542,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СрокиОплатыПоГруппамТоваров</name>
@@ -7795,6 +8563,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -7951,52 +8731,52 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>РасчетныйДокумент</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>Комментарий</field>
-				<field>Ответственный</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>РасчетныйДокумент</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ЗаявкаНаРасходованиеСредств</field>
-				<field>ДокументОснование</field>
-				<field>СчетКонтрагента</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаДокумента</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>Оплачено</field>
 				<field>ДатаОплаты</field>
+				<field>ДоговорКонтрагента</field>
+				<field>ДокументОснование</field>
+				<field>ЗаявкаНаРасходованиеСредств</field>
+				<field>Оплачено</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
 				<condition>ПлатежныйОрдерСписаниеДенежныхСредств ИЗ Документ.ПлатежныйОрдерСписаниеДенежныхСредств КАК ПлатежныйОрдерСписаниеДенежныхСредств ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежныйОрдерСписаниеДенежныхСредств.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -8055,11 +8835,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ДатаНачала</field>
 				<field>ДатаОкончания</field>
 				<field>ДоговорКонтрагента</field>
@@ -8070,19 +8850,19 @@
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>Комментарий</field>
-				<field>Ответственный</field>
 				<field>НоменклатураДоговора</field>
 				<field>НоменклатураДоговора.LineNumber</field>
-				<field>НоменклатураДоговора.Номенклатура</field>
 				<field>НоменклатураДоговора.ВалютаЦены</field>
 				<field>НоменклатураДоговора.ЕдиницаИзмерения</field>
 				<field>НоменклатураДоговора.ЕдиницаИзмеренияМест</field>
-				<field>НоменклатураДоговора.Цена</field>
 				<field>НоменклатураДоговора.Количество</field>
-				<field>НоменклатураДоговора.Сумма</field>
 				<field>НоменклатураДоговора.КоличествоМест</field>
 				<field>НоменклатураДоговора.Коэффициент</field>
+				<field>НоменклатураДоговора.Номенклатура</field>
+				<field>НоменклатураДоговора.Сумма</field>
 				<field>НоменклатураДоговора.ХарактеристикаНоменклатуры</field>
+				<field>НоменклатураДоговора.Цена</field>
+				<field>Ответственный</field>
 				<condition>УсловияПоставокПоДоговорамКонтрагентов ИЗ Документ.УсловияПоставокПоДоговорамКонтрагентов КАК УсловияПоставокПоДоговорамКонтрагентов ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО УсловияПоставокПоДоговорамКонтрагентов.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -8126,6 +8906,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДанныеНезарегистрированныхКонтрагентов</name>
@@ -8135,6 +8927,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8147,18 +8951,18 @@
 				<condition>ДоговорыКонтрагентов ИЗ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ВНУТРЕННЕЕ СОЕДИНЕНИЕ Справочник.ДоговорыКонтрагентов КАК ДоговорыКонтрагентов ПО ПраваДоступаПользователей.ОбъектДоступа = ДоговорыКонтрагентов.Владелец И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегопользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Code</field>
 				<field>DeletionMark</field>
-				<field>Predefined</field>
+				<field>Description</field>
+				<field>IsFolder</field>
 				<field>Owner</field>
 				<field>Parent</field>
-				<field>IsFolder</field>
-				<field>Code</field>
-				<field>Description</field>
+				<field>Predefined</field>
+				<field>Ref</field>
 				<field>ВалютаВзаиморасчетов</field>
 				<field>ВедениеВзаиморасчетов</field>
-				<field>Организация</field>
 				<field>ВидДоговора</field>
+				<field>Организация</field>
 				<condition>ДоговорыКонтрагентов  ГДЕ (ИСТИНА)</condition>
 			</restrictionByCondition>
 		</right>
@@ -8255,6 +9059,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ОтветственныеЛицаОрганизации</name>
@@ -8271,6 +9087,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -8433,6 +9261,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccountingRegister.Хозрасчетный.Attribute.ВидРегламентнойОперации</name>
@@ -8528,6 +9368,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>ChartOfCharacteristicTypes.СвойстваОбъектов</name>
@@ -8590,6 +9442,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ВозвратТоваровПоставщику</name>
@@ -8597,62 +9461,62 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
 				<field>Организация</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>Комментарий</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>Склад</field>
-				<field>Контрагент</field>
-				<field>ВалютаДокумента</field>
 				<field>СуммаДокумента</field>
-				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>БанковскийСчетОрганизации</field>
-				<field>Подразделение</field>
-				<field>Сделка</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>СуммаВключаетНДС</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>КратностьВзаиморасчетов</field>
 				<field>ВидПередачи</field>
-				<field>НДСВключенВСтоимость</field>
-				<field>Грузополучатель</field>
-				<field>Грузоотправитель</field>
-				<field>Товары</field>
-				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.Количество</field>
-				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ДокументПоступления</field>
-				<field>Товары.ЗаказПокупателя</field>
-				<field>Товары.КоличествоМест</field>
-				<field>Товары.Качество</field>
-				<field>Товары.Проект</field>
 				<field>ВозвратнаяТара</field>
 				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
 				<field>ВозвратнаяТара.ЗаказПокупателя</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>Грузоотправитель</field>
+				<field>Грузополучатель</field>
+				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>НДСВключенВСтоимость</field>
+				<field>Подразделение</field>
+				<field>Сделка</field>
+				<field>СуммаВключаетНДС</field>
+				<field>ТипЦен</field>
+				<field>Товары</field>
+				<field>Товары.LineNumber</field>
+				<field>Товары.ДокументПоступления</field>
+				<field>Товары.ЕдиницаИзмерения</field>
+				<field>Товары.ЕдиницаИзмеренияМест</field>
+				<field>Товары.ЗаказПокупателя</field>
+				<field>Товары.Качество</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.Проект</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ВозвратТоваровПоставщику ИЗ Документ.ВозвратТоваровПоставщику КАК ВозвратТоваровПоставщику ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ВозвратТоваровПоставщику.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -8895,6 +9759,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.БюджетДоходовИРасходов</name>
@@ -8972,6 +9848,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>AccountingRegister.Хозрасчетный.Attribute.Содержание</name>
@@ -9012,6 +9900,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ЗаказПоставщику</name>
@@ -9019,11 +9919,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
@@ -9033,7 +9933,13 @@
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>СтруктурнаяЕдиница</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.ЗаказПокупателя</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
 				<field>ВремяНапоминания</field>
 				<field>ДатаОплаты</field>
 				<field>ДатаПоступления</field>
@@ -9046,9 +9952,9 @@
 				<field>НапомнитьОСобытии</field>
 				<field>Подразделение</field>
 				<field>Склад</field>
+				<field>СтруктурнаяЕдиница</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
 				<field>Товары.ЕдиницаИзмерения</field>
@@ -9064,22 +9970,16 @@
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<field>Товары.Цена</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
-				<field>ВозвратнаяТара.ЗаказПокупателя</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Номенклатура</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ЗаказПоставщику ИЗ Документ.ЗаказПоставщику КАК ЗаказПоставщику ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ЗаказПоставщику.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -9126,6 +10026,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9189,6 +10101,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9340,53 +10264,53 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>Касса</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
+				<field>Касса</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
-				<field>ВалютаДокумента</field>
-				<field>СуммаДокумента</field>
-				<field>ОтраженоВОперУчете</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
-				<field>ОтражатьВУправленческомУчете</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
+				<field>ОтражатьВУправленческомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Подразделение</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаВзаиморасчетовПодотчетника</field>
-				<field>ДатаПогашенияАванса</field>
-				<field>РасчетныйДокумент</field>
 				<field>Выдать</field>
-				<field>Основание</field>
-				<field>Приложение</field>
-				<field>ПоДокументу</field>
-				<field>Оплачено</field>
+				<field>ДатаПогашенияАванса</field>
+				<field>ДоговорКонтрагента</field>
 				<field>ДокументОснование</field>
 				<field>ЗаявкаНаРасходованиеСредств</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>Оплачено</field>
+				<field>Основание</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>СчетОрганизации</field>
+				<field>ПоДокументу</field>
+				<field>Подразделение</field>
+				<field>Приложение</field>
+				<field>РасчетныйДокумент</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетОрганизации</field>
 				<condition>РасходныйКассовыйОрдер ИЗ Документ.РасходныйКассовыйОрдер КАК РасходныйКассовыйОрдер ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО РасходныйКассовыйОрдер.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -9499,6 +10423,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -9662,11 +10598,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
 				<field>Контрагент</field>
@@ -9687,10 +10623,10 @@
 				<field>ДокументОснование</field>
 				<field>ИННПлательщика</field>
 				<field>ИННПолучателя</field>
-				<field>КодБК</field>
-				<field>КодОКАТО</field>
 				<field>КПППлательщика</field>
 				<field>КПППолучателя</field>
+				<field>КодБК</field>
+				<field>КодОКАТО</field>
 				<field>НазначениеПлатежа</field>
 				<field>Оплачено</field>
 				<field>ОчередностьПлатежа</field>
@@ -9699,33 +10635,33 @@
 				<field>ПоказательОснования</field>
 				<field>ПоказательПериода</field>
 				<field>ПоказательТипа</field>
+				<field>РасшифровкаПлатежа</field>
+				<field>РасшифровкаПлатежа.LineNumber</field>
+				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
+				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетовПлан</field>
+				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежаПлан</field>
+				<field>РеквизитыКонтрагента</field>
+				<field>РеквизитыКонтрагента.LineNumber</field>
+				<field>РеквизитыКонтрагента.Значение</field>
+				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
+				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
 				<field>СтатусСоставителя</field>
 				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>СчетКонтрагента</field>
 				<field>ТекстПлательщика</field>
 				<field>ТекстПолучателя</field>
 				<field>ЧастичнаяОплата</field>
-				<field>РасшифровкаПлатежа</field>
-				<field>РасшифровкаПлатежа.LineNumber</field>
-				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
-				<field>РасшифровкаПлатежа.Проект</field>
-				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетовПлан</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежаПлан</field>
-				<field>РеквизитыКонтрагента</field>
-				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
-				<field>РеквизитыКонтрагента.Значение</field>
-				<field>РеквизитыКонтрагента.Представление</field>
-				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
 				<condition>ПлатежноеПоручениеИсходящее ИЗ Документ.ПлатежноеПоручениеИсходящее КАК ПлатежноеПоручениеИсходящее ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежноеПоручениеИсходящее.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -9992,6 +10928,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ГраницыЗапретаИзмененияДанных</name>
@@ -10005,6 +10953,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -10089,6 +11049,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ЗаказПоставщикуСезонный</name>
@@ -10159,15 +11131,15 @@
 				<condition>Контрагенты ИЗ Справочник.Контрагенты КАК Контрагенты ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО Контрагенты.Ссылка = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) ГДЕ (НЕ((ПраваДоступаПользователей.ОбъектДоступа) ЕСТЬ NULL ) ИЛИ Контрагенты.ЭтоГруппа)</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
-				<field>DeletionMark</field>
-				<field>Predefined</field>
-				<field>Parent</field>
-				<field>IsFolder</field>
 				<field>Code</field>
+				<field>DeletionMark</field>
 				<field>Description</field>
-				<field>Комментарий</field>
+				<field>IsFolder</field>
+				<field>Parent</field>
+				<field>Predefined</field>
+				<field>Ref</field>
 				<field>ИНН</field>
+				<field>Комментарий</field>
 				<field>НаименованиеПолное</field>
 				<field>ОсновнойМенеджерПокупателя</field>
 				<condition/>
@@ -10262,6 +11234,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ПричиныЗакрытияЗаказов</name>
@@ -10271,6 +11255,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -10398,6 +11394,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.МаркиИНомераАвтомобилей</name>
@@ -10438,17 +11446,17 @@
 				<condition>РасходныйОрдерНаТовары ИЗ Документ.РасходныйОрдерНаТовары КАК РасходныйОрдерНаТовары ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО РасходныйОрдерНаТовары.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
-				<field>Организация</field>
-				<field>Склад</field>
-				<field>Контрагент</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>Склад</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -10499,6 +11507,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ЗаявкаНаРасходованиеСредств</name>
@@ -10538,58 +11558,58 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
+				<field>ВалютаДокумента</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
 				<field>Организация</field>
-				<field>ОтражатьВУправленческомУчете</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
-				<field>Комментарий</field>
+				<field>ОтражатьВУправленческомУчете</field>
 				<field>Склад</field>
-				<field>Контрагент</field>
-				<field>ВалютаДокумента</field>
 				<field>СуммаДокумента</field>
-				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>БанковскийСчетОрганизации</field>
-				<field>Подразделение</field>
-				<field>Сделка</field>
-				<field>ДоговорКонтрагента</field>
-				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>СуммаВключаетНДС</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>НДСВключенВСтоимость</field>
-				<field>Грузополучатель</field>
-				<field>Товары</field>
-				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.Количество</field>
-				<field>Товары.ЕдиницаИзмерения</field>
-				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
-				<field>Товары.СтавкаНДС</field>
-				<field>Товары.СуммаНДС</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ДокументПоступления</field>
-				<field>Товары.КоличествоМест</field>
-				<field>Товары.ЦенаВРознице</field>
-				<field>Товары.Проект</field>
 				<field>ВозвратнаяТара</field>
 				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
 				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
 				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>Грузополучатель</field>
+				<field>ДоговорКонтрагента</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>НДСВключенВСтоимость</field>
+				<field>Подразделение</field>
+				<field>Сделка</field>
+				<field>СуммаВключаетНДС</field>
+				<field>ТипЦен</field>
+				<field>Товары</field>
+				<field>Товары.LineNumber</field>
+				<field>Товары.ДокументПоступления</field>
+				<field>Товары.ЕдиницаИзмерения</field>
+				<field>Товары.ЕдиницаИзмеренияМест</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.Проект</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
+				<field>Товары.СуммаНДС</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>Товары.ЦенаВРознице</field>
+				<field>УчитыватьНДС</field>
 				<condition>ВозвратТоваровПоставщикуИзНеавтоматизированнойТорговойТочки ИЗ Документ.ВозвратТоваровПоставщикуИзНеавтоматизированнойТорговойТочки КАК ВозвратТоваровПоставщикуИзНеавтоматизированнойТорговойТочки ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ВозвратТоваровПоставщикуИзНеавтоматизированнойТорговойТочки.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя)) И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам)</condition>
 			</restrictionByCondition>
 		</right>
@@ -10670,6 +11690,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ЗаявкаНаВозвратТоваров</name>
@@ -10688,40 +11720,45 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Контрагент</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>Комментарий</field>
-				<field>СуммаДокумента</field>
+				<field>Контрагент</field>
 				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>СуммаДокумента</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>АвтоРазмещение</field>
+				<field>АвтоРезервирование</field>
+				<field>АдресДоставки</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Размещение</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
+				<field>ВремяНапоминания</field>
+				<field>ДатаОплаты</field>
+				<field>ДатаОтгрузки</field>
 				<field>ДоговорКонтрагента</field>
-				<field>Склад</field>
+				<field>ИспользоватьПлановуюСебестоимость</field>
+				<field>ИтогПлановаяСебестоимость</field>
+				<field>КонтактноеЛицо</field>
+				<field>КратностьВзаиморасчетов</field>
+				<field>КурсВзаиморасчетов</field>
+				<field>НапомнитьОСобытии</field>
 				<field>Подразделение</field>
+				<field>Склад</field>
 				<field>СтруктурнаяЕдиница</field>
-				<field>УчитыватьНДС</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>ДатаОплаты</field>
-				<field>АвтоРезервирование</field>
-				<field>АвтоРазмещение</field>
-				<field>КурсВзаиморасчетов</field>
-				<field>УдалитьТипСкидкиНаценки</field>
-				<field>ДатаОтгрузки</field>
-				<field>КратностьВзаиморасчетов</field>
-				<field>НапомнитьОСобытии</field>
-				<field>ВремяНапоминания</field>
-				<field>КонтактноеЛицо</field>
-				<field>ИтогПлановаяСебестоимость</field>
-				<field>ИспользоватьПлановуюСебестоимость</field>
-				<field>АдресДоставки</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
 				<field>Товары.ЕдиницаИзмерения</field>
@@ -10738,22 +11775,17 @@
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
 				<field>Товары.Цена</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
-				<field>ВозвратнаяТара.Размещение</field>
+				<field>УдалитьТипСкидкиНаценки</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Номенклатура</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>ЗаказПокупателя ИЗ Документ.ЗаказПокупателя КАК ЗаказПокупателя ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ЗаказПокупателя.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -10967,6 +11999,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.Валюты</name>
@@ -11040,6 +12084,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11149,6 +12205,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11273,6 +12341,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ОтчетКомиссионераОПродажах</name>
@@ -11280,11 +12360,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ДатаВходящегоДокумента</field>
 				<field>Комментарий</field>
@@ -11301,44 +12381,44 @@
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ДенежныеСредства</field>
+				<field>ДенежныеСредства.LineNumber</field>
+				<field>ДенежныеСредства.ВидОтчетаПоПлатежам</field>
+				<field>ДенежныеСредства.СтавкаНДС</field>
+				<field>ДенежныеСредства.Сумма</field>
+				<field>ДенежныеСредства.СуммаНДС</field>
 				<field>ДоговорКонтрагента</field>
 				<field>КратностьВзаиморасчетов</field>
 				<field>КурсВзаиморасчетов</field>
 				<field>НоменклатурнаяГруппа</field>
 				<field>Подразделение</field>
+				<field>Проект</field>
 				<field>ПроцентКомиссионногоВознаграждения</field>
 				<field>СпособРасчетаКомиссионногоВознаграждения</field>
 				<field>СтавкаНДСВознаграждения</field>
 				<field>СтатьяЗатрат</field>
 				<field>СуммаВключаетНДС</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
-				<field>Проект</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
-				<field>Товары.КоличествоМест</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Коэффициент</field>
 				<field>Товары.Количество</field>
-				<field>Товары.Цена</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.СерияНоменклатуры</field>
+				<field>Товары.СтавкаНДС</field>
 				<field>Товары.Сумма</field>
 				<field>Товары.СуммаВознаграждения</field>
-				<field>Товары.СуммаНДСВознаграждения</field>
-				<field>Товары.СтавкаНДС</field>
 				<field>Товары.СуммаНДС</field>
-				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.СерияНоменклатуры</field>
-				<field>Товары.ЦенаПередачи</field>
-				<field>Товары.СуммаПередачи</field>
+				<field>Товары.СуммаНДСВознаграждения</field>
 				<field>Товары.СуммаНДСПередачи</field>
-				<field>ДенежныеСредства</field>
-				<field>ДенежныеСредства.LineNumber</field>
-				<field>ДенежныеСредства.Сумма</field>
-				<field>ДенежныеСредства.СтавкаНДС</field>
-				<field>ДенежныеСредства.СуммаНДС</field>
-				<field>ДенежныеСредства.ВидОтчетаПоПлатежам</field>
+				<field>Товары.СуммаПередачи</field>
+				<field>Товары.ХарактеристикаНоменклатуры</field>
+				<field>Товары.Цена</field>
+				<field>Товары.ЦенаПередачи</field>
+				<field>УчитыватьНДС</field>
 				<condition>ОтчетКомиссионераОПродажах ИЗ Документ.ОтчетКомиссионераОПродажах КАК ОтчетКомиссионераОПродажах ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ОтчетКомиссионераОПродажах.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -11537,6 +12617,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.БумажныеДоговоры</name>
@@ -11631,6 +12723,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ЗначенияПравПользователя</name>
@@ -11644,6 +12748,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -11794,11 +12910,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
@@ -11820,28 +12936,28 @@
 				<field>ДокументПланированияПоступления</field>
 				<field>НомерВходящегоДокумента</field>
 				<field>Оплачено</field>
-				<field>ЧастичнаяОплата</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>СчетКонтрагента</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>АккредитивПолученный ИЗ Документ.АккредитивПолученный КАК АккредитивПолученный ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО АккредитивПолученный.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -11969,16 +13085,16 @@
 				<condition>РезервированиеТоваров ИЗ Документ.РезервированиеТоваров КАК РезервированиеТоваров ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО РезервированиеТоваров.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>ЗаказПокупателя</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
+				<field>ЗаказПокупателя</field>
 				<field>Комментарий</field>
-				<field>Ответственный</field>
 				<field>Организация</field>
+				<field>Ответственный</field>
 				<condition/>
 			</restrictionByCondition>
 		</right>
@@ -12082,61 +13198,61 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
 				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
 				<field>Ответственный</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ДокументОснование</field>
-				<field>СчетКонтрагента</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаДокумента</field>
 				<field>ВидПлатежа</field>
-				<field>ДокументПланированияПоступления</field>
-				<field>ОчередностьПлатежа</field>
-				<field>НазначениеПлатежа</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>ТекстПлательщика</field>
-				<field>ТекстПолучателя</field>
-				<field>ИННПлательщика</field>
-				<field>КПППлательщика</field>
-				<field>ИННПолучателя</field>
-				<field>КПППолучателя</field>
-				<field>Оплачено</field>
 				<field>ДатаОплаты</field>
-				<field>ЧастичнаяОплата</field>
+				<field>ДоговорКонтрагента</field>
+				<field>ДокументОснование</field>
+				<field>ДокументПланированияПоступления</field>
+				<field>ИННПлательщика</field>
+				<field>ИННПолучателя</field>
+				<field>КПППлательщика</field>
+				<field>КПППолучателя</field>
+				<field>НазначениеПлатежа</field>
+				<field>Оплачено</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>ОчередностьПлатежа</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ТекстПлательщика</field>
+				<field>ТекстПолучателя</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>ИнкассовоеПоручениеПереданное ИЗ Документ.ИнкассовоеПоручениеПереданное КАК ИнкассовоеПоручениеПереданное ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ИнкассовоеПоручениеПереданное.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -12230,6 +13346,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12410,6 +13538,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.Прейскурант</name>
@@ -12472,6 +13612,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СтавкиПениПоКонтрагентам</name>
@@ -12483,6 +13635,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.СобытияКалендаряПользователяОбобщенные</name>
@@ -12492,6 +13656,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12546,6 +13722,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12634,6 +13822,18 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>ChartOfAccounts.Хозрасчетный.AccountingFlag.Количественный</name>
@@ -12650,6 +13850,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12687,6 +13899,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12747,53 +13971,53 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
+				<field>ВидОперации</field>
 				<field>ДатаВходящегоДокумента</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
 				<field>НомерВходящегоДокумента</field>
 				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
-				<field>ВидОперации</field>
-				<field>Комментарий</field>
 				<field>Ответственный</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
-				<field>ДокументОснование</field>
-				<field>СчетКонтрагента</field>
-				<field>ДоговорКонтрагента</field>
 				<field>ВалютаДокумента</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>Оплачено</field>
 				<field>ДатаОплаты</field>
-				<field>ЧастичнаяОплата</field>
+				<field>ДоговорКонтрагента</field>
+				<field>ДокументОснование</field>
+				<field>Оплачено</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>ОтраженоВОперУчете</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>ПлатежноеПоручениеВходящее ИЗ Документ.ПлатежноеПоручениеВходящее КАК ПлатежноеПоручениеВходящее ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежноеПоручениеВходящее.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -12872,6 +14096,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ВремяДействияСкидок</name>
@@ -12881,6 +14117,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -12930,6 +14178,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13007,6 +14267,38 @@
 			<name>InputByString</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ReadDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ReadDataHistoryOfMissingData</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistoryOfMissingData</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>UpdateDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.ДоступныеЦеныКонтрагентов</name>
@@ -13018,6 +14310,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>InformationRegister.АдресныйКлассификатор</name>
@@ -13027,6 +14331,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13158,6 +14474,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Document.ИнвентаризацияТоваровНаСкладе</name>
@@ -13239,6 +14567,18 @@
 			<name>Edit</name>
 			<value>false</value>
 		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
+			<value>false</value>
+		</right>
 	</object>
 	<object>
 		<name>Catalog.ХарактеристикиНоменклатуры</name>
@@ -13276,58 +14616,58 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
-				<field>Организация</field>
-				<field>СчетОрганизации</field>
-				<field>Контрагент</field>
-				<field>СуммаДокумента</field>
-				<field>ОтраженоВОперУчете</field>
-				<field>Комментарий</field>
-				<field>Ответственный</field>
+				<field>Ref</field>
 				<field>ВидОперации</field>
+				<field>Комментарий</field>
+				<field>Контрагент</field>
+				<field>Организация</field>
+				<field>Ответственный</field>
 				<field>ОтражатьВБухгалтерскомУчете</field>
 				<field>ОтражатьВНалоговомУчете</field>
+				<field>ОтраженоВОперУчете</field>
+				<field>СуммаДокумента</field>
+				<field>СчетОрганизации</field>
 				<condition/>
 			</restrictionByCondition>
 			<restrictionByCondition>
+				<field>ВалютаДокумента</field>
+				<field>ВидПлатежа</field>
+				<field>ДатаВходящегоДокумента</field>
+				<field>ДатаОплаты</field>
+				<field>ДоговорКонтрагента</field>
 				<field>ДокументОснование</field>
 				<field>ЗаявкаНаРасходованиеСредств</field>
-				<field>НомерВходящегоДокумента</field>
-				<field>ДатаВходящегоДокумента</field>
-				<field>СчетКонтрагента</field>
-				<field>ВидПлатежа</field>
-				<field>ОчередностьПлатежа</field>
 				<field>НазначениеПлатежа</field>
-				<field>ВалютаДокумента</field>
-				<field>ДоговорКонтрагента</field>
+				<field>НомерВходящегоДокумента</field>
 				<field>Оплачено</field>
-				<field>ДатаОплаты</field>
-				<field>СтатьяДвиженияДенежныхСредств</field>
-				<field>ЧастичнаяОплата</field>
+				<field>ОчередностьПлатежа</field>
 				<field>РасшифровкаПлатежа</field>
 				<field>РасшифровкаПлатежа.LineNumber</field>
-				<field>РасшифровкаПлатежа.НомерПлатежа</field>
 				<field>РасшифровкаПлатежа.ДоговорКонтрагента</field>
-				<field>РасшифровкаПлатежа.Сделка</field>
-				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
-				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
-				<field>РасшифровкаПлатежа.СтавкаНДС</field>
-				<field>РасшифровкаПлатежа.СуммаНДС</field>
-				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
 				<field>РасшифровкаПлатежа.ДокументПланированияПлатежа</field>
+				<field>РасшифровкаПлатежа.КратностьВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.КурсВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.НомерПлатежа</field>
 				<field>РасшифровкаПлатежа.Проект</field>
+				<field>РасшифровкаПлатежа.Сделка</field>
+				<field>РасшифровкаПлатежа.СтавкаНДС</field>
+				<field>РасшифровкаПлатежа.СтатьяДвиженияДенежныхСредств</field>
+				<field>РасшифровкаПлатежа.СуммаВзаиморасчетов</field>
+				<field>РасшифровкаПлатежа.СуммаНДС</field>
+				<field>РасшифровкаПлатежа.СуммаПлатежа</field>
 				<field>РеквизитыКонтрагента</field>
 				<field>РеквизитыКонтрагента.LineNumber</field>
-				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.Значение</field>
 				<field>РеквизитыКонтрагента.Представление</field>
+				<field>РеквизитыКонтрагента.Реквизит</field>
 				<field>РеквизитыКонтрагента.ТипКонтрагента</field>
+				<field>СтатьяДвиженияДенежныхСредств</field>
+				<field>СчетКонтрагента</field>
+				<field>ЧастичнаяОплата</field>
 				<condition>ПлатежноеТребованиеПолученное ИЗ Документ.ПлатежноеТребованиеПолученное КАК ПлатежноеТребованиеПолученное ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО ПлатежноеТребованиеПолученное.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -13411,6 +14751,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13502,11 +14854,11 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
+				<field>Date</field>
 				<field>DeletionMark</field>
 				<field>Number</field>
-				<field>Date</field>
 				<field>Posted</field>
+				<field>Ref</field>
 				<field>ВалютаДокумента</field>
 				<field>ДоговорКонтрагента</field>
 				<field>Комментарий</field>
@@ -13517,7 +14869,12 @@
 			</restrictionByCondition>
 			<restrictionByCondition>
 				<field>АдресДоставки</field>
-				<field>СтруктурнаяЕдиница</field>
+				<field>ВозвратнаяТара</field>
+				<field>ВозвратнаяТара.LineNumber</field>
+				<field>ВозвратнаяТара.Количество</field>
+				<field>ВозвратнаяТара.Номенклатура</field>
+				<field>ВозвратнаяТара.Сумма</field>
+				<field>ВозвратнаяТара.Цена</field>
 				<field>ВремяНапоминания</field>
 				<field>ДатаОплаты</field>
 				<field>ДатаОтгрузки</field>
@@ -13529,40 +14886,35 @@
 				<field>НапомнитьОСобытии</field>
 				<field>Подразделение</field>
 				<field>Склад</field>
+				<field>СтруктурнаяЕдиница</field>
 				<field>СуммаВключаетНДС</field>
 				<field>СуммаДокумента</field>
 				<field>ТипЦен</field>
-				<field>УчитыватьНДС</field>
 				<field>Товары</field>
 				<field>Товары.LineNumber</field>
-				<field>Товары.Номенклатура</field>
 				<field>Товары.ЕдиницаИзмерения</field>
 				<field>Товары.ЕдиницаИзмеренияМест</field>
-				<field>Товары.Цена</field>
-				<field>Товары.Сумма</field>
+				<field>Товары.Количество</field>
+				<field>Товары.КоличествоМест</field>
+				<field>Товары.Коэффициент</field>
+				<field>Товары.Номенклатура</field>
+				<field>Товары.ПлановаяСебестоимость</field>
+				<field>Товары.ПроцентСкидкиНаценки</field>
 				<field>Товары.СтавкаНДС</field>
+				<field>Товары.Сумма</field>
 				<field>Товары.СуммаНДС</field>
 				<field>Товары.ХарактеристикаНоменклатуры</field>
-				<field>Товары.Коэффициент</field>
-				<field>Товары.Количество</field>
-				<field>Товары.ПроцентСкидкиНаценки</field>
-				<field>Товары.КоличествоМест</field>
-				<field>Товары.ПлановаяСебестоимость</field>
-				<field>ВозвратнаяТара</field>
-				<field>ВозвратнаяТара.LineNumber</field>
-				<field>ВозвратнаяТара.Номенклатура</field>
-				<field>ВозвратнаяТара.Количество</field>
-				<field>ВозвратнаяТара.Цена</field>
-				<field>ВозвратнаяТара.Сумма</field>
+				<field>Товары.Цена</field>
 				<field>Услуги</field>
 				<field>Услуги.LineNumber</field>
-				<field>Услуги.Содержание</field>
 				<field>Услуги.Количество</field>
-				<field>Услуги.Цена</field>
-				<field>Услуги.Сумма</field>
-				<field>Услуги.СтавкаНДС</field>
-				<field>Услуги.СуммаНДС</field>
 				<field>Услуги.Номенклатура</field>
+				<field>Услуги.Содержание</field>
+				<field>Услуги.СтавкаНДС</field>
+				<field>Услуги.Сумма</field>
+				<field>Услуги.СуммаНДС</field>
+				<field>Услуги.Цена</field>
+				<field>УчитыватьНДС</field>
 				<condition>СчетНаОплатуПокупателю ИЗ Документ.СчетНаОплатуПокупателю КАК СчетНаОплатуПокупателю ВНУТРЕННЕЕ СОЕДИНЕНИЕ РегистрСведений.ПраваДоступаПользователей КАК ПраваДоступаПользователей ПО СчетНаОплатуПокупателю.Контрагент = ПраваДоступаПользователей.ОбъектДоступа И (ПраваДоступаПользователей.ОбластьДанных = &amp;ОбластьДанныхМенеджераПоЗакупкам) И (ПраваДоступаПользователей.Пользователь В (&amp;ГруппыТекущегоПользователя))</condition>
 			</restrictionByCondition>
 		</right>
@@ -13604,6 +14956,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
@@ -13664,47 +15028,47 @@
 			<name>Read</name>
 			<value>true</value>
 			<restrictionByCondition>
-				<field>Ref</field>
 				<field>DeletionMark</field>
 				<field>Posted</field>
-				<field>Тема</field>
-				<field>КомуПредставление</field>
-				<field>Кому</field>
-				<field>ОтправительИмя</field>
-				<field>ОтправительАдресЭлектроннойПочты</field>
-				<field>ОтправительПредставление</field>
-				<field>КопииПредставление</field>
-				<field>Копии</field>
-				<field>СкрытыеКопии</field>
-				<field>УчетнаяЗапись</field>
-				<field>ГруппаУчетнойЗаписи</field>
-				<field>Ответственный</field>
-				<field>Комментарий</field>
-				<field>СтатусПисьма</field>
-				<field>ДатаОтправления</field>
-				<field>ТекстПисьма</field>
-				<field>Основание</field>
-				<field>Предмет</field>
-				<field>ЕстьВложения</field>
-				<field>ПочтовоеСообщение</field>
+				<field>Ref</field>
 				<field>ВидТекстаПисьма</field>
-				<field>НеРассмотрено</field>
+				<field>ГруппаУчетнойЗаписи</field>
+				<field>ДатаОтправления</field>
+				<field>ЕстьВложения</field>
 				<field>ИдентификаторПисьма</field>
-				<field>Ответ</field>
-				<field>Переадресация</field>
-				<field>СостояниеПотомкаПисьма</field>
+				<field>Комментарий</field>
+				<field>Кому</field>
+				<field>КомуПредставление</field>
 				<field>КомуТЧ</field>
 				<field>КомуТЧ.LineNumber</field>
-				<field>КомуТЧ.Представление</field>
 				<field>КомуТЧ.АдресЭлектроннойПочты</field>
+				<field>КомуТЧ.Представление</field>
+				<field>Копии</field>
+				<field>КопииПредставление</field>
 				<field>КопииТЧ</field>
 				<field>КопииТЧ.LineNumber</field>
-				<field>КопииТЧ.Представление</field>
 				<field>КопииТЧ.АдресЭлектроннойПочты</field>
+				<field>КопииТЧ.Представление</field>
+				<field>НеРассмотрено</field>
+				<field>Основание</field>
+				<field>Ответ</field>
+				<field>Ответственный</field>
+				<field>ОтправительАдресЭлектроннойПочты</field>
+				<field>ОтправительИмя</field>
+				<field>ОтправительПредставление</field>
+				<field>Переадресация</field>
+				<field>ПочтовоеСообщение</field>
+				<field>Предмет</field>
+				<field>СкрытыеКопии</field>
 				<field>СкрытыеКопииТЧ</field>
 				<field>СкрытыеКопииТЧ.LineNumber</field>
-				<field>СкрытыеКопииТЧ.Представление</field>
 				<field>СкрытыеКопииТЧ.АдресЭлектроннойПочты</field>
+				<field>СкрытыеКопииТЧ.Представление</field>
+				<field>СостояниеПотомкаПисьма</field>
+				<field>СтатусПисьма</field>
+				<field>ТекстПисьма</field>
+				<field>Тема</field>
+				<field>УчетнаяЗапись</field>
 				<condition>ГДЕ УчетнаяЗапись В(&amp;ДоступныеУчетныеЗаписиЭлектроннойПочты)</condition>
 			</restrictionByCondition>
 		</right>
@@ -13844,6 +15208,18 @@
 		</right>
 		<right>
 			<name>Edit</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>ViewDataHistory</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>EditDataHistoryVersionComment</name>
+			<value>false</value>
+		</right>
+		<right>
+			<name>SwitchToDataHistoryVersion</name>
 			<value>false</value>
 		</right>
 	</object>
