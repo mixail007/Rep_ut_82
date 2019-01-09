@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.6">
+	<DocumentJournal uuid="892e7740-be8f-4941-be57-c1cee90d1b7c">
+		<InternalInfo>
+			<xr:GeneratedType name="DocumentJournalSelection.ДокументыПоОС" category="Selection">
+				<xr:TypeId>af65c78f-a0a0-45d1-8077-e8018f9fc78f</xr:TypeId>
+				<xr:ValueId>4724cbde-075c-4a09-8fa5-ae83f5da69fc</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentJournalList.ДокументыПоОС" category="List">
+				<xr:TypeId>bf664015-942a-4a96-b701-df95890eac51</xr:TypeId>
+				<xr:ValueId>6da5486c-edd9-4228-81c8-b80450339132</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DocumentJournalManager.ДокументыПоОС" category="Manager">
+				<xr:TypeId>9d2656e4-48fd-4fac-8869-7b6bd35b0218</xr:TypeId>
+				<xr:ValueId>3d097329-2bdd-40bd-b3c0-575ada42ecb1</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
+		<Properties>
+			<Name>ДокументыПоОС</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Документы по ОС</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment>Документы по основным средствам</Comment>
+			<DefaultForm>DocumentJournal.ДокументыПоОС.Form.ФормаСписка</DefaultForm>
+			<AuxiliaryForm/>
+			<UseStandardCommands>false</UseStandardCommands>
+			<RegisteredDocuments>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ПеремещениеОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.АмортизацияОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ИзменениеПараметровНачисленияАмортизацииОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ИзменениеСпособовОтраженияРасходовПоАмортизацииОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ВводНачальныхОстатковОС</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.ВводНачальныхОстатковНДСпоПартиям</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Document.МодернизацияОС</xr:Item>
+			</RegisteredDocuments>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
+			<ListPresentation/>
+			<ExtendedListPresentation/>
+			<Explanation/>
+		</Properties>
+		<ChildObjects>
+			<Column uuid="378fe550-e24d-403b-913d-ec3de5494f7e">
+				<Properties>
+					<Name>ОтражатьВУправленческомУчете</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отражать в управленческом учете</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Отражать в управленческом учете</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.ОтражатьВУправленческомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.ОтражатьВУправленческомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.ОтражатьВУправленческомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПеремещениеОС.Attribute.ОтражатьВУправленческомУчете</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="c012ec2a-5ff8-45ca-83ef-a4f1bba83d6b">
+				<Properties>
+					<Name>ОтражатьВБухгалтерскомУчете</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отражать в бухгалтерском учете</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Отражать в бухгалтерском учете</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.ОтражатьВБухгалтерскомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.ОтражатьВБухгалтерскомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.ОтражатьВБухгалтерскомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПеремещениеОС.Attribute.ОтражатьВБухгалтерскомУчете</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="7f1a1b5e-c723-4aa4-b304-a05845097686">
+				<Properties>
+					<Name>ОтражатьВНалоговомУчете</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отражать в налоговом учете</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Отражать в налоговом учете</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.ОтражатьВНалоговомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.ОтражатьВНалоговомУчете</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.ОтражатьВНалоговомУчете</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="a3d04b2e-8a4c-47d1-81b0-fdaf52500d3a">
+				<Properties>
+					<Name>Организация</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Организация</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Организация</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.Организация</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.Организация</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПеремещениеОС.Attribute.Организация</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.Организация</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="84884324-5ff8-4b77-ab39-fea4f401276e">
+				<Properties>
+					<Name>Комментарий</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Комментарий</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Комментарий</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.Комментарий</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.Комментарий</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.Комментарий</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПеремещениеОС.Attribute.Комментарий</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="f64110e5-66d5-4668-93e1-8056a946fc38">
+				<Properties>
+					<Name>Событие</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Событие</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Событие</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.Событие</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.Событие</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="f3986625-5336-4b1f-9273-d2fc237339d8">
+				<Properties>
+					<Name>ВидОперации</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид операции</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Вид операции</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.ВидОперации</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Column uuid="c9c784c0-cecb-4635-971f-7fb3341f3ffc">
+				<Properties>
+					<Name>Ответственный</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ответственный</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment>Ответственный</Comment>
+					<Indexing>DontIndex</Indexing>
+					<References>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПередачаОС.Attribute.Ответственный</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.СписаниеОС.Attribute.Ответственный</xr:Item>
+						<xr:Item xsi:type="xr:MDObjectRef">Document.ПринятиеКУчетуОС.Attribute.Ответственный</xr:Item>
+					</References>
+				</Properties>
+			</Column>
+			<Form>ФормаСписка</Form>
+		</ChildObjects>
+	</DocumentJournal>
+</MetaDataObject>

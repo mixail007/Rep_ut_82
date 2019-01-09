@@ -1,0 +1,80 @@
+<xs:schema xmlns:ns1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+		xmlns:ns2="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetOrderComment"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService.GetOrderComment">
+	<xs:import schemaLocation="file://3.xsd"
+			namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+	<xs:import schemaLocation="file://4.xsd"
+			namespace="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"/>
+	<xs:complexType name="FindOrderCommentFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="createDate"
+					type="xs:dateTime"/>
+			<xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="orderNumbers"
+					nillable="true"
+					type="q1:ArrayOfstring"/>
+			<xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="userIDs"
+					nillable="true"
+					type="q2:ArrayOfint"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindOrderCommentFilter"
+			nillable="true"
+			type="tns:FindOrderCommentFilter"/>
+	<xs:complexType name="GetOrderCommentResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="comment_list"
+					nillable="true"
+					type="tns:ArrayOfOrderComment"/>
+			<xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TS3.Domain.Models.Client.ClientSoapService"
+					minOccurs="0"
+					name="error"
+					nillable="true"
+					type="q3:Error"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetOrderCommentResult"
+			nillable="true"
+			type="tns:GetOrderCommentResult"/>
+	<xs:complexType name="ArrayOfOrderComment">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="OrderComment"
+					nillable="true"
+					type="tns:OrderComment"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfOrderComment"
+			nillable="true"
+			type="tns:ArrayOfOrderComment"/>
+	<xs:complexType name="OrderComment">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="Comment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="createDate"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="userID"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderComment"
+			nillable="true"
+			type="tns:OrderComment"/>
+</xs:schema>

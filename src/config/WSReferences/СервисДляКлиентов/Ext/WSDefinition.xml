@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:tns="https://pro.4tochki.ru/"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:xsd1="http://schemas.datacontract.org/2004/07/TireStore"
+		xmlns:xsd2="http://schemas.microsoft.com/2003/10/Serialization/"
+		xmlns:xsd3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+		xmlns:xsd4="https://pro.4tochki.ru/"
+		xmlns:xsd5="https://pro.4tochki.ru/Imports"
+		name="ClientService"
+		targetNamespace="https://pro.4tochki.ru/">
+	<types>
+		<xsd:schema xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+				xmlns:ns1="http://schemas.microsoft.com/2003/10/Serialization/"
+				xmlns:ns2="http://schemas.datacontract.org/2004/07/TireStore"
+				xmlns:ns3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+				xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+				xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+				xmlns:tns="https://pro.4tochki.ru/Imports"
+				xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+				xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+				xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+				xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+				xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+				xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+				xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+				xmlns:xsd1="https://pro.4tochki.ru/"
+				xmlns:xsd4="https://pro.4tochki.ru/Imports"
+				xmlns:xsd5="http://schemas.datacontract.org/2004/07/TireStore"
+				targetNamespace="https://pro.4tochki.ru/Imports">
+			<xsd:import schemaLocation="file://1.xsd"
+					namespace="https://pro.4tochki.ru/"/>
+			<xsd:import schemaLocation="file://4.xsd"
+					namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+			<xsd:import schemaLocation="file://2.xsd"
+					namespace="http://schemas.datacontract.org/2004/07/TireStore"/>
+			<xsd:import schemaLocation="file://3.xsd"
+					namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+		</xsd:schema>
+	</types>
+	<message name="ClientService_Ping_InputMessage">
+		<part name="parameters"
+				element="tns:Ping"/>
+	</message>
+	<message name="ClientService_Ping_OutputMessage">
+		<part name="parameters"
+				element="tns:PingResponse"/>
+	</message>
+	<message name="ClientService_CreateOrder_InputMessage">
+		<part name="parameters"
+				element="tns:CreateOrder"/>
+	</message>
+	<message name="ClientService_CreateOrder_OutputMessage">
+		<part name="parameters"
+				element="tns:CreateOrderResponse"/>
+	</message>
+	<message name="ClientService_GetStatusTypes_InputMessage">
+		<part name="parameters"
+				element="tns:GetStatusTypes"/>
+	</message>
+	<message name="ClientService_GetStatusTypes_OutputMessage">
+		<part name="parameters"
+				element="tns:GetStatusTypesResponse"/>
+	</message>
+	<message name="ClientService_CancelOrder_InputMessage">
+		<part name="parameters"
+				element="tns:CancelOrder"/>
+	</message>
+	<message name="ClientService_CancelOrder_OutputMessage">
+		<part name="parameters"
+				element="tns:CancelOrderResponse"/>
+	</message>
+	<message name="ClientService_GetOrderInfo_InputMessage">
+		<part name="parameters"
+				element="tns:GetOrderInfo"/>
+	</message>
+	<message name="ClientService_GetOrderInfo_OutputMessage">
+		<part name="parameters"
+				element="tns:GetOrderInfoResponse"/>
+	</message>
+	<message name="ClientService_GetGoodsPriceRestByCode_InputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsPriceRestByCode"/>
+	</message>
+	<message name="ClientService_GetGoodsPriceRestByCode_OutputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsPriceRestByCodeResponse"/>
+	</message>
+	<message name="ClientService_SetRegionMark_InputMessage">
+		<part name="parameters"
+				element="tns:SetRegionMark"/>
+	</message>
+	<message name="ClientService_SetRegionMark_OutputMessage">
+		<part name="parameters"
+				element="tns:SetRegionMarkResponse"/>
+	</message>
+	<message name="ClientService_SetMergeOrders_InputMessage">
+		<part name="parameters"
+				element="tns:SetMergeOrders"/>
+	</message>
+	<message name="ClientService_SetMergeOrders_OutputMessage">
+		<part name="parameters"
+				element="tns:SetMergeOrdersResponse"/>
+	</message>
+	<message name="ClientService_GetOrderStatus_InputMessage">
+		<part name="parameters"
+				element="tns:GetOrderStatus"/>
+	</message>
+	<message name="ClientService_GetOrderStatus_OutputMessage">
+		<part name="parameters"
+				element="tns:GetOrderStatusResponse"/>
+	</message>
+	<message name="ClientService_SetOrderStatus_InputMessage">
+		<part name="parameters"
+				element="tns:SetOrderStatus"/>
+	</message>
+	<message name="ClientService_SetOrderStatus_OutputMessage">
+		<part name="parameters"
+				element="tns:SetOrderStatusResponse"/>
+	</message>
+	<message name="ClientService_GetFindTyre_InputMessage">
+		<part name="parameters"
+				element="tns:GetFindTyre"/>
+	</message>
+	<message name="ClientService_GetFindTyre_OutputMessage">
+		<part name="parameters"
+				element="tns:GetFindTyreResponse"/>
+	</message>
+	<message name="ClientService_GetFindDisk_InputMessage">
+		<part name="parameters"
+				element="tns:GetFindDisk"/>
+	</message>
+	<message name="ClientService_GetFindDisk_OutputMessage">
+		<part name="parameters"
+				element="tns:GetFindDiskResponse"/>
+	</message>
+	<message name="ClientService_GetGoodsByCar_InputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsByCar"/>
+	</message>
+	<message name="ClientService_GetGoodsByCar_OutputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsByCarResponse"/>
+	</message>
+	<message name="ClientService_GetLogistInfo_InputMessage">
+		<part name="parameters"
+				element="tns:GetLogistInfo"/>
+	</message>
+	<message name="ClientService_GetLogistInfo_OutputMessage">
+		<part name="parameters"
+				element="tns:GetLogistInfoResponse"/>
+	</message>
+	<message name="ClientService_GetGoodsInfo_InputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsInfo"/>
+	</message>
+	<message name="ClientService_GetGoodsInfo_OutputMessage">
+		<part name="parameters"
+				element="tns:GetGoodsInfoResponse"/>
+	</message>
+	<portType name="ClientService">
+		<operation name="Ping">
+			<input name="PingRequest"
+					message="tns:ClientService_Ping_InputMessage"/>
+			<output name="PingResponse"
+					message="tns:ClientService_Ping_OutputMessage"/>
+		</operation>
+		<operation name="CreateOrder">
+			<input name="CreateOrderRequest"
+					message="tns:ClientService_CreateOrder_InputMessage"/>
+			<output name="CreateOrderResponse"
+					message="tns:ClientService_CreateOrder_OutputMessage"/>
+		</operation>
+		<operation name="GetStatusTypes">
+			<input name="GetStatusTypesRequest"
+					message="tns:ClientService_GetStatusTypes_InputMessage"/>
+			<output name="GetStatusTypesResponse"
+					message="tns:ClientService_GetStatusTypes_OutputMessage"/>
+		</operation>
+		<operation name="CancelOrder">
+			<input name="CancelOrderRequest"
+					message="tns:ClientService_CancelOrder_InputMessage"/>
+			<output name="CancelOrderResponse"
+					message="tns:ClientService_CancelOrder_OutputMessage"/>
+		</operation>
+		<operation name="GetOrderInfo">
+			<input name="GetOrderInfoRequest"
+					message="tns:ClientService_GetOrderInfo_InputMessage"/>
+			<output name="GetOrderInfoResponse"
+					message="tns:ClientService_GetOrderInfo_OutputMessage"/>
+		</operation>
+		<operation name="GetGoodsPriceRestByCode">
+			<input name="GetGoodsPriceRestByCodeRequest"
+					message="tns:ClientService_GetGoodsPriceRestByCode_InputMessage"/>
+			<output name="GetGoodsPriceRestByCodeResponse"
+					message="tns:ClientService_GetGoodsPriceRestByCode_OutputMessage"/>
+		</operation>
+		<operation name="SetRegionMark">
+			<input name="SetRegionMarkRequest"
+					message="tns:ClientService_SetRegionMark_InputMessage"/>
+			<output name="SetRegionMarkResponse"
+					message="tns:ClientService_SetRegionMark_OutputMessage"/>
+		</operation>
+		<operation name="SetMergeOrders">
+			<input name="SetMergeOrdersRequest"
+					message="tns:ClientService_SetMergeOrders_InputMessage"/>
+			<output name="SetMergeOrdersResponse"
+					message="tns:ClientService_SetMergeOrders_OutputMessage"/>
+		</operation>
+		<operation name="GetOrderStatus">
+			<input name="GetOrderStatusRequest"
+					message="tns:ClientService_GetOrderStatus_InputMessage"/>
+			<output name="GetOrderStatusResponse"
+					message="tns:ClientService_GetOrderStatus_OutputMessage"/>
+		</operation>
+		<operation name="SetOrderStatus">
+			<input name="SetOrderStatusRequest"
+					message="tns:ClientService_SetOrderStatus_InputMessage"/>
+			<output name="SetOrderStatusResponse"
+					message="tns:ClientService_SetOrderStatus_OutputMessage"/>
+		</operation>
+		<operation name="GetFindTyre">
+			<input name="GetFindTyreRequest"
+					message="tns:ClientService_GetFindTyre_InputMessage"/>
+			<output name="GetFindTyreResponse"
+					message="tns:ClientService_GetFindTyre_OutputMessage"/>
+		</operation>
+		<operation name="GetFindDisk">
+			<input name="GetFindDiskRequest"
+					message="tns:ClientService_GetFindDisk_InputMessage"/>
+			<output name="GetFindDiskResponse"
+					message="tns:ClientService_GetFindDisk_OutputMessage"/>
+		</operation>
+		<operation name="GetGoodsByCar">
+			<input name="GetGoodsByCarRequest"
+					message="tns:ClientService_GetGoodsByCar_InputMessage"/>
+			<output name="GetGoodsByCarResponse"
+					message="tns:ClientService_GetGoodsByCar_OutputMessage"/>
+		</operation>
+		<operation name="GetLogistInfo">
+			<input name="GetLogistInfoRequest"
+					message="tns:ClientService_GetLogistInfo_InputMessage"/>
+			<output name="GetLogistInfoResponse"
+					message="tns:ClientService_GetLogistInfo_OutputMessage"/>
+		</operation>
+		<operation name="GetGoodsInfo">
+			<input name="GetGoodsInfoRequest"
+					message="tns:ClientService_GetGoodsInfo_InputMessage"/>
+			<output name="GetGoodsInfoResponse"
+					message="tns:ClientService_GetGoodsInfo_OutputMessage"/>
+		</operation>
+	</portType>
+	<binding name="BasicHttpBinding_ClientService"
+			type="tns:ClientService">
+		<soapbind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Ping">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/Ping"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrder">
+			<soapbind:operation style="document"
+					soapAction="TireStore.ClientService.CreateOrder"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetStatusTypes">
+			<soapbind:operation style="document"
+					soapAction="TireStore.ClientService.GetStatusTypes"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CancelOrder">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/CancelOrder"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetOrderInfo">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetOrderInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetGoodsPriceRestByCode">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetGoodsPriceRestByCode"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SetRegionMark">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/SetRegionMark"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SetMergeOrders">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/SetMergeOrders"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetOrderStatus">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetOrderStatus"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SetOrderStatus">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/SetOrderStatus"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetFindTyre">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetFindTyre"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetFindDisk">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetFindDisk"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetGoodsByCar">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetGoodsByCar"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetLogistInfo">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetLogistInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetGoodsInfo">
+			<soapbind:operation style="document"
+					soapAction="https://pro.4tochki.ru/ClientService/GetGoodsInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ClientService">
+		<port name="BasicHttpBinding_ClientService"
+				binding="tns:BasicHttpBinding_ClientService">
+			<soapbind:address location="http://pro.4tochki.ru/ClientService.svc"/>
+		</port>
+	</service>
+</definitions>

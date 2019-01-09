@@ -1,0 +1,9 @@
+﻿
+Процедура СписокВоспроизведенияПриАктивизацииСтроки(Элемент)
+	
+	newList = ЭлементыФормы.WMP.playlistCollection.newPlaylist("List");
+	newList.appendItem(ЭлементыФормы.WMP.newMedia(Элемент.ТекущаяСтрока.Значение));
+	ЭлементыФормы.WMP.currentPlaylist = newList; 
+	ЭлементыФормы.WMP.stretchToFit = Истина;
+	
+КонецПроцедуры

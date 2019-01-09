@@ -1,0 +1,26 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="www.franch.yst">
+	<objectType name="Product">
+		<property name="Code" type="xs:string"/>
+		<property name="Quantity" type="xs:int"/>
+		<property name="Price" type="xs:float" lowerBound="0" nillable="true"/>
+	</objectType>
+	<objectType name="ArrayOfProducts">
+		<property xmlns:d3p1="www.franch.yst" name="Product" type="d3p1:Product" lowerBound="0" upperBound="-1" nillable="true"/>
+	</objectType>
+	<objectType name="Result">
+		<property name="Success" type="xs:boolean"/>
+		<property name="Error" type="xs:string"/>
+		<property xmlns:d3p1="www.franch.yst" name="Products" type="d3p1:ArrayOfProducts" lowerBound="0" nillable="true"/>
+		<property name="NumberFR" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="GuidFR" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="NumberYST" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="GuidYST" type="xs:string" lowerBound="0" nillable="true"/>
+	</objectType>
+	<objectType name="ArrayOfReceipts">
+		<property xmlns:d3p1="www.franch.yst" name="Receipt" type="d3p1:Receipt" lowerBound="0" upperBound="1000" nillable="true"/>
+	</objectType>
+	<objectType name="Receipt">
+		<property name="Number" type="xs:string"/>
+		<property name="GUID" type="xs:string"/>
+	</objectType>
+</package>

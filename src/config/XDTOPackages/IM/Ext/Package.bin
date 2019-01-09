@@ -1,0 +1,88 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="www.yst.ru/im">
+	<objectType name="Order">
+		<property name="Number" type="xs:string"/>
+		<property name="Date" type="xs:string" upperBound="1" nillable="true"/>
+		<property name="Status" type="xs:string" upperBound="1" nillable="true"/>
+		<property name="Comment" type="xs:string" upperBound="1" nillable="true"/>
+		<property name="ShippingDay" type="xs:string" upperBound="1" nillable="true"/>
+		<property name="DeliveryAddress" type="xs:string" upperBound="1" nillable="true"/>
+		<property name="Deleted" type="xs:boolean" nillable="true"/>
+		<property name="Payed" type="xs:boolean" lowerBound="0" nillable="true"/>
+		<property name="PAY_CODE" type="xs:string" lowerBound="0" upperBound="1" nillable="true"/>
+	</objectType>
+	<objectType name="ListOfOrders">
+		<property xmlns:d3p1="www.yst.ru/im" name="Order" type="d3p1:Order_new" lowerBound="0" upperBound="1000"/>
+	</objectType>
+	<objectType name="Product">
+		<property name="Code" type="xs:string" upperBound="1"/>
+		<property name="Quantity" type="xs:int" lowerBound="1" upperBound="1"/>
+		<property name="RowNumber" type="xs:int" lowerBound="1" upperBound="1"/>
+		<property name="Price" type="xs:int" nillable="true"/>
+	</objectType>
+	<objectType name="ArrayOfProducts">
+		<property xmlns:d3p1="www.yst.ru/im" name="Products" type="d3p1:Product" lowerBound="0" upperBound="120"/>
+	</objectType>
+	<objectType name="Result">
+		<property xmlns:d3p1="www.yst.ru/im" name="Products" type="d3p1:ArrayOfProducts" nillable="true"/>
+		<property name="Success" type="xs:boolean"/>
+		<property name="OrderNumber" type="xs:string" nillable="true"/>
+		<property name="OrderGUID" type="xs:string" nillable="true"/>
+		<property name="Error" type="xs:string"/>
+	</objectType>
+	<objectType name="Order_new">
+		<property name="Number" type="xs:string"/>
+		<property name="Date" type="xs:string"/>
+		<property name="Status" type="xs:string"/>
+		<property name="Comment" type="xs:string"/>
+		<property name="ShippingDay" type="xs:string"/>
+		<property name="DeliveryAddress" type="xs:string"/>
+		<property name="Deleted" type="xs:boolean"/>
+		<property name="Payed" type="xs:boolean" lowerBound="0" nillable="true"/>
+		<property name="PAY_CODE" type="xs:string" lowerBound="0" upperBound="1" nillable="true"/>
+		<property name="COMMENT_STOCK" type="xs:string" lowerBound="0" nillable="true"/>
+	</objectType>
+	<objectType name="TCRecord">
+		<property name="Field" type="xs:string"/>
+		<property name="Value" type="xs:string"/>
+	</objectType>
+	<objectType name="TCRecords">
+		<property xmlns:d3p1="www.yst.ru/im" name="TCRecord" type="d3p1:TCRecord" upperBound="100"/>
+	</objectType>
+	<objectType name="ULProperties">
+		<property name="Name" type="xs:string"/>
+		<property name="INN" type="xs:string"/>
+		<property name="KPP" type="xs:string"/>
+		<property name="FULL_NAME_ORG" type="xs:string"/>
+		<property name="BIK" type="xs:string"/>
+		<property name="KOR_SCHET" type="xs:string"/>
+		<property name="RAS_SCHET" type="xs:string"/>
+		<property name="BANK_OF_USER" type="xs:string"/>
+		<property name="ID" type="xs:string"/>
+		<property name="UR_ADRES" type="xs:string" lowerBound="1"/>
+	</objectType>
+	<objectType name="Address">
+		<property name="Country" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Index" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Region" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="District" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="City" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Street" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Settlement" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Street_Abbr" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="House" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Korpus" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="STR" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Vlad" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Flat" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Office" type="xs:string" lowerBound="0" nillable="true"/>
+		<property name="Dop_inf" type="xs:string" lowerBound="0"/>
+	</objectType>
+	<objectType name="Customer">
+		<property name="Type" type="xs:string"/>
+		<property name="EMail" type="xs:string" lowerBound="0" nillable="true"/>
+		<property xmlns:d3p1="www.yst.ru/im" name="ULProperties" type="d3p1:ULProperties"/>
+		<property name="Phone" type="xs:string"/>
+		<property xmlns:d3p1="www.yst.ru/im" name="UR_ADRES" type="d3p1:Address" lowerBound="0"/>
+		<property xmlns:d3p1="www.yst.ru/im" name="Fact_ADRES" type="d3p1:Address" lowerBound="0"/>
+	</objectType>
+</package>

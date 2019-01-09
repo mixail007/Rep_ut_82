@@ -1,0 +1,696 @@
+<xs:schema xmlns:ns1="http://schemas.datacontract.org/2004/07/TireStore"
+		xmlns:ns2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+		xmlns:tns="https://pro.4tochki.ru/"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="https://pro.4tochki.ru/">
+	<xs:import schemaLocation="file://2.xsd"
+			namespace="http://schemas.datacontract.org/2004/07/TireStore"/>
+	<xs:import schemaLocation="file://3.xsd"
+			namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+	<xs:element name="Ping">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="value"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PingResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="PingResult"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CreateOrder">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="orderProducts"
+						nillable="true"
+						type="tns:ArrayOfOrderProductData"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="isTestOrder"
+						type="xs:boolean"/>
+				<xs:element minOccurs="0"
+						name="fio"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="phone"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="useBonus"
+						nillable="true"
+						type="xs:boolean"/>
+				<xs:element minOccurs="0"
+						name="comment"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="email"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="city"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="address"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="clientOrderNumber"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="deliveryType"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="payType"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ArrayOfOrderProductData">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="OrderProductData"
+					nillable="true"
+					type="tns:OrderProductData"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfOrderProductData"
+			nillable="true"
+			type="tns:ArrayOfOrderProductData"/>
+	<xs:complexType name="OrderProductData">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="CAE"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Quantity"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="Warehouse"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderProductData"
+			nillable="true"
+			type="tns:OrderProductData"/>
+	<xs:element name="CreateOrderResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="CreateOrderResult"
+						nillable="true"
+						type="tns:OrderComplete"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="OrderComplete">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="Error"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="OrderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Success"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="URL"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TireStore"
+					minOccurs="0"
+					name="goods"
+					nillable="true"
+					type="q1:ArrayOfGoods"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderComplete"
+			nillable="true"
+			type="tns:OrderComplete"/>
+	<xs:element name="GetStatusTypes">
+		<xs:complexType>
+			<xs:sequence/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetStatusTypesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="GetStatusTypesResult"
+						nillable="true"
+						type="tns:ArrayOfStatusType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ArrayOfStatusType">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="StatusType"
+					nillable="true"
+					type="tns:StatusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfStatusType"
+			nillable="true"
+			type="tns:ArrayOfStatusType"/>
+	<xs:complexType name="StatusType">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="StatusDescription"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="StatusID"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="StatusName"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="StatusType"
+			nillable="true"
+			type="tns:StatusType"/>
+	<xs:element name="CancelOrder">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="orderNumber"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CancelOrderResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="CancelOrderResult"
+						nillable="true"
+						type="q2:OrderCancelationStatus"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetOrderInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="orderNumber"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetOrderInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="GetOrderInfoResult"
+						nillable="true"
+						type="tns:OrderInfo"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="OrderInfo">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="city"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TireStore"
+					minOccurs="0"
+					name="clientData"
+					nillable="true"
+					type="q3:ClientService.OrderInfo.ClientData"/>
+			<xs:element minOccurs="0"
+					name="corps"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="date"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="driverNote"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="errorKey"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorName"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="fio"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TireStore"
+					minOccurs="0"
+					name="goods"
+					nillable="true"
+					type="q4:ArrayOfGoods"/>
+			<xs:element minOccurs="0"
+					name="house"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="manager"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TireStore"
+					minOccurs="0"
+					name="mergedOrders"
+					nillable="true"
+					type="q5:ArrayOfmergedOrder"/>
+			<xs:element minOccurs="0"
+					name="needDelivery"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="office"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TireStore"
+					minOccurs="0"
+					name="orderNotes"
+					nillable="true"
+					type="q6:ArrayOforderNote"/>
+			<xs:element minOccurs="0"
+					name="payFormaKey"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="payFormaName"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="phone"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="shipmentDate"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="soap_fio"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="soap_phone"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="statusKey"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="statusName"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="street"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="timeTypeKey"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="timeTypeName"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderInfo"
+			nillable="true"
+			type="tns:OrderInfo"/>
+	<xs:element name="GetGoodsPriceRestByCode">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="code_list"
+						nillable="true"
+						type="q7:ArrayOfcodCAE"/>
+				<xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="wrh_list"
+						nillable="true"
+						type="q8:ArrayOfwarehouse"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetGoodsPriceRestByCodeResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetGoodsPriceRestByCodeResult"
+						nillable="true"
+						type="q9:rests_out_container"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetRegionMark">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="regionMarkList"
+						nillable="true"
+						type="q10:ArrayOfregionMark"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetRegionMarkResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="SetRegionMarkResult"
+						nillable="true"
+						type="q11:ArrayOfregionMarkOut"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetMergeOrders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+						minOccurs="0"
+						name="fromList"
+						nillable="true"
+						type="q12:ArrayOfstring"/>
+				<xs:element minOccurs="0"
+						name="to"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetMergeOrdersResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="SetMergeOrdersResult"
+						nillable="true"
+						type="q13:mergeOrderOut"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetOrderStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+						minOccurs="0"
+						name="statusList"
+						nillable="true"
+						type="q14:ArrayOfint"/>
+				<xs:element xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+						minOccurs="0"
+						name="orderNumbers"
+						nillable="true"
+						type="q15:ArrayOfstring"/>
+				<xs:element minOccurs="0"
+						name="dStart"
+						type="xs:dateTime"/>
+				<xs:element minOccurs="0"
+						name="dEnd"
+						type="xs:dateTime"/>
+				<xs:element minOccurs="0"
+						name="viewArchive"
+						type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetOrderStatusResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetOrderStatusResult"
+						nillable="true"
+						type="q16:ArrayOfOrderStatus"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetOrderStatus">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="ordStatusList"
+						nillable="true"
+						type="q17:ArrayOfordStatus"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetOrderStatusResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="SetOrderStatusResult"
+						nillable="true"
+						type="q18:ArrayOfSetOrderStatusOut"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetFindTyre">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="filter"
+						nillable="true"
+						type="q19:FindTyreFilter"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetFindTyreResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetFindTyreResult"
+						nillable="true"
+						type="q20:FindTyreResult"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetFindDisk">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="filter"
+						nillable="true"
+						type="q21:FindDiskFilter"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetFindDiskResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetFindDiskResult"
+						nillable="true"
+						type="q22:FindDiskResult"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetGoodsByCar">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="filter"
+						nillable="true"
+						type="q23:GetGoodsByCarFilter"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetGoodsByCarResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetGoodsByCarResult"
+						nillable="true"
+						type="q24:GetGoodsByCarSearchResult"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetLogistInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0"
+						name="addressKladr"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="goodsList"
+						nillable="true"
+						type="tns:ArrayOfOrderProductData"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetLogistInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetLogistInfoResult"
+						nillable="true"
+						type="q25:GetLogistInfoResult"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetGoodsInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+						minOccurs="0"
+						name="goodsList"
+						nillable="true"
+						type="q26:ArrayOfstring"/>
+				<xs:element minOccurs="0"
+						name="login"
+						nillable="true"
+						type="xs:string"/>
+				<xs:element minOccurs="0"
+						name="pass"
+						nillable="true"
+						type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetGoodsInfoResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/TireStore"
+						minOccurs="0"
+						name="GetGoodsInfoResult"
+						nillable="true"
+						type="q27:GetGoodsInfoResult"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

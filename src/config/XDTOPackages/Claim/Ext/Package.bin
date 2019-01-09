@@ -1,0 +1,51 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="http://yst.ru/claim">
+	<objectType name="Claim">
+		<property name="INN" type="xs:string" upperBound="20"/>
+		<property name="Responsible" type="xs:string" upperBound="100"/>
+		<property name="Code" type="xs:string" upperBound="7"/>
+		<property name="Quantity" type="xs:int" upperBound="10"/>
+		<property name="NumberOfDoc" type="xs:string" upperBound="8"/>
+		<property name="DateOfDoc" type="xs:dateTime"/>
+		<property name="Condition" type="xs:int" upperBound="100"/>
+		<property name="DateOfProduction" type="xs:string" upperBound="20"/>
+		<property name="TypeOfDefect" type="xs:int" upperBound="3"/>
+		<property name="Commentary" type="xs:string" upperBound="100"/>
+		<property name="HTTPLinkToAPicture" type="xs:string" upperBound="150" nillable="true"/>
+		<property name="Run" type="xs:string" upperBound="100"/>
+		<property name="Model" type="xs:string" upperBound="100" nillable="false"/>
+		<property name="SerialNumber" type="xs:string" nillable="true"/>
+		<property name="DiameterDisk" type="xs:float" nillable="true"/>
+		<property name="WidthRimDisk" type="xs:float" nillable="true"/>
+		<property name="Pressure" type="xs:float" nillable="true"/>
+		<property name="Location" type="xs:string" nillable="true"/>
+		<property name="YearCar" type="xs:date" nillable="true"/>
+		<property name="EngineCapacity" type="xs:string" nillable="true"/>
+		<property name="DateDefect" type="xs:date" nillable="true"/>
+		<property name="DateSaleKlient" type="xs:date" nillable="true"/>
+		<property name="InfoKlient" type="xs:string" nillable="true"/>
+		<property name="InfoFormula" type="xs:string" nillable="true"/>
+	</objectType>
+	<objectType name="ArrayOfClaims">
+		<property xmlns:d3p1="http://yst.ru/claim" name="Claims" type="d3p1:Claim" lowerBound="0" upperBound="-1"/>
+	</objectType>
+	<objectType name="Result">
+		<property name="Error" type="xs:boolean"/>
+		<property name="ContractorError" type="xs:string" upperBound="1"/>
+		<property name="SNPError" type="xs:string" upperBound="1"/>
+		<property name="NomenclatureError" type="xs:string" upperBound="1"/>
+		<property name="QuantityError" type="xs:string" upperBound="1"/>
+		<property name="ConditionError" type="xs:string" upperBound="1"/>
+		<property name="TypeError" type="xs:string" upperBound="1"/>
+		<property name="NumberError" type="xs:string" upperBound="1"/>
+	</objectType>
+	<objectType name="ArrayOfResults" open="true">
+		<property xmlns:d3p1="http://yst.ru/claim" name="Results" type="d3p1:Result" lowerBound="0" upperBound="-1"/>
+	</objectType>
+	<objectType name="ResultAll">
+		<property xmlns:d3p1="http://yst.ru/claim" name="ArrayOfResults" type="d3p1:ArrayOfResults"/>
+		<property name="Success" type="xs:boolean"/>
+		<property name="ClaimGUID" type="xs:string" upperBound="100" nillable="true"/>
+		<property name="ClaimNumber" type="xs:string" upperBound="100" nillable="true"/>
+		<property name="Error" type="xs:string"/>
+	</objectType>
+</package>

@@ -1,0 +1,1205 @@
+<xs:schema xmlns:ns1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+		xmlns:tns="http://schemas.datacontract.org/2004/07/TireStore"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified"
+		targetNamespace="http://schemas.datacontract.org/2004/07/TireStore">
+	<xs:import schemaLocation="file://3.xsd"
+			namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+	<xs:complexType name="ArrayOfGoods">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="Goods"
+					nillable="true"
+					type="tns:Goods"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfGoods"
+			nillable="true"
+			type="tns:ArrayOfGoods"/>
+	<xs:complexType name="Goods">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="codCAE"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="price_rozn"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="quantity"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="warehouse"
+					type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Goods"
+			nillable="true"
+			type="tns:Goods"/>
+	<xs:complexType name="OrderCancelationStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="ErrorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="ErrorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderCancelationStatus"
+			nillable="true"
+			type="tns:OrderCancelationStatus"/>
+	<xs:complexType name="ClientService.OrderInfo.ClientData">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="Address"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="City"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="ClientOrderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="DeliveryType"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Email"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Fio"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="PaymentType"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="Phone"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ClientService.OrderInfo.ClientData"
+			nillable="true"
+			type="tns:ClientService.OrderInfo.ClientData"/>
+	<xs:complexType name="ArrayOfmergedOrder">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="mergedOrder"
+					nillable="true"
+					type="tns:mergedOrder"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfmergedOrder"
+			nillable="true"
+			type="tns:ArrayOfmergedOrder"/>
+	<xs:complexType name="mergedOrder">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mergedOrder"
+			nillable="true"
+			type="tns:mergedOrder"/>
+	<xs:complexType name="ArrayOforderNote">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="orderNote"
+					nillable="true"
+					type="tns:orderNote"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOforderNote"
+			nillable="true"
+			type="tns:ArrayOforderNote"/>
+	<xs:complexType name="orderNote">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="noteCreateDate"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="noteText"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="orderNote"
+			nillable="true"
+			type="tns:orderNote"/>
+	<xs:complexType name="ArrayOfcodCAE">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="codCAE"
+					nillable="true"
+					type="tns:codCAE"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfcodCAE"
+			nillable="true"
+			type="tns:ArrayOfcodCAE"/>
+	<xs:complexType name="codCAE">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="codCAE"
+			nillable="true"
+			type="tns:codCAE"/>
+	<xs:complexType name="ArrayOfwarehouse">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="warehouse"
+					nillable="true"
+					type="tns:warehouse"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfwarehouse"
+			nillable="true"
+			type="tns:ArrayOfwarehouse"/>
+	<xs:complexType name="warehouse">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="wrh"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="warehouse"
+			nillable="true"
+			type="tns:warehouse"/>
+	<xs:complexType name="rests_out_container">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price_rest_list"
+					nillable="true"
+					type="tns:ArrayOfprice_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="rests_out_container"
+			nillable="true"
+			type="tns:rests_out_container"/>
+	<xs:complexType name="ArrayOfprice_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="price_rest"
+					nillable="true"
+					type="tns:price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfprice_rest"
+			nillable="true"
+			type="tns:ArrayOfprice_rest"/>
+	<xs:complexType name="price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="whpr"
+					nillable="true"
+					type="tns:ArrayOfwh_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="price_rest"
+			nillable="true"
+			type="tns:price_rest"/>
+	<xs:complexType name="ArrayOfwh_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="wh_price_rest"
+					nillable="true"
+					type="tns:wh_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfwh_price_rest"
+			nillable="true"
+			type="tns:ArrayOfwh_price_rest"/>
+	<xs:complexType name="wh_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="price"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="rest"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="wrh"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="wh_price_rest"
+			nillable="true"
+			type="tns:wh_price_rest"/>
+	<xs:complexType name="ArrayOfregionMark">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="regionMark"
+					nillable="true"
+					type="tns:regionMark"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfregionMark"
+			nillable="true"
+			type="tns:ArrayOfregionMark"/>
+	<xs:complexType name="regionMark">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="isDelivered"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="isReady"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="regionMark"
+			nillable="true"
+			type="tns:regionMark"/>
+	<xs:complexType name="ArrayOfregionMarkOut">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="regionMarkOut"
+					nillable="true"
+					type="tns:regionMarkOut"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfregionMarkOut"
+			nillable="true"
+			type="tns:ArrayOfregionMarkOut"/>
+	<xs:complexType name="regionMarkOut">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCOde"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="regionMarkOut"
+			nillable="true"
+			type="tns:regionMarkOut"/>
+	<xs:complexType name="mergeOrderOut">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mergeOrderOut"
+			nillable="true"
+			type="tns:mergeOrderOut"/>
+	<xs:complexType name="ArrayOfOrderStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="OrderStatus"
+					nillable="true"
+					type="tns:OrderStatus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfOrderStatus"
+			nillable="true"
+			type="tns:ArrayOfOrderStatus"/>
+	<xs:complexType name="OrderStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="statusID"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="statusName"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderStatus"
+			nillable="true"
+			type="tns:OrderStatus"/>
+	<xs:complexType name="ArrayOfordStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="ordStatus"
+					nillable="true"
+					type="tns:ordStatus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfordStatus"
+			nillable="true"
+			type="tns:ArrayOfordStatus"/>
+	<xs:complexType name="ordStatus">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="statusID"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ordStatus"
+			nillable="true"
+			type="tns:ordStatus"/>
+	<xs:complexType name="ArrayOfSetOrderStatusOut">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="SetOrderStatusOut"
+					nillable="true"
+					type="tns:SetOrderStatusOut"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfSetOrderStatusOut"
+			nillable="true"
+			type="tns:ArrayOfSetOrderStatusOut"/>
+	<xs:complexType name="SetOrderStatusOut">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="orderNumber"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="success"
+					type="xs:boolean"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SetOrderStatusOut"
+			nillable="true"
+			type="tns:SetOrderStatusOut"/>
+	<xs:complexType name="FindTyreFilter">
+		<xs:sequence>
+			<xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="brand_list"
+					nillable="true"
+					type="q1:ArrayOfstring"/>
+			<xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="code_list"
+					nillable="true"
+					type="q2:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="diameter_max"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="diameter_min"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="height_max"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="height_min"
+					type="xs:decimal"/>
+			<xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="model_list"
+					nillable="true"
+					type="q3:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="reinforced"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="runflat"
+					type="xs:boolean"/>
+			<xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="season_list"
+					nillable="true"
+					type="q4:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="thorn"
+					nillable="true"
+					type="xs:boolean"/>
+			<xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="type_list"
+					nillable="true"
+					type="q5:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="width_max"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="width_min"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="wrh_list"
+					nillable="true"
+					type="tns:ArrayOfwarehouse"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindTyreFilter"
+			nillable="true"
+			type="tns:FindTyreFilter"/>
+	<xs:complexType name="FindTyreResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price_rest_list"
+					nillable="true"
+					type="tns:ArrayOfgoods_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindTyreResult"
+			nillable="true"
+			type="tns:FindTyreResult"/>
+	<xs:complexType name="ArrayOfgoods_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="goods_price_rest"
+					nillable="true"
+					type="tns:goods_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfgoods_price_rest"
+			nillable="true"
+			type="tns:ArrayOfgoods_price_rest"/>
+	<xs:complexType name="goods_price_rest">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="color"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_big_my"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_big_pish"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_small"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marka"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="name"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price_rozn"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="season"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="thorn"
+					nillable="true"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="whpr"
+					nillable="true"
+					type="tns:ArrayOfwh_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="goods_price_rest"
+			nillable="true"
+			type="tns:goods_price_rest"/>
+	<xs:complexType name="FindDiskFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="bolts_count_max"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="bolts_count_min"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="bolts_spacing_max"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="bolts_spacing_min"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="brand_list"
+					nillable="true"
+					type="q6:ArrayOfstring"/>
+			<xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="code_list"
+					nillable="true"
+					type="q7:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="dia_max"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="dia_min"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="diameter_max"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="diameter_min"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="et_max"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="et_min"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="model_list"
+					nillable="true"
+					type="q8:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="width_max"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="width_min"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="wrh_list"
+					nillable="true"
+					type="tns:ArrayOfwarehouse"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindDiskFilter"
+			nillable="true"
+			type="tns:FindDiskFilter"/>
+	<xs:complexType name="FindDiskResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price_rest_list"
+					nillable="true"
+					type="tns:ArrayOfgoods_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FindDiskResult"
+			nillable="true"
+			type="tns:FindDiskResult"/>
+	<xs:complexType name="GetGoodsByCarFilter">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="marka"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="modification"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="podbor_type"
+					nillable="true"
+					type="q9:ArrayOfint"/>
+			<xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="season_list"
+					nillable="true"
+					type="q10:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="thorn"
+					nillable="true"
+					type="xs:boolean"/>
+			<xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+					minOccurs="0"
+					name="type"
+					nillable="true"
+					type="q11:ArrayOfstring"/>
+			<xs:element minOccurs="0"
+					name="wrh_list"
+					nillable="true"
+					type="tns:ArrayOfwarehouse"/>
+			<xs:element minOccurs="0"
+					name="year_beg"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="year_end"
+					type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetGoodsByCarFilter"
+			nillable="true"
+			type="tns:GetGoodsByCarFilter"/>
+	<xs:complexType name="GetGoodsByCarSearchResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="price_rest_list"
+					nillable="true"
+					type="tns:ArrayOfgoods_price_rest"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetGoodsByCarSearchResult"
+			nillable="true"
+			type="tns:GetGoodsByCarSearchResult"/>
+	<xs:complexType name="GetLogistInfoResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="logistList"
+					nillable="true"
+					type="tns:ArrayOflogist"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetLogistInfoResult"
+			nillable="true"
+			type="tns:GetLogistInfoResult"/>
+	<xs:complexType name="ArrayOflogist">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="logist"
+					nillable="true"
+					type="tns:logist"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOflogist"
+			nillable="true"
+			type="tns:ArrayOflogist"/>
+	<xs:complexType name="logist">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="dateList"
+					nillable="true"
+					type="tns:ArrayOflogistDate"/>
+			<xs:element minOccurs="0"
+					name="podInfo"
+					nillable="true"
+					type="tns:podInfo"/>
+			<xs:element minOccurs="0"
+					name="price"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="type"
+					type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="logist"
+			nillable="true"
+			type="tns:logist"/>
+	<xs:complexType name="ArrayOflogistDate">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="logistDate"
+					nillable="true"
+					type="tns:logistDate"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOflogistDate"
+			nillable="true"
+			type="tns:ArrayOflogistDate"/>
+	<xs:complexType name="logistDate">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="dEnd"
+					type="xs:dateTime"/>
+			<xs:element minOccurs="0"
+					name="dStart"
+					type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="logistDate"
+			nillable="true"
+			type="tns:logistDate"/>
+	<xs:complexType name="podInfo">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="address"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="addressKladr"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="phone"
+					nillable="true"
+					type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="podInfo"
+			nillable="true"
+			type="tns:podInfo"/>
+	<xs:complexType name="GetGoodsInfoResult">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="errorCode"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="errorComment"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="rimList"
+					nillable="true"
+					type="tns:ArrayOfdisk"/>
+			<xs:element minOccurs="0"
+					name="tyreList"
+					nillable="true"
+					type="tns:ArrayOfTire"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GetGoodsInfoResult"
+			nillable="true"
+			type="tns:GetGoodsInfoResult"/>
+	<xs:complexType name="ArrayOfdisk">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="disk"
+					nillable="true"
+					type="tns:disk"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfdisk"
+			nillable="true"
+			type="tns:ArrayOfdisk"/>
+	<xs:complexType name="disk">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="avto"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="base_color"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="bolt_spacing2"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="bolts_count"
+					nillable="true"
+					type="xs:int"/>
+			<xs:element minOccurs="0"
+					name="bolts_spacing"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="brand"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="color"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="dia"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="diameter"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="et"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="img_big_my"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_big_pish"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_small"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="inset_type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="logo"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marka_html"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model_html"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model_logo"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model_logo_gray"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="mount"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="mount_note"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="name"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="producer"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="use_ck"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="width"
+					nillable="true"
+					type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="disk"
+			nillable="true"
+			type="tns:disk"/>
+	<xs:complexType name="ArrayOfTire">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					maxOccurs="unbounded"
+					name="Tire"
+					nillable="true"
+					type="tns:Tire"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ArrayOfTire"
+			nillable="true"
+			type="tns:ArrayOfTire"/>
+	<xs:complexType name="Tire">
+		<xs:sequence>
+			<xs:element minOccurs="0"
+					name="aquaplaning"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="axle"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="brand"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="code"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="comfort"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="constr"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="diameter"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="diameter_out"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="height"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="img_big_my"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_big_pish"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="img_small"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="load_index"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marka_html"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marka_logo"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marka_logo_gray"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="marker_color"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="model_html"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="moto_use"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="name"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="noise"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="omolog"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="passability"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="protection"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="protector_type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="puncture"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="season"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="side"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="sloy"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="softness"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="speed_index"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="strengthening"
+					nillable="true"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="subdiameter"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="subdiameter_out"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="subheight"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="subwidth"
+					nillable="true"
+					type="xs:decimal"/>
+			<xs:element minOccurs="0"
+					name="tech"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="thorn"
+					nillable="true"
+					type="xs:boolean"/>
+			<xs:element minOccurs="0"
+					name="thorn_type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="tonnage"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="usa"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="use_type"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="wear_index"
+					nillable="true"
+					type="xs:string"/>
+			<xs:element minOccurs="0"
+					name="width"
+					nillable="true"
+					type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Tire"
+			nillable="true"
+			type="tns:Tire"/>
+</xs:schema>

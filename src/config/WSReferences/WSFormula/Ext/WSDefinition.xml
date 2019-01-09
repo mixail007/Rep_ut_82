@@ -1,0 +1,919 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:tns="http://ServiceFormula"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:xsd1="http://Formula"
+		xmlns:xsd2="http://ServiceFormula"
+		name="ServiceFormula"
+		targetNamespace="http://ServiceFormula">
+	<types>
+		<xs:schema xmlns:tns="http://Formula"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:xsd1="http://ServiceFormula"
+				xmlns:xsd2="http://Formula"
+				targetNamespace="http://Formula"
+				attributeFormDefault="unqualified"
+				elementFormDefault="qualified">
+			<xs:complexType name="ArrayOfOperations">
+				<xs:sequence>
+					<xs:element name="Element"
+							type="xsd2:Operation"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfPoints">
+				<xs:sequence>
+					<xs:element name="Element"
+							type="xsd2:Point"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfPosts">
+				<xs:sequence>
+					<xs:element name="Element"
+							type="xsd2:Post"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfProducts">
+				<xs:sequence>
+					<xs:element name="Products"
+							type="xsd2:Product"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfProductsResult">
+				<xs:sequence>
+					<xs:element name="ProductsResult"
+							type="xsd2:ProductResult"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfRows">
+				<xs:sequence>
+					<xs:element name="Rows"
+							type="xsd2:Row"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ArrayOfWorkloads">
+				<xs:sequence>
+					<xs:element name="Element"
+							type="xsd2:Workload"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Operation">
+				<xs:sequence>
+					<xs:element name="Type"
+							type="xs:string"
+							maxOccurs="15"/>
+					<xs:element name="Points"
+							type="xsd2:ArrayOfPoints"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Point">
+				<xs:sequence>
+					<xs:element name="PointNumber"
+							type="xs:int"
+							maxOccurs="5"/>
+					<xs:element name="Posts"
+							type="xsd2:ArrayOfPosts"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Post">
+				<xs:sequence>
+					<xs:element name="Number"
+							type="xs:string"
+							maxOccurs="20"/>
+					<xs:element name="Workloads"
+							type="xsd2:ArrayOfWorkloads"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Periodicity"
+							type="xs:integer"/>
+					<xs:element name="TimeStart"
+							type="xs:time"
+							maxOccurs="10"/>
+					<xs:element name="TimeEnd"
+							type="xs:time"
+							maxOccurs="10"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Product">
+				<xs:sequence>
+					<xs:element name="Code"
+							type="xs:string"
+							maxOccurs="7"/>
+					<xs:element name="Quantity"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="Price"
+							type="xs:int"/>
+					<xs:element name="Storage"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="Point"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="Discount"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProductResult">
+				<xs:sequence>
+					<xs:element name="Code"
+							type="xs:string"
+							maxOccurs="7"/>
+					<xs:element name="Quantity"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="Storage"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="OrderGUID"
+							type="xs:string"
+							minOccurs="0"
+							maxOccurs="100"/>
+					<xs:element name="OrderNumber"
+							type="xs:string"
+							minOccurs="0"
+							maxOccurs="100"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Result">
+				<xs:sequence>
+					<xs:element name="Products"
+							type="xsd2:ArrayOfProductsResult"/>
+					<xs:element name="Success"
+							type="xs:boolean"/>
+					<xs:element name="Error"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultGetBusyPosts">
+				<xs:sequence>
+					<xs:element name="Operations"
+							type="xsd2:ArrayOfOperations"/>
+					<xs:element name="Success"
+							type="xs:boolean"/>
+					<xs:element name="Error"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultGetCardBalance">
+				<xs:sequence>
+					<xs:element name="Balance"
+							type="xs:int"/>
+					<xs:element name="Rows"
+							type="xsd2:ArrayOfRows"/>
+					<xs:element name="Success"
+							type="xs:boolean"/>
+					<xs:element name="Error"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultSimple">
+				<xs:sequence>
+					<xs:element name="Success"
+							type="xs:boolean"/>
+					<xs:element name="Error"
+							type="xs:string"/>
+					<xs:element name="OrderNumber"
+							type="xs:string"
+							nillable="true"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Row">
+				<xs:sequence>
+					<xs:element name="Date"
+							type="xs:date"
+							maxOccurs="70"/>
+					<xs:element name="Debit"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="10000"/>
+					<xs:element name="Credit"
+							type="xs:int"
+							minOccurs="0"
+							maxOccurs="10000"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Workload">
+				<xs:sequence>
+					<xs:element name="TimeStart"
+							type="xs:time"
+							maxOccurs="10"/>
+					<xs:element name="TimeEnd"
+							type="xs:time"
+							maxOccurs="10"/>
+					<xs:element name="Status"
+							type="xs:string"
+							maxOccurs="10"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:xs1="http://Formula"
+				xmlns:xs2="http://ServiceFormula"
+				xmlns:xsd1="http://ServiceFormula"
+				xmlns:xsd2="http://Formula"
+				targetNamespace="http://ServiceFormula"
+				elementFormDefault="qualified">
+			<xs:import namespace="http://Formula"/>
+			<xs:element name="CreateClient">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClientName"
+								type="xs:string"/>
+						<xs:element name="ClientPhone"
+								type="xs:string"/>
+						<xs:element name="ClientMail"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ClientID"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateClientResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClientID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Goods"
+								type="xsd2:ArrayOfProducts"/>
+						<xs:element name="Comment"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OrderID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Author"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="PromoCode"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:Result"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCardBalance">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CardNumber"
+								type="xs:string"/>
+						<xs:element name="ClientPhone"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetCardBalanceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultGetCardBalance"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetBusyPosts">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Date"
+								type="xs:date"/>
+						<xs:element name="Point"
+								type="xs:int"/>
+						<xs:element name="WebSite"
+								type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetBusyPostsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultGetBusyPosts"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OrderID"
+								type="xs:string"/>
+						<xs:element name="OrderGUID"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrderForRepair">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClientID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Operation"
+								type="xs:string"/>
+						<xs:element name="Point"
+								type="xs:int"/>
+						<xs:element name="Post"
+								type="xs:string"/>
+						<xs:element name="DateTimeStart"
+								type="xs:dateTime"/>
+						<xs:element name="CarModel"
+								type="xs:string"/>
+						<xs:element name="CarNumber"
+								type="xs:string"/>
+						<xs:element name="Comment"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OrderForRepairID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ClientName"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ClientPhone"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Content"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Author"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="StorageTyres"
+								type="xs:boolean"
+								nillable="true"/>
+						<xs:element name="Organization"
+								type="xs:boolean"
+								nillable="true"/>
+						<xs:element name="idLockRecord"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrderForRepairResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteOrderForRepair">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OrderForRepairID"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteOrderForRepairResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReserveTimeForRepair">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Point"
+								type="xs:int"/>
+						<xs:element name="Post"
+								type="xs:string"/>
+						<xs:element name="DateTimeStart"
+								type="xs:dateTime"/>
+						<xs:element name="idRecord"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Author"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReserveTimeForRepairResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetStatusOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="OrderID"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetStatusOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetStatusPromoCode">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PromoCode"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetStatusPromoCodeResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReturnFromResponsibleStorage">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Goods"
+								type="xsd2:ArrayOfProducts"/>
+						<xs:element name="SaleNom"
+								type="xs:string"/>
+						<xs:element name="SaleDate"
+								type="xs:dateTime"/>
+						<xs:element name="OrderID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OrderGUID"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="GUIDFormula"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReturnFromResponsibleStorageResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xsd2:ResultSimple"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+	<message name="CreateClientRequestMessage">
+		<part name="parameters"
+				element="tns:CreateClient"/>
+	</message>
+	<message name="CreateClientResponseMessage">
+		<part name="parameters"
+				element="tns:CreateClientResponse"/>
+	</message>
+	<message name="CreateOrderRequestMessage">
+		<part name="parameters"
+				element="tns:CreateOrder"/>
+	</message>
+	<message name="CreateOrderResponseMessage">
+		<part name="parameters"
+				element="tns:CreateOrderResponse"/>
+	</message>
+	<message name="GetCardBalanceRequestMessage">
+		<part name="parameters"
+				element="tns:GetCardBalance"/>
+	</message>
+	<message name="GetCardBalanceResponseMessage">
+		<part name="parameters"
+				element="tns:GetCardBalanceResponse"/>
+	</message>
+	<message name="GetBusyPostsRequestMessage">
+		<part name="parameters"
+				element="tns:GetBusyPosts"/>
+	</message>
+	<message name="GetBusyPostsResponseMessage">
+		<part name="parameters"
+				element="tns:GetBusyPostsResponse"/>
+	</message>
+	<message name="DeleteOrderRequestMessage">
+		<part name="parameters"
+				element="tns:DeleteOrder"/>
+	</message>
+	<message name="DeleteOrderResponseMessage">
+		<part name="parameters"
+				element="tns:DeleteOrderResponse"/>
+	</message>
+	<message name="CreateOrderForRepairRequestMessage">
+		<part name="parameters"
+				element="tns:CreateOrderForRepair"/>
+	</message>
+	<message name="CreateOrderForRepairResponseMessage">
+		<part name="parameters"
+				element="tns:CreateOrderForRepairResponse"/>
+	</message>
+	<message name="DeleteOrderForRepairRequestMessage">
+		<part name="parameters"
+				element="tns:DeleteOrderForRepair"/>
+	</message>
+	<message name="DeleteOrderForRepairResponseMessage">
+		<part name="parameters"
+				element="tns:DeleteOrderForRepairResponse"/>
+	</message>
+	<message name="ReserveTimeForRepairRequestMessage">
+		<part name="parameters"
+				element="tns:ReserveTimeForRepair"/>
+	</message>
+	<message name="ReserveTimeForRepairResponseMessage">
+		<part name="parameters"
+				element="tns:ReserveTimeForRepairResponse"/>
+	</message>
+	<message name="GetStatusOrderRequestMessage">
+		<part name="parameters"
+				element="tns:GetStatusOrder"/>
+	</message>
+	<message name="GetStatusOrderResponseMessage">
+		<part name="parameters"
+				element="tns:GetStatusOrderResponse"/>
+	</message>
+	<message name="GetStatusPromoCodeRequestMessage">
+		<part name="parameters"
+				element="tns:GetStatusPromoCode"/>
+	</message>
+	<message name="GetStatusPromoCodeResponseMessage">
+		<part name="parameters"
+				element="tns:GetStatusPromoCodeResponse"/>
+	</message>
+	<message name="ReturnFromResponsibleStorageRequestMessage">
+		<part name="parameters"
+				element="tns:ReturnFromResponsibleStorage"/>
+	</message>
+	<message name="ReturnFromResponsibleStorageResponseMessage">
+		<part name="parameters"
+				element="tns:ReturnFromResponsibleStorageResponse"/>
+	</message>
+	<portType name="ServiceFormulaPortType">
+		<operation name="CreateClient">
+			<input name="CreateClientRequest"
+					message="tns:CreateClientRequestMessage"/>
+			<output name="CreateClientResponse"
+					message="tns:CreateClientResponseMessage"/>
+		</operation>
+		<operation name="CreateOrder">
+			<input name="CreateOrderRequest"
+					message="tns:CreateOrderRequestMessage"/>
+			<output name="CreateOrderResponse"
+					message="tns:CreateOrderResponseMessage"/>
+		</operation>
+		<operation name="GetCardBalance">
+			<input name="GetCardBalanceRequest"
+					message="tns:GetCardBalanceRequestMessage"/>
+			<output name="GetCardBalanceResponse"
+					message="tns:GetCardBalanceResponseMessage"/>
+		</operation>
+		<operation name="GetBusyPosts">
+			<input name="GetBusyPostsRequest"
+					message="tns:GetBusyPostsRequestMessage"/>
+			<output name="GetBusyPostsResponse"
+					message="tns:GetBusyPostsResponseMessage"/>
+		</operation>
+		<operation name="DeleteOrder">
+			<input name="DeleteOrderRequest"
+					message="tns:DeleteOrderRequestMessage"/>
+			<output name="DeleteOrderResponse"
+					message="tns:DeleteOrderResponseMessage"/>
+		</operation>
+		<operation name="CreateOrderForRepair">
+			<input name="CreateOrderForRepairRequest"
+					message="tns:CreateOrderForRepairRequestMessage"/>
+			<output name="CreateOrderForRepairResponse"
+					message="tns:CreateOrderForRepairResponseMessage"/>
+		</operation>
+		<operation name="DeleteOrderForRepair">
+			<input name="DeleteOrderForRepairRequest"
+					message="tns:DeleteOrderForRepairRequestMessage"/>
+			<output name="DeleteOrderForRepairResponse"
+					message="tns:DeleteOrderForRepairResponseMessage"/>
+		</operation>
+		<operation name="ReserveTimeForRepair">
+			<input name="ReserveTimeForRepairRequest"
+					message="tns:ReserveTimeForRepairRequestMessage"/>
+			<output name="ReserveTimeForRepairResponse"
+					message="tns:ReserveTimeForRepairResponseMessage"/>
+		</operation>
+		<operation name="GetStatusOrder">
+			<input name="GetStatusOrderRequest"
+					message="tns:GetStatusOrderRequestMessage"/>
+			<output name="GetStatusOrderResponse"
+					message="tns:GetStatusOrderResponseMessage"/>
+		</operation>
+		<operation name="GetStatusPromoCode">
+			<input name="GetStatusPromoCodeRequest"
+					message="tns:GetStatusPromoCodeRequestMessage"/>
+			<output name="GetStatusPromoCodeResponse"
+					message="tns:GetStatusPromoCodeResponseMessage"/>
+		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<input name="ReturnFromResponsibleStorageRequest"
+					message="tns:ReturnFromResponsibleStorageRequestMessage"/>
+			<output name="ReturnFromResponsibleStorageResponse"
+					message="tns:ReturnFromResponsibleStorageResponseMessage"/>
+		</operation>
+	</portType>
+	<binding name="ServiceFormulaSoapBinding"
+			type="tns:ServiceFormulaPortType">
+		<soapbind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="CreateClient">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateClient"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrder">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateOrder"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetCardBalance">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetCardBalance"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetBusyPosts">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetBusyPosts"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteOrder">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:DeleteOrder"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrderForRepair">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateOrderForRepair"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteOrderForRepair">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:DeleteOrderForRepair"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReserveTimeForRepair">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReserveTimeForRepair"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetStatusOrder">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetStatusOrder"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetStatusPromoCode">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetStatusPromoCode"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<soapbind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReturnFromResponsibleStorage"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="ServiceFormulaSoap12Binding"
+			type="tns:ServiceFormulaPortType">
+		<soap12bind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="CreateClient">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateClient"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrder">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateOrder"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetCardBalance">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetCardBalance"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetBusyPosts">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetBusyPosts"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteOrder">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:DeleteOrder"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrderForRepair">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:CreateOrderForRepair"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteOrderForRepair">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:DeleteOrderForRepair"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReserveTimeForRepair">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReserveTimeForRepair"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetStatusOrder">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetStatusOrder"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetStatusPromoCode">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:GetStatusPromoCode"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReturnFromResponsibleStorage">
+			<soap12bind:operation style="document"
+					soapAction="http://ServiceFormula#ServiceFormula:ReturnFromResponsibleStorage"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ServiceFormula">
+		<port name="ServiceFormulaSoap"
+				binding="tns:ServiceFormulaSoapBinding">
+			<documentation> 
+				<wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+						conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+			</documentation>
+			<soapbind:address location="http://91.196.33.66:8001/Formula/ws/serviceformula"/>
+		</port>
+		<port name="ServiceFormulaSoap12"
+				binding="tns:ServiceFormulaSoap12Binding">
+			<soap12bind:address location="http://91.196.33.66:8001/Formula/ws/serviceformula"/>
+		</port>
+	</service>
+</definitions>
