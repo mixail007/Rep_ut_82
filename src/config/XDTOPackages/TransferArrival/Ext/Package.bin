@@ -39,4 +39,13 @@
 	<objectType name="ArrayOfOrders">
 		<property xmlns:d3p1="http://37.1.84.50:8080/TransferArrival" name="Order" type="d3p1:Order" lowerBound="0" upperBound="1000" nillable="true"/>
 	</objectType>
+	<objectType name="Cell2">
+		<property name="productid" type="xs:string" upperBound="1"/>
+		<property name="cell_out" type="xs:string" upperBound="1"/>
+		<property name="cell_in" type="xs:string" upperBound="1"/>
+		<property name="quantity" type="xs:int" lowerBound="1" upperBound="1" nillable="true" default="0"/>
+	</objectType>
+	<objectType name="ArrayOfCells2">
+		<property xmlns:d3p1="http://37.1.84.50:8080/TransferArrival" name="Cell2" type="d3p1:Cell2" lowerBound="0" upperBound="1000" nillable="true"/>
+	</objectType>
 </package>
