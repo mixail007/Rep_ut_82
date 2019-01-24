@@ -21,7 +21,8 @@ UsrPwd = "Usr=""Робот (центр - номенклатура)"";Pwd=""09876
 	КонецЕсли;
 
 	Если ТипДоговора = справочники.ТипыДоговоров.ШинтрейдЯрославль Тогда
-		Base   = стрЗаменить(srv,"3041","3541") + "Ref=""v83ib_shintradeyar_bp"""; //28.12.2018
+		srv2 = "Srvr=""iisserver"";";
+		Base = srv2 + "Ref=""v83ib_shintradeyar_bp"""; //28.12.2018
 		v8connect = Новый COMОбъект("V83.ComConnector");
 		СтрокаСоединенияCOM = Base+";"+UsrPwd;
 		Попытка
