@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <style type="text/css">
+	  html { height: 100% }
+	  body { height: 100%; margin: 0px; padding: 0px }
+	  #map { height: 100% }
+	</style>
+    <script src="http://api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU"  type="text/javascript"></script>
+    <script src="http://yandex.st/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+	var index = 1;
+	var MyMap, route;
+	var clusterer;
+	var PointArray = [];
+	var noclick = false;
+	
+	ymaps.ready(init);
+	function init(){  
+		myMap = new ymaps.Map ("map", {
+			center: [55.75, 37.62],
+			zoom: 12
+		});
+		myMap.behaviors.enable('scrollZoom');
+		myMap.behaviors.disable('dblClickZoom');
+		myMap.controls.add('mapTools');
+		myMap.controls.add('zoomControl');
+		myMap.controls.add('scaleLine');
+		myMap.controls.add('miniMap');
+		myMap.controls.add('trafficControl');
+		
+		myMap.events.add('click', function (e) {
+			if (!noclick) {
+				addMarker(e.get('coordPosition')); 
+				
+			}else{
+				noclick = false;
+			}
+		});
+		
+		myMap.events.add('drag end', function (e) {
+			noclick = true;			
+			document.getElementById('CoordX').value = "0";
+			document.getElementById('CoordY').value = "0";
+		});
+		
+		// создадим кластеризатор и запретим приближать карту при клике на кластеры
+		clusterer = new ymaps.Clusterer({clusterDisableClickZoom: true, synchAdd: true});
+		myMap.geoObjects.add(clusterer);
+	}
+	
+	function addMarker(coordPosition){
+		myPlacemark = new ymaps.Placemark(coordPosition, {
+			// Свойства
+			// Текст метки
+			iconContent: 'Точка'+index
+		}, {
+			// Опции
+			// Иконка метки будет растягиваться под ее контент
+			preset: 'twirl#blueStretchyIcon'
+		});
+		myMap.geoObjects.add(myPlacemark);
+		
+		document.getElementById('CoordX').value = coordPosition[0].toPrecision(15);
+		document.getElementById('CoordY').value = coordPosition[1].toPrecision(15);
+		index++;
+	}
+		
+	function calcRoute(options){
+		ymaps.route(options, {
+	        // Опции маршрутизатора
+	        mapStateAutoApply: true, // автоматически позиционировать карту
+	        avoidTrafficJams: true   // Учитывать пробки
+	    }).then(
+		    function (router) {
+		    route = router;
+		        myMap.geoObjects.add(route);
+		        
+		        //заполняем и сохраняем инфо про маршрут
+		        document.getElementById('RouteInfo').value = "Длина маршрута - " + route.getHumanLength() + ". Время - " + route.getHumanJamsTime();
+		        
+		        //генерация события для перехвата в 1С
+		        var evt = document.createEventObject();
+  				document.body.fireEvent('ondatasetcomplete', evt);
+		    },
+		    function (error) {
+		        alert("Возникла ошибка: " + error.message);
+	    });
+	}
+	
+	function Reset(){
+		// Найдём на карте геообъект по его id
+		myMap.geoObjects.each(function (geoObject) {
+		    myMap.geoObjects.remove(geoObject);
+		});
+		
+		PointArray = [];
+		index = 1;
+	}
+	
+	function FindAdres(Adres){
+		Reset();
+		var myGeocoder = ymaps.geocode(Adres);
+		myGeocoder.then(
+			function (res){
+			var firstGeoObject = res.geoObjects.get(0);
+			if(firstGeoObject != null){
+				myMap.panTo(
+					// Координаты нового центра карты
+					firstGeoObject.geometry.getCoordinates(), {
+						/* Опции перемещения:
+						   разрешить уменьшать и затем увеличивать зум
+						   карты при перемещении между точками 
+						*/
+						flying: true
+					}
+				);
+				
+				myPlacemark = new ymaps.Placemark(firstGeoObject.geometry.getCoordinates(), {
+					// Свойства
+					// Текст метки
+					iconContent: Adres
+				}, {
+					// Опции
+					// Иконка метки будет растягиваться под ее контент
+					preset: 'twirl#blueStretchyIcon'
+				});
+				myMap.geoObjects.add(myPlacemark);
+			}else{
+				alert("Ничего не найдено");}
+			}
+		);
+	}
+		
+	function ReverseSearchAdres(CoordX, CoordY, Adres){
+		Reset();
+		
+		var CoordPosition = [CoordX, CoordY];
+		myMap.panTo(
+		    // Координаты нового центра карты
+		    CoordPosition, {
+		        /* Опции перемещения:
+		           разрешить уменьшать и затем увеличивать зум
+		           карты при перемещении между точками 
+		        */
+		        flying: true
+		    }
+		);
+		
+		myPlacemark = new ymaps.Placemark(CoordPosition, {
+			// Свойства
+			// Текст метки
+			iconContent: Adres
+		}, {
+			// Опции
+			// Иконка метки будет растягиваться под ее контент
+			preset: 'twirl#blueStretchyIcon'
+		});
+		myMap.geoObjects.add(myPlacemark);
+	}
+	
+	function addToPointArray(CoordX, CoordY, ID, Text){
+		var point = new ymaps.GeoObject({
+		    geometry: {type: "Point", coordinates: [CoordX, CoordY]},
+		    properties: {
+		        clusterCaption: ID,
+		        balloonContentBody: Text
+		    }
+			});
+		PointArray.push(point);
+	}
+	
+	function drawCluster(){
+		clusterer.add(PointArray);
+		myMap.geoObjects.add(clusterer);
+	}	
+	
+	function createPolygon(ArrayPoint, Name, color) {
+		// Создаем многоугольник
+        myPolygon = new ymaps.Polygon([
+            // Координаты вершин внешней границы многоугольника.
+            ArrayPoint
+        ], {
+            //Свойства
+            hintContent: Name
+        }, {
+            // Опции.
+            // Цвет заливки (зеленый)
+            fillColor: color,
+            // Цвет границ (синий)
+            strokeColor: '#0000FF',
+            // Прозрачность (полупрозрачная заливка)
+            opacity: 0.6,
+            // Ширина линии
+            strokeWidth: 5,
+            // Стиль линии
+            strokeStyle: 'shortdash'
+        });
+            
+        myMap.geoObjects.add(myPolygon);
+    }	
+    
+    function WebClientClick() {
+    	//очистка перед кликом координат, иначе после клика в упр. формах идет считывание координат
+    	document.getElementById('CoordX').value = "0";
+		document.getElementById('CoordY').value = "0";
+    	
+    	var WebClientOperation = document.getElementById("WebClientOperation").value;
+		//alert(WebClientOperation);
+		switch (WebClientOperation) {
+        	case "0":   // ничего не делаем
+        	   var a = 1; 
+        	default:   // запускаем функцию
+        	    eval(WebClientOperation);
+        }
+        document.getElementById('WebClientOperation').value = "0";
+	}    		
+    </script>
+</head>
+
+<body>
+    <div id="map" style="width:100%; height:100%"></div>
+    <input type="hidden" id="CoordX" name="CoordX" value="0"></input>
+    <input type="hidden" id="CoordY" name="CoordY" value="0"></input>
+    <input type="hidden" id="RouteInfo" name="RouteInfo" value=""></input>
+    <input type="hidden" id="WebClientOperation" name="WebClientOperation" value="0"></input>
+    <input type="hidden" id="WebClient" name="WebClient" onclick="WebClientClick();"></input>
+</body>
+</html>
