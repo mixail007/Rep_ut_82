@@ -114,4 +114,15 @@
 		<property name="NEW_VALUE" type="xs:string"/>
 		<property name="CHANGE_TYPE" type="xs:string"/>
 	</objectType>
+	<objectType name="ListOfReturns">
+		<property xmlns:d3p1="www.yst.ru/im17" name="Return" type="d3p1:Return" lowerBound="0" upperBound="-1"/>
+	</objectType>
+	<objectType name="Return">
+		<property name="Date" type="xs:dateTime"/>
+		<property name="inOrderNumber" type="xs:string"/>
+		<property name="Code" type="xs:string"/>
+		<property name="Quantity" type="xs:int"/>
+		<property name="Price" type="xs:int"/>
+		<property name="TCOrderNumber" type="xs:string"/>
+	</objectType>
 </package>
