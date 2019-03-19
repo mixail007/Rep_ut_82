@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema">
+		<dataSource>
+			<name>ИсточникДанных1</name>
+			<dataSourceType>Local</dataSourceType>
+		</dataSource>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных1</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДатаПроверка</dataPath>
+				<field>ДатаПроверка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Дата проверки</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КодПроверка</dataPath>
+				<field>КодПроверка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Код</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураПроверка</dataPath>
+				<field>НоменклатураПроверка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Номенклатура</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПрошедшаяНагрузкаПроверка</dataPath>
+				<field>ПрошедшаяНагрузкаПроверка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Прошедшая нагрузка</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТестПройденПроверка</dataPath>
+				<field>ТестПройденПроверка</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Тест пройден</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Завод</dataPath>
+				<field>Завод</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерКонтейнера</dataPath>
+				<field>НомерКонтейнера</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НомерПартии</dataPath>
+				<field>НомерПартии</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сумма</dataPath>
+				<field>Сумма</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ПровереннаяНагрузкаДисков.Номенклатура.Код КАК КодПроверка,
+	ПровереннаяНагрузкаДисков.Номенклатура КАК НоменклатураПроверка,
+	//ДЕНЬ(ПровереннаяНагрузкаДисков.Дата) КАК ДеньМесяца,
+	МАКСИМУМ(ПровереннаяНагрузкаДисков.Дата) КАК ДатаПроверка,
+	МАКСИМУМ(ПровереннаяНагрузкаДисков.ТестПройден) КАК ТестПройденПроверка,
+	МАКСИМУМ(ПровереннаяНагрузкаДисков.ПрошедшаяНагрузка) КАК ПрошедшаяНагрузкаПроверка,
+	ПровереннаяНагрузкаДисков.НомерПартии КАК НомерПартии,
+	МАКСИМУМ(ПровереннаяНагрузкаДисков.НомерКонтейнера) КАК НомерКонтейнера,
+	МАКСИМУМ(ЗначенияСвойствОбъектов.Значение) КАК Завод,
+	МАКСИМУМ(&amp;Цена) КАК Сумма
+ИЗ
+	РегистрСведений.ПровереннаяНагрузкаДисков КАК ПровереннаяНагрузкаДисков
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ПО ПровереннаяНагрузкаДисков.Номенклатура = ЗначенияСвойствОбъектов.Объект
+			И (ЗначенияСвойствОбъектов.Свойство = &amp;Завод)
+ГДЕ
+	ПровереннаяНагрузкаДисков.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ПровереннаяНагрузкаДисков.Номенклатура.Код,
+	ПровереннаяНагрузкаДисков.Номенклатура,
+	ПровереннаяНагрузкаДисков.НомерПартии
+	//, ДЕНЬ(ПровереннаяНагрузкаДисков.Дата)</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных2</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Диаметр</dataPath>
+				<field>Диаметр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Код</dataPath>
+				<field>Код</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПеремаркировано</dataPath>
+				<field>КоличествоПеремаркировано</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОстатокПроверен</dataPath>
+				<field>ОстатокПроверен</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ПрошедшаяНагрузка</dataPath>
+				<field>ПрошедшаяНагрузка</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ТестПройден</dataPath>
+				<field>ТестПройден</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаМарк</dataPath>
+				<field>СуммаМарк</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ различные
+	А.Код,
+	А.Номенклатура,
+	А.Диаметр,
+	А.КоличествоПеремаркировано,
+	ЗначенияСвойствОбъектов.Значение КАК ОстатокПроверен,
+	ЕСТЬNULL(ПроверкаНагрузки.ТестПройден, "Не проводился") КАК ТестПройден,
+	ЕСТЬNULL(ПроверкаНагрузки.ПрошедшаяНагрузка, 0) КАК ПрошедшаяНагрузка,
+	А.КоличествоПеремаркировано * &amp;ЦенаМарк КАК СуммаМарк
+ИЗ
+	(ВЫБРАТЬ
+		ТоварыНаСкладахОбороты.Номенклатура.Код КАК Код,
+		ТоварыНаСкладахОбороты.Номенклатура КАК Номенклатура,
+		ТоварыНаСкладахОбороты.Номенклатура.Типоразмер.Диаметр КАК Диаметр,
+		СУММА(ТоварыНаСкладахОбороты.КоличествоРасход) КАК КоличествоПеремаркировано
+	ИЗ
+		РегистрНакопления.ТоварыНаСкладах.Обороты(&amp;НачалоПериода, &amp;КонецПериода, Регистратор, Склад = &amp;Склад) КАК ТоварыНаСкладахОбороты
+	ГДЕ
+		ТоварыНаСкладахОбороты.Регистратор ССЫЛКА Документ.ПеремещениеТоваров
+		И НЕ ТоварыНаСкладахОбороты.Регистратор.СкладПолучатель В (&amp;СписокСкладовИсключений)
+	
+	СГРУППИРОВАТЬ ПО
+		ТоварыНаСкладахОбороты.Номенклатура,
+		ТоварыНаСкладахОбороты.Номенклатура.Код,
+		ТоварыНаСкладахОбороты.Номенклатура.Типоразмер.Диаметр) КАК А
+		ЛЕВОЕ СОЕДИНЕНИЕ РегистрСведений.ЗначенияСвойствОбъектов КАК ЗначенияСвойствОбъектов
+		ПО А.Номенклатура = ЗначенияСвойствОбъектов.Объект
+			И (ЗначенияСвойствОбъектов.Свойство = &amp;Свойство)
+		ЛЕВОЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+			ПровереннаяНагрузкаДисков.Номенклатура КАК Номенклатура,
+			ПровереннаяНагрузкаДисков.ТестПройден КАК ТестПройден,
+			ПровереннаяНагрузкаДисков.Дата КАК ДатаТеста,
+			ПровереннаяНагрузкаДисков.ПрошедшаяНагрузка КАК ПрошедшаяНагрузка,
+			ПровереннаяНагрузкаДисков.Номенклатура.Код КАК НоменклатураКод
+		ИЗ
+			РегистрСведений.ПровереннаяНагрузкаДисков КАК ПровереннаяНагрузкаДисков
+				ВНУТРЕННЕЕ СОЕДИНЕНИЕ (ВЫБРАТЬ
+					МАКСИМУМ(ПровереннаяНагрузкаДисков.Дата) КАК ДатаТеста,
+					ПровереннаяНагрузкаДисков.Номенклатура КАК Номенклатура
+				ИЗ
+					РегистрСведений.ПровереннаяНагрузкаДисков КАК ПровереннаяНагрузкаДисков
+				
+				СГРУППИРОВАТЬ ПО
+					ПровереннаяНагрузкаДисков.Номенклатура) КАК ПоследняяПроверка
+				ПО ПровереннаяНагрузкаДисков.Номенклатура = ПоследняяПроверка.Номенклатура
+					И ПровереннаяНагрузкаДисков.Дата = ПоследняяПроверка.ДатаТеста) КАК ПроверкаНагрузки
+		ПО А.Номенклатура = ПроверкаНагрузки.Номенклатура
+ГДЕ
+	ЗначенияСвойствОбъектов.Значение = ИСТИНА</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных3</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Качество</dataPath>
+				<field>Качество</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СерияНоменклатуры</dataPath>
+				<field>СерияНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Склад</dataPath>
+				<field>Склад</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураУстранения</dataPath>
+				<field>НоменклатураУстранения</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КодУстранения</dataPath>
+				<field>КодУстранения</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкладОтправитель</dataPath>
+				<field>СкладОтправитель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СкладПолучатель</dataPath>
+				<field>СкладПолучатель</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоУстр</dataPath>
+				<field>КоличествоУстр</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаУстр</dataPath>
+				<field>СуммаУстр</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ТоварыНаСкладахОбороты.Склад,
+	ТоварыНаСкладахОбороты.Номенклатура.Код КАК КодУстранения,
+	ТоварыНаСкладахОбороты.Номенклатура КАК НоменклатураУстранения,
+	ТоварыНаСкладахОбороты.Регистратор.СкладОтправитель КАК СкладОтправитель,
+	ТоварыНаСкладахОбороты.Регистратор.СкладПолучатель КАК СкладПолучатель,
+	-ТоварыНаСкладахОбороты.КоличествоОборот КАК КоличествоУстр,
+	-ТоварыНаСкладахОбороты.КоличествоОборот * &amp;ЦенаУстр КАК СуммаУстр
+ИЗ
+	РегистрНакопления.ТоварыНаСкладах.Обороты(&amp;НачалоПериода, &amp;КонецПериода, Регистратор, Склад = &amp;СкладАнгарРемУстр) КАК ТоварыНаСкладахОбороты
+ГДЕ
+	ТоварыНаСкладахОбороты.Регистратор.СкладОтправитель = &amp;СкладАнгарРемУстр
+	И ТоварыНаСкладахОбороты.Регистратор.СкладПолучатель &lt;&gt; &amp;СкладБрак</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных4</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПоКлиентам</dataPath>
+				<field>СуммаПоКлиентам</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КодПоКлиентам</dataPath>
+				<field>КодПоКлиентам</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураПоКлиентам</dataPath>
+				<field>НоменклатураПоКлиентам</field>
+				<role>
+					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
+				</role>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПоКлиентам</dataPath>
+				<field>КоличествоПоКлиентам</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДисконтнаяКарта</dataPath>
+				<field>ДисконтнаяКарта</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДоговорКонтрагента</dataPath>
+				<field>ДоговорКонтрагента</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ДокументПродажи</dataPath>
+				<field>ДокументПродажи</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ЗаказПокупателя</dataPath>
+				<field>ЗаказПокупателя</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Номенклатура</dataPath>
+				<field>Номенклатура</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Подразделение</dataPath>
+				<field>Подразделение</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Проект</dataPath>
+				<field>Проект</field>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ХарактеристикаНоменклатуры</dataPath>
+				<field>ХарактеристикаНоменклатуры</field>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ 
+	Продажи.Номенклатура.Код КАК КодПоКлиентам,
+	Продажи.Номенклатура КАК НоменклатураПоКлиентам,
+	СУММА(Продажи.КоличествоОборот) КАК КоличествоПоКлиентам,
+	СУММА(Продажи.КоличествоОборот * &amp;ЦенаПоКлиентам) КАК СуммаПоКлиентам
+ИЗ
+	РегистрНакопления.Продажи.Обороты(
+			&amp;НачалоПериода,
+			&amp;КонецПериода,
+			Регистратор,
+			Номенклатура.ВидТовара = ЗНАЧЕНИЕ(Перечисление.ВидыТоваров.Диски)
+				И Номенклатура.НоменклатурнаяГруппа = &amp;Литые
+				И ДоговорКонтрагента.Владелец В (&amp;СписокКлиентов)
+				И Подразделение.ОбособленноеПодразделение = ЛОЖЬ
+				И ДокументПродажи ССЫЛКА Документ.РеализацияТоваровУслуг
+				И ДоговорКонтрагента.ОтветственноеЛицо = ДоговорКонтрагента.Владелец.ОсновнойМенеджерКонтрагента) КАК Продажи
+ГДЕ
+	Продажи.Регистратор ССЫЛКА Документ.РеализацияТоваровУслуг
+
+СГРУППИРОВАТЬ ПО
+	Продажи.Номенклатура.Код,
+	Продажи.Номенклатура</query>
+		</dataSet>
+		<dataSet xsi:type="DataSetQuery">
+			<name>НаборДанных5</name>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КодПпроизводство</dataPath>
+				<field>КодПпроизводство</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Код</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>КоличествоПроизводство</dataPath>
+				<field>КоличествоПроизводство</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Количество</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>НоменклатураПроизводство</dataPath>
+				<field>НоменклатураПроизводство</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Номенклатура (производство)</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>СуммаПроизводство</dataPath>
+				<field>СуммаПроизводство</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма (производство)</d5p1:content>
+					</d5p1:item>
+				</title>
+			</field>
+			<dataSource>ИсточникДанных1</dataSource>
+			<query>ВЫБРАТЬ
+	ОтчетПроизводстваЗаСменуГотоваяПродукция.Номенклатура КАК НоменклатураПроизводство,
+	ОтчетПроизводстваЗаСменуГотоваяПродукция.Номенклатура.Код КАК КодПпроизводство,
+	СУММА(ОтчетПроизводстваЗаСменуГотоваяПродукция.Количество * &amp;ЦенаЗаДиск) КАК СуммаПроизводство,
+	СУММА(ОтчетПроизводстваЗаСменуГотоваяПродукция.Количество) КАК КоличествоПроизводство
+ИЗ
+	Документ.ОтчетПроизводстваЗаСмену.ГотоваяПродукция КАК ОтчетПроизводстваЗаСменуГотоваяПродукция
+ГДЕ
+	ОтчетПроизводстваЗаСменуГотоваяПродукция.Ссылка.Проведен
+	И ОтчетПроизводстваЗаСменуГотоваяПродукция.Ссылка.Дата МЕЖДУ &amp;НачалоПериода И &amp;КонецПериода
+
+СГРУППИРОВАТЬ ПО
+	ОтчетПроизводстваЗаСменуГотоваяПродукция.Номенклатура,
+	ОтчетПроизводстваЗаСменуГотоваяПродукция.Номенклатура.Код</query>
+		</dataSet>
+		<totalField>
+			<dataPath>КоличествоПеремаркировано</dataPath>
+			<expression>Сумма(КоличествоПеремаркировано)</expression>
+			<group>ОбщийИтог</group>
+		</totalField>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Сумма)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаМарк</dataPath>
+			<expression>Сумма(СуммаМарк)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаУстр</dataPath>
+			<expression>Сумма(СуммаУстр)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоУстр</dataPath>
+			<expression>Сумма(КоличествоУстр)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПоКлиентам</dataPath>
+			<expression>Сумма(СуммаПоКлиентам)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПоКлиентам</dataPath>
+			<expression>Сумма(КоличествоПоКлиентам)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>КоличествоПроизводство</dataPath>
+			<expression>Сумма(КоличествоПроизводство)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>СуммаПроизводство</dataPath>
+			<expression>Сумма(СуммаПроизводство)</expression>
+		</totalField>
+		<parameter>
+			<name>НачалоПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Начало периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>КонецПериода</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Конец периода</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:dateTime</Type>
+				<DateQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<DateFractions>DateTime</DateFractions>
+				</DateQualifiers>
+			</valueType>
+			<value xsi:type="xs:dateTime">0001-01-01T00:00:00</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Свойство</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Свойство</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Склад</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Склад</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Завод</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Завод</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:ChartOfCharacteristicTypesRef.СвойстваОбъектов</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СписокСкладовИсключений</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список складов исключений</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<useRestriction>true</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>Цена</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Цена</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>10</Digits>
+					<FractionDigits>1</FractionDigits>
+					<AllowedSign>Nonnegative</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ЦенаМарк</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Цена марк</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ЦенаУстр</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Цена устр</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СкладАнгарРемУстр</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Склад ангар рем устр</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>Литые</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Литые</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.НоменклатурныеГруппы</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ЦенаПоКлиентам</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Цена по клиентам</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<parameter>
+			<name>СписокКлиентов</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Список клиентов</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Контрагенты</Type>
+			</valueType>
+			<useRestriction>false</useRestriction>
+			<valueListAllowed>true</valueListAllowed>
+		</parameter>
+		<parameter>
+			<name>СкладБрак</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Склад брак</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core" xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.Склады</Type>
+			</valueType>
+			<value xsi:nil="true"/>
+			<useRestriction>true</useRestriction>
+		</parameter>
+		<parameter>
+			<name>ЦенаЗаДиск</name>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Цена за диск</d4p1:content>
+				</d4p1:item>
+			</title>
+			<valueType>
+				<Type xmlns="http://v8.1c.ru/8.1/data/core">xs:decimal</Type>
+				<NumberQualifiers xmlns="http://v8.1c.ru/8.1/data/core">
+					<Digits>0</Digits>
+					<FractionDigits>0</FractionDigits>
+					<AllowedSign>Any</AllowedSign>
+				</NumberQualifiers>
+			</valueType>
+			<value xsi:type="xs:decimal">0</value>
+			<useRestriction>false</useRestriction>
+		</parameter>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Основной</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет о проверке нагрузки</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Перемаркировка</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет о перемаркировке</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Устранение</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет об устранении</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">ПоКлиентам</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет по клиентам</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+		<settingsVariant>
+			<name xmlns="http://v8.1c.ru/8.1/data-composition-system/settings">Подготовка</name>
+			<presentation xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Отчет по производству</d4p1:content>
+				</d4p1:item>
+			</presentation>
+		</settingsVariant>
+	</dataCompositionSchema>
+</SchemaFile>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодПроверка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НоменклатураПроверка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ДатаПроверка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерПартии</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НомерКонтейнера</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Завод</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТестПройденПроверка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрошедшаяНагрузкаПроверка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Сумма</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:use>false</dcscor:use>
+			<dcscor:parameter>Цена</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>НоменклатураПроверка</field>
+			<orderType>Asc</orderType>
+		</item>
+		<item xsi:type="OrderItemField">
+			<field>ДатаПроверка</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Код</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Номенклатура</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>Диаметр</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПеремаркировано</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ОстатокПроверен</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ТестПройден</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>ПрошедшаяНагрузка</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаМарк</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Цена</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаМарк</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<order>
+		<item xsi:type="OrderItemField">
+			<field>Номенклатура</field>
+			<orderType>Asc</orderType>
+		</item>
+	</order>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодУстранения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НоменклатураУстранения</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СкладОтправитель</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СкладПолучатель</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоУстр</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаУстр</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Цена</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаМарк</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаУстр</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаПоКлиентам</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодПоКлиентам</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НоменклатураПоКлиентам</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПоКлиентам</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПоКлиентам</field>
+		</item>
+	</selection>
+	<dataParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Цена</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаМарк</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаУстр</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ЦенаПоКлиентам</dcscor:parameter>
+			<dcscor:value xsi:type="xs:decimal">0</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>СписокКлиентов</dcscor:parameter>
+			<dcscor:value xsi:nil="true"/>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>СкладБрак</dcscor:parameter>
+			<dcscor:value xsi:type="xs:dateTime">0001-01-01T00:00:00</dcscor:value>
+		</dcscor:item>
+	</dataParameters>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<selection>
+		<item xsi:type="SelectedItemField">
+			<field>СистемныеПоля.НомерПоПорядку</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КодПпроизводство</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>НоменклатураПроизводство</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>КоличествоПроизводство</field>
+		</item>
+		<item xsi:type="SelectedItemField">
+			<field>СуммаПроизводство</field>
+		</item>
+	</selection>
+	<conditionalAppearance>
+		<item>
+			<selection>
+				<item>
+					<field>КоличествоПодговка</field>
+				</item>
+			</selection>
+			<filter/>
+			<appearance>
+				<dcscor:item xsi:type="SettingsParameterValue">
+					<dcscor:parameter>Формат</dcscor:parameter>
+					<dcscor:value xsi:type="v8:LocalStringType">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>ЧДЦ=0</v8:content>
+						</v8:item>
+					</dcscor:value>
+				</dcscor:item>
+			</appearance>
+		</item>
+	</conditionalAppearance>
+	<item xsi:type="StructureItemGroup">
+		<order>
+			<item xsi:type="OrderItemAuto"/>
+		</order>
+		<selection>
+			<item xsi:type="SelectedItemAuto"/>
+		</selection>
+	</item>
+</Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
+<SchemaFile xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<dataCompositionSchema xmlns="http://v8.1c.ru/8.1/data-composition-system/schema"/>
+</SchemaFile>
